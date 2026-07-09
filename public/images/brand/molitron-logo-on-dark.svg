@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 96" role="img" aria-label="Molitron">
+  <rect x="0" y="8" width="80" height="80" rx="16" fill="#2F6B5A"/>
+  <text
+    x="40"
+    y="64"
+    text-anchor="middle"
+    font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    font-size="48"
+    font-weight="700"
+    fill="#FFFFFF"
+  >M</text>
+  <text
+    x="104"
+    y="66"
+    font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    font-size="48"
+    font-weight="700"
+    letter-spacing="0.04em"
+    fill="#F1F5F7"
+  >MOLITRON</text>
+</svg>
