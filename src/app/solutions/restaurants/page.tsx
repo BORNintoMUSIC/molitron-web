@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/Button";
 import { CtaBand } from "@/components/CtaBand";
+import { DocDownloads } from "@/components/DocDownloads";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { pageHeroes } from "@/lib/heroes";
+import { getProduct } from "@/lib/products";
 import { metadataFor } from "@/lib/seo";
 
 export const metadata: Metadata = metadataFor("restaurants");
 
 export default function RestaurantsPage() {
+  const epfa = getProduct("epfa");
+  const moas = getProduct("moas");
+
   return (
     <>
       <PageHero config={pageHeroes.restaurants}>
@@ -25,24 +30,27 @@ export default function RestaurantsPage() {
       </PageHero>
 
       <Section tone="white">
-        <SectionHeading title="Common restaurant scenarios" />
+        <SectionHeading
+          title="Common restaurant scenarios"
+          description="Visible smoke and cooking odor invite complaints—and code enforcement. Match filtration, odor abatement, or both to the load."
+        />
         <div className="grid gap-5 sm:grid-cols-2">
           {[
             {
               t: "New builds",
-              d: "Coordinate early with your design team on CFM, hood layout, and discharge path—especially mixed-use sites.",
+              d: "Coordinate early on CFM, hood layout, and discharge path—especially mixed-use sites where neighbors and AHJs raise the bar.",
             },
             {
               t: "Remodels",
-              d: "Upgrade odor and grease control when menus change, neighbors complain, or the AHJ requires listed equipment.",
+              d: "Upgrade grease, smoke, and odor control when menus change, complaints resume, or the AHJ requires listed pollution control.",
             },
             {
               t: "Urban / sidewall discharge",
-              d: "When roof discharge is limited, filtration and odor neutralization become critical path items.",
+              d: "When roof discharge is limited, EPFA dry filtration and MOAS molecular odor neutralization become critical path items.",
             },
             {
               t: "Chains & independents",
-              d: "From high-volume QSR concepts to chef-driven kitchens—match EPFA, MOAS, or both to the load.",
+              d: "From high-volume QSR to chef-driven kitchens—light-duty loads often fit EPFA; persistent odor calls for MOAS, or both.",
             },
           ].map((card) => (
             <div key={card.t} className="surface-card p-5">
@@ -66,6 +74,20 @@ export default function RestaurantsPage() {
           <li>Whether odor control is required in addition to filtration</li>
         </ul>
       </Section>
+
+      {epfa && moas ? (
+        <Section tone="white">
+          <SectionHeading
+            eyebrow="Downloads"
+            title="Specs for restaurant submittals"
+            description="Share brochures and engineering docs with your design team while you request a project-specific stack."
+          />
+          <DocDownloads
+            documents={[epfa.documents[0], moas.documents[0]]}
+            productName="Restaurant projects"
+          />
+        </Section>
+      ) : null}
 
       <CtaBand title="Restaurant project? Let’s price the right stack." />
     </>

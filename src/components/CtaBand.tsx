@@ -3,7 +3,7 @@ import { Section } from "@/components/Section";
 
 export function CtaBand({
   title = "Ready to specify or price a project?",
-  description = "Tell us about CFM, cooking equipment, location, and discharge type. Molitron sells direct—Scott’s team will follow up with next steps.",
+  description = "Tell us about CFM, cooking equipment, location, and discharge type. Molitron sells direct—we’ll follow up with next steps and the right EPFA / MOAS stack.",
 }: {
   title?: string;
   description?: string;

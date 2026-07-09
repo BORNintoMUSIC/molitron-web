@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/Button";
 import { CtaBand } from "@/components/CtaBand";
+import { DocDownloads } from "@/components/DocDownloads";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { ProductGallery } from "@/components/ProductGallery";
@@ -87,11 +88,11 @@ export default async function ProductPage({ params }: Props) {
       <Section tone="white">
         <div className="grid gap-10 lg:grid-cols-2">
           <div>
-            <SectionHeading title="Key capabilities" />
+            <SectionHeading title="Why operators choose this system" />
             <ul className="space-y-3">
               {product.highlights.map((item) => (
                 <li key={item} className="flex gap-3 text-sm leading-relaxed text-foreground/80">
-                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent" />
+                  <span className="mt-1.5 h-2 w-2 shrink-0 bg-accent" />
                   {item}
                 </li>
               ))}
@@ -102,7 +103,7 @@ export default async function ProductPage({ params }: Props) {
             <ul className="space-y-3">
               {product.useWhen.map((item) => (
                 <li key={item} className="flex gap-3 text-sm leading-relaxed text-foreground/80">
-                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                  <span className="mt-1.5 h-2 w-2 shrink-0 bg-primary" />
                   {item}
                 </li>
               ))}
@@ -133,6 +134,15 @@ export default async function ProductPage({ params }: Props) {
       </Section>
 
       <Section tone="white">
+        <SectionHeading
+          eyebrow="Downloads"
+          title="Technical documentation"
+          description={`Brochures, engineering specs, and manuals for ${product.shortName}—ready for submittals and design review.`}
+        />
+        <DocDownloads documents={product.documents} productName={product.shortName} />
+      </Section>
+
+      <Section>
         <SectionHeading
           title="Selected installations"
           description="Representative projects. Full history available on request."

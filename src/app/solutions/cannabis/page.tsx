@@ -34,11 +34,11 @@ export default function CannabisPage() {
             },
             {
               t: "Leverage proven odor tech",
-              d: "MOAS is designed to neutralize malodors in exhaust streams—not mask them with fragrance—reducing odor particles significantly in commercial applications.",
+              d: "MOAS atomizes a neutralizing solution into the exhaust airstream—converting malodors at the molecular level, not masking them with fragrance.",
             },
             {
               t: "Pair filtration when needed",
-              d: "Where particulate or grease-like loads exist (e.g. co-located foodservice), EPFA may be part of the stack.",
+              d: "Where particulate or grease-like loads exist (e.g. co-located foodservice), the Enviro-Pak Filter Assembly may be part of the stack.",
             },
             {
               t: "Install history",

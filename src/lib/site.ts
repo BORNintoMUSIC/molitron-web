@@ -3,7 +3,7 @@ export const site = {
   legalName: "Molitron Company Inc",
   tagline: "Commercial kitchen pollution control & odor abatement",
   description:
-    "UL & ETL listed commercial kitchen pollution control units and odor abatement systems. Direct from Molitron—restaurants, airports, CA & Denver.",
+    "UL 8782 & ETL listed commercial kitchen pollution control and odor abatement. EPFA dry filtration and MOAS molecular odor neutralization—sold direct for restaurants, airports, CA & Denver.",
   url: "https://molitron.com",
   phone: "303-969-8888",
   phoneHref: "tel:+13039698888",

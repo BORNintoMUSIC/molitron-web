@@ -113,10 +113,8 @@ export function buildMetadata(page: PageSeo): Metadata {
 export const pagesSeo = {
   home: {
     title: "Kitchen Pollution Control & Odor Abatement",
-    // 58 with brand: "Kitchen Pollution Control & Odor Abatement | Molitron" = 53
     description:
-      "UL & ETL listed commercial kitchen pollution control units and odor abatement systems. Direct from Molitron—restaurants, airports, CA & Denver.",
-    // 148 chars
+      "UL 8782 EPFA filtration and ETL-listed MOAS odor abatement for commercial kitchen exhaust. Control grease, smoke, and odor—sold direct from Molitron.",
     path: "/",
     image: "/images/heroes/home.jpg",
     imageAlt:
@@ -131,10 +129,8 @@ export const pagesSeo = {
   },
   products: {
     title: "Kitchen Pollution Control Products",
-    // 36
     description:
-      "Shop Molitron MOAS odor abatement and EPFA pollution control filter assemblies. UL/ETL listed commercial kitchen exhaust solutions, sold direct.",
-    // 148
+      "Molitron MOAS odor abatement and EPFA UL 8782 filter assemblies for commercial kitchen exhaust. Molecular neutralization and three-stage dry filtration, sold direct.",
     path: "/products",
     image: "/images/heroes/products.jpg",
     imageAlt: "Molitron MOAS and EPFA commercial kitchen pollution control products",
@@ -142,10 +138,8 @@ export const pagesSeo = {
   },
   moas: {
     title: "MOAS Kitchen Odor Abatement System",
-    // 36 → with | Molitron = 47
     description:
-      "ETL listed MOAS commercial kitchen odor abatement system. Neutralizes cooking odors & reduces smoke in exhaust—ideal for restaurants and sidewall discharge.",
-    // 159
+      "ETL-listed MOAS commercial kitchen odor abatement. Neutralizes odors at the molecular level—up to 95% odor reduction. Ideal for restaurants and sidewall discharge.",
     path: "/products/moas",
     image: "/images/heroes/moas.jpg",
     imageAlt: "Molitron MOAS commercial kitchen odor abatement system cabinet",
@@ -153,10 +147,8 @@ export const pagesSeo = {
   },
   epfa: {
     title: "EPFA Kitchen Pollution Control Unit",
-    // 37 → 48 with brand
     description:
-      "UL listed EPFA Enviro-Pak filter assembly for commercial kitchen exhaust. Removes grease, smoke & particulates. Restaurant PCU filtration, sold direct.",
-    // 155
+      "UL 8782 listed EPFA Enviro-Pak filter assembly. Three-stage dry filtration for grease, smoke, and particulate—zero plumbing. Restaurant PCU, sold direct.",
     path: "/products/epfa",
     image: "/images/heroes/epfa.jpg",
     imageAlt: "Molitron EPFA UL listed kitchen pollution control filter assembly",

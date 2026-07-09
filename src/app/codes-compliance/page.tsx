@@ -30,9 +30,9 @@ export default function CodesCompliancePage() {
       <PageHero config={pageHeroes.codes} />
 
       <Section>
-        <p className="max-w-3xl rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
-          <strong>Disclaimer:</strong> This content is educational. Always verify requirements with
-          your design professional and AHJ for the project address.
+        <p className="max-w-3xl rounded-md border border-warning/30 bg-accent-soft px-4 py-3 text-sm text-foreground">
+          <strong className="text-primary">Disclaimer:</strong> This content is educational. Always verify
+          requirements with your design professional and AHJ for the project address.
         </p>
       </Section>
 
@@ -62,8 +62,8 @@ export default function CodesCompliancePage() {
             </thead>
             <tbody>
               {[
-                ["Grease / particulate filtration", "EPFA (UL listed filter assembly)"],
-                ["Odor neutralization in exhaust stream", "MOAS (ETL listed abatement system)"],
+                ["Grease / particulate filtration", "EPFA (UL 8782 listed filter assembly)"],
+                ["Odor neutralization in exhaust stream", "MOAS (ETL listed abatement—molecular, not masking)"],
                 ["Filtration + odor together", "EPFA + MOAS"],
                 ["Sidewall / sensitive discharge", "Project-specific stack; request engineering input"],
               ].map(([need, product], i) => (
