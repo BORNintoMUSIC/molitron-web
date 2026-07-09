@@ -175,7 +175,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <Header />
-        <main id="content" className="flex-1">
+        <main id="content" className="min-w-0 flex-1">
           {children}
         </main>
         <Footer />

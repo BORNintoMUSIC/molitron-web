@@ -52,9 +52,9 @@ export default function CodesCompliancePage() {
           title="How Molitron products map to compliance conversations"
           description="Use this as a starting point for owner and FM discussions."
         />
-        <div className="table-scroll overflow-hidden rounded-lg border border-border bg-card">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-primary text-white">
+        <div className="table-scroll overflow-x-auto overflow-y-hidden rounded-lg border border-border bg-card">
+          <table className="w-full min-w-0 text-left text-sm">
+            <thead className="bg-brand text-on-brand">
               <tr>
                 <th className="px-3 py-3 font-semibold sm:px-5">Need</th>
                 <th className="px-3 py-3 font-semibold sm:px-5">Often discussed product</th>

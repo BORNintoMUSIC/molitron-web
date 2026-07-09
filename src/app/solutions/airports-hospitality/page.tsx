@@ -26,7 +26,7 @@ export default function AirportsHospitalityPage() {
 
       <Section tone="white">
         <SectionHeading title="Why these projects choose listed control equipment" />
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {[
             {
               t: "Shared buildings",

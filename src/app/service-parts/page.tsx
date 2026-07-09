@@ -27,7 +27,7 @@ export default function ServicePartsPage() {
 
       <Section tone="white">
         <SectionHeading title="What we can help with" />
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {[
             {
               t: "MOAS consumables",

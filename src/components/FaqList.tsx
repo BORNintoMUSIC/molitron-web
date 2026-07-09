@@ -18,7 +18,7 @@ export function FaqList({
                 {item.question}
               </span>
               <span
-                className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-border bg-card text-lg leading-none text-accent transition-transform duration-300 group-open:rotate-45 group-open:border-accent/40 group-open:bg-accent-soft"
+                className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border bg-card text-lg leading-none text-accent transition-transform duration-300 group-open:rotate-45 group-open:border-accent/40 group-open:bg-accent-soft sm:h-10 sm:w-10"
                 aria-hidden
               >
                 +

@@ -109,8 +109,11 @@ export function Header() {
             </span>
           </Link>
 
-          {/* Desktop */}
-          <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
+          {/* Desktop — xl+ so tablets keep the drawer (touch-friendly) */}
+          <nav
+            className="hidden min-w-0 flex-1 items-center justify-end gap-0.5 xl:flex"
+            aria-label="Primary"
+          >
             {nav.map((item) =>
               "children" in item && item.children ? (
                 <div
@@ -127,13 +130,16 @@ export function Header() {
                 >
                   <button
                     type="button"
-                    className={`min-h-11 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                    className={`min-h-11 rounded-md px-2.5 py-2 text-sm font-medium transition-colors duration-200 2xl:px-3 ${
                       isActive(pathname, item.href)
                         ? "bg-accent-soft text-accent"
                         : "text-foreground/80 hover:bg-surface-muted hover:text-primary"
                     }`}
                     aria-expanded={openMenu === item.label}
                     aria-haspopup="menu"
+                    onClick={() =>
+                      setOpenMenu((current) => (current === item.label ? null : item.label))
+                    }
                   >
                     {item.label}
                   </button>
@@ -159,7 +165,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`inline-flex min-h-11 items-center rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                  className={`inline-flex min-h-11 items-center rounded-md px-2.5 py-2 text-sm font-medium transition-colors duration-200 2xl:px-3 ${
                     isActive(pathname, item.href)
                       ? "bg-accent-soft text-accent"
                       : "text-foreground/80 hover:bg-surface-muted hover:text-primary"
@@ -169,21 +175,21 @@ export function Header() {
                 </Link>
               ),
             )}
-            <ThemeToggle className="ml-2" showLabel />
+            <ThemeToggle className="ml-2 shrink-0" showLabel />
             <Link
               href={primaryCta.href}
-              className="ml-1 inline-flex min-h-11 items-center rounded-md bg-brand px-4 py-2 text-sm font-semibold text-on-brand shadow-sm hover:bg-brand-hover"
+              className="ml-1 inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-md bg-brand px-4 py-2 text-sm font-semibold text-on-brand shadow-sm hover:bg-brand-hover"
             >
               {primaryCta.label}
             </Link>
           </nav>
 
-          {/* Mobile controls */}
-          <div className="flex items-center gap-2 lg:hidden">
-            <ThemeToggle showLabel />
+          {/* Mobile / tablet controls */}
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2 xl:hidden">
+            <ThemeToggle />
             <a
               href={site.phoneHref}
-              className="inline-flex min-h-11 items-center justify-center rounded-md border border-border bg-card px-3 text-sm font-semibold text-primary"
+              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-border bg-card px-2.5 text-sm font-semibold text-primary sm:px-3"
             >
               Call
             </a>

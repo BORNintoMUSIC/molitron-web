@@ -35,7 +35,7 @@ export function ProductCard({ product }: { product: Product }) {
         </ul>
         <Link
           href={`/products/${product.slug}`}
-          className="link-shine mt-6 inline-flex text-sm font-semibold text-accent"
+          className="link-shine mt-6 inline-flex min-h-11 items-center text-sm font-semibold text-accent"
         >
           View {product.shortName} details →
         </Link>
