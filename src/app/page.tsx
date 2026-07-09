@@ -39,7 +39,7 @@ export default function HomePage() {
 
         <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20 md:py-28 lg:py-32">
           <div className="max-w-2xl">
-            <p className="mb-2 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-on-brand-muted sm:mb-3 sm:text-xs">
+            <p className="mb-2 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-on-brand-muted sm:mb-3 sm:text-xs sm:tracking-[0.16em]">
               <span className="h-1.5 w-1.5 bg-accent" aria-hidden />
               Direct manufacturer · Lakewood, CO
             </p>
@@ -51,7 +51,7 @@ export default function HomePage() {
               smoke, and odor in kitchen exhaust—sold direct, with decades of install history
               including Denver International Airport.
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
+            <div className="mt-6 flex w-full flex-col gap-3 sm:mt-8 sm:max-w-xl sm:flex-row sm:flex-wrap">
               <Button href="/contact" className="!bg-on-brand !text-brand hover:!bg-white">
                 Request a Quote
               </Button>
@@ -65,7 +65,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <dl className="mt-10 grid max-w-2xl grid-cols-1 gap-3 min-[400px]:grid-cols-3 sm:mt-12 sm:gap-4">
+          <dl className="mt-10 grid max-w-2xl grid-cols-1 gap-3 sm:mt-12 sm:grid-cols-3 sm:gap-4">
             {[
               { label: "Founded", value: String(site.founded) },
               { label: "Focus markets", value: "CA · Denver" },

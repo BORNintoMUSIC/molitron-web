@@ -76,7 +76,7 @@ export function QuoteForm() {
   }
 
   const field =
-    "mt-1 w-full min-h-11 rounded-md border border-border bg-card px-3 py-2.5 text-base text-foreground shadow-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 sm:min-h-10 sm:text-sm";
+    "mt-1 w-full min-h-11 rounded-md border border-border bg-card px-3 py-2.5 text-base text-foreground shadow-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20";
   const label = "block text-sm font-medium text-foreground";
 
   return (

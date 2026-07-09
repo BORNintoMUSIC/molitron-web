@@ -103,7 +103,7 @@ export default function AboutPage() {
                     <dt className="text-xs font-semibold uppercase tracking-wider text-muted">
                       {fact.label}
                     </dt>
-                    <dd className="mt-1.5 text-lg font-semibold text-primary">{fact.value}</dd>
+                    <dd className="mt-1.5 break-words text-base font-semibold text-primary sm:text-lg">{fact.value}</dd>
                   </div>
                 ))}
               </dl>

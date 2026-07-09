@@ -36,7 +36,7 @@ export function PageHero({ config, children, compact = false }: PageHeroProps) {
       >
         <div className="max-w-3xl">
           {config.eyebrow ? (
-            <p className="mb-2 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-on-brand-muted sm:mb-3 sm:text-xs">
+            <p className="mb-2 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-on-brand-muted sm:mb-3 sm:text-xs sm:tracking-[0.16em]">
               <span className="h-1.5 w-1.5 bg-accent" aria-hidden />
               {config.eyebrow}
             </p>

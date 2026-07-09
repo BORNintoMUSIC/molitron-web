@@ -20,7 +20,7 @@ export default function ContactPage() {
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted">Phone</p>
                 <a
-                  className="mt-1 block font-semibold text-primary hover:text-accent"
+                  className="mt-1 inline-flex min-h-11 items-center font-semibold text-primary hover:text-accent"
                   href={site.phoneHref}
                 >
                   {site.phone}
@@ -29,7 +29,7 @@ export default function ContactPage() {
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted">Email</p>
                 <a
-                  className="mt-1 block font-semibold text-primary hover:text-accent"
+                  className="mt-1 inline-flex min-h-11 items-center break-all font-semibold text-primary hover:text-accent"
                   href={`mailto:${site.email}`}
                 >
                   {site.email}

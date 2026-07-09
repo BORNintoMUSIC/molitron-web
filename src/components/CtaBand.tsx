@@ -17,7 +17,7 @@ export function CtaBand({
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-on-brand-muted sm:text-base">{description}</p>
         </div>
-        <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap lg:shrink-0">
+        <div className="flex w-full flex-col gap-3 sm:w-auto md:flex-row md:flex-wrap lg:shrink-0">
           <Button href="/contact" className="!bg-on-brand !text-brand hover:!bg-white">
             Request a Quote
           </Button>

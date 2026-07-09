@@ -31,7 +31,7 @@ export function Footer() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="inline-flex min-h-10 items-center py-1 hover:text-on-brand"
+                  className="inline-flex min-h-11 items-center py-1 hover:text-on-brand"
                 >
                   {link.label}
                 </Link>
@@ -51,7 +51,7 @@ export function Footer() {
                 <li key={child.href}>
                   <Link
                     href={child.href}
-                    className="inline-flex min-h-10 items-center py-1 hover:text-on-brand"
+                    className="inline-flex min-h-11 items-center py-1 hover:text-on-brand"
                   >
                     {child.label}
                   </Link>
@@ -68,7 +68,7 @@ export function Footer() {
             <li>
               <a
                 href={site.phoneHref}
-                className="inline-flex min-h-10 items-center font-medium hover:text-on-brand"
+                className="inline-flex min-h-11 items-center font-medium hover:text-on-brand"
               >
                 {site.phone}
               </a>
@@ -76,7 +76,7 @@ export function Footer() {
             <li>
               <a
                 href={`mailto:${site.email}`}
-                className="inline-flex min-h-10 break-all items-center hover:text-on-brand"
+                className="inline-flex min-h-11 break-all items-center hover:text-on-brand"
               >
                 {site.email}
               </a>

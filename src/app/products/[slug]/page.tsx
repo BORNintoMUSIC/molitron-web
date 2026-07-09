@@ -77,7 +77,7 @@ export default async function ProductPage({ params }: Props) {
           </div>
           <div className="min-w-0">
             <p className="text-sm leading-relaxed text-foreground/80 sm:text-base">{product.summary}</p>
-            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-accent break-words">
               {product.certifications.join(" · ")}
             </p>
           </div>
@@ -116,12 +116,12 @@ export default async function ProductPage({ params }: Props) {
           title="Specifications"
           description="Share these with your design team. Final selection depends on CFM, equipment, discharge, and AHJ requirements."
         />
-        <div className="table-scroll overflow-hidden rounded-lg border border-border bg-card">
+        <div className="table-scroll overflow-x-auto overflow-y-hidden rounded-lg border border-border bg-card">
           <table className="w-full min-w-0 text-left text-sm sm:min-w-0">
             <tbody>
               {product.specs.map((row, i) => (
                 <tr key={row.label} className={i % 2 === 0 ? "bg-card" : "bg-background"}>
-                  <th className="w-[32%] align-top px-3 py-3 font-semibold text-primary sm:w-1/3 sm:px-5">
+                  <th className="w-[36%] align-top break-words px-3 py-3 font-semibold text-primary sm:w-1/3 sm:px-5">
                     {row.label}
                   </th>
                   <td className="px-3 py-3 text-foreground/80 break-words sm:px-5">{row.value}</td>
