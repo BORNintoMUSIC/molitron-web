@@ -31,15 +31,15 @@ export default function ServicePartsPage() {
           {[
             {
               t: "MOAS consumables",
-              d: "Neutralizing agent supply and system operation questions for odor abatement units.",
+              d: "Odor Gone concentrate supply, refill guidance, and operation questions for molecular odor abatement units.",
             },
             {
               t: "EPFA filters",
-              d: "Guidance on filter media used in Enviro-Pak assemblies for grease and particulate control.",
+              d: "MERV 9 / MERV 14 media guidance and service intervals for Enviro-Pak three-stage dry filtration.",
             },
             {
               t: "Troubleshooting",
-              d: "Help identifying utility issues, maintenance intervals, and when a site visit or replacement is warranted.",
+              d: "Help identifying utility issues, monitor panel alerts, maintenance intervals, and when a site visit or replacement is warranted.",
             },
           ].map((card) => (
             <div key={card.t} className="surface-card p-5">

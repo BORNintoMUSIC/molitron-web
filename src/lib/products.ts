@@ -3,6 +3,13 @@ export type ProductImage = {
   alt: string;
 };
 
+export type ProductDocument = {
+  title: string;
+  description: string;
+  href: string;
+  kind: "brochure" | "specs" | "manual";
+};
+
 export type Product = {
   slug: "moas" | "epfa";
   name: string;
@@ -14,6 +21,7 @@ export type Product = {
   specs: { label: string; value: string }[];
   useWhen: string[];
   installs: string[];
+  documents: ProductDocument[];
   /** Primary card / hero image */
   hero: ProductImage;
   /** Additional gallery images (product + installs) */
@@ -26,47 +34,67 @@ export const products: Product[] = [
     slug: "moas",
     name: "Molitron Odor Abatement System (MOAS)",
     shortName: "MOAS",
-    tagline: "Neutralize smoke and odor in commercial exhaust streams",
+    tagline: "Odors neutralized at the molecular level—not masked. Gone.",
     summary:
-      "The Molitron Odor and Smoke Abatement System (MOAS) is a self-contained system for neutralizing offensive odors and smoke from commercial exhaust. It can operate independently or with the Enviro-Pak Filter Assembly (EPFA).",
-    certifications: ["ETL Listed", "Tested to UL 197 and UL 710 Clause 43"],
+      "The Molitron Odor Abatement System (MOAS) atomizes a neutralizing solution into commercial kitchen exhaust, converting malodors at the molecular level instead of covering them with fragrance. Self-contained and wall-mounted, it runs on a standard 115 VAC circuit and a ¼″ water line—standalone or with EPFA filtration.",
+    certifications: [
+      "ETL Listed",
+      "Tested to UL 197 and UL 710 Clause 43",
+    ],
     highlights: [
-      "Reduces odor particles by approximately 95%",
-      "Reduces smoke particles by approximately 50%",
-      "Chemical neutralization—not masking or perfume",
-      "Stainless steel cabinet with integrated controls",
-      "Works standalone or with EPFA filtration",
+      "Up to 95% odor particle reduction—chemical neutralization, not perfume",
+      "Up to 50% smoke particle reduction (varies with cooking process and hood efficiency)",
+      "Up to 6,000 CFM per two-nozzle system",
+      "Wall-mounted stainless cabinet; only the misting nozzles go in the duct",
+      "Runs standalone or integrates with the Enviro-Pak Filter Assembly (EPFA)",
+      "Optional 10-gallon solution container with low-level audible refill alert",
     ],
     specs: [
-      { label: "Cabinet", value: 'Stainless steel — 32" H × 24" W × 8" D' },
-      { label: "Controller", value: "UL listed IDEC time controller" },
-      { label: "Components", value: "Liquid pump, air compressor, solenoid valve, liquid injector, mixing tank" },
-      { label: "Power", value: "115 VAC, 15 amp circuit" },
-      { label: "Water", value: 'One 1/4" cold water supply' },
-      { label: "Weight", value: "Approx. 100 lbs" },
+      { label: "Capacity", value: "Up to 6,000 CFM per system (two misting nozzles)" },
+      { label: "Odor reduction", value: "Up to 95% odor particle reduction" },
+      { label: "Smoke reduction", value: "Up to 50% (varies with process and hood efficiency)" },
+      { label: "Method", value: "Atomized chemical neutralization—molecular conversion, not masking" },
+      { label: "Cabinet", value: '18 Ga stainless steel — 24″ W × 32″ H × 8″ D, ~100 lbs' },
+      { label: "Power", value: "115 VAC, 15 A dedicated circuit" },
+      { label: "Water", value: '¼″ copper cold water supply, 80 PSI' },
+      { label: "Listing", value: "ETL Listed (UL 197; UL 710 Clause 43)" },
     ],
     useWhen: [
-      "Cooking odors risk neighbor complaints or code issues",
-      "Sidewall or sensitive discharge locations",
-      "You need odor control with or without full PCU filtration",
-      "Airports, hotels, dense urban restaurants",
+      "Cooking odors risk neighbor complaints or code enforcement",
+      "Sidewall, ground-level, or other sensitive discharge locations",
+      "You need odor abatement with or without full PCU filtration",
+      "Airports, hotels, dense urban restaurants, and mixed-use kitchens",
     ],
     installs: [
-      "Hiro Nori Rest, CA",
-      "Hyatt Houston, TX",
-      "Maple & Ash, AZ",
-      "Shoreline & Barca, DC",
-      "Momo Kebab, CA",
-      "ROOH, CA",
-      "Von’s Chicken, CA",
-      "Chicken Meet Rice, CA",
-      "Habit Burger, NJ",
-      "University of California SD, CA",
+      "Ritz-Carlton",
+      "Chick-fil-A",
+      "Chipotle",
+      "Burger King",
+      "Haidilao",
+      "Lazy Dog",
+      "Alexander's Steak House",
+      "Luna Grill",
+      "District Taco",
+      "Cooper's Pit Bar-B-Que",
+      "Farmer's Table",
       "Plaza Premium Lounge, Denver International Airport",
-      "Specialty Café, CA",
-      "Habit Burger, CA",
+      "University of California SD, CA",
+      "Habit Burger",
       "UNO K Street, DC",
-      "Pizza My Heart, CA",
+    ],
+    documents: [
+      {
+        title: "MOAS Product Brochure (2026)",
+        description: "Performance claims, how it works, operator benefits, and listing summary.",
+        href: "/docs/moas-brochure-2026.pdf",
+        kind: "brochure",
+      },
+      {
+        title: "MOAS Engineering Specs & Installation (2026)",
+        description: "Cabinet details, nozzle install, utilities, interlock, and start-up guidance.",
+        href: "/docs/moas-engineering-specs-installation-2026.pdf",
+        kind: "specs",
+      },
     ],
     hero: {
       src: "/images/moas/moas-closed.png",
@@ -115,28 +143,33 @@ export const products: Product[] = [
     slug: "epfa",
     name: "Enviro-Pak Filter Assembly (EPFA)",
     shortName: "EPFA",
-    tagline: "UL listed filtration for grease, particulate, and kitchen exhaust",
+    tagline: "Serious exhaust filtration. Zero plumbing.",
     summary:
-      "The Molitron UL Listed Enviro-Pak Filter Assembly (EPFA) removes particulate matter and grease vapors from kitchen exhaust air. The stainless steel assembly can be located indoor or outdoor between the kitchen hood and the point of discharge.",
-    certifications: ["UL Listed"],
+      "The Enviro-Pak Filter Assembly (EPFA) is a UL 8782 listed pollution control unit with three stages of high-efficiency dry filtration. It removes smoke, grease vapor, and odor from light-duty commercial kitchen exhaust in a fully welded stainless housing—no water, pumps, or chemistry—installed anywhere between the hood and discharge.",
+    certifications: ["UL 8782 Listed", "File MH45752", "Models EPFA-24 through EPFA-144"],
     highlights: [
-      "18 gauge, type 304 stainless steel enclosure",
-      "Holds pre-filters and high-efficiency filters",
-      "Indoor or outdoor installation between hood and discharge",
-      "Helps control visible smoke and grease emissions",
-      "Pairs with MOAS when odor neutralization is also required",
+      "Three-stage dry filtration: MERV 9 pre-filter, MERV 14 high-efficiency, MERV 14 or carbon final",
+      "Zero plumbing—no water supply, pumps, or solution dosing",
+      "Fully welded 18 Ga Type 304 stainless steel housing with gasketed access doors",
+      "Indoor or outdoor placement between hood and atmospheric discharge",
+      "Remote lighted monitor panel: green = running, red = filters need service",
+      "Fire-suppression ready—pre-piped for sprinkler or factory Ansul pre-piping",
     ],
     specs: [
-      { label: "Construction", value: "18 ga type 304 stainless steel" },
-      { label: "Channels", value: "Top, bottom, and end channels for filter media" },
-      { label: "Placement", value: "Any point between hood and atmospheric discharge" },
-      { label: "Listing", value: "UL Listed filter assembly" },
+      { label: "Listing", value: "UL 8782 Listed · File MH45752 · Models EPFA-24 through EPFA-144" },
+      { label: "Construction", value: "18 Ga Type 304 stainless steel, fully welded; sloped full-width top" },
+      { label: "Filtration", value: "F1 MERV 9 pre-filter · F2 MERV 14 · F3 MERV 14 or carbon (odor option)" },
+      { label: "Footprint", value: 'Width “W” × 63″ long; twelve widths from 24″–144″' },
+      { label: "Access", value: "Three removable gasketed doors (optional doors both sides)" },
+      { label: "Utilities", value: "115 VAC for monitoring system only—no water or pumps for filtration" },
+      { label: "Placement", value: "Any point between kitchen hood and atmospheric discharge" },
+      { label: "Service", value: "Tool-free filter access; typical four-week filter check interval" },
     ],
     useWhen: [
-      "Grease and particulate control is required for compliance",
-      "Visible smoke is a risk for inspections or neighbors",
-      "You need a compact filtration assembly in the exhaust path",
-      "Commercial kitchens, airports, mixed-use projects",
+      "Light-duty cooking with limited smoke/grease load needs listed filtration",
+      "Visible smoke or grease emissions risk inspections or neighbor complaints",
+      "You need a compact dry PCU without water, pumps, or chemistry",
+      "Commercial kitchens, airports, hotels, and mixed-use projects",
     ],
     installs: [
       "Urban Egg, CO",
@@ -154,6 +187,20 @@ export const products: Product[] = [
       "Stein Beer Garden, CA",
       "Sheraton Hotel, CO",
       "Johnny Rocket, CA",
+    ],
+    documents: [
+      {
+        title: "EPFA Product Brochure (2026)",
+        description: "Three-stage filtration overview, operator benefits, and technical specifications.",
+        href: "/docs/epfa-brochure-2026.pdf",
+        kind: "brochure",
+      },
+      {
+        title: "EPFA Operation & Maintenance Manual (2026)",
+        description: "Install, electrical, fire suppression, start-up, and filter replacement guidance.",
+        href: "/docs/epfa-operation-maintenance-manual-2026.pdf",
+        kind: "manual",
+      },
     ],
     hero: {
       src: "/images/epfa/epfa-closed.png",

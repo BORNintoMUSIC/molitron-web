@@ -12,17 +12,17 @@ const solutions = [
   {
     href: "/solutions/restaurants",
     title: "Restaurants",
-    body: "Pollution control units and odor abatement for commercial kitchens—new builds and remodels.",
+    body: "Pollution control units and molecular odor abatement for commercial kitchens—new builds, remodels, and sidewall discharge.",
   },
   {
     href: "/solutions/airports-hospitality",
     title: "Airports & hospitality",
-    body: "High-visibility foodservice environments, including airport concessions and hotels.",
+    body: "Listed filtration and odor control for high-visibility foodservice, including airport concessions and hotels.",
   },
   {
     href: "/solutions/cannabis",
     title: "Cannabis",
-    body: "Odor-sensitive facilities exploring exhaust filtration and abatement options.",
+    body: "Odor-sensitive facilities exploring exhaust filtration and molecular odor neutralization options.",
   },
 ];
 

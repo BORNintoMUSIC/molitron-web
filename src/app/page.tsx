@@ -44,12 +44,12 @@ export default function HomePage() {
               Direct manufacturer · Lakewood, CO
             </p>
             <h1 className="font-display text-[1.75rem] font-semibold leading-tight tracking-tight text-on-brand break-words sm:text-4xl sm:leading-tight md:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
-              Commercial kitchen pollution control &amp; odor abatement—built for code compliance
+              Commercial kitchen pollution control &amp; odor abatement—listed, direct, built for code
             </h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-on-brand-muted sm:mt-5 sm:text-lg">
-              UL and ETL listed equipment for restaurants, airports, and hospitality. Control grease,
-              smoke, and odor in kitchen exhaust—sold direct, with decades of install history
-              including Denver International Airport.
+              UL 8782 EPFA dry filtration and ETL-listed MOAS molecular odor neutralization for
+              restaurants, airports, and hospitality. Control grease, smoke, and cooking odors in
+              kitchen exhaust—sold direct, with install history including Denver International Airport.
             </p>
             <div className="mt-6 flex w-full flex-col gap-3 sm:mt-8 sm:max-w-xl sm:flex-row sm:flex-wrap">
               <Button href="/contact" className="!bg-on-brand !text-brand hover:!bg-white">
@@ -89,7 +89,7 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="Products"
           title="Two systems. Clear roles."
-          description="Specify filtration, odor abatement, or both—without wading through a catalog of unrelated equipment."
+          description="EPFA handles three-stage dry filtration. MOAS neutralizes odor at the molecular level. Specify one—or both—without wading through unrelated catalogs."
         />
         <div className="grid gap-6 md:grid-cols-2">
           {products.map((product) => (
@@ -109,17 +109,17 @@ export default function HomePage() {
             {
               title: "Restaurants",
               href: "/solutions/restaurants",
-              body: "Control grease, smoke, and cooking odors for urban kitchens, chains, and independent operators.",
+              body: "Stop visible smoke and cooking odors before they become neighbor complaints—or code issues—for urban kitchens, chains, and independents.",
             },
             {
               title: "Airports & hospitality",
               href: "/solutions/airports-hospitality",
-              body: "Proven on high-visibility foodservice—including multiple concepts at Denver International Airport.",
+              body: "Listed filtration and odor abatement for shared buildings and public-facing foodservice—including multiple concepts at Denver International Airport.",
             },
             {
               title: "Cannabis facilities",
               href: "/solutions/cannabis",
-              body: "Expanding into odor-sensitive cannabis environments. Talk to us about exhaust and abatement needs.",
+              body: "Apply molecular odor neutralization and exhaust filtration to odor-sensitive cannabis environments. Talk to us about your exhaust path.",
             },
           ].map((card) => (
             <Link
@@ -149,19 +149,19 @@ export default function HomePage() {
             <ul className="space-y-3 text-sm leading-relaxed text-foreground/80">
               <li className="flex gap-3">
                 <span className="mt-1 h-2 w-2 shrink-0 bg-accent" />
-                Cost-effective engineered options compared with large national catalogs
+                Clear product roles: EPFA for dry filtration, MOAS for molecular odor abatement
               </li>
               <li className="flex gap-3">
                 <span className="mt-1 h-2 w-2 shrink-0 bg-accent" />
-                Strong word-of-mouth in Denver—especially airport and foodservice projects
+                UL 8782 and ETL listings with downloadable specs for submittals
               </li>
               <li className="flex gap-3">
                 <span className="mt-1 h-2 w-2 shrink-0 bg-accent" />
-                UL / ETL listed hardware with clear product roles (EPFA + MOAS)
+                Proven on high-visibility foodservice—including Denver International Airport
               </li>
               <li className="flex gap-3">
                 <span className="mt-1 h-2 w-2 shrink-0 bg-accent" />
-                Education on compliance topics, not just brochure copy
+                Direct sales and compliance education—not just brochure copy
               </li>
             </ul>
           </div>

@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/Button";
 import { CtaBand } from "@/components/CtaBand";
+import { DocDownloads } from "@/components/DocDownloads";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { pageHeroes } from "@/lib/heroes";
+import { getProduct } from "@/lib/products";
 import { metadataFor } from "@/lib/seo";
 
 export const metadata: Metadata = metadataFor("airports");
 
 export default function AirportsHospitalityPage() {
+  const epfa = getProduct("epfa");
+  const moas = getProduct("moas");
+
   return (
     <>
       <PageHero config={pageHeroes.airports}>
@@ -30,7 +35,7 @@ export default function AirportsHospitalityPage() {
           {[
             {
               t: "Shared buildings",
-              d: "Odors and visible smoke travel. Filtration and abatement protect adjacent tenants and public spaces.",
+              d: "Odors and visible smoke travel. EPFA filtration and MOAS odor abatement protect adjacent tenants and public spaces.",
             },
             {
               t: "Operational continuity",
@@ -38,7 +43,7 @@ export default function AirportsHospitalityPage() {
             },
             {
               t: "Specification clarity",
-              d: "UL / ETL listed systems and straightforward product roles (EPFA + MOAS) simplify submittals.",
+              d: "UL 8782 EPFA and ETL-listed MOAS—with downloadable specs—simplify submittals for high-visibility kitchens.",
             },
           ].map((card) => (
             <div key={card.t} className="surface-card p-5">
@@ -59,6 +64,20 @@ export default function AirportsHospitalityPage() {
           how Molitron wins work: practical engineering, competitive cost, and real install history.
         </p>
       </Section>
+
+      {epfa && moas ? (
+        <Section tone="white">
+          <SectionHeading
+            eyebrow="Downloads"
+            title="Technical documentation"
+            description="Product brochures for filtration and odor abatement—useful for facility and design review."
+          />
+          <DocDownloads
+            documents={[epfa.documents[0], moas.documents[0]]}
+            productName="Airport & hospitality projects"
+          />
+        </Section>
+      ) : null}
 
       <CtaBand title="Planning an airport or hotel kitchen?" />
     </>
