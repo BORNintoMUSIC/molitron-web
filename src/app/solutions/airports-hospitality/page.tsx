@@ -12,13 +12,13 @@ export default function AirportsHospitalityPage() {
   return (
     <>
       <PageHero config={pageHeroes.airports}>
-        <Button href="/contact" className="!bg-white !text-primary hover:!bg-slate-100">
+        <Button href="/contact" className="!bg-on-brand !text-brand hover:!bg-white">
           Request a project quote
         </Button>
         <Button
           href="/about"
           variant="secondary"
-          className="!border-slate-300 !bg-transparent !text-white hover:!border-white hover:!bg-white/10"
+          className="!border-on-brand/35 !bg-transparent !text-on-brand hover:!border-on-brand hover:!bg-white/10"
         >
           Our history
         </Button>
@@ -43,7 +43,7 @@ export default function AirportsHospitalityPage() {
           ].map((card) => (
             <div key={card.t} className="surface-card p-5">
               <h2 className="text-lg font-semibold text-primary">{card.t}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">{card.d}</p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/80">{card.d}</p>
             </div>
           ))}
         </div>
@@ -54,7 +54,7 @@ export default function AirportsHospitalityPage() {
           title="Denver International Airport heritage"
           description="When DIA opened in 1994, air pollution control requirements for restaurant exhaust were non-negotiable. Molitron equipment has been used in multiple restaurants and continues to support airport foodservice needs."
         />
-        <p className="max-w-3xl text-sm leading-relaxed text-slate-700">
+        <p className="max-w-3xl text-sm leading-relaxed text-foreground/80">
           That long relationship—and broader word-of-mouth in the Denver market—is a core part of
           how Molitron wins work: practical engineering, competitive cost, and real install history.
         </p>

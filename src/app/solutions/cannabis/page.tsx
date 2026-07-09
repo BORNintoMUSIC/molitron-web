@@ -12,13 +12,13 @@ export default function CannabisPage() {
   return (
     <>
       <PageHero config={pageHeroes.cannabis}>
-        <Button href="/contact" className="!bg-white !text-primary hover:!bg-slate-100">
+        <Button href="/contact" className="!bg-on-brand !text-brand hover:!bg-white">
           Discuss a cannabis project
         </Button>
         <Button
           href="/products/moas"
           variant="secondary"
-          className="!border-slate-300 !bg-transparent !text-white hover:!border-white hover:!bg-white/10"
+          className="!border-on-brand/35 !bg-transparent !text-on-brand hover:!border-on-brand hover:!bg-white/10"
         >
           View MOAS
         </Button>
@@ -47,7 +47,7 @@ export default function CannabisPage() {
           ].map((card) => (
             <div key={card.t} className="surface-card p-5">
               <h2 className="text-lg font-semibold text-primary">{card.t}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">{card.d}</p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/80">{card.d}</p>
             </div>
           ))}
         </div>

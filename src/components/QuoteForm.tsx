@@ -53,9 +53,9 @@ export function QuoteForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-lg border border-teal-200 bg-teal-50 p-6">
+      <div className="rounded-lg border border-accent/40 bg-accent-soft p-6">
         <h3 className="text-lg font-semibold text-primary">Quote request received</h3>
-        <p className="mt-2 text-sm leading-relaxed text-slate-700">
+        <p className="mt-2 text-sm leading-relaxed text-foreground/80">
           Thanks—we’ll review your project details and follow up at the email you provided.
           For time-sensitive jobs, call{" "}
           <a className="font-semibold text-accent" href="tel:+13039698888">
@@ -76,8 +76,8 @@ export function QuoteForm() {
   }
 
   const field =
-    "mt-1 w-full min-h-11 rounded-md border border-border bg-white px-3 py-2.5 text-base text-slate-900 shadow-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 sm:min-h-10 sm:text-sm";
-  const label = "block text-sm font-medium text-slate-800";
+    "mt-1 w-full min-h-11 rounded-md border border-border bg-card px-3 py-2.5 text-base text-foreground shadow-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 sm:min-h-10 sm:text-sm";
+  const label = "block text-sm font-medium text-foreground";
 
   return (
     <form onSubmit={onSubmit} className="space-y-5" noValidate>

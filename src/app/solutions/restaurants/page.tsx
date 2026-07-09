@@ -12,13 +12,13 @@ export default function RestaurantsPage() {
   return (
     <>
       <PageHero config={pageHeroes.restaurants}>
-        <Button href="/contact" className="!bg-white !text-primary hover:!bg-slate-100">
+        <Button href="/contact" className="!bg-on-brand !text-brand hover:!bg-white">
           Request a restaurant project quote
         </Button>
         <Button
           href="/products/epfa"
           variant="secondary"
-          className="!border-slate-300 !bg-transparent !text-white hover:!border-white hover:!bg-white/10"
+          className="!border-on-brand/35 !bg-transparent !text-on-brand hover:!border-on-brand hover:!bg-white/10"
         >
           View EPFA
         </Button>
@@ -47,7 +47,7 @@ export default function RestaurantsPage() {
           ].map((card) => (
             <div key={card.t} className="surface-card p-5">
               <h2 className="text-lg font-semibold text-primary">{card.t}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">{card.d}</p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/80">{card.d}</p>
             </div>
           ))}
         </div>
@@ -58,7 +58,7 @@ export default function RestaurantsPage() {
           title="What to send for a faster quote"
           description="Typical sales cycles run 1–6 months depending on construction schedule and submittals."
         />
-        <ul className="max-w-2xl list-disc space-y-2 pl-5 text-sm text-slate-700">
+        <ul className="max-w-2xl list-disc space-y-2 pl-5 text-sm text-foreground/80">
           <li>City / state and project type (new vs remodel)</li>
           <li>CFM if known</li>
           <li>List of cooking equipment under the hood</li>
