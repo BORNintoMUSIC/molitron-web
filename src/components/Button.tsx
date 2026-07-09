@@ -5,9 +5,9 @@ type Variant = "primary" | "secondary" | "ghost";
 
 const variants: Record<Variant, string> = {
   primary:
-    "btn-sheen bg-primary text-white hover:bg-primary-hover shadow-sm border border-primary hover:shadow-md hover:-translate-y-0.5",
+    "bg-brand text-on-brand hover:bg-brand-hover border border-brand shadow-sm",
   secondary:
-    "bg-white/90 text-primary border border-border hover:border-accent hover:text-accent hover:bg-accent-soft/40 shadow-sm hover:shadow-md hover:-translate-y-0.5 backdrop-blur-sm",
+    "bg-card text-primary border border-border hover:border-accent hover:text-accent hover:bg-accent-soft/50 shadow-sm",
   ghost: "bg-transparent text-primary hover:bg-accent-soft border border-transparent",
 };
 
@@ -30,13 +30,13 @@ export function Button({
   ...props
 }: ButtonAsButton | ButtonAsLink) {
   const classes = [
-    "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg",
+    "inline-flex min-h-11 items-center justify-center gap-2 rounded-md",
     "px-5 py-2.5 text-sm font-semibold tracking-wide",
     "text-center whitespace-normal",
-    "transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+    "transition-colors duration-200",
     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
-    "disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-sm",
-    "active:translate-y-0 active:scale-[0.98]",
+    "disabled:opacity-60",
+    "active:opacity-90",
     "w-full sm:w-auto",
     variants[variant],
     className,

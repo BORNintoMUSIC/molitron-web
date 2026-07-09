@@ -13,9 +13,9 @@ type SectionProps = {
 
 const tones = {
   default: "bg-transparent",
-  white: "bg-card/70 backdrop-blur-[2px] section-glow",
-  dark: "bg-primary text-white",
-  accent: "bg-accent-soft/80 section-glow",
+  white: "bg-card/90 section-glow",
+  dark: "brand-band",
+  accent: "bg-accent-soft/90 section-glow",
 };
 
 export function Section({
@@ -62,11 +62,11 @@ export function SectionHeading({
       {eyebrow ? (
         <p
           className={`mb-2 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] ${
-            light ? "text-teal-200" : "text-accent"
+            light ? "text-on-brand-muted" : "text-accent"
           }`}
         >
           <span
-            className={`h-1.5 w-1.5 rounded-full ${light ? "bg-teal-200" : "bg-accent"} dot-live`}
+            className={`h-1.5 w-1.5 ${light ? "bg-on-brand-muted" : "bg-accent"}`}
             aria-hidden
           />
           {eyebrow}
@@ -74,7 +74,7 @@ export function SectionHeading({
       ) : null}
       <h2
         className={`text-2xl font-semibold tracking-tight break-words sm:text-3xl md:text-4xl ${
-          light ? "text-white" : "text-primary"
+          light ? "text-on-brand" : "text-primary"
         }`}
       >
         {title}
@@ -82,7 +82,7 @@ export function SectionHeading({
       {description ? (
         <p
           className={`mt-3 text-base leading-relaxed sm:text-lg ${
-            light ? "text-slate-200" : "text-muted"
+            light ? "text-on-brand-muted" : "text-muted"
           }`}
         >
           {description}

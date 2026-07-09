@@ -14,11 +14,11 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#0f3d4c" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f3d4c" },
+    { media: "(prefers-color-scheme: light)", color: "#0c3340" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b1418" },
   ],
   viewportFit: "cover",
-  colorScheme: "light",
+  colorScheme: "light dark",
 };
 
 const sourceSans = Source_Sans_3({
@@ -154,17 +154,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const themeInitScript = `(function(){try{var t=localStorage.getItem('molitron-theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;var dark=t==='dark'||(t!=='light'&&d);var r=document.documentElement;r.classList.toggle('dark',dark);r.style.colorScheme=dark?'dark':'light';}catch(e){}})();`;
+
   return (
     <html
       lang="en"
       className={`${sourceSans.variable} ${sourceSerif.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col font-sans">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <JsonLd data={[organizationLd, localBusinessLd]} />
         <DeferredScrollProgress />
         <a
           href="#content"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:shadow"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-card focus:px-3 focus:py-2 focus:text-sm focus:text-primary focus:shadow"
         >
           Skip to content
         </a>

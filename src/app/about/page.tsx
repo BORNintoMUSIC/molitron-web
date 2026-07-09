@@ -50,13 +50,13 @@ export default function AboutPage() {
   return (
     <>
       <PageHero config={pageHeroes.about}>
-        <Button href="/contact" className="!bg-white !text-primary hover:!bg-slate-100">
+        <Button href="/contact" className="!bg-on-brand !text-brand hover:!bg-white">
           Request a quote
         </Button>
         <Button
           href="/products"
           variant="secondary"
-          className="!border-slate-300 !bg-transparent !text-white hover:!border-white hover:!bg-white/10"
+          className="!border-on-brand/35 !bg-transparent !text-on-brand hover:!border-on-brand hover:!bg-white/10"
         >
           View products
         </Button>
@@ -69,7 +69,7 @@ export default function AboutPage() {
               eyebrow="Our story"
               title="A focused manufacturer—not a catalog conglomerate"
             />
-            <div className="space-y-4 text-base leading-relaxed text-slate-700">
+            <div className="space-y-4 text-base leading-relaxed text-foreground/80">
               <p>
                 Molitron Company Inc has spent decades solving a practical problem: how to keep
                 commercial kitchen exhaust within what owners, neighbors, and authorities expect—on
@@ -127,7 +127,7 @@ export default function AboutPage() {
               {site.founder.name}
             </h2>
             <p className="mt-1 text-sm font-semibold text-accent">{site.founder.title}</p>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-700 sm:text-base">
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-foreground/80 sm:text-base">
               Scott is the public face of the business—available for technical questions, project
               scoping, and direct sales conversations. When you call Molitron, you’re talking to the
               people who build and stand behind the equipment.
@@ -148,7 +148,7 @@ export default function AboutPage() {
               ].map((item) => (
                 <li
                   key={item}
-                  className="surface-card flex items-start gap-3 px-4 py-3 text-sm font-medium text-slate-800"
+                  className="surface-card flex items-start gap-3 px-4 py-3 text-sm font-medium text-foreground"
                 >
                   <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent" />
                   {item}
@@ -178,7 +178,7 @@ export default function AboutPage() {
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-1 text-base font-semibold text-primary">{item.t}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-700">{item.d}</p>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-foreground/80">{item.d}</p>
             </li>
           ))}
         </ol>
@@ -192,7 +192,7 @@ export default function AboutPage() {
               title="Real equipment. Real install environments."
               description="Product photography and project context from the work we do—filtration, odor abatement, and constrained discharge sites."
             />
-            <ul className="mt-2 space-y-3 text-sm leading-relaxed text-slate-700">
+            <ul className="mt-2 space-y-3 text-sm leading-relaxed text-foreground/80">
               <li className="flex gap-3">
                 <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent" />
                 Airport and hospitality foodservice installs, including DIA concepts

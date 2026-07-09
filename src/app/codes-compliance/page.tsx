@@ -41,7 +41,7 @@ export default function CodesCompliancePage() {
           {codeTopics.map((topic) => (
             <article key={topic.title} className="surface-card p-6">
               <h2 className="text-xl font-semibold text-primary">{topic.title}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-slate-700">{topic.body}</p>
+              <p className="mt-3 text-sm leading-relaxed text-foreground/80">{topic.body}</p>
             </article>
           ))}
         </div>
@@ -68,8 +68,8 @@ export default function CodesCompliancePage() {
                 ["Sidewall / sensitive discharge", "Project-specific stack; request engineering input"],
               ].map(([need, product], i) => (
                 <tr key={need} className={i % 2 === 0 ? "bg-card" : "bg-background"}>
-                  <td className="px-3 py-3 text-slate-800 break-words sm:px-5">{need}</td>
-                  <td className="px-3 py-3 text-slate-700 break-words sm:px-5">{product}</td>
+                  <td className="px-3 py-3 text-foreground break-words sm:px-5">{need}</td>
+                  <td className="px-3 py-3 text-foreground/80 break-words sm:px-5">{product}</td>
                 </tr>
               ))}
             </tbody>

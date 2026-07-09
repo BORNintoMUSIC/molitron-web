@@ -19,7 +19,7 @@ export default function HomePage() {
       <link rel="preload" as="image" href="/images/heroes/home.jpg" fetchPriority="high" />
 
       {/* Full-width industrial hero */}
-      <section className="relative isolate overflow-hidden bg-primary">
+      <section className="relative isolate overflow-hidden bg-brand">
         <div className="absolute inset-0">
           <div className="absolute inset-0">
             <Image
@@ -34,34 +34,31 @@ export default function HomePage() {
               sizes="100vw"
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-primary/30" />
-          <div className="pointer-events-none absolute -right-16 top-1/4 h-72 w-72 rounded-full bg-accent/20 blur-3xl" />
-          <div className="pointer-events-none absolute bottom-0 left-1/4 h-40 w-80 bg-teal-300/10 blur-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand/95 via-brand/82 to-brand/45" />
         </div>
 
         <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20 md:py-28 lg:py-32">
           <div className="max-w-2xl">
-            <p className="mb-2 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-teal-200 sm:mb-3 sm:text-xs">
-              <span className="h-1.5 w-1.5 rounded-full bg-teal-300" aria-hidden />
+            <p className="mb-2 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-on-brand-muted sm:mb-3 sm:text-xs">
+              <span className="h-1.5 w-1.5 bg-accent" aria-hidden />
               Direct manufacturer · Lakewood, CO
             </p>
-            <h1 className="font-display text-[1.75rem] font-semibold leading-tight tracking-tight text-white break-words sm:text-4xl sm:leading-tight md:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
+            <h1 className="font-display text-[1.75rem] font-semibold leading-tight tracking-tight text-on-brand break-words sm:text-4xl sm:leading-tight md:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
               Commercial kitchen pollution control &amp; odor abatement—built for code compliance
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-200 sm:mt-5 sm:text-lg">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-on-brand-muted sm:mt-5 sm:text-lg">
               UL and ETL listed equipment for restaurants, airports, and hospitality. Control grease,
               smoke, and odor in kitchen exhaust—sold direct, with decades of install history
               including Denver International Airport.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
-              <Button href="/contact" className="!bg-white !text-primary hover:!bg-slate-100">
+              <Button href="/contact" className="!bg-on-brand !text-brand hover:!bg-white">
                 Request a Quote
               </Button>
               <Button
                 href="/products/moas"
                 variant="secondary"
-                className="!border-slate-300 !bg-white/5 !text-white hover:!border-white hover:!bg-white/10"
+                className="!border-on-brand/35 !bg-transparent !text-on-brand hover:!border-on-brand hover:!bg-white/10"
               >
                 Explore products
               </Button>
@@ -76,12 +73,12 @@ export default function HomePage() {
             ].map((stat) => (
               <div
                 key={stat.label}
-                className="glass-dark rounded-xl px-3 py-3 sm:px-4 transition-transform duration-300 hover:-translate-y-0.5"
+                className="rounded-md border border-white/15 bg-black/25 px-3 py-3 sm:px-4"
               >
-                <dt className="text-[10px] font-semibold uppercase tracking-wider text-teal-100 sm:text-xs">
+                <dt className="text-[10px] font-semibold uppercase tracking-wider text-on-brand-muted sm:text-xs">
                   {stat.label}
                 </dt>
-                <dd className="mt-1 text-base font-semibold text-white sm:text-lg">{stat.value}</dd>
+                <dd className="mt-1 text-base font-semibold text-on-brand sm:text-lg">{stat.value}</dd>
               </div>
             ))}
           </dl>
@@ -133,7 +130,7 @@ export default function HomePage() {
               <h3 className="text-lg font-semibold text-primary transition-colors group-hover:text-accent">
                 {card.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">{card.body}</p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/80">{card.body}</p>
               <span className="link-shine mt-4 inline-block text-sm font-semibold text-accent">
                 Learn more →
               </span>
@@ -149,21 +146,21 @@ export default function HomePage() {
               eyebrow="Why Molitron"
               title="Code-minded equipment from a manufacturer that sells direct"
             />
-            <ul className="space-y-3 text-sm leading-relaxed text-slate-700">
+            <ul className="space-y-3 text-sm leading-relaxed text-foreground/80">
               <li className="flex gap-3">
-                <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent" />
+                <span className="mt-1 h-2 w-2 shrink-0 bg-accent" />
                 Cost-effective engineered options compared with large national catalogs
               </li>
               <li className="flex gap-3">
-                <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent" />
+                <span className="mt-1 h-2 w-2 shrink-0 bg-accent" />
                 Strong word-of-mouth in Denver—especially airport and foodservice projects
               </li>
               <li className="flex gap-3">
-                <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent" />
+                <span className="mt-1 h-2 w-2 shrink-0 bg-accent" />
                 UL / ETL listed hardware with clear product roles (EPFA + MOAS)
               </li>
               <li className="flex gap-3">
-                <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent" />
+                <span className="mt-1 h-2 w-2 shrink-0 bg-accent" />
                 Education on compliance topics, not just brochure copy
               </li>
             </ul>
@@ -175,7 +172,7 @@ export default function HomePage() {
             <h3 className="mt-2 text-xl font-semibold text-primary transition-colors group-hover:text-accent">
               Sidewall discharge, odor control, and listings explained
             </h3>
-            <p className="mt-3 text-sm leading-relaxed text-slate-700">
+            <p className="mt-3 text-sm leading-relaxed text-foreground/80">
               When roof discharge is not an option—or neighbors and AHJs raise the bar—projects need
               documented strategies for grease, smoke, and odor. Start with our compliance hub, then
               request a project-specific recommendation.
@@ -193,8 +190,8 @@ export default function HomePage() {
       <Section tone="white">
         <SectionHeading
           eyebrow="FAQ"
-          title="Straight answers for AI search and human buyers"
-          description="Clear, citable facts about what Molitron makes, who we serve, and how projects typically move."
+          title="Common buyer questions"
+          description="Clear facts about what Molitron makes, who we serve, and how projects typically move."
         />
         <FaqList />
       </Section>

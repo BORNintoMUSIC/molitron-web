@@ -41,7 +41,7 @@ export default function SolutionsIndexPage() {
               <h2 className="text-xl font-semibold text-primary transition-colors group-hover:text-accent">
                 {s.title}
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">{s.body}</p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/80">{s.body}</p>
               <span className="link-shine mt-4 inline-block text-sm font-semibold text-accent">
                 Explore →
               </span>

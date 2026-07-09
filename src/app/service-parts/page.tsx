@@ -13,13 +13,13 @@ export default function ServicePartsPage() {
   return (
     <>
       <PageHero config={pageHeroes.service}>
-        <Button href="/contact" className="!bg-white !text-primary hover:!bg-slate-100">
+        <Button href="/contact" className="!bg-on-brand !text-brand hover:!bg-white">
           Contact support
         </Button>
         <Button
           href={site.phoneHref}
           variant="secondary"
-          className="!border-slate-300 !bg-transparent !text-white hover:!border-white hover:!bg-white/10"
+          className="!border-on-brand/35 !bg-transparent !text-on-brand hover:!border-on-brand hover:!bg-white/10"
         >
           Call {site.phone}
         </Button>
@@ -44,7 +44,7 @@ export default function ServicePartsPage() {
           ].map((card) => (
             <div key={card.t} className="surface-card p-5">
               <h2 className="text-lg font-semibold text-primary">{card.t}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">{card.d}</p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/80">{card.d}</p>
             </div>
           ))}
         </div>
@@ -55,7 +55,7 @@ export default function ServicePartsPage() {
           title="When you contact us, include"
           description="Faster answers start with serial/context details."
         />
-        <ul className="max-w-2xl list-disc space-y-2 pl-5 text-sm text-slate-700">
+        <ul className="max-w-2xl list-disc space-y-2 pl-5 text-sm text-foreground/80">
           <li>Product (MOAS or EPFA) and approximate install year</li>
           <li>Site city/state and facility name if applicable</li>
           <li>Description of the issue or part needed</li>

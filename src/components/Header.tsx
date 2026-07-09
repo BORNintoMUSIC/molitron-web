@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { nav, primaryCta, site } from "@/lib/site";
 
 const TOGGLE_ID = "molitron-mobile-nav";
@@ -92,10 +93,10 @@ export function Header() {
       />
 
       <header
-        className={`sticky top-0 z-[100] border-b transition-[box-shadow,background-color,border-color] duration-300 ${
+        className={`sticky top-0 z-[100] border-b bg-card/95 backdrop-blur-sm transition-[box-shadow,background-color,border-color] duration-300 ${
           scrolled
-            ? "header-elevated border-border/80 bg-white"
-            : "border-border/60 bg-white"
+            ? "header-elevated border-border"
+            : "border-border/70"
         }`}
       >
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 sm:h-16 sm:gap-4 sm:px-6">
@@ -126,10 +127,10 @@ export function Header() {
                 >
                   <button
                     type="button"
-                    className={`min-h-11 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 ${
+                    className={`min-h-11 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                       isActive(pathname, item.href)
-                        ? "bg-accent-soft text-accent shadow-sm"
-                        : "text-slate-700 hover:bg-slate-50 hover:text-primary"
+                        ? "bg-accent-soft text-accent"
+                        : "text-foreground/80 hover:bg-surface-muted hover:text-primary"
                     }`}
                     aria-expanded={openMenu === item.label}
                     aria-haspopup="menu"
@@ -139,14 +140,14 @@ export function Header() {
                   {openMenu === item.label ? (
                     <div
                       role="menu"
-                      className="absolute left-0 top-full z-50 min-w-56 rounded-xl border border-border bg-white py-2 shadow-lg"
+                      className="absolute left-0 top-full z-50 min-w-56 rounded-md border border-border bg-card py-2 shadow-lg"
                     >
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
                           role="menuitem"
-                          className="mx-1 block rounded-lg px-3 py-2.5 text-sm text-slate-700 hover:bg-accent-soft hover:text-primary"
+                          className="mx-1 block rounded-md px-3 py-2.5 text-sm text-foreground/80 hover:bg-accent-soft hover:text-primary"
                         >
                           {child.label}
                         </Link>
@@ -158,19 +159,20 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`inline-flex min-h-11 items-center rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 ${
+                  className={`inline-flex min-h-11 items-center rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                     isActive(pathname, item.href)
-                      ? "bg-accent-soft text-accent shadow-sm"
-                      : "text-slate-700 hover:bg-slate-50 hover:text-primary"
+                      ? "bg-accent-soft text-accent"
+                      : "text-foreground/80 hover:bg-surface-muted hover:text-primary"
                   }`}
                 >
                   {item.label}
                 </Link>
               ),
             )}
+            <ThemeToggle className="ml-1" />
             <Link
               href={primaryCta.href}
-              className="ml-2 inline-flex min-h-11 items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-hover"
+              className="ml-1 inline-flex min-h-11 items-center rounded-md bg-brand px-4 py-2 text-sm font-semibold text-on-brand shadow-sm hover:bg-brand-hover"
             >
               {primaryCta.label}
             </Link>
@@ -178,9 +180,10 @@ export function Header() {
 
           {/* Mobile controls */}
           <div className="flex items-center gap-2 lg:hidden">
+            <ThemeToggle />
             <a
               href={site.phoneHref}
-              className="inline-flex min-h-11 items-center justify-center rounded-md border border-border px-3 text-sm font-semibold text-primary"
+              className="inline-flex min-h-11 items-center justify-center rounded-md border border-border bg-card px-3 text-sm font-semibold text-primary"
             >
               Call
             </a>

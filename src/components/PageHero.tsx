@@ -10,7 +10,7 @@ type PageHeroProps = {
 
 export function PageHero({ config, children, compact = false }: PageHeroProps) {
   return (
-    <section className="relative isolate overflow-hidden bg-primary">
+    <section className="relative isolate overflow-hidden bg-brand">
       {/* LCP discovery: preload in document for interior heroes */}
       <link rel="preload" as="image" href={config.src} fetchPriority="high" />
       <div className="absolute inset-0">
@@ -26,8 +26,7 @@ export function PageHero({ config, children, compact = false }: PageHeroProps) {
             sizes="100vw"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/80 to-primary/85 sm:bg-gradient-to-r sm:from-primary/95 sm:via-primary/82 sm:to-primary/45" />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-primary/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand/95 via-brand/82 to-brand/50" />
       </div>
 
       <div
@@ -37,16 +36,16 @@ export function PageHero({ config, children, compact = false }: PageHeroProps) {
       >
         <div className="max-w-3xl">
           {config.eyebrow ? (
-            <p className="mb-2 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-teal-200 sm:mb-3 sm:text-xs">
-              <span className="h-1.5 w-1.5 rounded-full bg-teal-300" aria-hidden />
+            <p className="mb-2 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-on-brand-muted sm:mb-3 sm:text-xs">
+              <span className="h-1.5 w-1.5 bg-accent" aria-hidden />
               {config.eyebrow}
             </p>
           ) : null}
-          <h1 className="font-display text-[1.75rem] font-semibold leading-tight tracking-tight text-white break-words sm:text-4xl sm:leading-tight lg:text-5xl lg:leading-[1.12]">
+          <h1 className="font-display text-[1.75rem] font-semibold leading-tight tracking-tight text-on-brand break-words sm:text-4xl sm:leading-tight lg:text-5xl lg:leading-[1.12]">
             {config.title}
           </h1>
           {config.description ? (
-            <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-slate-200 sm:mt-4 sm:text-base md:text-lg">
+            <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-on-brand-muted sm:mt-4 sm:text-base md:text-lg">
               {config.description}
             </p>
           ) : null}
