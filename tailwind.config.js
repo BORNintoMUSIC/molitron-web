@@ -9,7 +9,29 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        muted: "var(--muted)",
+        card: "var(--card)",
+        border: "var(--border)",
+        primary: {
+          DEFAULT: "var(--primary)",
+          hover: "var(--primary-hover)",
+        },
+        accent: {
+          DEFAULT: "var(--accent)",
+          soft: "var(--accent-soft)",
+        },
+        success: "var(--success)",
+        warning: "var(--warning)",
+      },
+      fontFamily: {
+        sans: ["var(--font-source-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-source-serif)", "Georgia", "serif"],
+      },
+    },
   },
   plugins: [],
 };
