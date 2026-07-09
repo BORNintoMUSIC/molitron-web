@@ -34,7 +34,13 @@ function applyTheme(theme: Theme) {
   document.documentElement.style.colorScheme = theme;
 }
 
-export function ThemeToggle({ className = "" }: { className?: string }) {
+export function ThemeToggle({
+  className = "",
+  showLabel = false,
+}: {
+  className?: string;
+  showLabel?: boolean;
+}) {
   const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   useEffect(() => {
@@ -48,15 +54,18 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     window.dispatchEvent(new StorageEvent("storage", { key: STORAGE_KEY }));
   }
 
+  const label = theme === "dark" ? "Light" : "Dark";
+
   return (
     <button
       type="button"
       onClick={toggle}
-      className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-border bg-card text-primary transition-colors hover:border-accent hover:bg-accent-soft hover:text-accent ${className}`}
+      className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-border bg-card px-3 text-sm font-semibold text-primary transition-colors hover:border-accent hover:bg-accent-soft hover:text-accent ${
+        showLabel ? "" : "min-w-11 px-0"
+      } ${className}`}
       aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-      title={theme === "dark" ? "Light mode" : "Dark mode"}
+      title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
     >
-      <span className="sr-only">{theme === "dark" ? "Light mode" : "Dark mode"}</span>
       {theme === "dark" ? (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
           <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.75" />
@@ -77,6 +86,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
           />
         </svg>
       )}
+      {showLabel ? <span>{label}</span> : <span className="sr-only">{label}</span>}
     </button>
   );
 }

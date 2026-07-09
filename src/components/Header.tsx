@@ -169,7 +169,7 @@ export function Header() {
                 </Link>
               ),
             )}
-            <ThemeToggle className="ml-1" />
+            <ThemeToggle className="ml-2" showLabel />
             <Link
               href={primaryCta.href}
               className="ml-1 inline-flex min-h-11 items-center rounded-md bg-brand px-4 py-2 text-sm font-semibold text-on-brand shadow-sm hover:bg-brand-hover"
@@ -180,7 +180,7 @@ export function Header() {
 
           {/* Mobile controls */}
           <div className="flex items-center gap-2 lg:hidden">
-            <ThemeToggle />
+            <ThemeToggle showLabel />
             <a
               href={site.phoneHref}
               className="inline-flex min-h-11 items-center justify-center rounded-md border border-border bg-card px-3 text-sm font-semibold text-primary"
