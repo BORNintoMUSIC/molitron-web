@@ -1,0 +1,88 @@
+import type { Metadata } from "next";
+import { CtaBand } from "@/components/CtaBand";
+import { FaqList } from "@/components/FaqList";
+import { JsonLd } from "@/components/JsonLd";
+import { PageHero } from "@/components/PageHero";
+import { Section, SectionHeading } from "@/components/Section";
+import { codeTopics, faqs } from "@/lib/content";
+import { pageHeroes } from "@/lib/heroes";
+import { metadataFor } from "@/lib/seo";
+
+export const metadata: Metadata = metadataFor("codes");
+
+export default function CodesCompliancePage() {
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.answer,
+      },
+    })),
+  };
+
+  return (
+    <>
+      <JsonLd data={faqLd} />
+      <PageHero config={pageHeroes.codes} />
+
+      <Section>
+        <p className="max-w-3xl rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
+          <strong>Disclaimer:</strong> This content is educational. Always verify requirements with
+          your design professional and AHJ for the project address.
+        </p>
+      </Section>
+
+      <Section tone="white" className="!pt-0">
+        <div className="space-y-8">
+          {codeTopics.map((topic) => (
+            <article key={topic.title} className="surface-card p-6">
+              <h2 className="text-xl font-semibold text-primary">{topic.title}</h2>
+              <p className="mt-3 text-sm leading-relaxed text-slate-700">{topic.body}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHeading
+          title="How Molitron products map to compliance conversations"
+          description="Use this as a starting point for owner and FM discussions."
+        />
+        <div className="table-scroll overflow-hidden rounded-lg border border-border bg-card">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-primary text-white">
+              <tr>
+                <th className="px-3 py-3 font-semibold sm:px-5">Need</th>
+                <th className="px-3 py-3 font-semibold sm:px-5">Often discussed product</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["Grease / particulate filtration", "EPFA (UL listed filter assembly)"],
+                ["Odor neutralization in exhaust stream", "MOAS (ETL listed abatement system)"],
+                ["Filtration + odor together", "EPFA + MOAS"],
+                ["Sidewall / sensitive discharge", "Project-specific stack; request engineering input"],
+              ].map(([need, product], i) => (
+                <tr key={need} className={i % 2 === 0 ? "bg-card" : "bg-background"}>
+                  <td className="px-3 py-3 text-slate-800 break-words sm:px-5">{need}</td>
+                  <td className="px-3 py-3 text-slate-700 break-words sm:px-5">{product}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
+      <Section tone="white">
+        <SectionHeading title="Frequently asked questions" />
+        <FaqList />
+      </Section>
+
+      <CtaBand title="Need a compliance-minded recommendation?" />
+    </>
+  );
+}
