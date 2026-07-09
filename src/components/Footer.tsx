@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 import { formatAddress, nav, site } from "@/lib/site";
 
 export function Footer() {
@@ -8,8 +9,8 @@ export function Footer() {
     <footer className="relative overflow-hidden border-t border-brand/80 bg-brand text-on-brand-muted">
       <div className="relative mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2 sm:gap-10 sm:px-6 sm:py-12 lg:grid-cols-4">
         <div className="sm:col-span-2 lg:col-span-1">
-          <p className="text-lg font-bold text-on-brand">{site.name}</p>
-          <p className="mt-2 max-w-sm text-sm leading-relaxed text-on-brand-muted">{site.tagline}</p>
+          <Logo href="/" onDark />
+          <p className="mt-3 max-w-sm text-sm leading-relaxed text-on-brand-muted">{site.tagline}</p>
           <p className="mt-4 text-sm text-on-brand-muted">
             {site.founder.name}, {site.founder.title}
           </p>

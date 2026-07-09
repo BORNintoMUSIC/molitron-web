@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Logo } from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { nav, primaryCta, site } from "@/lib/site";
 
@@ -100,14 +101,7 @@ export function Header() {
         }`}
       >
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 sm:h-16 sm:gap-4 sm:px-6">
-          <Link href="/" className="group flex min-w-0 flex-col py-1" onClick={closeMobileNav}>
-            <span className="text-base font-bold tracking-tight text-primary transition-colors group-hover:text-accent sm:text-lg">
-              {site.name}
-            </span>
-            <span className="hidden text-[11px] font-medium uppercase tracking-wider text-muted sm:block">
-              Pollution control · Odor abatement
-            </span>
-          </Link>
+          <Logo href="/" onClick={closeMobileNav} showTagline />
 
           {/* Desktop — xl+ so tablets keep the drawer (touch-friendly) */}
           <nav
