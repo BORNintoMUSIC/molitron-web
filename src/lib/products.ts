@@ -98,12 +98,12 @@ export const products: Product[] = [
     ],
     hero: {
       src: "/images/moas/moas-closed.png",
-      alt: "Molitron MOAS odor abatement system stainless steel cabinet, closed",
+      alt: "Molitron MOAS odor abatement system stainless steel cabinet with low solution alarm",
     },
     gallery: [
       {
         src: "/images/moas/moas-closed.png",
-        alt: "MOAS unit closed cabinet view",
+        alt: "MOAS unit closed stainless cabinet with low solution alarm",
       },
       {
         src: "/images/moas/moas-open.png",
