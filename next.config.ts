@@ -28,6 +28,60 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
 
+  async redirects() {
+    return [
+      {
+        source:
+          "/wp-content/uploads/2021/04/Molitron-Odor-Abatement-System-Brochure.pdf",
+        destination: "/docs/moas-brochure-2026.pdf",
+        permanent: true,
+      },
+      {
+        source: "/wp-content/uploads/2021/04/MOAS-Installation-Diagram.pdf",
+        destination: "/docs/moas-engineering-specs-installation-2026.pdf",
+        permanent: true,
+      },
+      {
+        source: "/wp-content/uploads/2021/04/Enviro-Pak-Filter-Assembly-Brochure.pdf",
+        destination: "/docs/epfa-brochure-2026.pdf",
+        permanent: true,
+      },
+      {
+        source:
+          "/wp-content/uploads/2021/04/ENVIRO-PAK-Operation-Maintenance-Manual-10-2019.pdf",
+        destination: "/docs/epfa-operation-maintenance-manual-2026.pdf",
+        permanent: true,
+      },
+      {
+        source:
+          "/wp-content/uploads/2019/10/ENVIRO-PAK-Operation-Maintenance-Manual-10-2019.pdf",
+        destination: "/docs/epfa-operation-maintenance-manual-2026.pdf",
+        permanent: true,
+      },
+      {
+        source: "/wp-content/uploads/2021/04/Enviropakfilterspec.pdf",
+        destination: "/docs/epfa-brochure-2026.pdf",
+        permanent: true,
+      },
+      {
+        source: "/wp-content/uploads/2021/04/Enviro-Clean-Air-Scrubber-Brochure.pdf",
+        destination: "/docs/enviro-clean-air-scrubber-brochure-2026.pdf",
+        permanent: true,
+      },
+      {
+        source:
+          "/wp-content/uploads/2021/04/Enviro-Clean-Air-Scrubber-Specifications.pdf",
+        destination: "/docs/enviro-clean-air-scrubber-brochure-2026.pdf",
+        permanent: true,
+      },
+      {
+        source: "/wp-content/uploads/2021/04/AirScrubberspecs.pdf",
+        destination: "/docs/enviro-clean-air-scrubber-brochure-2026.pdf",
+        permanent: true,
+      },
+    ];
+  },
+
   async headers() {
     return [
       {

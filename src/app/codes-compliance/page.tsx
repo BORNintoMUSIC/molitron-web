@@ -1,14 +1,31 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/CtaBand";
+import { DocDownloads } from "@/components/DocDownloads";
 import { FaqList } from "@/components/FaqList";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { codeTopics, faqs } from "@/lib/content";
 import { pageHeroes } from "@/lib/heroes";
+import { products, type ProductDocument } from "@/lib/products";
 import { metadataFor } from "@/lib/seo";
 
 export const metadata: Metadata = metadataFor("codes");
+
+const enviroCleanDocuments: ProductDocument[] = [
+  {
+    title: "Enviro-Clean Air Scrubber Brochure (2026)",
+    description:
+      "Product overview, system operation, utilities, performance, and UL 8782 listing information.",
+    href: "/docs/enviro-clean-air-scrubber-brochure-2026.pdf",
+    kind: "brochure",
+  },
+];
+
+const technicalDocuments = [
+  ...products.flatMap((product) => product.documents),
+  ...enviroCleanDocuments,
+];
 
 export default function CodesCompliancePage() {
   const faqLd = {
@@ -45,6 +62,15 @@ export default function CodesCompliancePage() {
             </article>
           ))}
         </div>
+      </Section>
+
+      <Section>
+        <SectionHeading
+          eyebrow="Downloads"
+          title="Technical documentation"
+          description="Current 2026 product brochures, engineering specifications, and operation and maintenance guidance."
+        />
+        <DocDownloads documents={technicalDocuments} productName="Molitron" />
       </Section>
 
       <Section>
