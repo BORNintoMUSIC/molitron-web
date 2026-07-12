@@ -46,7 +46,7 @@ export default function RestaurantsPage() {
             },
             {
               t: "Urban / sidewall discharge",
-              d: "When roof discharge is limited, EPFA dry filtration and MOAS molecular odor neutralization become critical path items.",
+              d: "When roof discharge is limited, EPFA dry filtration and MOAS odor abatement may become important parts of the project strategy.",
             },
             {
               t: "Chains & independents",
@@ -64,7 +64,7 @@ export default function RestaurantsPage() {
       <Section>
         <SectionHeading
           title="What to send for a faster quote"
-          description="Typical sales cycles run 1–6 months depending on construction schedule and submittals."
+          description="A few project details help Molitron review the likely filtration and odor-control path."
         />
         <ul className="max-w-2xl list-disc space-y-2 pl-5 text-sm text-foreground/80">
           <li>City / state and project type (new vs remodel)</li>

@@ -3,7 +3,7 @@ import { Section } from "@/components/Section";
 
 export function CtaBand({
   title = "Ready to specify or price a project?",
-  description = "Tell us about CFM, cooking equipment, location, and discharge type. Molitron sells direct—we’ll follow up with next steps and the right EPFA / MOAS stack.",
+  description = "Share CFM, cooking equipment, location, and discharge details. Molitron will review whether EPFA, MOAS, or a combined approach fits the application.",
 }: {
   title?: string;
   description?: string;

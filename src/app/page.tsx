@@ -34,29 +34,30 @@ export default function HomePage() {
               sizes="100vw"
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-brand/95 via-brand/82 to-brand/45" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand/96 via-brand/78 to-brand/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand/55 via-transparent to-transparent" />
         </div>
 
-        <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20 md:py-28 lg:py-32">
+        <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 md:py-20 lg:px-8 lg:py-24">
           <div className="max-w-2xl">
             <p className="mb-2 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-on-brand-muted sm:mb-3 sm:text-xs sm:tracking-[0.16em]">
               <span className="h-1.5 w-1.5 bg-accent" aria-hidden />
-              Direct manufacturer · Lakewood, CO
+              Direct manufacturer · Built in Colorado · Nationwide support
             </p>
-            <h1 className="font-display text-[1.75rem] font-semibold leading-tight tracking-tight text-on-brand break-words sm:text-4xl sm:leading-tight md:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
-              Commercial kitchen pollution control &amp; odor abatement—listed, direct, built for code
+            <h1 className="font-display text-[2rem] font-bold leading-[1.07] tracking-[-0.035em] text-on-brand break-words sm:text-4xl md:text-5xl lg:text-[3.5rem]">
+              Commercial kitchen pollution control &amp; odor abatement—direct from the manufacturer
             </h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-on-brand-muted sm:mt-5 sm:text-lg">
-              UL 8782 EPFA dry filtration and ETL-listed MOAS molecular odor neutralization for
-              restaurants, airports, and hospitality. Control grease, smoke, and cooking odors in
-              kitchen exhaust—sold direct, with install history including Denver International Airport.
+              EPFA dry filtration and MOAS odor abatement for restaurants, airports, hospitality,
+              and other odor-sensitive operations. Work directly with the manufacturer to match the
+              equipment to your exhaust path, cooking load, and project requirements.
             </p>
             <div className="mt-6 flex w-full flex-col gap-3 sm:mt-8 sm:max-w-xl sm:flex-row sm:flex-wrap">
               <Button href="/contact" className="!bg-on-brand !text-brand hover:!bg-white">
                 Request a Quote
               </Button>
               <Button
-                href="/products/moas"
+                href="/products"
                 variant="secondary"
                 className="!border-on-brand/35 !bg-transparent !text-on-brand hover:!border-on-brand hover:!bg-white/10"
               >
@@ -65,10 +66,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          <dl className="mt-10 grid max-w-2xl grid-cols-1 gap-3 sm:mt-12 sm:grid-cols-3 sm:gap-4">
+          <dl className="mt-10 hidden max-w-2xl grid-cols-3 gap-4 sm:grid">
             {[
               { label: "Founded", value: String(site.founded) },
-              { label: "Focus markets", value: "CA · Denver" },
+              { label: "Project reach", value: "Nationwide" },
               { label: "Sales model", value: "Direct" },
             ].map((stat) => (
               <div
@@ -85,11 +86,34 @@ export default function HomePage() {
         </div>
       </section>
 
+      <Section tone="white" className="!py-8 sm:!py-10" noReveal>
+        <div className="grid gap-4 lg:grid-cols-[0.8fr_2.2fr] lg:items-center">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Start with the problem</p>
+            <h2 className="mt-2 text-xl font-bold tracking-tight text-primary sm:text-2xl">
+              What needs to leave the exhaust stream?
+            </h2>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {[
+              { href: "/products/moas", title: "Persistent odor", body: "Explore MOAS odor abatement" },
+              { href: "/products/epfa", title: "Smoke & grease vapor", body: "Explore EPFA dry filtration" },
+              { href: "/contact", title: "Filtration + odor", body: "Ask about a combined approach" },
+            ].map((item) => (
+              <Link key={item.title} href={item.href} className="group rounded-lg border border-border bg-background px-4 py-4 transition-colors hover:border-accent hover:bg-accent-soft/50">
+                <h3 className="font-bold text-primary group-hover:text-accent">{item.title}</h3>
+                <p className="mt-1 text-sm text-muted">{item.body} <span aria-hidden>→</span></p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </Section>
+
       <Section tone="white">
         <SectionHeading
           eyebrow="Products"
           title="Two systems. Clear roles."
-          description="EPFA handles three-stage dry filtration. MOAS neutralizes odor at the molecular level. Specify one—or both—without wading through unrelated catalogs."
+          description="EPFA provides three-stage dry filtration. MOAS addresses persistent cooking odor. Use one—or discuss a combined approach when the project requires both."
         />
         <div className="grid gap-6 md:grid-cols-2">
           {products.map((product) => (
@@ -149,7 +173,7 @@ export default function HomePage() {
             <ul className="space-y-3 text-sm leading-relaxed text-foreground/80">
               <li className="flex gap-3">
                 <span className="mt-1 h-2 w-2 shrink-0 bg-accent" />
-                Clear product roles: EPFA for dry filtration, MOAS for molecular odor abatement
+                Clear product roles: EPFA for dry filtration, MOAS for odor abatement
               </li>
               <li className="flex gap-3">
                 <span className="mt-1 h-2 w-2 shrink-0 bg-accent" />
@@ -187,11 +211,26 @@ export default function HomePage() {
         </div>
       </Section>
 
+      <Section>
+        <SectionHeading
+          eyebrow="Installation history"
+          title="Specified in high-visibility foodservice environments"
+          description="Representative names from Molitron's installation history. References identify project experience and do not imply endorsement."
+        />
+        <ul className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+          {["Ritz-Carlton", "Chick-fil-A", "Chipotle", "Burger King", "Hyatt", "Denver International Airport"].map((name) => (
+            <li key={name} className="flex min-h-20 items-center justify-center rounded-lg border border-border bg-card px-3 text-center text-sm font-bold text-primary shadow-sm">
+              {name}
+            </li>
+          ))}
+        </ul>
+      </Section>
+
       <Section tone="white">
         <SectionHeading
           eyebrow="FAQ"
           title="Common buyer questions"
-          description="Clear facts about what Molitron makes, who we serve, and how projects typically move."
+          description="Clear facts about what Molitron makes, who we serve, and what information helps start a project conversation."
         />
         <FaqList />
       </Section>

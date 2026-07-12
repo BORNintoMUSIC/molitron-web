@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/Button";
+import { site } from "@/lib/site";
 
 const initial = {
   company: "",
@@ -9,6 +10,7 @@ const initial = {
   email: "",
   phone: "",
   cityState: "",
+  contactGoal: "quote",
   projectType: "new-build",
   vertical: "restaurant",
   productInterest: "not-sure",
@@ -82,6 +84,21 @@ export function QuoteForm() {
   return (
     <form onSubmit={onSubmit} className="space-y-5" noValidate>
       <div className="grid gap-4 md:grid-cols-2">
+        <div className="md:col-span-2">
+          <label className={label} htmlFor="contactGoal">
+            How can we help?
+          </label>
+          <select
+            id="contactGoal"
+            className={field}
+            value={form.contactGoal}
+            onChange={(e) => update("contactGoal", e.target.value)}
+          >
+            <option value="quote">Prepare a project quote</option>
+            <option value="engineering-conversation">Discuss the application with Molitron</option>
+            <option value="service">Service or parts for installed equipment</option>
+          </select>
+        </div>
         <div>
           <label className={label} htmlFor="company">
             Company
@@ -274,17 +291,18 @@ export function QuoteForm() {
         <p className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800">
           {error}{" "}
           You can also email{" "}
-          <a className="font-semibold underline" href="mailto:scott@molitron.com">
-            scott@molitron.com
+          <a className="font-semibold underline" href={`mailto:${site.email}`}>
+            {site.email}
           </a>
           .
         </p>
       ) : null}
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="order-2 text-xs text-muted sm:order-1">
-          * Required. We sell direct. Typical project cycles: 1–6 months.
-        </p>
+        <div className="order-2 max-w-md space-y-1 text-xs leading-relaxed text-muted sm:order-1">
+          <p>* Required. Your details are used to review equipment fit and respond to this request.</p>
+          <p>Do not include passwords, payment information, or other sensitive personal data.</p>
+        </div>
         <Button type="submit" disabled={status === "loading"} className="order-1 w-full sm:order-2 sm:w-auto">
           {status === "loading" ? "Sending…" : "Submit quote request"}
         </Button>

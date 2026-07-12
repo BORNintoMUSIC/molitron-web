@@ -29,7 +29,7 @@ export function Logo({
   className = "",
   showTagline = false,
 }: LogoProps) {
-  const word = onDark ? "text-on-brand" : "text-[#1B3D34] dark:text-primary";
+  const word = onDark ? "text-on-brand" : "text-[#1B3D34]";
   const tag = onDark ? "text-on-brand-muted" : "text-muted";
 
   const inner = (

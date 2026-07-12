@@ -26,22 +26,23 @@ export function PageHero({ config, children, compact = false }: PageHeroProps) {
             sizes="100vw"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-brand/95 via-brand/82 to-brand/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand via-brand/90 to-brand/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand/45 via-transparent to-transparent" />
       </div>
 
       <div
-        className={`relative mx-auto max-w-6xl px-4 sm:px-6 ${
-          compact ? "py-12 sm:py-14 md:py-16" : "py-14 sm:py-16 md:py-20 lg:py-24"
+        className={`relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${
+          compact ? "py-10 sm:py-12 md:py-14" : "py-12 sm:py-16 md:py-20 lg:py-24"
         }`}
       >
-        <div className="max-w-3xl">
+        <div className="max-w-2xl rounded-lg border border-white/10 bg-brand/35 p-5 backdrop-blur-[2px] sm:p-7 md:bg-transparent md:p-0 md:backdrop-blur-none">
           {config.eyebrow ? (
             <p className="mb-2 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-on-brand-muted sm:mb-3 sm:text-xs sm:tracking-[0.16em]">
               <span className="h-1.5 w-1.5 bg-accent" aria-hidden />
               {config.eyebrow}
             </p>
           ) : null}
-          <h1 className="font-display text-[1.75rem] font-semibold leading-tight tracking-tight text-on-brand break-words sm:text-4xl sm:leading-tight lg:text-5xl lg:leading-[1.12]">
+          <h1 className="font-display text-[1.9rem] font-bold leading-[1.08] tracking-[-0.035em] text-on-brand break-words sm:text-4xl lg:text-5xl lg:leading-[1.05]">
             {config.title}
           </h1>
           {config.description ? (

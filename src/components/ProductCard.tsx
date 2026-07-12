@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/lib/products";
 
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({ product, priority = false }: { product: Product; priority?: boolean }) {
   return (
     <article className="group surface-card flex h-full flex-col overflow-hidden">
       <div className="relative aspect-[16/10] border-b border-border bg-surface-muted">
@@ -10,7 +10,8 @@ export function ProductCard({ product }: { product: Product }) {
           src={product.hero.src}
           alt={product.hero.alt}
           fill
-          loading="lazy"
+          priority={priority}
+          loading={priority ? "eager" : "lazy"}
           quality={70}
           className="object-contain p-4"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 480px"

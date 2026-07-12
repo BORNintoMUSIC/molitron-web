@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
-import { formatAddress, nav, site } from "@/lib/site";
+import { nav, site } from "@/lib/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -82,7 +82,7 @@ export function Footer() {
                 {site.email}
               </a>
             </li>
-            <li className="text-on-brand-muted">{formatAddress()}</li>
+            <li className="text-on-brand-muted">Nationwide project support</li>
             <li className="text-on-brand-muted">Direct sales · Fabricated in Colorado</li>
           </ul>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
@@ -23,8 +23,6 @@ export function Reveal({
   once = true,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  // Start visible to avoid blank content if JS/observer is delayed or fails
-  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const el = ref.current;
@@ -36,21 +34,18 @@ export function Reveal({
       window.matchMedia("(hover: none)").matches;
 
     // Mobile / reduced motion: keep content fully visible (no hide-then-reveal)
-    if (reduced || isCoarse) {
-      setVisible(true);
-      return;
-    }
+    if (reduced || isCoarse) return;
 
     // Desktop only: hide briefly, then reveal on scroll
-    setVisible(isAlreadyVisible(el));
+    el.classList.toggle("reveal-in", isAlreadyVisible(el));
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
-          setVisible(true);
+          el.classList.add("reveal-in");
           if (once) observer.disconnect();
         } else if (!once) {
-          setVisible(false);
+          el.classList.remove("reveal-in");
         }
       },
       { threshold: 0, rootMargin: "0px 0px -8% 0px" },
@@ -59,7 +54,7 @@ export function Reveal({
     observer.observe(el);
 
     // Safety net: never leave content invisible
-    const fallback = window.setTimeout(() => setVisible(true), 1200);
+    const fallback = window.setTimeout(() => el.classList.add("reveal-in"), 1200);
 
     return () => {
       observer.disconnect();
@@ -70,7 +65,7 @@ export function Reveal({
   return (
     <div
       ref={ref}
-      className={`reveal ${visible ? "reveal-in" : ""} ${className}`}
+      className={`reveal reveal-in ${className}`}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}
