@@ -1,0 +1,7 @@
+seo.md
+
+blog.md
+
+product.md
+
+schema.md
