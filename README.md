@@ -18,6 +18,8 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+On Windows PowerShell, use `npm.cmd` if `npm` is blocked by the script execution policy. See [docs/development/local-development.md](docs/development/local-development.md) for the Codex local startup notes.
+
 ```bash
 npm run build
 npm start
@@ -27,7 +29,7 @@ npm start
 
 Without env vars, submissions are validated and **logged to the server console** (fine for local testing).
 
-For production delivery to `scott@molitron.com`:
+For production delivery to `cleanair@molitron.com`:
 
 1. Create a [Resend](https://resend.com) account
 2. Verify a sending domain (or use Resend test sender while developing)
@@ -35,7 +37,7 @@ For production delivery to `scott@molitron.com`:
 
 ```env
 RESEND_API_KEY=re_...
-QUOTE_TO_EMAIL=scott@molitron.com
+QUOTE_TO_EMAIL=cleanair@molitron.com
 QUOTE_FROM_EMAIL=Molitron Website <quotes@your-verified-domain.com>
 ```
 

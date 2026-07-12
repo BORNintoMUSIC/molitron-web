@@ -1,29 +1,9 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import Image from "next/image";
+import { useEffect, useId, useRef, useState } from "react";
 import type { ProductImage } from "@/lib/products";
 
-function hapticTap() {
-  try {
-    if (typeof navigator !== "undefined" && typeof navigator.vibrate === "function") {
-      navigator.vibrate(15);
-    }
-  } catch {
-    /* iOS often unsupported */
-  }
-}
-
-/**
- * Gallery that works on mobile WITHOUT relying on React onClick for thumbs.
- *
- * How selection works:
- * - Each thumb is a <label htmlFor="radio-id">
- * - Each radio is a native <input type="radio">
- * - CSS :checked shows the matching large image
- * This is the same mechanism as HTML forms — reliable on iOS Safari.
- *
- * Swipe / arrows programmatically check the next/previous radio.
- */
 export function ProductGallery({
   images,
   productName,
@@ -31,206 +11,157 @@ export function ProductGallery({
   images: ProductImage[];
   productName: string;
 }) {
-  const reactId = useId().replace(/:/g, "");
-  const groupName = `gallery-${productName}-${reactId}`;
-  const rootRef = useRef<HTMLDivElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const [zoomOpen, setZoomOpen] = useState(false);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const descriptionId = useId();
   const count = images.length;
+  const current = images[active];
 
-  // CSS rules: which radio shows which image / thumb highlight
-  const dynamicCss = useMemo(() => {
-    if (count === 0) return "";
-    return images
-      .map((_, i) => {
-        const id = `${groupName}-${i}`;
-        const n = i + 1;
-        return `
-#${id}:checked ~ .pg-stage .pg-slide { display: none !important; }
-#${id}:checked ~ .pg-stage .pg-slide:nth-child(${n}) { display: flex !important; }
-#${id}:checked ~ .pg-thumbs .pg-thumb:nth-child(${n}) {
-  border-color: #1a6b7a !important;
-  box-shadow: 0 0 0 2px rgba(26, 107, 122, 0.35);
-}
-`;
-      })
-      .join("\n");
-  }, [count, groupName, images]);
-
-  function readCheckedIndex(): number {
-    const root = rootRef.current;
-    if (!root) return 0;
-    const checked = root.querySelector<HTMLInputElement>(
-      `input[name="${groupName}"]:checked`,
-    );
-    if (!checked) return 0;
-    const i = Number(checked.dataset.index);
-    return Number.isFinite(i) ? i : 0;
+  function select(index: number) {
+    setActive(((index % count) + count) % count);
   }
 
-  function checkIndex(i: number, withHaptic = true) {
-    const root = rootRef.current;
-    if (!root || count === 0) return;
-    const next = ((i % count) + count) % count;
-    const input = root.querySelector<HTMLInputElement>(
-      `input[name="${groupName}"][data-index="${next}"]`,
-    );
-    if (!input) return;
-    input.checked = true;
-    setActive(next);
-    if (withHaptic) hapticTap();
+  function closeZoom(returnFocus = false) {
+    setZoomOpen(false);
+    if (returnFocus) window.setTimeout(() => triggerRef.current?.focus(), 0);
   }
 
-  // Keep counter in sync when user taps a thumb label (native radio change)
   useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
+    if (!zoomOpen) return;
+    closeRef.current?.focus();
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setZoomOpen(false);
+        window.setTimeout(() => triggerRef.current?.focus(), 0);
+      }
+      if (event.key === "ArrowLeft") setActive((index) => ((index - 1) % count + count) % count);
+      if (event.key === "ArrowRight") setActive((index) => (index + 1) % count);
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [count, zoomOpen]);
 
-    const onChange = (e: Event) => {
-      const t = e.target as HTMLInputElement | null;
-      if (!t || t.name !== groupName) return;
-      const i = Number(t.dataset.index);
-      if (!Number.isFinite(i)) return;
-      setActive(i);
-      // Only haptic for real user input (label tap), not programmatic checks
-      if (e.isTrusted) hapticTap();
-    };
-
-    root.addEventListener("change", onChange);
-    return () => root.removeEventListener("change", onChange);
-  }, [groupName]);
-
-  // Swipe on large image — touch only (pointer+touch together cancelled swipes)
-  useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage || count < 2) return;
-
-    let startX = 0;
-    let startY = 0;
-    let tracking = false;
-
-    const onStart = (e: TouchEvent) => {
-      if (e.touches.length !== 1) return;
-      if ((e.target as HTMLElement | null)?.closest?.(".pg-nav")) return;
-      tracking = true;
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-    };
-
-    const onEnd = (e: TouchEvent) => {
-      if (!tracking) return;
-      tracking = false;
-      const t = e.changedTouches[0];
-      if (!t) return;
-      const dx = t.clientX - startX;
-      const dy = t.clientY - startY;
-      if (Math.abs(dx) < 40) return;
-      if (Math.abs(dx) < Math.abs(dy)) return;
-      const current = readCheckedIndex();
-      if (dx < 0) checkIndex(current + 1, true);
-      else checkIndex(current - 1, true);
-    };
-
-    const onCancel = () => {
-      tracking = false;
-    };
-
-    stage.addEventListener("touchstart", onStart, { passive: true });
-    stage.addEventListener("touchend", onEnd, { passive: true });
-    stage.addEventListener("touchcancel", onCancel, { passive: true });
-
-    return () => {
-      stage.removeEventListener("touchstart", onStart);
-      stage.removeEventListener("touchend", onEnd);
-      stage.removeEventListener("touchcancel", onCancel);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [count, groupName]);
-
-  if (count === 0) return null;
+  if (!current) return null;
 
   return (
-    <div className="pg" ref={rootRef}>
-      <style dangerouslySetInnerHTML={{ __html: dynamicCss }} />
-
-      {/* Radios first so ~ sibling CSS can target stage + thumbs */}
-      {images.map((_, i) => (
-        <input
-          key={`radio-${i}`}
-          id={`${groupName}-${i}`}
-          className="pg-radio"
-          type="radio"
-          name={groupName}
-          data-index={i}
-          defaultChecked={i === 0}
-          aria-label={`${productName} photo ${i + 1}`}
+    <div className="min-w-0">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+        <button
+          ref={triggerRef}
+          type="button"
+          className="absolute inset-0 z-[1] cursor-zoom-in"
+          aria-describedby={descriptionId}
+          onClick={() => setZoomOpen(true)}
+        >
+          <span className="sr-only">Open high-resolution view of {current.alt}</span>
+        </button>
+        <Image
+          key={current.src}
+          src={current.src}
+          alt={current.alt}
+          fill
+          priority={active === 0}
+          quality={85}
+          className="object-contain p-4 sm:p-6"
+          sizes="(max-width: 1024px) 100vw, 50vw"
         />
-      ))}
-
-      {/* Large preview — CSS :checked shows the active slide */}
-      <div className="pg-stage" ref={stageRef}>
-        {images.map((img, i) => (
-          <div key={`slide-${i}`} className="pg-slide" data-slide={i}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={img.src}
-              alt={img.alt || `${productName} photo ${i + 1}`}
-              width={1200}
-              height={900}
-              draggable={false}
-              decoding="async"
-              loading={i === 0 ? "eager" : "lazy"}
-              className="pg-image"
-            />
-          </div>
-        ))}
-
         {count > 1 ? (
           <>
             <button
               type="button"
-              className="pg-nav pg-nav-prev"
+              className="absolute left-3 top-1/2 z-[2] inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md border border-border bg-card/95 text-xl text-primary shadow-md hover:bg-accent-soft"
               aria-label="Previous photo"
-              onClick={() => checkIndex(readCheckedIndex() - 1, true)}
+              onClick={() => select(active - 1)}
             >
               ‹
             </button>
             <button
               type="button"
-              className="pg-nav pg-nav-next"
+              className="absolute right-3 top-1/2 z-[2] inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md border border-border bg-card/95 text-xl text-primary shadow-md hover:bg-accent-soft"
               aria-label="Next photo"
-              onClick={() => checkIndex(readCheckedIndex() + 1, true)}
+              onClick={() => select(active + 1)}
             >
               ›
             </button>
-            <div className="pg-counter" aria-live="polite">
-              {active + 1} / {count}
-            </div>
           </>
         ) : null}
+        <span className="absolute bottom-3 left-3 z-[2] rounded-md bg-brand px-2.5 py-1 text-xs font-bold text-on-brand">
+          {active + 1} / {count}
+        </span>
+        <span className="absolute bottom-3 right-3 z-[2] rounded-md border border-border bg-card/95 px-2.5 py-1 text-xs font-bold text-primary">
+          Inspect image
+        </span>
       </div>
 
-      {/* Thumbs = labels that toggle radios (works without React click) */}
+      <p id={descriptionId} className="mt-3 text-sm leading-relaxed text-muted">
+        {current.alt}
+      </p>
+
       {count > 1 ? (
-        <div className="pg-thumbs">
-          {images.map((img, i) => (
-            <label
-              key={`thumb-${i}`}
-              htmlFor={`${groupName}-${i}`}
-              className="pg-thumb"
+        <div className="mt-3 grid grid-cols-4 gap-2 sm:grid-cols-6 lg:grid-cols-7" aria-label={`${productName} photo selection`}>
+          {images.map((image, index) => (
+            <button
+              key={image.src}
+              type="button"
+              className={`relative aspect-square overflow-hidden rounded-md border-2 bg-card transition-colors ${
+                index === active ? "border-accent" : "border-border hover:border-accent/60"
+              }`}
+              aria-label={`Show ${image.alt}`}
+              aria-current={index === active ? "true" : undefined}
+              onClick={() => setActive(index)}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={img.src}
-                alt=""
-                width={96}
-                height={96}
-                draggable={false}
-                decoding="async"
-                loading="lazy"
-              />
-            </label>
+              <Image src={image.src} alt="" fill className="object-contain p-1" sizes="96px" />
+            </button>
           ))}
+        </div>
+      ) : null}
+
+      {zoomOpen ? (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${productName} high-resolution image`}
+          className="fixed inset-0 z-[300] flex items-center justify-center bg-slate-950/90 p-3 sm:p-6"
+        >
+          <button
+            type="button"
+            className="absolute inset-0 h-full w-full cursor-zoom-out"
+            aria-label="Close high-resolution view"
+            onClick={() => closeZoom(true)}
+          />
+          <div className="relative z-[1] h-[min(82vh,60rem)] w-[min(92vw,86rem)] rounded-xl border border-white/20 bg-white">
+            <Image
+              key={`zoom-${current.src}`}
+              src={current.src}
+              alt={current.alt}
+              fill
+              quality={92}
+              className="object-contain p-3 sm:p-6"
+              sizes="92vw"
+            />
+            <button
+              ref={closeRef}
+              type="button"
+              className="absolute right-3 top-3 inline-flex h-11 w-11 items-center justify-center rounded-md bg-brand text-xl text-on-brand shadow-lg"
+              aria-label="Close high-resolution view"
+              onClick={() => closeZoom(true)}
+            >
+              ×
+            </button>
+            {count > 1 ? (
+              <div className="absolute inset-x-3 bottom-3 flex items-center justify-between">
+                <button type="button" className="min-h-11 rounded-md bg-brand px-4 font-bold text-on-brand" onClick={() => select(active - 1)}>
+                  Previous
+                </button>
+                <span className="rounded-md bg-brand px-3 py-2 text-sm font-bold text-on-brand">{active + 1} / {count}</span>
+                <button type="button" className="min-h-11 rounded-md bg-brand px-4 font-bold text-on-brand" onClick={() => select(active + 1)}>
+                  Next
+                </button>
+              </div>
+            ) : null}
+          </div>
         </div>
       ) : null}
     </div>

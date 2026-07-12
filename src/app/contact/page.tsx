@@ -4,7 +4,7 @@ import { QuoteForm } from "@/components/QuoteForm";
 import { Section } from "@/components/Section";
 import { pageHeroes } from "@/lib/heroes";
 import { metadataFor } from "@/lib/seo";
-import { formatAddress, site } from "@/lib/site";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = metadataFor("contact");
 
@@ -36,10 +36,8 @@ export default function ContactPage() {
                 </a>
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted">Address</p>
-                <p className="mt-1 whitespace-pre-line font-medium text-primary">
-                  {formatAddress(true)}
-                </p>
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted">Project support</p>
+                <p className="mt-1 font-medium text-primary">Nationwide</p>
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted">Contact</p>
@@ -50,8 +48,7 @@ export default function ContactPage() {
             </div>
 
             <p className="mt-6 text-xs leading-relaxed text-muted">
-              Typical project cycles: 1–6 months depending on new construction vs remodel and install
-              requirements. Focus markets: California and Denver, with national support available.
+              California and Colorado are longstanding focus markets, with project support available nationwide.
             </p>
           </div>
 

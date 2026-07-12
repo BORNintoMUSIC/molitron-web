@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
+import localFont from "next/font/local";
 import { DeferredScrollProgress } from "@/components/DeferredScrollProgress";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { pagesSeo, seoKeywords } from "@/lib/seo";
-import { formatAddress, site } from "@/lib/site";
+import { site } from "@/lib/site";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -14,29 +14,19 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#0c3340" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b1418" },
+    { color: "#123f49" },
   ],
   viewportFit: "cover",
-  colorScheme: "light dark",
+  colorScheme: "light",
 };
 
-const sourceSans = Source_Sans_3({
+const sourceSans = localFont({
+  src: "../../node_modules/@fontsource-variable/source-sans-3/files/source-sans-3-latin-wght-normal.woff2",
   variable: "--font-source-sans",
-  subsets: ["latin"],
   display: "swap",
   preload: true,
-  adjustFontFallback: true,
-  weight: ["400", "600", "700"],
-});
-
-const sourceSerif = Source_Serif_4({
-  variable: "--font-source-serif",
-  subsets: ["latin"],
-  display: "swap",
-  preload: false,
-  adjustFontFallback: true,
-  weight: ["600", "700"],
+  adjustFontFallback: "Arial",
+  weight: "400 700",
 });
 
 const home = pagesSeo.home;
@@ -100,14 +90,7 @@ const organizationLd = {
   email: site.email,
   telephone: site.phone,
   foundingDate: String(site.founded),
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: site.address.street,
-    addressLocality: site.address.city,
-    addressRegion: site.address.state,
-    postalCode: site.address.zip,
-    addressCountry: site.address.country,
-  },
+  areaServed: { "@type": "Country", name: "United States" },
   contactPoint: {
     "@type": "ContactPoint",
     telephone: site.phone,
@@ -124,49 +107,18 @@ const organizationLd = {
   description: site.description,
 };
 
-const localBusinessLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: site.legalName,
-  image: `${site.url}/images/heroes/home.jpg`,
-  url: site.url,
-  telephone: site.phone,
-  email: site.email,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: site.address.street,
-    addressLocality: site.address.city,
-    addressRegion: site.address.state,
-    postalCode: site.address.zip,
-    addressCountry: site.address.country,
-  },
-  description: site.description,
-  priceRange: "$$",
-  areaServed: [
-    { "@type": "State", name: "California" },
-    { "@type": "City", name: "Denver" },
-    { "@type": "Country", name: "United States" },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const themeInitScript = `(function(){try{var t=localStorage.getItem('molitron-theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;var dark=t==='dark'||(t!=='light'&&d);var r=document.documentElement;r.classList.toggle('dark',dark);r.style.colorScheme=dark?'dark':'light';}catch(e){}})();`;
-
   return (
     <html
       lang="en"
-      className={`${sourceSans.variable} ${sourceSerif.variable} h-full antialiased`}
-      suppressHydrationWarning
+      className={`${sourceSans.variable} h-full antialiased`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
-        <JsonLd data={[organizationLd, localBusinessLd]} />
+        <JsonLd data={organizationLd} />
         <DeferredScrollProgress />
         <a
           href="#content"
@@ -179,7 +131,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <span className="sr-only">{formatAddress()}</span>
       </body>
     </html>
   );

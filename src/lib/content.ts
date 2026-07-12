@@ -7,7 +7,7 @@ export const faqs = [
   {
     question: "When do I need MOAS vs EPFA vs both?",
     answer:
-      "EPFA is three-stage dry filtration for smoke, grease vapor, and particulate in light-duty kitchen exhaust—no water or pumps. MOAS atomizes a neutralizing solution into the airstream for molecular odor abatement (up to 95% odor particle reduction). Many projects use both when codes, neighbors, or discharge location demand filtration and odor control. Request a quote with CFM, equipment list, and discharge type.",
+      "EPFA is three-stage dry filtration for smoke particulate and grease vapor in light-duty kitchen exhaust—no water or pumps for filtration. Its final stage can use MERV 14 media or optional carbon. MOAS atomizes a neutralizing solution into the airstream for odor abatement. Some projects use both when filtration and odor control are needed. Share CFM, cooking equipment, and discharge details so Molitron can review the application.",
   },
   {
     question: "Who typically buys Molitron equipment?",
@@ -17,17 +17,12 @@ export const faqs = [
   {
     question: "Where does Molitron serve?",
     answer:
-      "Primary focus is California and the Denver metro area, with installations across the United States and North America. Fabrication is based in the Denver / Lakewood, Colorado area.",
+      "Molitron supports projects nationwide, with especially deep market history in California and the Denver / Colorado area. Equipment is fabricated in Colorado.",
   },
   {
     question: "Are Molitron systems listed?",
     answer:
       "Yes. EPFA is UL 8782 Listed (File MH45752; models EPFA-24 through EPFA-144). MOAS is ETL Listed and tested to UL 197 and UL 710 Clause 43. Always confirm applicability with your AHJ and design professional.",
-  },
-  {
-    question: "How long does a typical project take?",
-    answer:
-      "Sales cycles commonly run 1–6 months depending on new construction vs remodel, submittals, and install requirements. Lead times are confirmed with each quote.",
   },
 ] as const;
 

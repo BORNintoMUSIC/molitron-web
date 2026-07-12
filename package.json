@@ -18,6 +18,8 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "@fontsource-variable/source-sans-3": "^5.2.9",
+    "@fontsource-variable/source-serif-4": "^5.2.9",
     "next": "16.2.10",
     "react": "19.2.4",
     "react-dom": "19.2.4"

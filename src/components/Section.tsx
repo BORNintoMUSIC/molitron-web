@@ -28,8 +28,8 @@ export function Section({
 }: SectionProps) {
   const inner = (
     <div
-      className={`mx-auto w-full min-w-0 px-4 sm:px-6 ${
-        narrow ? "max-w-3xl" : "max-w-6xl"
+      className={`mx-auto w-full min-w-0 px-4 sm:px-6 lg:px-8 ${
+        narrow ? "max-w-3xl" : "max-w-7xl"
       }`}
     >
       {children}
@@ -39,7 +39,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={`py-12 sm:py-14 md:py-16 lg:py-20 ${tones[tone]} ${className}`}
+      className={`py-14 sm:py-16 md:py-20 lg:py-24 ${tones[tone]} ${className}`}
     >
       {noReveal ? inner : <Reveal>{inner}</Reveal>}
     </section>
@@ -73,7 +73,7 @@ export function SectionHeading({
         </p>
       ) : null}
       <h2
-        className={`text-2xl font-semibold tracking-tight break-words sm:text-3xl md:text-4xl ${
+        className={`text-2xl font-bold tracking-[-0.025em] break-words sm:text-3xl md:text-4xl ${
           light ? "text-on-brand" : "text-primary"
         }`}
       >

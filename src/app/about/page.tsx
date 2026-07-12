@@ -7,13 +7,13 @@ import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { pageHeroes } from "@/lib/heroes";
 import { metadataFor } from "@/lib/seo";
-import { formatAddress, site } from "@/lib/site";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = metadataFor("about");
 
 const facts = [
   { label: "Founded", value: String(site.founded) },
-  { label: "Headquarters", value: "Lakewood, CO" },
+  { label: "Fabrication", value: "Colorado" },
   { label: "Active products", value: "MOAS · EPFA" },
   { label: "Sales", value: "Direct only" },
 ];
@@ -109,9 +109,7 @@ export default function AboutPage() {
               </dl>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-muted">
-              {site.legalName}
-              <br />
-              {formatAddress()}
+              Nationwide project support with deep installation history in California and Colorado.
             </p>
           </aside>
         </div>
@@ -215,7 +213,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 gap-3">
             <div className="relative col-span-2 aspect-[16/9] overflow-hidden rounded-xl border border-border bg-slate-100 shadow-sm">
               <Image
-                src="/images/epfa/epfa-rooftop-1.jpg"
+                src="/images/remastered/epfa-rooftop-installation-v2.webp"
                 alt="Molitron EPFA rooftop installation"
                 fill
                 className="object-cover"
@@ -224,7 +222,7 @@ export default function AboutPage() {
             </div>
             <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-slate-100 shadow-sm">
               <Image
-                src="/images/moas/moas-closed.png"
+                src="/images/remastered/moas-closed-v2.webp"
                 alt="Molitron MOAS odor abatement cabinet"
                 fill
                 className="object-contain bg-slate-50 p-3"
@@ -233,7 +231,7 @@ export default function AboutPage() {
             </div>
             <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-slate-100 shadow-sm">
               <Image
-                src="/images/epfa/epfa-closed.png"
+                src="/images/remastered/epfa-closed-v2.webp"
                 alt="Molitron EPFA filter assembly"
                 fill
                 className="object-contain bg-slate-50 p-3"

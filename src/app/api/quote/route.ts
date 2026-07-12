@@ -7,6 +7,7 @@ type QuoteBody = {
   email?: string;
   phone?: string;
   cityState?: string;
+  contactGoal?: string;
   projectType?: string;
   vertical?: string;
   productInterest?: string;
@@ -28,6 +29,7 @@ function buildEmailHtml(body: Required<Pick<QuoteBody, "name" | "email" | "phone
     ["Phone", body.phone],
     ["Company", body.company || "—"],
     ["City / State", body.cityState],
+    ["Requested help", body.contactGoal || "—"],
     ["Project type", body.projectType || "—"],
     ["Vertical", body.vertical || "—"],
     ["Product interest", body.productInterest || "—"],

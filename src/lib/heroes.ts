@@ -14,7 +14,7 @@ export const pageHeroes = {
     eyebrow: "Products",
     title: "MOAS odor abatement & EPFA filtration",
     description:
-      "Two listed systems for commercial kitchen exhaust: molecular odor neutralization and three-stage dry pollution control. Specify one—or both.",
+      "Two focused systems for commercial kitchen exhaust: MOAS for odor abatement and EPFA for three-stage dry filtration. Use one—or combine them when the project calls for both.",
   },
   moas: {
     src: "/images/heroes/moas.jpg",
@@ -30,7 +30,7 @@ export const pageHeroes = {
     eyebrow: "Product · UL 8782 listed",
     title: "Enviro-Pak Filter Assembly (EPFA)",
     description:
-      "Serious exhaust filtration. Zero plumbing. Three-stage dry filtration for smoke, grease vapor, and odor in light-duty kitchen exhaust.",
+      "Three-stage dry filtration for smoke particulate and grease vapor in light-duty kitchen exhaust, with an optional carbon final stage for odor treatment.",
   },
   solutions: {
     src: "/images/heroes/solutions.jpg",
@@ -78,7 +78,7 @@ export const pageHeroes = {
     eyebrow: "About Molitron",
     title: "Built in Colorado. Specified for code.",
     description:
-      "Since 1986, Molitron has manufactured commercial kitchen pollution control and odor abatement equipment—sold direct from Lakewood, Colorado.",
+      "Since 1986, Molitron has manufactured commercial kitchen pollution control and odor abatement equipment in Colorado for projects nationwide.",
   },
   contact: {
     src: "/images/heroes/contact.jpg",
