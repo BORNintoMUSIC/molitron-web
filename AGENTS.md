@@ -63,3 +63,11 @@ If the repository later moves to pnpm, update this section and use the package m
 - Check `git status --short --branch` before and after meaningful edits.
 - Keep unrelated work out of commits.
 - Confirm remotes with `git remote -v` when repository location changes.
+
+## Branch Workflow
+
+- Keep `main` production-ready and deployable.
+- Use `develop` as the staging and integration branch.
+- Create short-lived branches from `develop` using `feature/*`, `fix/*`, `docs/*`, or `chore/*`.
+- Use `hotfix/*` from `main` only for urgent production fixes, then merge the fix back into `develop`.
+- Document workflow details in `docs/development/branch-workflow.md`.
