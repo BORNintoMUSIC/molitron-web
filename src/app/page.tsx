@@ -16,15 +16,20 @@ export default function HomePage() {
   return (
     <>
       {/* Preload LCP image early in document order (improves LCP request discovery) */}
-      <link rel="preload" as="image" href="/images/heroes/home.jpg" fetchPriority="high" />
+      <link
+        rel="preload"
+        as="image"
+        href="/images/heroes/molitron-epfa-rooftop-hero-v1.webp"
+        fetchPriority="high"
+      />
 
       {/* Full-width industrial hero */}
       <section className="relative isolate overflow-hidden bg-brand">
         <div className="absolute inset-0">
           <div className="absolute inset-0">
             <Image
-              src="/images/heroes/home.jpg"
-              alt="Molitron EPFA rooftop kitchen exhaust installation at dawn"
+              src="/images/heroes/molitron-epfa-rooftop-hero-v1.webp"
+              alt="Molitron EPFA commercial kitchen exhaust filtration system on a rooftop at dawn"
               fill
               priority
               fetchPriority="high"
