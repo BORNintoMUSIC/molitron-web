@@ -18,6 +18,8 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+On Windows PowerShell, use `npm.cmd` if `npm` is blocked by the script execution policy. See [docs/development/local-development.md](docs/development/local-development.md) for the Codex local startup notes.
+
 ```bash
 npm run build
 npm start
