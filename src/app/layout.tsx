@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
+import localFont from "next/font/local";
 import { DeferredScrollProgress } from "@/components/DeferredScrollProgress";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -21,22 +21,22 @@ export const viewport: Viewport = {
   colorScheme: "light dark",
 };
 
-const sourceSans = Source_Sans_3({
+const sourceSans = localFont({
+  src: "../../node_modules/@fontsource-variable/source-sans-3/files/source-sans-3-latin-wght-normal.woff2",
   variable: "--font-source-sans",
-  subsets: ["latin"],
   display: "swap",
   preload: true,
-  adjustFontFallback: true,
-  weight: ["400", "600", "700"],
+  adjustFontFallback: "Arial",
+  weight: "400 700",
 });
 
-const sourceSerif = Source_Serif_4({
+const sourceSerif = localFont({
+  src: "../../node_modules/@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-normal.woff2",
   variable: "--font-source-serif",
-  subsets: ["latin"],
   display: "swap",
   preload: false,
-  adjustFontFallback: true,
-  weight: ["600", "700"],
+  adjustFontFallback: "Times New Roman",
+  weight: "600 700",
 });
 
 const home = pagesSeo.home;
