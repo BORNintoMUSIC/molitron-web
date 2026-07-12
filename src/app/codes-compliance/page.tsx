@@ -7,25 +7,12 @@ import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { codeTopics, faqs } from "@/lib/content";
 import { pageHeroes } from "@/lib/heroes";
-import { products, type ProductDocument } from "@/lib/products";
+import { products } from "@/lib/products";
 import { metadataFor } from "@/lib/seo";
 
 export const metadata: Metadata = metadataFor("codes");
 
-const enviroCleanDocuments: ProductDocument[] = [
-  {
-    title: "Enviro-Clean Air Scrubber Brochure (2026)",
-    description:
-      "Product overview, system operation, utilities, performance, and UL 8782 listing information.",
-    href: "/docs/enviro-clean-air-scrubber-brochure-2026.pdf",
-    kind: "brochure",
-  },
-];
-
-const technicalDocuments = [
-  ...products.flatMap((product) => product.documents),
-  ...enviroCleanDocuments,
-];
+const technicalDocuments = products.flatMap((product) => product.documents);
 
 export default function CodesCompliancePage() {
   const faqLd = {
@@ -67,8 +54,8 @@ export default function CodesCompliancePage() {
       <Section>
         <SectionHeading
           eyebrow="Downloads"
-          title="Technical documentation"
-          description="Current 2026 product brochures, engineering specifications, and operation and maintenance guidance."
+          title="Active-product documentation"
+          description="Current draft brochures and technical guidance for MOAS and EPFA. Confirm final project data with Molitron before design or submittal."
         />
         <DocDownloads documents={technicalDocuments} productName="Molitron" />
       </Section>

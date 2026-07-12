@@ -97,6 +97,15 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: "/docs/enviro-clean-air-scrubber-brochure-2026.pdf",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow, noarchive",
+          },
+        ],
+      },
     ];
   },
 };

@@ -36,7 +36,7 @@ export const products: Product[] = [
     shortName: "MOAS",
     tagline: "Odors neutralized at the molecular level—not masked. Gone.",
     summary:
-      "The Molitron Odor Abatement System (MOAS) atomizes a neutralizing solution into commercial kitchen exhaust, converting malodors at the molecular level instead of covering them with fragrance. Self-contained and wall-mounted, it runs on a standard 115 VAC circuit and a ¼″ water line—standalone or with EPFA filtration.",
+      "The Molitron Odor Abatement System (MOAS) atomizes a neutralizing solution into commercial kitchen exhaust to reduce malodors instead of covering them with fragrance. The self-contained, wall-mounted system can operate on its own or alongside EPFA filtration.",
     certifications: [
       "ETL Listed",
       "Tested to UL 197 and UL 710 Clause 43",
@@ -85,44 +85,40 @@ export const products: Product[] = [
     documents: [
       {
         title: "MOAS Product Brochure (2026)",
-        description: "Performance claims, how it works, operator benefits, and listing summary.",
+        description: "Current draft brochure with performance qualifications, system operation, and listing summary.",
         href: "/docs/moas-brochure-2026.pdf",
         kind: "brochure",
       },
       {
         title: "MOAS Engineering Specs & Installation (2026)",
-        description: "Cabinet details, nozzle install, utilities, interlock, and start-up guidance.",
+        description: "Current draft engineering guidance for cabinet, nozzle, utility, and interlock planning.",
         href: "/docs/moas-engineering-specs-installation-2026.pdf",
         kind: "specs",
       },
     ],
     hero: {
-      src: "/images/moas/moas-closed.png",
+      src: "/images/remastered/moas-closed-v2.webp",
       alt: "Molitron MOAS odor abatement system stainless steel cabinet, closed",
     },
     gallery: [
       {
-        src: "/images/moas/moas-closed.png",
+        src: "/images/remastered/moas-closed-v2.webp",
         alt: "MOAS unit closed cabinet view",
       },
       {
-        src: "/images/moas/moas-open.png",
+        src: "/images/remastered/moas-open-v2.webp",
         alt: "MOAS unit with cabinet open showing internal components",
       },
       {
-        src: "/images/moas/moas-four-units.png",
+        src: "/images/remastered/moas-four-units-v2.webp",
         alt: "Four Molitron MOAS odor abatement systems",
       },
       {
-        src: "/images/moas/moas-wall-install.png",
-        alt: "MOAS wall-mounted installation",
-      },
-      {
-        src: "/images/moas/moas-wall-install-r1.png",
+        src: "/images/remastered/moas-wall-detail-v2.webp",
         alt: "MOAS wall installation close detail",
       },
       {
-        src: "/images/moas/moas-wall-install-full.png",
+        src: "/images/remastered/moas-wall-installation-v2.webp",
         alt: "Full view of MOAS wall installation",
       },
       {
@@ -145,10 +141,10 @@ export const products: Product[] = [
     shortName: "EPFA",
     tagline: "Serious exhaust filtration. Zero plumbing.",
     summary:
-      "The Enviro-Pak Filter Assembly (EPFA) is a UL 8782 listed pollution control unit with three stages of high-efficiency dry filtration. It removes smoke, grease vapor, and odor from light-duty commercial kitchen exhaust in a fully welded stainless housing—no water, pumps, or chemistry—installed anywhere between the hood and discharge.",
+      "The Enviro-Pak Filter Assembly (EPFA) is a UL 8782 listed pollution control unit with three stages of dry filtration for smoke particulate and grease vapor in light-duty commercial kitchen exhaust. Its welded stainless housing uses no water, pumps, or chemical dosing for filtration; an optional carbon final stage can support odor treatment.",
     certifications: ["UL 8782 Listed", "File MH45752", "Models EPFA-24 through EPFA-144"],
     highlights: [
-      "Three-stage dry filtration: MERV 9 pre-filter, MERV 14 high-efficiency, MERV 14 or carbon final",
+      "Three-stage dry filtration: MERV 9 pre-filter, MERV 14 high-efficiency, and MERV 14 or optional carbon final stage",
       "Zero plumbing—no water supply, pumps, or solution dosing",
       "Fully welded 18 Ga Type 304 stainless steel housing with gasketed access doors",
       "Indoor or outdoor placement between hood and atmospheric discharge",
@@ -191,48 +187,44 @@ export const products: Product[] = [
     documents: [
       {
         title: "EPFA Product Brochure (2026)",
-        description: "Three-stage filtration overview, operator benefits, and technical specifications.",
+        description: "Current draft brochure covering filtration stages, operator benefits, and available technical data.",
         href: "/docs/epfa-brochure-2026.pdf",
         kind: "brochure",
       },
       {
         title: "EPFA Operation & Maintenance Manual (2026)",
-        description: "Install, electrical, fire suppression, start-up, and filter replacement guidance.",
+        description: "Current draft guidance for installation, monitoring, fire suppression, start-up, and filter service.",
         href: "/docs/epfa-operation-maintenance-manual-2026.pdf",
         kind: "manual",
       },
     ],
     hero: {
-      src: "/images/epfa/epfa-closed.png",
+      src: "/images/remastered/epfa-closed-v2.webp",
       alt: "Molitron EPFA Enviro-Pak Filter Assembly closed stainless steel unit",
     },
     gallery: [
       {
-        src: "/images/epfa/epfa-closed.png",
+        src: "/images/remastered/epfa-closed-v2.webp",
         alt: "EPFA pollution control unit closed",
       },
       {
-        src: "/images/epfa/epfa-open.png",
+        src: "/images/remastered/epfa-open-v2.webp",
         alt: "EPFA open showing filter channels",
       },
       {
-        src: "/images/epfa/epfa-entrance-open.png",
+        src: "/images/remastered/epfa-inlet-open-v2.webp",
         alt: "EPFA entrance open view of filter assembly",
       },
       {
-        src: "/images/epfa/epfa-stacked-closed.png",
+        src: "/images/remastered/epfa-stacked-closed-v2.webp",
         alt: "Stacked EPFA units closed",
       },
       {
-        src: "/images/epfa/epfa-stacked-open.png",
+        src: "/images/remastered/epfa-stacked-open-v2.webp",
         alt: "Stacked EPFA units open",
       },
       {
-        src: "/images/epfa/epfa-rooftop-1.jpg",
-        alt: "EPFA rooftop installation",
-      },
-      {
-        src: "/images/epfa/epfa-rooftop-2.jpg",
+        src: "/images/remastered/epfa-rooftop-installation-v2.webp",
         alt: "EPFA rooftop commercial kitchen exhaust installation",
       },
     ],

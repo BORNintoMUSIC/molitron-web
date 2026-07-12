@@ -131,13 +131,18 @@ export default async function ProductPage({ params }: Props) {
             </tbody>
           </table>
         </div>
+        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">
+          {product.slug === "moas"
+            ? "Performance figures are qualified as up to values. Results vary with the cooking process, hood performance, exhaust configuration, installation, dwell time, and system calibration."
+            : "EPFA's standard stages address smoke particulate and grease vapor. The final stage may use MERV 14 media or optional carbon; broader odor-control needs may call for MOAS."}
+        </p>
       </Section>
 
       <Section tone="white">
         <SectionHeading
           eyebrow="Downloads"
           title="Technical documentation"
-          description={`Brochures, engineering specs, and manuals for ${product.shortName}—ready for submittals and design review.`}
+          description={`Current draft brochures and technical guidance for ${product.shortName}. Confirm final project data with Molitron before design or submittal.`}
         />
         <DocDownloads documents={product.documents} productName={product.shortName} />
       </Section>
@@ -145,7 +150,7 @@ export default async function ProductPage({ params }: Props) {
       <Section>
         <SectionHeading
           title="Selected installations"
-          description="Representative projects. Full history available on request."
+          description="Representative installation history. Names identify project experience and do not imply endorsement."
         />
         <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {product.installs.map((name) => (

@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { pagesSeo, seoKeywords } from "@/lib/seo";
-import { formatAddress, site } from "@/lib/site";
+import { site } from "@/lib/site";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -14,11 +14,10 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#0c3340" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b1418" },
+    { color: "#123f49" },
   ],
   viewportFit: "cover",
-  colorScheme: "light dark",
+  colorScheme: "light",
 };
 
 const sourceSans = localFont({
@@ -28,15 +27,6 @@ const sourceSans = localFont({
   preload: true,
   adjustFontFallback: "Arial",
   weight: "400 700",
-});
-
-const sourceSerif = localFont({
-  src: "../../node_modules/@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-normal.woff2",
-  variable: "--font-source-serif",
-  display: "swap",
-  preload: false,
-  adjustFontFallback: "Times New Roman",
-  weight: "600 700",
 });
 
 const home = pagesSeo.home;
@@ -100,14 +90,7 @@ const organizationLd = {
   email: site.email,
   telephone: site.phone,
   foundingDate: String(site.founded),
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: site.address.street,
-    addressLocality: site.address.city,
-    addressRegion: site.address.state,
-    postalCode: site.address.zip,
-    addressCountry: site.address.country,
-  },
+  areaServed: { "@type": "Country", name: "United States" },
   contactPoint: {
     "@type": "ContactPoint",
     telephone: site.phone,
@@ -124,49 +107,18 @@ const organizationLd = {
   description: site.description,
 };
 
-const localBusinessLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: site.legalName,
-  image: `${site.url}/images/heroes/home.jpg`,
-  url: site.url,
-  telephone: site.phone,
-  email: site.email,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: site.address.street,
-    addressLocality: site.address.city,
-    addressRegion: site.address.state,
-    postalCode: site.address.zip,
-    addressCountry: site.address.country,
-  },
-  description: site.description,
-  priceRange: "$$",
-  areaServed: [
-    { "@type": "State", name: "California" },
-    { "@type": "City", name: "Denver" },
-    { "@type": "Country", name: "United States" },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const themeInitScript = `(function(){try{var t=localStorage.getItem('molitron-theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;var dark=t==='dark'||(t!=='light'&&d);var r=document.documentElement;r.classList.toggle('dark',dark);r.style.colorScheme=dark?'dark':'light';}catch(e){}})();`;
-
   return (
     <html
       lang="en"
-      className={`${sourceSans.variable} ${sourceSerif.variable} h-full antialiased`}
-      suppressHydrationWarning
+      className={`${sourceSans.variable} h-full antialiased`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
-        <JsonLd data={[organizationLd, localBusinessLd]} />
+        <JsonLd data={organizationLd} />
         <DeferredScrollProgress />
         <a
           href="#content"
@@ -179,7 +131,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <span className="sr-only">{formatAddress()}</span>
       </body>
     </html>
   );

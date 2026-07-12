@@ -35,7 +35,7 @@ export default function AirportsHospitalityPage() {
           {[
             {
               t: "Shared buildings",
-              d: "Odors and visible smoke travel. EPFA filtration and MOAS odor abatement protect adjacent tenants and public spaces.",
+              d: "Odors and visible smoke travel. EPFA filtration and MOAS odor abatement can help project teams address adjacent tenants and public spaces.",
             },
             {
               t: "Operational continuity",

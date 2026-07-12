@@ -114,7 +114,7 @@ export const pagesSeo = {
   home: {
     title: "Kitchen Pollution Control & Odor Abatement",
     description:
-      "UL 8782 EPFA filtration and ETL-listed MOAS odor abatement for commercial kitchen exhaust. Control grease, smoke, and odor—sold direct from Molitron.",
+      "Commercial kitchen pollution control and odor abatement from Molitron. Explore EPFA dry filtration and MOAS odor control for projects nationwide.",
     path: "/",
     image: "/images/heroes/home.jpg",
     imageAlt:
@@ -130,7 +130,7 @@ export const pagesSeo = {
   products: {
     title: "Kitchen Pollution Control Products",
     description:
-      "Molitron MOAS odor abatement and EPFA UL 8782 filter assemblies for commercial kitchen exhaust. Molecular neutralization and three-stage dry filtration, sold direct.",
+      "Compare Molitron MOAS odor abatement and EPFA three-stage dry filtration for commercial kitchen exhaust. Work directly with the manufacturer.",
     path: "/products",
     image: "/images/heroes/products.jpg",
     imageAlt: "Molitron MOAS and EPFA commercial kitchen pollution control products",
@@ -139,7 +139,7 @@ export const pagesSeo = {
   moas: {
     title: "MOAS Kitchen Odor Abatement System",
     description:
-      "ETL-listed MOAS commercial kitchen odor abatement. Neutralizes odors at the molecular level—up to 95% odor reduction. Ideal for restaurants and sidewall discharge.",
+      "Explore ETL-listed MOAS commercial kitchen odor abatement, including qualified performance data, utilities, installation context, and current draft documents.",
     path: "/products/moas",
     image: "/images/heroes/moas.jpg",
     imageAlt: "Molitron MOAS commercial kitchen odor abatement system cabinet",
@@ -148,7 +148,7 @@ export const pagesSeo = {
   epfa: {
     title: "EPFA Kitchen Pollution Control Unit",
     description:
-      "UL 8782 listed EPFA Enviro-Pak filter assembly. Three-stage dry filtration for grease, smoke, and particulate—zero plumbing. Restaurant PCU, sold direct.",
+      "Explore the UL 8782 listed EPFA filter assembly: three-stage dry filtration for smoke particulate and grease vapor, with optional carbon final-stage media.",
     path: "/products/epfa",
     image: "/images/heroes/epfa.jpg",
     imageAlt: "Molitron EPFA UL listed kitchen pollution control filter assembly",
@@ -158,7 +158,7 @@ export const pagesSeo = {
     title: "About Molitron Pollution Control",
     // 34 → 45
     description:
-      "Molitron Company Inc manufactures commercial kitchen pollution control & odor abatement since 1986. Lakewood, CO—Scott Airhart, President. Direct sales.",
+      "Molitron has manufactured commercial kitchen pollution control and odor abatement equipment since 1986. Built in Colorado with nationwide project support.",
     // 155
     path: "/about",
     image: "/images/heroes/about.jpg",
@@ -189,7 +189,7 @@ export const pagesSeo = {
   solutions: {
     title: "Kitchen Exhaust Control Solutions",
     description:
-      "Commercial kitchen pollution control and odor abatement for restaurants, airports, hotels, and cannabis facilities. Molitron MOAS & EPFA systems.",
+      "Commercial kitchen exhaust filtration and odor-abatement guidance for restaurants, airports, hotels, and odor-sensitive facilities nationwide.",
     path: "/solutions",
     image: "/images/heroes/solutions.jpg",
     imageAlt: "Commercial kitchen exhaust pollution control solutions",
