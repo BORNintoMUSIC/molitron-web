@@ -142,7 +142,11 @@ export default async function ProductPage({ params }: Props) {
         <SectionHeading
           eyebrow="Downloads"
           title="Technical documentation"
-          description={`Current draft brochures and technical guidance for ${product.shortName}. Confirm final project data with Molitron before design or submittal.`}
+          description={
+            product.slug === "moas"
+              ? "Approved MOAS product brochure and current draft installation guidance. Confirm final project data with Molitron before design or submittal."
+              : `Current draft brochures and technical guidance for ${product.shortName}. Confirm final project data with Molitron before design or submittal.`
+          }
         />
         <DocDownloads documents={product.documents} productName={product.shortName} />
       </Section>
