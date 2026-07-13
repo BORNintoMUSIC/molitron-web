@@ -55,7 +55,7 @@ export default function CodesCompliancePage() {
         <SectionHeading
           eyebrow="Downloads"
           title="Active-product documentation"
-          description="Current draft brochures and technical guidance for MOAS and EPFA. Confirm final project data with Molitron before design or submittal."
+          description="Approved MOAS product brochure plus current draft installation guidance and EPFA documents. Confirm final project data with Molitron before design or submittal."
         />
         <DocDownloads documents={technicalDocuments} productName="Molitron" />
       </Section>
@@ -76,7 +76,7 @@ export default function CodesCompliancePage() {
             <tbody>
               {[
                 ["Grease / particulate filtration", "EPFA (UL 8782 listed filter assembly)"],
-                ["Odor neutralization in exhaust stream", "MOAS (ETL listed abatement—molecular, not masking)"],
+                ["Odor abatement in exhaust stream", "MOAS (project-specific odor-abatement application)"],
                 ["Filtration + odor together", "EPFA + MOAS"],
                 ["Sidewall / sensitive discharge", "Project-specific stack; request engineering input"],
               ].map(([need, product], i) => (
