@@ -93,7 +93,7 @@ export function Footer() {
           <p>
             © {year} {site.legalName}. All rights reserved.
           </p>
-          <p>UL / ETL listed equipment · English (US)</p>
+          <p>UL 8782 listed EPFA · MOAS odor abatement · English (US)</p>
         </div>
       </div>
     </footer>

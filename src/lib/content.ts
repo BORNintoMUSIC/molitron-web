@@ -22,7 +22,7 @@ export const faqs = [
   {
     question: "Are Molitron systems listed?",
     answer:
-      "Yes. EPFA is UL 8782 Listed (File MH45752; models EPFA-24 through EPFA-144). MOAS is ETL Listed and tested to UL 197 and UL 710 Clause 43. Always confirm applicability with your AHJ and design professional.",
+      "EPFA is UL 8782 Listed (File MH45752; models EPFA-24 through EPFA-144). The current MOAS brochure does not present a third-party listing claim. Always confirm project-specific requirements with your AHJ and design professional.",
   },
 ] as const;
 
@@ -36,8 +36,8 @@ export const codeTopics = [
     body: "When roof discharge is not practical, projects may need sidewall or near-grade exhaust. That often raises the bar for filtration and odor abatement so emissions do not impact neighbors, pedestrians, or adjacent tenants. Molitron EPFA and MOAS systems are frequently evaluated for these constrained discharge conditions.",
   },
   {
-    title: "UL and ETL listings",
-    body: "Third-party listings help authorities and designers verify that equipment has been evaluated to published safety standards. Molitron’s EPFA carries a UL 8782 Listing (File MH45752). MOAS carries an ETL Listing with testing to UL 197 and UL 710 Clause 43, including fire and leakage testing of hood-penetration fittings. Your engineer and AHJ determine final acceptance for a given job.",
+    title: "Third-party listings and project review",
+    body: "Third-party listings can help authorities and designers verify that equipment has been evaluated to published safety standards. Molitron’s EPFA carries a UL 8782 Listing (File MH45752). The current MOAS product information does not present a third-party listing claim. Your engineer and AHJ determine final acceptance for a given job.",
   },
   {
     title: "California and strict air districts",

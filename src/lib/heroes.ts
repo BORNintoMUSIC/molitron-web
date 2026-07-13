@@ -19,10 +19,10 @@ export const pageHeroes = {
   moas: {
     src: "/images/heroes/molitron-moas-kitchen-hero-v1.webp",
     alt: "Molitron odor abatement system installed beside a commercial kitchen exhaust hood",
-    eyebrow: "Product · ETL listed",
+    eyebrow: "Product · Active system",
     title: "Molitron Odor Abatement System (MOAS)",
     description:
-      "Odors neutralized at the molecular level—not masked. Gone. Up to 95% odor particle reduction in commercial kitchen exhaust.",
+      "MOAS atomizes Odor Neutralizer Solution through remote misting nozzles in commercial-kitchen exhaust. Product fit and results are project-specific.",
   },
   epfa: {
     src: "/images/heroes/molitron-epfa-rooftop-hero-v1.webp",

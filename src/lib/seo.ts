@@ -19,7 +19,7 @@ export const seoKeywords = {
     "kitchen odor abatement system",
     "commercial kitchen odor control system",
     "restaurant odor neutralizer exhaust",
-    "ETL listed odor abatement",
+    "project-specific odor abatement",
     "cooking odor control commercial kitchen",
     "exhaust odor control system",
     "MOAS odor abatement",
@@ -139,7 +139,7 @@ export const pagesSeo = {
   moas: {
     title: "MOAS Kitchen Odor Abatement System",
     description:
-      "Explore ETL-listed MOAS commercial kitchen odor abatement, including qualified performance data, utilities, installation context, and current draft documents.",
+      "Explore MOAS commercial-kitchen exhaust odor abatement, with qualified performance information, utilities, system operation, and project-planning guidance.",
     path: "/products/moas",
     image: "/images/heroes/moas.jpg",
     imageAlt: "Molitron MOAS commercial kitchen odor abatement system cabinet",
@@ -240,7 +240,7 @@ export const pagesSeo = {
   codes: {
     title: "Kitchen Exhaust Codes & Compliance",
     description:
-      "Guide to commercial kitchen exhaust codes: sidewall discharge, UL/ETL listings, grease smoke odor control, and California air district requirements.",
+      "Guide to commercial-kitchen exhaust codes: sidewall discharge, equipment listings, grease, smoke, odor control, and California air-district requirements.",
     path: "/codes-compliance",
     image: "/images/heroes/codes-compliance.jpg",
     imageAlt: "Commercial kitchen exhaust code compliance guidance",
