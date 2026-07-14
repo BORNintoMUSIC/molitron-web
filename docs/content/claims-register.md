@@ -89,4 +89,4 @@ Do not add unresolved values to public copy.
 
 ## Product-document status
 
-The five 2026 PDFs in `public/docs` are polished public drafts based on historic source documents. Their language is generally accurate enough to guide website content, but they are not final. Each PDF will be revised later as a separate project. Website copy must not call them final or complete submittal packages.
+The approved MOAS brochure Rev B is the only current public technical PDF. The earlier MOAS installation, EPFA brochure/manual, and Enviro-Clean site drafts were removed from public view and preserved under `docs/PDF_Rebuild/Archive/pre-controlled-site-drafts/`. They contain obsolete listing wording, unreviewed technical content, and/or unapproved certification-mark treatments and are not source authority. Each may return only after one-document-at-a-time controlled comparison review, approval, and publication authorization.
