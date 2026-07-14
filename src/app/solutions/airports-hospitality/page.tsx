@@ -11,7 +11,6 @@ import { metadataFor } from "@/lib/seo";
 export const metadata: Metadata = metadataFor("airports");
 
 export default function AirportsHospitalityPage() {
-  const epfa = getProduct("epfa");
   const moas = getProduct("moas");
 
   return (
@@ -65,17 +64,14 @@ export default function AirportsHospitalityPage() {
         </p>
       </Section>
 
-      {epfa && moas ? (
+      {moas ? (
         <Section tone="white">
           <SectionHeading
             eyebrow="Downloads"
             title="Technical documentation"
-            description="Product brochures for filtration and odor abatement—useful for facility and design review."
+            description="Approved MOAS product documentation for facility and design review. EPFA PDFs will return after controlled rebuild and approval."
           />
-          <DocDownloads
-            documents={[epfa.documents[0], moas.documents[0]]}
-            productName="Airport & hospitality projects"
-          />
+          <DocDownloads documents={moas.documents} productName="Airport & hospitality projects" />
         </Section>
       ) : null}
 
