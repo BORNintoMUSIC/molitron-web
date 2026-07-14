@@ -55,7 +55,7 @@ export default function CodesCompliancePage() {
         <SectionHeading
           eyebrow="Downloads"
           title="Active-product documentation"
-          description="Approved MOAS product brochure plus current draft installation guidance and EPFA documents. Confirm final project data with Molitron before design or submittal."
+          description="The approved MOAS product brochure is currently public. MOAS installation guidance and EPFA PDFs will return after controlled rebuild and approval. Confirm final project data with Molitron before design or submittal."
         />
         <DocDownloads documents={technicalDocuments} productName="Molitron" />
       </Section>

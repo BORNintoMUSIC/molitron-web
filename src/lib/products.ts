@@ -95,12 +95,6 @@ export const products: Product[] = [
         href: "/docs/moas-brochure-2026.pdf",
         kind: "brochure",
       },
-      {
-        title: "MOAS Engineering Specs & Installation (2026)",
-        description: "Current draft engineering guidance for cabinet, nozzle, utility, and interlock planning.",
-        href: "/docs/moas-engineering-specs-installation-2026.pdf",
-        kind: "specs",
-      },
     ],
     hero: {
       src: "/images/remastered/moas-closed-v2.webp",
@@ -197,20 +191,7 @@ export const products: Product[] = [
       "Sheraton Hotel, CO",
       "Johnny Rocket, CA",
     ],
-    documents: [
-      {
-        title: "EPFA Product Brochure (2026)",
-        description: "Current draft brochure covering filtration stages, operator benefits, and available technical data.",
-        href: "/docs/epfa-brochure-2026.pdf",
-        kind: "brochure",
-      },
-      {
-        title: "EPFA Operation & Maintenance Manual (2026)",
-        description: "Current draft guidance for installation, monitoring, fire suppression, start-up, and filter service.",
-        href: "/docs/epfa-operation-maintenance-manual-2026.pdf",
-        kind: "manual",
-      },
-    ],
+    documents: [],
     hero: {
       src: "/images/remastered/epfa-closed-v2.webp",
       alt: "Molitron EPFA Enviro-Pak Filter Assembly closed stainless steel unit",

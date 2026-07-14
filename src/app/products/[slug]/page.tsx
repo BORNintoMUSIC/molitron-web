@@ -143,9 +143,9 @@ export default async function ProductPage({ params }: Props) {
           eyebrow="Downloads"
           title="Technical documentation"
           description={
-            product.slug === "moas"
-              ? "Approved MOAS product brochure and current draft installation guidance. Confirm final project data with Molitron before design or submittal."
-              : `Current draft brochures and technical guidance for ${product.shortName}. Confirm final project data with Molitron before design or submittal.`
+            product.documents.length
+              ? "Approved product documentation. Confirm final project data with Molitron before design or submittal."
+              : `${product.shortName} PDFs are undergoing controlled rebuild and review. Use the current product information on this page and contact Molitron for project-specific documentation.`
           }
         />
         <DocDownloads documents={product.documents} productName={product.shortName} />
