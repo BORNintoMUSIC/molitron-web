@@ -1,6 +1,6 @@
 # Public Claims Register
 
-**Last reviewed:** July 12, 2026
+**Last reviewed:** July 13, 2026
 
 This register separates owner-confirmed statements from documentation-derived claims and unresolved technical items. Public copy must remain consistent with this file and the visible product documentation.
 
@@ -27,24 +27,37 @@ The street address is not approved for public display.
 - EPFA: active
 - Enviro-Clean Air Scrubber: discontinued; legacy/service documentation only
 
-## MOAS documentation-derived claims
+## MOAS current records and documentation-derived claims
+
+Current owner-confirmed product facts:
+
+- 120 VAC, 15 A dedicated circuit
+- Current neutralizing product name: Odor Neutralizer Solution
+
+Current controlled listing record:
+
+- MOAS is ETL Listed for the United States and Canada under Intertek Report 101453585DEN-002.
+- The report identifies UL 197 and CSA C22.2 No. 109 as the applicable standards.
+- The report identifies the equipment rating as 120 V, 3.5 A, 60 Hz.
+- The report describes MOAS as commercial, indoor-use, permanently connected equipment.
+
+Use `ETL Listed` rather than a generic or ambiguous certification phrase. Do not state that MOAS is listed or tested to UL 710 or UL 710 Clause 43; the current controlled report does not support that claim. Do not substitute the listed equipment rating for the separately confirmed 120 VAC, 15 A dedicated-circuit project requirement.
 
 Allowed with adjacent qualification:
 
 - Up to 95% odor reduction
 - Up to 50% smoke reduction
 - Up to 6,000 CFM per two-nozzle system
-- ETL Listed and tested to UL 197 and UL 710 Clause 43
-- 115 VAC, 15 A dedicated circuit
 - 1/4-inch cold-water supply at 80 PSI
 
 Performance varies with cooking process, hood grease-removal performance, exhaust configuration, installation, dwell time, and calibration. Do not present results as guarantees.
 
-## EPFA documentation-derived claims
+## EPFA current records and documentation-derived claims
 
 Allowed:
 
-- UL 8782 Listed, File MH45752, models EPFA-24 through EPFA-144
+- EPFA is UL Listed under File MH45752.
+- Models EPFA-24 through EPFA-144 were investigated to the UL 8782 Outline of Investigation for Pollution Control Units for Commercial Cooking Operations.
 - Three-stage dry filtration
 - MERV 9 pre-filter
 - MERV 14 high-efficiency stage
@@ -55,11 +68,19 @@ Allowed:
 
 Do not describe standard EPFA filtration as comprehensive odor removal. Associate odor treatment with the optional carbon stage or MOAS.
 
+Attach the listing claim to the covered EPFA model range. Do not imply that every configuration, accessory, field installation, project, or unmarked product is covered by the UL Listing.
+
+## Certification source and mark controls
+
+- Private controlled certification records and the detailed source digest are maintained locally under `docs/Certifications/`; they are not publication assets.
+- The underlying agreements and reports are not public-facing files and must not be copied into `public/` or linked from the website.
+- Use precise text claims by default. Do not reproduce, trace, crop, or extract an ETL or UL mark from a report.
+- Certification-mark use requires a separately approved mark asset and confirmation that the intended advertising/publication use is authorized.
+- Certification does not imply AHJ acceptance, code approval, or suitability for a particular installation.
+
 ## Pending evidence
 
-- Current EPFA/Enviro-Clean UL certificate or report for File MH45752
-- Current MOAS ETL certificate, control number, or report
-- Current MOAS record under the applicable UL 710 edition
+- Approved ETL and UL certification-mark assets and advertising/publication authorization, if mark display is desired
 - EPFA initial fan resistance/static pressure
 - EPFA capacity and approximate weight by model
 - Accurate lead-time or project-cycle language
