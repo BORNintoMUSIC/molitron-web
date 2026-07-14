@@ -75,8 +75,8 @@ export default function CodesCompliancePage() {
             </thead>
             <tbody>
               {[
-                ["Grease / particulate filtration", "EPFA (UL 8782 listed filter assembly)"],
-                ["Odor abatement in exhaust stream", "MOAS (project-specific odor-abatement application)"],
+                ["Grease / particulate filtration", "EPFA (UL Listed under File MH45752)"],
+                ["Odor abatement in exhaust stream", "MOAS (ETL Listed for the U.S. and Canada)"],
                 ["Filtration + odor together", "EPFA + MOAS"],
                 ["Sidewall / sensitive discharge", "Project-specific stack; request engineering input"],
               ].map(([need, product], i) => (

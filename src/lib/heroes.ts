@@ -19,7 +19,7 @@ export const pageHeroes = {
   moas: {
     src: "/images/heroes/molitron-moas-kitchen-hero-v1.webp",
     alt: "Molitron odor abatement system installed beside a commercial kitchen exhaust hood",
-    eyebrow: "Product · Active system",
+    eyebrow: "Product · ETL Listed",
     title: "Molitron Odor Abatement System (MOAS)",
     description:
       "MOAS atomizes Odor Neutralizer Solution through remote misting nozzles in commercial-kitchen exhaust. Product fit and results are project-specific.",
@@ -27,7 +27,7 @@ export const pageHeroes = {
   epfa: {
     src: "/images/heroes/molitron-epfa-rooftop-hero-v1.webp",
     alt: "Molitron EPFA commercial kitchen exhaust filtration system installed on a rooftop",
-    eyebrow: "Product · UL 8782 listed",
+    eyebrow: "Product · UL Listed",
     title: "Enviro-Pak Filter Assembly (EPFA)",
     description:
       "Three-stage dry filtration for smoke particulate and grease vapor in light-duty kitchen exhaust, with an optional carbon final stage for odor treatment.",

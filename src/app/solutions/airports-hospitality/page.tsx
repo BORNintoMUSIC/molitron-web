@@ -43,7 +43,7 @@ export default function AirportsHospitalityPage() {
             },
             {
               t: "Specification clarity",
-              d: "UL 8782 listed EPFA and downloadable MOAS product information support submittal discussions for high-visibility kitchens.",
+              d: "UL Listed EPFA and ETL Listed MOAS product information support submittal discussions for high-visibility kitchens.",
             },
           ].map((card) => (
             <div key={card.t} className="surface-card p-5">

@@ -38,8 +38,9 @@ export const products: Product[] = [
     summary:
       "The Molitron Odor Abatement System (MOAS) atomizes Odor Neutralizer Solution through remote misting nozzles in commercial-kitchen exhaust. The self-contained, wall-mounted system can operate on its own or alongside EPFA filtration, with each application evaluated for its project conditions.",
     certifications: [
-      "Active product",
-      "Project-specific application review",
+      "ETL Listed for the U.S. and Canada",
+      "Intertek Report 101453585DEN-002",
+      "UL 197 · CSA C22.2 No. 109",
     ],
     highlights: [
       "Up to 95% odor reduction; results vary with the cooking process, exhaust configuration, installation, dwell time, and calibration",
@@ -56,7 +57,12 @@ export const products: Product[] = [
       { label: "Method", value: "Atomizes Odor Neutralizer Solution through remote misting nozzles" },
       { label: "Cabinet", value: '18 Ga stainless steel — 24″ W × 32″ H × 8″ D, ~100 lbs' },
       { label: "Power", value: "120 VAC, 15 A dedicated circuit" },
+      { label: "Listed equipment rating", value: "120 V, 3.5 A, 60 Hz" },
       { label: "Water", value: '¼″ copper cold water supply, 80 PSI' },
+      {
+        label: "Listing",
+        value: "ETL Listed for the U.S. and Canada · Intertek Report 101453585DEN-002 · UL 197 · CSA C22.2 No. 109",
+      },
       { label: "Application", value: "Project-specific evaluation, configuration, and calibration" },
     ],
     useWhen: [
@@ -141,8 +147,12 @@ export const products: Product[] = [
     shortName: "EPFA",
     tagline: "Serious exhaust filtration. Zero plumbing.",
     summary:
-      "The Enviro-Pak Filter Assembly (EPFA) is a UL 8782 listed pollution control unit with three stages of dry filtration for smoke particulate and grease vapor in light-duty commercial kitchen exhaust. Its welded stainless housing uses no water, pumps, or chemical dosing for filtration; an optional carbon final stage can support odor treatment.",
-    certifications: ["UL 8782 Listed", "File MH45752", "Models EPFA-24 through EPFA-144"],
+      "The Enviro-Pak Filter Assembly (EPFA) is a UL Listed pollution control unit with three stages of dry filtration for smoke particulate and grease vapor in light-duty commercial kitchen exhaust. Models EPFA-24 through EPFA-144 were investigated to the UL 8782 Outline. Its welded stainless housing uses no water, pumps, or chemical dosing for filtration; an optional carbon final stage can support odor treatment.",
+    certifications: [
+      "UL Listed",
+      "File MH45752",
+      "EPFA-24 through EPFA-144 · UL 8782 Outline",
+    ],
     highlights: [
       "Three-stage dry filtration: MERV 9 pre-filter, MERV 14 high-efficiency, and MERV 14 or optional carbon final stage",
       "Zero plumbing—no water supply, pumps, or solution dosing",
@@ -152,7 +162,10 @@ export const products: Product[] = [
       "Fire-suppression ready—pre-piped for sprinkler or factory Ansul pre-piping",
     ],
     specs: [
-      { label: "Listing", value: "UL 8782 Listed · File MH45752 · Models EPFA-24 through EPFA-144" },
+      {
+        label: "Listing",
+        value: "UL Listed · File MH45752 · Models EPFA-24 through EPFA-144 · Investigated to the UL 8782 Outline",
+      },
       { label: "Construction", value: "18 Ga Type 304 stainless steel, fully welded; sloped full-width top" },
       { label: "Filtration", value: "F1 MERV 9 pre-filter · F2 MERV 14 · F3 MERV 14 or carbon (odor option)" },
       { label: "Footprint", value: 'Width “W” × 63″ long; twelve widths from 24″–144″' },

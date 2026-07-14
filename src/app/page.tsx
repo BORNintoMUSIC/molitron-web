@@ -182,7 +182,7 @@ export default function HomePage() {
               </li>
               <li className="flex gap-3">
                 <span className="mt-1 h-2 w-2 shrink-0 bg-accent" />
-                UL 8782 listed EPFA plus qualified MOAS documentation for project review
+                ETL Listed MOAS and UL Listed EPFA, with project-specific review
               </li>
               <li className="flex gap-3">
                 <span className="mt-1 h-2 w-2 shrink-0 bg-accent" />

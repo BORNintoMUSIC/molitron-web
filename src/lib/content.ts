@@ -2,7 +2,7 @@ export const faqs = [
   {
     question: "What products does Molitron manufacture today?",
     answer:
-      "Molitron’s active product line is the MOAS (Molitron Odor Abatement System) and the EPFA (Enviro-Pak Filter Assembly)—a UL 8782 listed pollution control unit. The Enviro-Clean Air Scrubber has been discontinued for new projects; ask us about service paths for existing installs.",
+      "Molitron’s active product line is the ETL Listed MOAS (Molitron Odor Abatement System) and the UL Listed EPFA (Enviro-Pak Filter Assembly). The Enviro-Clean Air Scrubber has been discontinued for new projects; ask us about service paths for existing installs.",
   },
   {
     question: "When do I need MOAS vs EPFA vs both?",
@@ -22,7 +22,7 @@ export const faqs = [
   {
     question: "Are Molitron systems listed?",
     answer:
-      "EPFA is UL 8782 Listed (File MH45752; models EPFA-24 through EPFA-144). The current MOAS brochure does not present a third-party listing claim. Always confirm project-specific requirements with your AHJ and design professional.",
+      "Yes. MOAS is ETL Listed for the U.S. and Canada under Intertek Report 101453585DEN-002; the report identifies UL 197 and CSA C22.2 No. 109 as the applicable standards. EPFA is UL Listed under File MH45752; models EPFA-24 through EPFA-144 were investigated to the UL 8782 Outline. Always confirm project-specific requirements with your AHJ and design professional.",
   },
 ] as const;
 
@@ -37,7 +37,7 @@ export const codeTopics = [
   },
   {
     title: "Third-party listings and project review",
-    body: "Third-party listings can help authorities and designers verify that equipment has been evaluated to published safety standards. Molitron’s EPFA carries a UL 8782 Listing (File MH45752). The current MOAS product information does not present a third-party listing claim. Your engineer and AHJ determine final acceptance for a given job.",
+    body: "MOAS is ETL Listed for the U.S. and Canada under Intertek Report 101453585DEN-002; the report identifies UL 197 and CSA C22.2 No. 109 as the applicable standards. EPFA is UL Listed under File MH45752; models EPFA-24 through EPFA-144 were investigated to the UL 8782 Outline. These product listings do not replace project-specific design or establish AHJ acceptance.",
   },
   {
     title: "California and strict air districts",
