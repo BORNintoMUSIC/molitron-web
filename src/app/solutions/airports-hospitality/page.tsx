@@ -5,14 +5,13 @@ import { DocDownloads } from "@/components/DocDownloads";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { pageHeroes } from "@/lib/heroes";
-import { getProduct } from "@/lib/products";
+import { products } from "@/lib/products";
 import { metadataFor } from "@/lib/seo";
 
 export const metadata: Metadata = metadataFor("airports");
+const technicalDocuments = products.flatMap((product) => product.documents);
 
 export default function AirportsHospitalityPage() {
-  const moas = getProduct("moas");
-
   return (
     <>
       <PageHero config={pageHeroes.airports}>
@@ -64,16 +63,14 @@ export default function AirportsHospitalityPage() {
         </p>
       </Section>
 
-      {moas ? (
-        <Section tone="white">
-          <SectionHeading
-            eyebrow="Downloads"
-            title="Technical documentation"
-            description="Approved MOAS product documentation for facility and design review. EPFA PDFs will return after controlled rebuild and approval."
-          />
-          <DocDownloads documents={moas.documents} productName="Airport & hospitality projects" />
-        </Section>
-      ) : null}
+      <Section tone="white">
+        <SectionHeading
+          eyebrow="Downloads"
+          title="Technical documentation"
+          description="Published MOAS documentation and the EPFA Product & Planning Brochure support facility and design-team review. Final equipment selection, design, installation, and AHJ acceptance remain project-specific."
+        />
+        <DocDownloads documents={technicalDocuments} productName="Airport & hospitality projects" />
+      </Section>
 
       <CtaBand title="Planning an airport or hotel kitchen?" />
     </>

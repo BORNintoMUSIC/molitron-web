@@ -43,8 +43,8 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/wp-content/uploads/2021/04/Enviro-Pak-Filter-Assembly-Brochure.pdf",
-        destination: "/products/epfa",
-        permanent: false,
+        destination: "/docs/epfa-brochure-2026.pdf",
+        permanent: true,
       },
       {
         source:
@@ -77,11 +77,6 @@ const nextConfig: NextConfig = {
       {
         source: "/wp-content/uploads/2021/04/AirScrubberspecs.pdf",
         destination: "/service-parts",
-        permanent: false,
-      },
-      {
-        source: "/docs/epfa-brochure-2026.pdf",
-        destination: "/products/epfa",
         permanent: false,
       },
       {
