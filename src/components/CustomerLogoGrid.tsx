@@ -16,6 +16,12 @@ export function CustomerLogoGrid({
   references,
   layout = "catalog",
 }: CustomerLogoGridProps) {
+  const availableReferences = references.flatMap((reference) => {
+    const logo = getCustomerLogo(reference);
+
+    return logo ? [{ reference, logo }] : [];
+  });
+
   return (
     <ul
       className={
@@ -24,32 +30,24 @@ export function CustomerLogoGrid({
           : "grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5"
       }
     >
-      {references.map((reference) => {
-        const logo = getCustomerLogo(reference);
-
-        return (
-          <li
-            key={reference}
-            className="flex min-h-24 items-center justify-center rounded-lg border border-border bg-white px-4 py-3 text-center text-sm font-semibold text-primary"
-          >
-            {logo ? (
-              <figure className="flex h-full w-full items-center justify-center">
-                <Image
-                  src={logo.src}
-                  alt=""
-                  width={logo.width}
-                  height={logo.height}
-                  sizes="(max-width: 639px) 38vw, (max-width: 1279px) 28vw, 180px"
-                  className={`h-auto w-auto object-contain ${presentationClassNames[logo.presentation]}`}
-                />
-                <figcaption className="sr-only">{reference}</figcaption>
-              </figure>
-            ) : (
-              reference
-            )}
-          </li>
-        );
-      })}
+      {availableReferences.map(({ reference, logo }) => (
+        <li
+          key={reference}
+          className="flex min-h-24 items-center justify-center rounded-lg border border-border bg-white px-4 py-3 text-center text-sm font-semibold text-primary"
+        >
+          <figure className="flex h-full w-full items-center justify-center">
+            <Image
+              src={logo.src}
+              alt=""
+              width={logo.width}
+              height={logo.height}
+              sizes="(max-width: 639px) 38vw, (max-width: 1279px) 28vw, 180px"
+              className={`h-auto w-auto object-contain ${presentationClassNames[logo.presentation]}`}
+            />
+            <figcaption className="sr-only">{reference}</figcaption>
+          </figure>
+        </li>
+      ))}
     </ul>
   );
 }
