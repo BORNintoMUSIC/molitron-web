@@ -10,7 +10,7 @@ import { PageHero } from "@/components/PageHero";
 import { ProductGallery } from "@/components/ProductGallery";
 import { Section, SectionHeading } from "@/components/Section";
 import { pageHeroes } from "@/lib/heroes";
-import { getProduct, products } from "@/lib/products";
+import { epfaModels, getProduct, products } from "@/lib/products";
 import { metadataFor } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -137,6 +137,50 @@ export default async function ProductPage({ params }: Props) {
             ? "Performance figures are qualified as up to values. Results vary with the cooking process, hood performance, exhaust configuration, installation, dwell time, and system calibration."
             : "EPFA's standard stages address smoke particulate and grease vapor. The final stage may use MERV 14 media or optional carbon; broader odor-control needs may call for MOAS."}
         </p>
+        {product.slug === "epfa" ? (
+          <div className="mt-12">
+            <SectionHeading
+              eyebrow="Owner-confirmed planning data"
+              title="EPFA model range"
+              description="Use these values for early selection conversations. Final model, configuration, fan selection, installation, and AHJ acceptance remain project-specific."
+            />
+            <div className="table-scroll overflow-x-auto overflow-y-hidden rounded-lg border border-border bg-card">
+              <table className="w-full min-w-[56rem] text-left text-sm">
+                <caption className="sr-only">
+                  EPFA model capacity, width, approximate unit weight, filter quantities, and optional carbon added weight
+                </caption>
+                <thead className="bg-brand text-on-brand">
+                  <tr>
+                    <th className="px-3 py-3 font-semibold">Model</th>
+                    <th className="px-3 py-3 font-semibold">CFM</th>
+                    <th className="px-3 py-3 font-semibold">Width</th>
+                    <th className="px-3 py-3 font-semibold">Approx. unit weight</th>
+                    <th className="px-3 py-3 font-semibold">Pre-filter qty.</th>
+                    <th className="px-3 py-3 font-semibold">High-efficiency qty.</th>
+                    <th className="px-3 py-3 font-semibold">Carbon added weight</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {epfaModels.map((model, index) => (
+                    <tr key={model.model} className={index % 2 === 0 ? "bg-card" : "bg-background"}>
+                      <th className="px-3 py-3 font-semibold text-primary">{model.model}</th>
+                      <td className="px-3 py-3 text-foreground/80">{model.cfm}</td>
+                      <td className="px-3 py-3 text-foreground/80">{model.width}</td>
+                      <td className="px-3 py-3 text-foreground/80">{model.unitWeight}</td>
+                      <td className="px-3 py-3 text-foreground/80">{model.prefilters}</td>
+                      <td className="px-3 py-3 text-foreground/80">{model.highEfficiencyFilters}</td>
+                      <td className="px-3 py-3 text-foreground/80">{model.carbonAddedWeight}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 max-w-4xl text-sm leading-relaxed text-muted">
+              Unit weights are approximate. Carbon added weight is additional when the optional carbon stage is selected.
+              Filter quantities are total quantities rather than per-stage counts.
+            </p>
+          </div>
+        ) : null}
       </Section>
 
       <Section tone="white">
@@ -146,7 +190,7 @@ export default async function ProductPage({ params }: Props) {
           description={
             product.slug === "moas"
               ? "Approved MOAS product and installation-planning documentation. Project-specific design, installation, approval, and AHJ review remain the responsibility of the project team."
-              : `${product.shortName} PDFs are undergoing controlled rebuild and review. Use the current product information on this page and contact Molitron for project-specific documentation.`
+              : "Published EPFA Product & Planning Brochure with owner-confirmed model data and project-coordination guidance. The brochure is not a construction drawing or a substitute for project-specific design, current installation instructions, or AHJ review."
           }
         />
         {product.slug === "moas" ? (

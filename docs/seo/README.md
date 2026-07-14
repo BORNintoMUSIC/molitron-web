@@ -25,13 +25,14 @@ Molitron should rank through accurate, useful HTML content for commercial kitche
 
 - The MOAS brochure Rev B and MOAS Engineering & Installation Planning Guide Rev A are current published documents.
 - The MOAS planning guide has a useful HTML companion at `/products/moas/installation-planning` and a stable PDF at `/docs/moas-engineering-specs-installation-2026.pdf`.
-- EPFA documents remain under controlled rebuild and are not current public downloads.
+- The EPFA Product & Planning Brochure Rev A is current at `/docs/epfa-brochure-2026.pdf`; its useful HTML companion content is maintained on `/products/epfa`.
+- The EPFA operation and maintenance manual remains under controlled rebuild and is not a current public download.
 - Enviro-Clean is discontinued and its documents are legacy/service material only.
 - Keep legacy PDFs accessible for existing owners, but use `X-Robots-Tag: noindex` where practical so they do not compete with active products.
 
 ## Pending launch work
 
-- Add verified UL and ETL certificate references when copies are available.
+- Add product-specific UL or ETL marks only after approved official artwork and advertising/publication authorization are available for the intended placement.
 - Validate JSON-LD and social previews.
 - Confirm redirects from legacy WordPress URLs.
 - Connect Search Console and analytics after deployment approval.

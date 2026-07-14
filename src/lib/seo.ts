@@ -147,9 +147,9 @@ export const pagesSeo = {
     keywords: [...seoKeywords.moas, ...seoKeywords.core],
   },
   epfa: {
-    title: "EPFA Kitchen Pollution Control Unit",
+    title: "EPFA Dry Kitchen Exhaust Filtration",
     description:
-      "Explore the UL Listed EPFA under File MH45752: three-stage dry filtration investigated to the UL 8782 Outline, with optional carbon final-stage media.",
+      "Plan EPFA three-stage dry filtration for light-duty commercial-kitchen exhaust, including model data, service clearances, monitoring, and the optional carbon final stage.",
     path: "/products/epfa",
     image: "/images/heroes/epfa.jpg",
     imageAlt: "Molitron EPFA UL Listed kitchen pollution control filter assembly",
