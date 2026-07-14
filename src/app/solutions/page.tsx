@@ -12,7 +12,7 @@ const solutions = [
   {
     href: "/solutions/restaurants",
     title: "Restaurants",
-    body: "Pollution control units and molecular odor abatement for commercial kitchens—new builds, remodels, and sidewall discharge.",
+    body: "Pollution control units and exhaust odor abatement for commercial kitchens—new builds, remodels, and sidewall discharge.",
   },
   {
     href: "/solutions/airports-hospitality",
@@ -22,7 +22,7 @@ const solutions = [
   {
     href: "/solutions/cannabis",
     title: "Cannabis",
-    body: "Odor-sensitive facilities exploring exhaust filtration and molecular odor neutralization options.",
+    body: "Odor-sensitive facilities exploring exhaust filtration and project-specific odor-abatement options.",
   },
 ];
 

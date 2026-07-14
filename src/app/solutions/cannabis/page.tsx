@@ -34,7 +34,7 @@ export default function CannabisPage() {
             },
             {
               t: "Leverage proven odor tech",
-              d: "MOAS atomizes a neutralizing solution into the exhaust airstream—converting malodors at the molecular level, not masking them with fragrance.",
+              d: "MOAS atomizes Odor Neutralizer Solution into the exhaust airstream to reduce malodors instead of relying on fragrance masking. Application fit and results remain project-specific.",
             },
             {
               t: "Pair filtration when needed",

@@ -38,8 +38,8 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/wp-content/uploads/2021/04/MOAS-Installation-Diagram.pdf",
-        destination: "/products/moas",
-        permanent: false,
+        destination: "/docs/moas-engineering-specs-installation-2026.pdf",
+        permanent: true,
       },
       {
         source: "/wp-content/uploads/2021/04/Enviro-Pak-Filter-Assembly-Brochure.pdf",
@@ -77,11 +77,6 @@ const nextConfig: NextConfig = {
       {
         source: "/wp-content/uploads/2021/04/AirScrubberspecs.pdf",
         destination: "/service-parts",
-        permanent: false,
-      },
-      {
-        source: "/docs/moas-engineering-specs-installation-2026.pdf",
-        destination: "/products/moas",
         permanent: false,
       },
       {

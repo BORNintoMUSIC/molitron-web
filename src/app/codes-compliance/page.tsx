@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { DocDownloads } from "@/components/DocDownloads";
 import { FaqList } from "@/components/FaqList";
@@ -55,9 +56,19 @@ export default function CodesCompliancePage() {
         <SectionHeading
           eyebrow="Downloads"
           title="Active-product documentation"
-          description="The approved MOAS product brochure is currently public. MOAS installation guidance and EPFA PDFs will return after controlled rebuild and approval. Confirm final project data with Molitron before design or submittal."
+          description="The approved MOAS brochure and Engineering & Installation Planning Guide are currently public. EPFA PDFs will return after controlled rebuild and approval. Confirm project-specific data and AHJ expectations before design or submittal."
         />
         <DocDownloads documents={technicalDocuments} productName="Molitron" />
+        <p className="mt-5 text-sm leading-relaxed text-muted">
+          The MOAS installation guide is also available as an{" "}
+          <Link
+            href="/products/moas/installation-planning"
+            className="font-semibold text-accent hover:underline"
+          >
+            accessible HTML planning reference
+          </Link>
+          .
+        </p>
       </Section>
 
       <Section>
