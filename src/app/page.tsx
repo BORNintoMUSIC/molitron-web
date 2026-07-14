@@ -148,7 +148,7 @@ export default function HomePage() {
             {
               title: "Cannabis facilities",
               href: "/solutions/cannabis",
-              body: "Apply molecular odor neutralization and exhaust filtration to odor-sensitive cannabis environments. Talk to us about your exhaust path.",
+              body: "Explore exhaust odor abatement and filtration for odor-sensitive cannabis environments. Talk to us about your process and exhaust path.",
             },
           ].map((card) => (
             <Link

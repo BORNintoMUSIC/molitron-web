@@ -56,7 +56,7 @@ export const products: Product[] = [
       { label: "Smoke reduction", value: "Up to 50%; actual results vary by project conditions" },
       { label: "Method", value: "Atomizes Odor Neutralizer Solution through remote misting nozzles" },
       { label: "Cabinet", value: '18 Ga stainless steel — 24″ W × 32″ H × 8″ D, ~100 lbs' },
-      { label: "Power", value: "120 VAC, 15 A dedicated circuit" },
+      { label: "Project electrical requirement", value: "120 VAC, 15 A dedicated circuit" },
       { label: "Listed equipment rating", value: "120 V, 3.5 A, 60 Hz" },
       { label: "Water", value: '¼″ copper cold water supply, 80 PSI' },
       {
@@ -94,6 +94,12 @@ export const products: Product[] = [
         description: "Approved product brochure with qualified performance information, system operation, utilities, and project-planning considerations.",
         href: "/docs/moas-brochure-2026.pdf",
         kind: "brochure",
+      },
+      {
+        title: "MOAS Engineering & Installation Planning Guide (Rev A)",
+        description: "Published planning guide for cabinet, nozzle, utility, tubing, access, and exhaust-fan interlock coordination. Not for construction.",
+        href: "/docs/moas-engineering-specs-installation-2026.pdf",
+        kind: "specs",
       },
     ],
     hero: {

@@ -5,6 +5,7 @@ const paths = [
   "/",
   "/products",
   "/products/moas",
+  "/products/moas/installation-planning",
   "/products/epfa",
   "/solutions",
   "/solutions/restaurants",
