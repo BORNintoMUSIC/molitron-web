@@ -1,24 +1,13 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/Button";
 import { CtaBand } from "@/components/CtaBand";
-import { DocDownloads } from "@/components/DocDownloads";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { pageHeroes } from "@/lib/heroes";
 import { metadataFor } from "@/lib/seo";
 import { site } from "@/lib/site";
-import type { ProductDocument } from "@/lib/products";
 
 export const metadata: Metadata = metadataFor("service");
-
-const legacyDocuments: ProductDocument[] = [
-  {
-    title: "Enviro-Clean Air Scrubber Brochure (Legacy)",
-    description: "Reference information for discontinued Enviro-Clean equipment and existing installations. Not offered for new projects.",
-    href: "/docs/enviro-clean-air-scrubber-brochure-2026.pdf",
-    kind: "brochure",
-  },
-];
 
 export default function ServicePartsPage() {
   return (
@@ -42,7 +31,7 @@ export default function ServicePartsPage() {
           {[
             {
               t: "MOAS consumables",
-              d: "Odor Gone concentrate supply, refill guidance, and operation questions for molecular odor abatement units.",
+              d: "Odor Neutralizer Solution supply, refill guidance, and operation questions for MOAS odor-abatement units.",
             },
             {
               t: "EPFA filters",
@@ -82,12 +71,15 @@ export default function ServicePartsPage() {
         <SectionHeading
           eyebrow="Legacy equipment"
           title="Enviro-Clean service documentation"
-          description="The Enviro-Clean Air Scrubber is discontinued for new projects. This material remains available only to help owners and service teams identify and support existing installations."
+          description="The Enviro-Clean Air Scrubber is discontinued for new projects. Its legacy PDF is undergoing controlled comparison review and is not currently a public download."
         />
         <div className="mb-5 max-w-3xl rounded-lg border border-warning/35 bg-card px-4 py-3 text-sm leading-relaxed text-foreground/80">
           <strong className="text-primary">Existing equipment only.</strong> Specifications may not represent every installed configuration. Contact Molitron with the unit nameplate and site details before ordering service parts or planning changes.
         </div>
-        <DocDownloads documents={legacyDocuments} productName="Legacy Enviro-Clean equipment" />
+        <p className="max-w-3xl text-sm leading-relaxed text-foreground/80">
+          Contact Molitron with the unit nameplate and site details for the current service path and
+          any applicable legacy reference material.
+        </p>
       </Section>
 
       <CtaBand

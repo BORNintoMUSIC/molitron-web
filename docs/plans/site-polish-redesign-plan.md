@@ -51,22 +51,13 @@ The audit reviewed:
 
 ## Product Documentation Status
 
-The public 2026 PDFs are polished drafts based on four original documents dating to the 1990s. Their language is generally accurate enough to guide website copy, but the PDFs are not final and will be updated in separate future projects, one document at a time.
+**Superseding control note, July 13, 2026:** The MOAS brochure has completed the gated rebuild and is published as Rev B. The other pre-controlled 2026 site drafts were removed from public navigation and archived internally under `docs/PDF_Rebuild/Archive/pre-controlled-site-drafts/` because they contain obsolete listing wording, unreviewed technical content, and/or unapproved certification-mark treatments.
 
-Current public documents:
+Current public document:
 
 - `public/docs/moas-brochure-2026.pdf`
-- `public/docs/moas-engineering-specs-installation-2026.pdf`
-- `public/docs/epfa-brochure-2026.pdf`
-- `public/docs/epfa-operation-maintenance-manual-2026.pdf`
-- `public/docs/enviro-clean-air-scrubber-brochure-2026.pdf`
 
-Important limitations:
-
-- The EPFA brochure and manual contain visible `[CONFIRM]` placeholders.
-- Unresolved EPFA values include fan static pressure, model capacity, and weight information.
-- The website must not describe the draft PDFs as final, complete, or ready for submittal without qualification.
-- This website redesign must not edit the PDFs. PDF revisions are separate future projects.
+The archived MOAS installation, EPFA, and Enviro-Clean drafts are not source authority and must not be restored without controlled comparison review and publication approval. Unresolved EPFA values still include fan static pressure, model capacity, and weight information.
 
 ## Approved Company and Content Decisions
 
@@ -99,15 +90,13 @@ Important limitations:
 
 Record and preserve these as explicit pending items in internal Markdown:
 
-1. Obtain and archive the current EPFA/Enviro-Clean UL certificate or listing report for File MH45752.
-2. Obtain and archive the current MOAS ETL certificate, control number, or listing report.
-3. Verify the MOAS listing against the current applicable UL 710 edition and current Intertek record.
-4. Confirm EPFA initial fan resistance/static pressure.
-5. Confirm EPFA capacity and approximate weight by model.
-6. Confirm accurate lead-time or project-cycle language before adding any timing claim.
-7. Update each PDF individually in future dedicated projects using editable sources and updated imagery.
+1. Obtain the correct official ETL and UL mark artwork and the certification-body authorization required for each proposed promotional placement.
+2. Confirm EPFA initial fan resistance/static pressure.
+3. Confirm EPFA capacity and approximate weight by model.
+4. Confirm accurate lead-time or project-cycle language before adding any timing claim.
+5. Update each PDF individually in future dedicated projects using editable sources and updated imagery.
 
-Public searches did not surface Molitron's UL/ETL directory records. UL Product iQ may require authenticated access, and the repository currently lacks the MOAS ETL control/report number. Do not imply that a current directory record was independently verified until the certificates are provided.
+The private certification records are controlled under `docs/Certifications/`. Public language must use `ETL Listed` for MOAS and `UL Listed` for EPFA with the exact product-specific scope recorded in `docs/content/claims-register.md`; do not infer UL 710 coverage for MOAS.
 
 ## Language Corrections
 
