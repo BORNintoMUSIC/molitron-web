@@ -23,6 +23,7 @@ export const seoKeywords = {
     "cooking odor control commercial kitchen",
     "exhaust odor control system",
     "MOAS odor abatement",
+    "ETL listed odor abatement system",
   ],
   epfa: [
     "kitchen pollution control unit",
@@ -139,7 +140,7 @@ export const pagesSeo = {
   moas: {
     title: "MOAS Kitchen Odor Abatement System",
     description:
-      "Explore MOAS commercial-kitchen exhaust odor abatement, with qualified performance information, utilities, system operation, and project-planning guidance.",
+      "Explore the ETL Listed MOAS for commercial-kitchen exhaust odor abatement, with qualified performance, utilities, and project-planning guidance.",
     path: "/products/moas",
     image: "/images/heroes/moas.jpg",
     imageAlt: "Molitron MOAS commercial kitchen odor abatement system cabinet",
@@ -148,10 +149,10 @@ export const pagesSeo = {
   epfa: {
     title: "EPFA Kitchen Pollution Control Unit",
     description:
-      "Explore the UL 8782 listed EPFA filter assembly: three-stage dry filtration for smoke particulate and grease vapor, with optional carbon final-stage media.",
+      "Explore the UL Listed EPFA under File MH45752: three-stage dry filtration investigated to the UL 8782 Outline, with optional carbon final-stage media.",
     path: "/products/epfa",
     image: "/images/heroes/epfa.jpg",
-    imageAlt: "Molitron EPFA UL listed kitchen pollution control filter assembly",
+    imageAlt: "Molitron EPFA UL Listed kitchen pollution control filter assembly",
     keywords: [...seoKeywords.epfa, ...seoKeywords.core],
   },
   about: {
@@ -249,6 +250,7 @@ export const pagesSeo = {
       "kitchen exhaust code compliance",
       "sidewall discharge exhaust",
       "UL 8782 pollution control unit",
+      "ETL listed odor abatement system",
       "SCAQMD kitchen exhaust",
     ],
   },
