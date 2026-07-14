@@ -1,6 +1,6 @@
 # Public Claims Register
 
-**Last reviewed:** July 13, 2026
+**Last reviewed:** July 14, 2026
 
 This register separates owner-confirmed statements from documentation-derived claims and unresolved technical items. Public copy must remain consistent with this file and the visible product documentation.
 
@@ -89,4 +89,6 @@ Do not add unresolved values to public copy.
 
 ## Product-document status
 
-The approved MOAS brochure Rev B is the only current public technical PDF. The earlier MOAS installation, EPFA brochure/manual, and Enviro-Clean site drafts were removed from public view and preserved under `docs/PDF_Rebuild/Archive/pre-controlled-site-drafts/`. They contain obsolete listing wording, unreviewed technical content, and/or unapproved certification-mark treatments and are not source authority. Each may return only after one-document-at-a-time controlled comparison review, approval, and publication authorization.
+The approved MOAS brochure Rev B and MOAS Engineering & Installation Planning Guide Rev A are the current public MOAS technical PDFs. The planning guide is also represented by useful HTML at `/products/moas/installation-planning`; the HTML retains the guide's planning limitations and is not a substitute for controlled project information.
+
+The earlier MOAS installation draft, EPFA brochure/manual drafts, and Enviro-Clean site drafts are preserved under `docs/PDF_Rebuild/Archive/pre-controlled-site-drafts/`. They contain obsolete listing wording, unreviewed technical content, and/or unapproved certification-mark treatments and are not source authority. Each may return as current product documentation only after its one-document-at-a-time controlled comparison review, approval, and publication authorization.

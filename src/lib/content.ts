@@ -7,7 +7,7 @@ export const faqs = [
   {
     question: "When do I need MOAS vs EPFA vs both?",
     answer:
-      "EPFA is three-stage dry filtration for smoke particulate and grease vapor in light-duty kitchen exhaust—no water or pumps for filtration. Its final stage can use MERV 14 media or optional carbon. MOAS atomizes a neutralizing solution into the airstream for odor abatement. Some projects use both when filtration and odor control are needed. Share CFM, cooking equipment, and discharge details so Molitron can review the application.",
+      "EPFA is three-stage dry filtration for smoke particulate and grease vapor in light-duty kitchen exhaust—no water or pumps for filtration. Its final stage can use MERV 14 media or optional carbon. MOAS atomizes Odor Neutralizer Solution into the airstream for odor abatement. Some projects use both when filtration and odor control are needed. Share CFM, cooking equipment, and discharge details so Molitron can review the application.",
   },
   {
     question: "Who typically buys Molitron equipment?",

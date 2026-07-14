@@ -62,7 +62,7 @@ export const pageHeroes = {
     eyebrow: "Solutions · Cannabis",
     title: "Odor and exhaust control for cannabis facilities",
     description:
-      "Apply the same molecular odor neutralization and exhaust filtration approach used for restaurants and airports to odor-sensitive cannabis environments.",
+      "Explore project-specific exhaust odor abatement and filtration for odor-sensitive cannabis environments, with application review based on process and exhaust-path details.",
   },
   codes: {
     src: "/images/heroes/molitron-codes-rooftop-review-hero-v1.webp",
