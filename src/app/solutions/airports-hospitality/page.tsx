@@ -67,7 +67,7 @@ export default function AirportsHospitalityPage() {
         <SectionHeading
           eyebrow="Downloads"
           title="Technical documentation"
-          description="Published MOAS documentation and the EPFA Product & Planning Brochure support facility and design-team review. Final equipment selection, design, installation, and AHJ acceptance remain project-specific."
+          description="Published MOAS documentation and current EPFA product, operation, and maintenance documentation support facility and design-team review. Final equipment selection, design, installation, and AHJ acceptance remain project-specific."
         />
         <DocDownloads documents={technicalDocuments} productName="Airport & hospitality projects" />
       </Section>

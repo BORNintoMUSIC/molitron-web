@@ -19,5 +19,8 @@ Approved replacements are separate artifacts even when a stable public filename 
 - MOAS Product Brochure Rev B: `/docs/moas-brochure-2026.pdf`
 - MOAS Engineering & Installation Planning Guide Rev A: `/docs/moas-engineering-specs-installation-2026.pdf`
 - EPFA Product & Planning Brochure Rev A: `/docs/epfa-brochure-2026.pdf`
+- EPFA Installation, Operation & Maintenance Manual Rev A: `/docs/epfa-operation-maintenance-manual-2026.pdf`
+
+The current EPFA manual was independently rebuilt through the gated documentation program. It supersedes the archived pre-controlled draft; the archived file remains excluded as source authority.
 
 The archived files in this folder remain non-public and are not source authority for those approved replacements.

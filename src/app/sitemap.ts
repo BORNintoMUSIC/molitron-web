@@ -7,6 +7,7 @@ const paths = [
   "/products/moas",
   "/products/moas/installation-planning",
   "/products/epfa",
+  "/products/epfa/operation-maintenance",
   "/solutions",
   "/solutions/restaurants",
   "/solutions/airports-hospitality",

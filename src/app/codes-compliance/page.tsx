@@ -56,7 +56,7 @@ export default function CodesCompliancePage() {
         <SectionHeading
           eyebrow="Downloads"
           title="Active-product documentation"
-          description="Published MOAS documentation and the EPFA Product & Planning Brochure are available for product and planning review. Confirm project-specific design requirements and AHJ expectations before design or submittal."
+          description="Published MOAS and EPFA product, planning, installation, operation, and maintenance documentation is available for review. Confirm project-specific design requirements and AHJ expectations before design or submittal."
         />
         <DocDownloads documents={technicalDocuments} productName="Molitron" />
         <p className="mt-5 text-sm leading-relaxed text-muted">
@@ -66,6 +66,13 @@ export default function CodesCompliancePage() {
             className="font-semibold text-accent hover:underline"
           >
             accessible HTML planning reference
+          </Link>
+          , and the EPFA manual has an{" "}
+          <Link
+            href="/products/epfa/operation-maintenance"
+            className="font-semibold text-accent hover:underline"
+          >
+            accessible HTML operation and maintenance reference
           </Link>
           .
         </p>

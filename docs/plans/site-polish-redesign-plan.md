@@ -51,15 +51,16 @@ The audit reviewed:
 
 ## Product Documentation Status
 
-**Superseding control note, July 14, 2026:** The MOAS brochure Rev B, MOAS Engineering & Installation Planning Guide Rev A, and EPFA Product & Planning Brochure Rev A have completed their gated rebuild and publication workflows. Remaining pre-controlled site drafts were removed from public navigation and archived internally under `docs/PDF_Rebuild/Archive/pre-controlled-site-drafts/` because they contain obsolete listing wording, unreviewed technical content, and/or unapproved certification-mark treatments.
+**Superseding control note, July 14, 2026:** The MOAS brochure Rev B, MOAS Engineering & Installation Planning Guide Rev A, EPFA Product & Planning Brochure Rev A, and EPFA Installation, Operation & Maintenance Manual Rev A have completed their gated rebuild and publication workflows. Remaining pre-controlled site drafts were removed from public navigation and archived internally under `docs/PDF_Rebuild/Archive/pre-controlled-site-drafts/` because they contain obsolete listing wording, unreviewed technical content, and/or unapproved certification-mark treatments.
 
 Current public active-product documents:
 
 - `public/docs/moas-brochure-2026.pdf`
 - `public/docs/moas-engineering-specs-installation-2026.pdf`
 - `public/docs/epfa-brochure-2026.pdf`
+- `public/docs/epfa-operation-maintenance-manual-2026.pdf`
 
-The archived EPFA operation and maintenance manual and Enviro-Clean drafts are not source authority and must not be restored without controlled comparison review and publication approval. The EPFA brochure's model capacities, approximate weights, filter quantities, initial resistance, voltage, access, clearances, service interval, and project-interface values were confirmed by the owner on July 14, 2026 and are controlled in `docs/content/claims-register.md`.
+The archived pre-controlled EPFA operation and maintenance draft is not source authority and was not restored. It has been superseded by independently rebuilt `EPFA-IOM-2026`, Rev A. The remaining Enviro-Clean drafts are not source authority and must not be restored without controlled comparison review and publication approval. The EPFA model capacities, approximate weights, filter quantities, initial resistance, voltage, access, clearances, service interval, and project-interface values were confirmed by the owner on July 14, 2026 and are controlled in `docs/content/claims-register.md`.
 
 ## Approved Company and Content Decisions
 

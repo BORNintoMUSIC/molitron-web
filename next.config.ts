@@ -49,14 +49,14 @@ const nextConfig: NextConfig = {
       {
         source:
           "/wp-content/uploads/2021/04/ENVIRO-PAK-Operation-Maintenance-Manual-10-2019.pdf",
-        destination: "/products/epfa",
-        permanent: false,
+        destination: "/docs/epfa-operation-maintenance-manual-2026.pdf",
+        permanent: true,
       },
       {
         source:
           "/wp-content/uploads/2019/10/ENVIRO-PAK-Operation-Maintenance-Manual-10-2019.pdf",
-        destination: "/products/epfa",
-        permanent: false,
+        destination: "/docs/epfa-operation-maintenance-manual-2026.pdf",
+        permanent: true,
       },
       {
         source: "/wp-content/uploads/2021/04/Enviropakfilterspec.pdf",
@@ -77,11 +77,6 @@ const nextConfig: NextConfig = {
       {
         source: "/wp-content/uploads/2021/04/AirScrubberspecs.pdf",
         destination: "/service-parts",
-        permanent: false,
-      },
-      {
-        source: "/docs/epfa-operation-maintenance-manual-2026.pdf",
-        destination: "/products/epfa",
         permanent: false,
       },
       {
