@@ -220,6 +220,12 @@ export const products: Product[] = [
         href: "/docs/epfa-brochure-2026.pdf",
         kind: "brochure",
       },
+      {
+        title: "EPFA Installation, Operation & Maintenance Manual (Rev A)",
+        description: "Current manual for receiving, installation coordination, monitoring, factory startup, maintenance, filter service, cleaning, troubleshooting, warranty, and equipment records.",
+        href: "/docs/epfa-operation-maintenance-manual-2026.pdf",
+        kind: "manual",
+      },
     ],
     hero: {
       src: "/images/remastered/epfa-closed-v2.webp",

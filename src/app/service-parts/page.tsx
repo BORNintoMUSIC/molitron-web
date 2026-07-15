@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Button } from "@/components/Button";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
@@ -47,6 +48,19 @@ export default function ServicePartsPage() {
               <p className="mt-2 text-sm leading-relaxed text-foreground/80">{card.d}</p>
             </div>
           ))}
+        </div>
+        <div className="mt-6 max-w-3xl rounded-lg border border-border bg-card p-5">
+          <h2 className="text-lg font-semibold text-primary">EPFA operation and maintenance reference</h2>
+          <p className="mt-2 text-sm leading-relaxed text-foreground/80">
+            Use the current Rev A manual for status-panel response, the four-week inspection and service interval,
+            filter order, qualified cleaning guidance, troubleshooting boundaries, and equipment records.
+          </p>
+          <Link
+            href="/products/epfa/operation-maintenance"
+            className="mt-3 inline-block text-sm font-semibold text-accent hover:underline"
+          >
+            Read the EPFA operation and maintenance guide
+          </Link>
         </div>
       </Section>
 

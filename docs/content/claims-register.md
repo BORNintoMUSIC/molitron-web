@@ -80,6 +80,13 @@ Owner-confirmed current EPFA facts, July 14, 2026:
 - Inspect/service the filters every four weeks and respond immediately to a red service indication.
 - Initial EPFA resistance is 1.54 in. w.g.; exhaust-fan selection must also account for hood, duct, and other system losses.
 
+Current controlled public documentation:
+
+- EPFA Product & Planning Brochure, `EPFA-BRO-2026`, Rev A
+- EPFA Installation, Operation & Maintenance Manual, `EPFA-IOM-2026`, Rev A
+- The manual is a 24-page printable PDF with ordinary write-in receiving, acknowledgment, contractor, commissioning, and maintenance records. It contains no interactive form fields, scripts, attachments, or hidden submission behavior.
+- The current stable manual path is `/docs/epfa-operation-maintenance-manual-2026.pdf`; the accessible HTML companion is `/products/epfa/operation-maintenance`.
+
 Current owner-confirmed model table:
 
 | Model | CFM | Width | Approx. unit weight | Pre-filter quantity | High-efficiency filter quantity | Carbon added weight |

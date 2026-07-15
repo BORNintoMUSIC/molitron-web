@@ -77,7 +77,7 @@ export default function RestaurantsPage() {
         <SectionHeading
           eyebrow="Downloads"
           title="Published product documentation"
-          description="Share the published MOAS documentation and EPFA Product & Planning Brochure with your design team. Final equipment selection, design, installation, and AHJ acceptance remain project-specific."
+          description="Share the published MOAS documentation and current EPFA product, operation, and maintenance documentation with your design team. Final equipment selection, design, installation, and AHJ acceptance remain project-specific."
         />
         <DocDownloads documents={technicalDocuments} productName="Restaurant projects" />
       </Section>

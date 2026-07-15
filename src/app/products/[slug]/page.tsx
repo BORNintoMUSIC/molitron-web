@@ -190,7 +190,7 @@ export default async function ProductPage({ params }: Props) {
           description={
             product.slug === "moas"
               ? "Approved MOAS product and installation-planning documentation. Project-specific design, installation, approval, and AHJ review remain the responsibility of the project team."
-              : "Published EPFA Product & Planning Brochure with owner-confirmed model data and project-coordination guidance. The brochure is not a construction drawing or a substitute for project-specific design, current installation instructions, or AHJ review."
+              : "Approved EPFA product-planning and installation, operation, and maintenance documentation. Project-specific design, installation, approval, and AHJ review remain the responsibility of the project team."
           }
         />
         {product.slug === "moas" ? (
@@ -203,6 +203,19 @@ export default async function ProductPage({ params }: Props) {
             </div>
             <Button href="/products/moas/installation-planning" variant="secondary" className="sm:shrink-0">
               Read the planning guide
+            </Button>
+          </div>
+        ) : null}
+        {product.slug === "epfa" ? (
+          <div className="mb-5 flex flex-col gap-4 rounded-lg border border-border bg-background p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 className="text-base font-semibold text-primary">Prefer an online operation and maintenance reference?</h3>
+              <p className="mt-1 text-sm leading-relaxed text-foreground/80">
+                Review receiving, installation coordination, monitoring, startup, maintenance, filter service, cleaning, troubleshooting, and recordkeeping in accessible HTML.
+              </p>
+            </div>
+            <Button href="/products/epfa/operation-maintenance" variant="secondary" className="sm:shrink-0">
+              Read the EPFA manual
             </Button>
           </div>
         ) : null}
