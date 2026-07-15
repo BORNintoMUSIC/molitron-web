@@ -85,24 +85,36 @@ export default function ServicePartsPage() {
         <SectionHeading
           eyebrow="Legacy equipment"
           title="Enviro-Clean service documentation"
-          description="The Enviro-Clean Air Scrubber is discontinued for new projects. The controlled legacy brochure is available for owners and service teams working with existing installations."
+          description="The Enviro-Clean Air Scrubber is discontinued for new projects. Controlled legacy documents are available only for owners and service teams working with existing installations."
         />
         <div className="mb-5 max-w-3xl rounded-lg border border-warning/35 bg-card px-4 py-3 text-sm leading-relaxed text-foreground/80">
           <strong className="text-primary">Existing equipment only.</strong> Specifications may not represent every installed configuration. Contact Molitron with the unit nameplate and site details before ordering service parts or planning changes.
         </div>
         <p className="max-w-3xl text-sm leading-relaxed text-foreground/80">
-          Use the brochure as a legacy reference for the documented equipment and service information.
-          Verify the installed unit and available records before planning work.
+          Use the brochure for equipment identification and broad legacy context. Use the technical
+          reference for historical specifications, documented relationships, and installed-unit record
+          review. Verify the actual unit and available records before planning work.
         </p>
-        <a
-          href="/docs/enviro-clean-air-scrubber-brochure-2026.pdf"
-          download
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-4 inline-block text-sm font-semibold text-accent hover:underline"
-        >
-          Download the Enviro-Clean legacy brochure (PDF)
-        </a>
+        <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:gap-6">
+          <a
+            href="/docs/enviro-clean-air-scrubber-brochure-2026.pdf"
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-sm font-semibold text-accent hover:underline"
+          >
+            Download the Enviro-Clean legacy brochure (PDF)
+          </a>
+          <a
+            href="/docs/enviro-clean-air-scrubber-legacy-technical-reference-2026.pdf"
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-sm font-semibold text-accent hover:underline"
+          >
+            Download the Enviro-Clean legacy technical reference (PDF)
+          </a>
+        </div>
       </Section>
 
       <CtaBand
