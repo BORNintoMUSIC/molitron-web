@@ -85,15 +85,24 @@ export default function ServicePartsPage() {
         <SectionHeading
           eyebrow="Legacy equipment"
           title="Enviro-Clean service documentation"
-          description="The Enviro-Clean Air Scrubber is discontinued for new projects. Its legacy PDF is undergoing controlled comparison review and is not currently a public download."
+          description="The Enviro-Clean Air Scrubber is discontinued for new projects. The controlled legacy brochure is available for owners and service teams working with existing installations."
         />
         <div className="mb-5 max-w-3xl rounded-lg border border-warning/35 bg-card px-4 py-3 text-sm leading-relaxed text-foreground/80">
           <strong className="text-primary">Existing equipment only.</strong> Specifications may not represent every installed configuration. Contact Molitron with the unit nameplate and site details before ordering service parts or planning changes.
         </div>
         <p className="max-w-3xl text-sm leading-relaxed text-foreground/80">
-          Contact Molitron with the unit nameplate and site details for the current service path and
-          any applicable legacy reference material.
+          Use the brochure as a legacy reference for the documented equipment and service information.
+          Verify the installed unit and available records before planning work.
         </p>
+        <a
+          href="/docs/enviro-clean-air-scrubber-brochure-2026.pdf"
+          download
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-block text-sm font-semibold text-accent hover:underline"
+        >
+          Download the Enviro-Clean legacy brochure (PDF)
+        </a>
       </Section>
 
       <CtaBand
