@@ -71,13 +71,15 @@ const nextConfig: NextConfig = {
       {
         source:
           "/wp-content/uploads/2021/04/Enviro-Clean-Air-Scrubber-Specifications.pdf",
-        destination: "/service-parts",
-        permanent: false,
+        destination:
+          "/docs/enviro-clean-air-scrubber-legacy-technical-reference-2026.pdf",
+        permanent: true,
       },
       {
         source: "/wp-content/uploads/2021/04/AirScrubberspecs.pdf",
-        destination: "/service-parts",
-        permanent: false,
+        destination:
+          "/docs/enviro-clean-air-scrubber-legacy-technical-reference-2026.pdf",
+        permanent: true,
       },
     ];
   },
@@ -99,6 +101,16 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/docs/enviro-clean-air-scrubber-brochure-2026.pdf",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex",
+          },
+        ],
+      },
+      {
+        source:
+          "/docs/enviro-clean-air-scrubber-legacy-technical-reference-2026.pdf",
         headers: [
           {
             key: "X-Robots-Tag",
