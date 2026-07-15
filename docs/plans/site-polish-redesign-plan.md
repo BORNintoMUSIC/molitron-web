@@ -1,5 +1,7 @@
 # Molitron Site Polish and Redesign Plan
 
+> **Historical plan:** This records the July 2026 redesign handoff and its then-current branch state. It is not the current operating workflow. Use `AGENTS.md` and the current development, publishing, deployment, claims, and SEO guides for active work.
+
 **Status:** Approved for implementation
 **Created:** July 12, 2026
 **Working branch:** `feature/site-polish-audit`

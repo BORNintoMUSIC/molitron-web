@@ -39,3 +39,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local worktrees and scratch output
+/.worktrees/
+/tmp/
+
+# private controlled source records
+/docs/Certifications/
+
+# generated technical-document working artifacts
+/docs/PDF_Rebuild/**/build/
+/docs/PDF_Rebuild/**/__pycache__/
+
+# raw customer logo sources; publish only optimized derivatives
+/public/images/previous-customers/*/
+!/public/images/previous-customers/optimized/
+!/public/images/previous-customers/optimized/**

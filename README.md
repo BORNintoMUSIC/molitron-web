@@ -1,39 +1,59 @@
-# Molitron.com — Phase 1 rebuild
+# Molitron Website
 
-Next.js (App Router) rebuild of [molitron.com](https://molitron.com): commercial kitchen pollution control and odor abatement (MOAS + EPFA).
+Next.js App Router website for Molitron's commercial kitchen pollution-control and odor-abatement products, documentation, service resources, and quote requests.
 
 ## Stack
 
-- **Next.js 16** + TypeScript + Tailwind CSS 4
-- Static-friendly product/content pages with JSON-LD (Organization, LocalBusiness, Product, FAQ)
-- Quote form API at `/api/quote` (optional Resend email delivery)
-- Deploy target: **Vercel** (domain currently on Squarespace DNS)
+- Next.js 16, React 19, TypeScript, and Tailwind CSS 4
+- Static-friendly product and application pages with accurate metadata and structured data
+- Quote request API with optional Resend delivery
+- Vercel deployment target
 
-## Local development
+## Local Development
 
-```bash
-npm install
-npm run dev
+```powershell
+npm.cmd ci
+npm.cmd run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open `http://localhost:3000`. Use `npm.cmd` in PowerShell if the `npm` shim is blocked by the execution policy.
 
-On Windows PowerShell, use `npm.cmd` if `npm` is blocked by the script execution policy. See [docs/development/local-development.md](docs/development/local-development.md) for the Codex local startup notes.
+For ordinary work, run the fast validation path:
 
-```bash
-npm run build
-npm start
+```powershell
+npm.cmd run check
 ```
 
-## Quote form email
+For structural or deployment changes, troubleshooting, or intentional local release verification, run:
 
-Without env vars, submissions are validated and **logged to the server console** (fine for local testing).
+```powershell
+npm.cmd run check:full
+```
 
-For production delivery to `cleanair@molitron.com`:
+See [local development](docs/development/local-development.md) for details.
 
-1. Create a [Resend](https://resend.com) account
-2. Verify a sending domain (or use Resend test sender while developing)
-3. Copy `.env.example` → `.env.local` and set:
+Normal delivery uses one short-lived branch from `main`, one pull request back to `main`, and a Vercel preview that runs the full check before production merge.
+
+## Site Map
+
+| Path | Purpose |
+|---|---|
+| `/` | Company and product overview |
+| `/products`, `/products/moas`, `/products/epfa` | Active products |
+| `/products/moas/installation-planning` | MOAS planning-guide HTML companion |
+| `/products/epfa/operation-maintenance` | EPFA manual HTML companion |
+| `/solutions/*` | Restaurant, airport/hospitality, and cannabis applications |
+| `/codes-compliance` | Educational compliance hub |
+| `/about` | Company history and leadership |
+| `/contact` | Quote request form |
+| `/service-parts` | Service, parts, and discontinued Enviro-Clean resources |
+| `/sitemap.xml`, `/robots.txt` | Search-engine discovery controls |
+
+MOAS and EPFA are active products. Enviro-Clean Air Scrubber material is retained only for legacy service. Follow the [PDF publishing guide](docs/publishing/pdf-publishing.md) before replacing or adding a public document.
+
+## Quote Form Email
+
+Without `RESEND_API_KEY`, local submissions are validated and a limited diagnostic is written to the development server console. Create an untracked `.env.local` to test delivery:
 
 ```env
 RESEND_API_KEY=re_...
@@ -41,33 +61,12 @@ QUOTE_TO_EMAIL=cleanair@molitron.com
 QUOTE_FROM_EMAIL=Molitron Website <quotes@your-verified-domain.com>
 ```
 
-## Phase 1 routes
+The sending domain must be configured with the email provider before production use. Never commit environment files or credentials.
 
-| Path | Purpose |
-|------|---------|
-| `/` | Home |
-| `/products`, `/products/moas`, `/products/epfa` | Product line |
-| `/solutions/*` | Restaurants, airports/hospitality, cannabis |
-| `/codes-compliance` | Educational compliance hub |
-| `/about` | Company + Scott Airhart |
-| `/contact` | Quote request form |
-| `/service-parts` | Service / parts stub |
-| `/sitemap.xml`, `/robots.txt` | SEO |
+## Project References
 
-## DNS cutover (Squarespace → Vercel)
-
-1. Deploy this repo to Vercel and note the deployment URL
-2. In Squarespace DNS for `molitron.com`, add records Vercel provides (usually A/CNAME)
-3. Keep WordPress live until cutover is verified
-4. Set up Google Search Console + GA4 on the new domain after go-live
-
-## Content notes
-
-- Active products only: **MOAS** and **EPFA**
-- **Enviro-Clean Air Scrubber** is discontinued (stated on site)
-- Photos from the legacy site can be added under `public/` in a later pass
-- Case studies and quote configurator wizard are Phase 2
-
-## Contact (site config)
-
-Edit `src/lib/site.ts` for phone, address, email, and navigation.
+- Site identity and navigation: `src/lib/site.ts`
+- Approved public claims: `docs/content/claims-register.md`
+- Branch workflow: `docs/development/branch-workflow.md`
+- Deployment: `docs/deployment/README.md`
+- Internal documentation index: `docs/README.md`
