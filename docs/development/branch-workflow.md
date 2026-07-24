@@ -1,44 +1,38 @@
 # Branch Workflow
 
-This repository uses `main` for production-ready code and `develop` for staging and integration work.
+`main` is the repository's single long-lived branch and the source of production deployments. Normal work uses one short-lived branch, one pull request to `main`, and one Vercel preview before merge.
 
-## Long-Lived Branches
+## Branches
 
-- `main`: production-ready branch. Keep it deployable, reviewed, and stable.
-- `develop`: staging and integration branch. Merge completed work here before promoting it to `main`.
-
-## Short-Lived Branches
-
-Create short-lived branches from `develop` for normal work:
-
-- `feature/*`: new user-facing or internal functionality.
-- `fix/*`: bug fixes that are not urgent production hotfixes.
-- `docs/*`: documentation-only changes.
+- `main`: reviewed, production-ready, and deployable.
+- `feature/*`: user-facing or internal functionality.
+- `fix/*`: defect corrections, including urgent fixes unless a different path is explicitly approved.
+- `docs/*`: documentation-only work.
 - `chore/*`: maintenance, tooling, cleanup, or dependency work.
 
-Create `hotfix/*` branches from `main` only when production needs an urgent fix. After a hotfix reaches `main`, merge the same fix back into `develop`.
+Create every new short-lived branch from the latest `main`. Keep it focused and delete or archive it only after its work is safely merged and branch removal is separately authorized.
 
-## Flow
+## Normal Flow
 
-1. Start new planned work from the latest `develop`.
-2. Keep each branch focused on one purpose.
-3. Open a pull request back into `develop` for review and integration.
-4. Promote `develop` to `main` only when the integrated state is ready for production.
-5. Keep `main` and `develop` protected from unrelated or experimental changes.
+1. Update local `main` and create a short-lived branch.
+2. Edit and preview locally.
+3. Run `npm.cmd run check`, review the diff, then commit and push once.
+4. Open one pull request from the short-lived branch to `main`.
+5. Let the Vercel preview run `npm run check:full`; review its checks and visible preview.
+6. Merge only after the change and preview are approved. The resulting `main` deployment is production.
+
+Do not push directly to `main` for routine work. Preserve review and required deployment checks on `main`; changes to remote protections require explicit approval.
 
 ## Local Commands
 
 ```powershell
 git switch main
 git pull origin main
-git switch -c develop
-git push -u origin develop
-```
-
-For normal work after `develop` exists:
-
-```powershell
-git switch develop
-git pull origin develop
 git switch -c feature/example-name
 ```
+
+Use `fix/`, `docs/`, or `chore/` instead when one of those scopes fits better.
+
+## `develop` Transition
+
+`develop` is no longer the starting point or PR target for new work. Keep the existing remote branch intact while outstanding branches or records are checked. Reconcile or retarget any remaining work deliberately; do not delete `develop` as part of routine cleanup.

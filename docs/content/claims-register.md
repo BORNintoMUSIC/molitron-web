@@ -1,6 +1,6 @@
 # Public Claims Register
 
-**Last reviewed:** July 14, 2026
+**Last reviewed:** July 15, 2026
 
 This register separates owner-confirmed statements from documentation-derived claims and unresolved technical items. Public copy must remain consistent with this file and the visible product documentation.
 
@@ -127,6 +127,13 @@ Do not add unresolved values to public copy.
 
 ## Product-document status
 
-The approved MOAS brochure Rev B, MOAS Engineering & Installation Planning Guide Rev A, and EPFA Product & Planning Brochure Rev A are the current public active-product technical PDFs. The MOAS planning guide has a dedicated HTML companion at `/products/moas/installation-planning`; the EPFA brochure's decision and planning content is represented on `/products/epfa`. The HTML retains document limitations and does not replace controlled project information.
+The current public active-product technical PDFs are:
 
-The earlier MOAS installation draft, superseded EPFA brochure draft, EPFA manual draft, and Enviro-Clean site drafts are preserved under `docs/PDF_Rebuild/Archive/pre-controlled-site-drafts/`. They contain obsolete listing wording, unreviewed technical content, and/or unapproved certification-mark treatments and are not source authority. The EPFA manual and each remaining legacy document may return as current documentation only after its one-document-at-a-time controlled comparison review, approval, and publication authorization.
+- MOAS brochure, `MOAS-BRO-2026`, Rev B, at `/docs/moas-brochure-2026.pdf`; visible product context is maintained on `/products/moas`.
+- MOAS Engineering & Installation Planning Guide, Rev A, at `/docs/moas-engineering-specs-installation-2026.pdf`; its HTML companion is `/products/moas/installation-planning`.
+- EPFA Product & Planning Brochure, `EPFA-BRO-2026`, Rev A, at `/docs/epfa-brochure-2026.pdf`; visible planning context is maintained on `/products/epfa`.
+- EPFA Installation, Operation & Maintenance Manual, `EPFA-IOM-2026`, Rev A, at `/docs/epfa-operation-maintenance-manual-2026.pdf`; its HTML companion is `/products/epfa/operation-maintenance`.
+
+The current Enviro-Clean brochure and legacy technical reference are published only for discontinued-product service context at `/docs/enviro-clean-air-scrubber-brochure-2026.pdf` and `/docs/enviro-clean-air-scrubber-legacy-technical-reference-2026.pdf`. Both are linked from `/service-parts` and carry `noindex` response headers. They are not active-product marketing documents.
+
+Earlier MOAS, EPFA, and Enviro-Clean site drafts preserved under `docs/PDF_Rebuild/Archive/pre-controlled-site-drafts/` may contain obsolete listing wording, unreviewed technical content, or unapproved certification-mark treatments. They are not source authority. An approved replacement remains a distinct controlled artifact even when it is published over the same stable website filename.

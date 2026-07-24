@@ -1,9 +1,14 @@
-﻿# Internal Documentation
+# Internal Documentation
 
-This folder is for project notes used by Brandon, Codex, and collaborators. It is not the public website documentation center.
+This folder contains project guidance and controlled internal records; it is not the public website documentation center.
 
-Use these folders for architecture, deployment, SEO, brand guidance, API notes, and decision records.
+## Start Here
 
-Start with [development/branch-workflow.md](development/branch-workflow.md) for the repository branch workflow.
+- [Local development](development/local-development.md): setup and validation commands
+- [Branch workflow](development/branch-workflow.md): current branch and promotion policy
+- [Deployment](deployment/README.md): Vercel, environment, preview, and rollback notes
+- [PDF publishing](publishing/pdf-publishing.md): controlled-source/public-copy boundary
+- [Public claims register](content/claims-register.md): approved and restricted product claims
+- [SEO guidance](seo/README.md): page, schema, and document-indexing rules
 
-Use [development/local-development.md](development/local-development.md) for the Windows/Codex local startup workflow.
+Specialized `PDF_Rebuild` projects and archived drafts support controlled document work. Their local build output is not automatically a website publication asset. Historical plans under `plans/` describe past work and do not override `AGENTS.md` or the current guides above.
