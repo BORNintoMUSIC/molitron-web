@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { DocDownloads } from "@/components/DocDownloads";
 import { FaqList } from "@/components/FaqList";
@@ -55,9 +56,26 @@ export default function CodesCompliancePage() {
         <SectionHeading
           eyebrow="Downloads"
           title="Active-product documentation"
-          description="Current draft brochures and technical guidance for MOAS and EPFA. Confirm final project data with Molitron before design or submittal."
+          description="Published MOAS and EPFA product, planning, installation, operation, and maintenance documentation is available for review. Confirm project-specific design requirements and AHJ expectations before design or submittal."
         />
         <DocDownloads documents={technicalDocuments} productName="Molitron" />
+        <p className="mt-5 text-sm leading-relaxed text-muted">
+          The MOAS installation guide is also available as an{" "}
+          <Link
+            href="/products/moas/installation-planning"
+            className="font-semibold text-accent hover:underline"
+          >
+            accessible HTML planning reference
+          </Link>
+          , and the EPFA manual has an{" "}
+          <Link
+            href="/products/epfa/operation-maintenance"
+            className="font-semibold text-accent hover:underline"
+          >
+            accessible HTML operation and maintenance reference
+          </Link>
+          .
+        </p>
       </Section>
 
       <Section>
@@ -75,8 +93,8 @@ export default function CodesCompliancePage() {
             </thead>
             <tbody>
               {[
-                ["Grease / particulate filtration", "EPFA (UL 8782 listed filter assembly)"],
-                ["Odor neutralization in exhaust stream", "MOAS (ETL listed abatement—molecular, not masking)"],
+                ["Grease / particulate filtration", "EPFA (UL Listed under File MH45752)"],
+                ["Odor abatement in exhaust stream", "MOAS (ETL Listed for the U.S. and Canada)"],
                 ["Filtration + odor together", "EPFA + MOAS"],
                 ["Sidewall / sensitive discharge", "Project-specific stack; request engineering input"],
               ].map(([need, product], i) => (

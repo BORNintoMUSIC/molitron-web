@@ -3,9 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/Button";
 import { CtaBand } from "@/components/CtaBand";
+import { CustomerLogoGrid } from "@/components/CustomerLogoGrid";
 import { FaqList } from "@/components/FaqList";
 import { ProductCard } from "@/components/ProductCard";
 import { Section, SectionHeading } from "@/components/Section";
+import { featuredCustomerReferences } from "@/lib/customer-logos";
 import { products } from "@/lib/products";
 import { metadataFor } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -148,7 +150,7 @@ export default function HomePage() {
             {
               title: "Cannabis facilities",
               href: "/solutions/cannabis",
-              body: "Apply molecular odor neutralization and exhaust filtration to odor-sensitive cannabis environments. Talk to us about your exhaust path.",
+              body: "Explore exhaust odor abatement and filtration for odor-sensitive cannabis environments. Talk to us about your process and exhaust path.",
             },
           ].map((card) => (
             <Link
@@ -182,7 +184,7 @@ export default function HomePage() {
               </li>
               <li className="flex gap-3">
                 <span className="mt-1 h-2 w-2 shrink-0 bg-accent" />
-                UL 8782 and ETL listings with downloadable specs for submittals
+                ETL Listed MOAS and UL Listed EPFA, with project-specific review
               </li>
               <li className="flex gap-3">
                 <span className="mt-1 h-2 w-2 shrink-0 bg-accent" />
@@ -222,13 +224,7 @@ export default function HomePage() {
           title="Specified in high-visibility foodservice environments"
           description="Representative names from Molitron's installation history. References identify project experience and do not imply endorsement."
         />
-        <ul className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
-          {["Ritz-Carlton", "Chick-fil-A", "Chipotle", "Burger King", "Hyatt", "Denver International Airport"].map((name) => (
-            <li key={name} className="flex min-h-20 items-center justify-center rounded-lg border border-border bg-card px-3 text-center text-sm font-bold text-primary shadow-sm">
-              {name}
-            </li>
-          ))}
-        </ul>
+        <CustomerLogoGrid references={featuredCustomerReferences} layout="featured" />
       </Section>
 
       <Section tone="white">

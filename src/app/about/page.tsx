@@ -22,7 +22,7 @@ const milestones = [
   {
     y: "1986",
     t: "Company founded",
-    d: "Begins as a manufacturer of UL listed water filter kitchen exhaust ventilators, filter hoods, and service walls.",
+    d: "Begins as a manufacturer of water-filter kitchen exhaust ventilators, filter hoods, and service walls.",
   },
   {
     y: "1990s",
@@ -36,13 +36,13 @@ const milestones = [
   },
   {
     y: "2005–14",
-    t: "MOAS developed & listed",
-    d: "Odor abatement system invented; later ETL listed with testing related to UL 197 and UL 710 Clause 43.",
+    t: "MOAS product development",
+    d: "Molitron develops MOAS for commercial-kitchen exhaust odor-abatement applications.",
   },
   {
     y: "Today",
     t: "Two-product line",
-    d: "Active products: MOAS and EPFA. Enviro-Clean Air Scrubber discontinued. Competitive cost, code-minded support, direct sales.",
+    d: "Active products: ETL Listed MOAS and UL Listed EPFA. Enviro-Clean Air Scrubber discontinued. Competitive cost, code-minded support, direct sales.",
   },
 ];
 
@@ -201,7 +201,7 @@ export default function AboutPage() {
               </li>
               <li className="flex gap-3">
                 <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent" />
-                UL / ETL listed hardware with clear product roles
+                ETL Listed MOAS odor abatement and UL Listed EPFA filtration
               </li>
             </ul>
             <div className="mt-6">

@@ -19,10 +19,11 @@ export const seoKeywords = {
     "kitchen odor abatement system",
     "commercial kitchen odor control system",
     "restaurant odor neutralizer exhaust",
-    "ETL listed odor abatement",
+    "project-specific odor abatement",
     "cooking odor control commercial kitchen",
     "exhaust odor control system",
     "MOAS odor abatement",
+    "ETL listed odor abatement system",
   ],
   epfa: [
     "kitchen pollution control unit",
@@ -139,19 +140,19 @@ export const pagesSeo = {
   moas: {
     title: "MOAS Kitchen Odor Abatement System",
     description:
-      "Explore ETL-listed MOAS commercial kitchen odor abatement, including qualified performance data, utilities, installation context, and current draft documents.",
+      "Explore the ETL Listed MOAS for commercial-kitchen exhaust odor abatement, with qualified performance, utilities, and project-planning guidance.",
     path: "/products/moas",
     image: "/images/heroes/moas.jpg",
     imageAlt: "Molitron MOAS commercial kitchen odor abatement system cabinet",
     keywords: [...seoKeywords.moas, ...seoKeywords.core],
   },
   epfa: {
-    title: "EPFA Kitchen Pollution Control Unit",
+    title: "EPFA Dry Kitchen Exhaust Filtration",
     description:
-      "Explore the UL 8782 listed EPFA filter assembly: three-stage dry filtration for smoke particulate and grease vapor, with optional carbon final-stage media.",
+      "Plan EPFA three-stage dry filtration for light-duty commercial-kitchen exhaust, including model data, service clearances, monitoring, and the optional carbon final stage.",
     path: "/products/epfa",
     image: "/images/heroes/epfa.jpg",
-    imageAlt: "Molitron EPFA UL listed kitchen pollution control filter assembly",
+    imageAlt: "Molitron EPFA UL Listed kitchen pollution control filter assembly",
     keywords: [...seoKeywords.epfa, ...seoKeywords.core],
   },
   about: {
@@ -240,7 +241,7 @@ export const pagesSeo = {
   codes: {
     title: "Kitchen Exhaust Codes & Compliance",
     description:
-      "Guide to commercial kitchen exhaust codes: sidewall discharge, UL/ETL listings, grease smoke odor control, and California air district requirements.",
+      "Guide to commercial-kitchen exhaust codes: sidewall discharge, equipment listings, grease, smoke, odor control, and California air-district requirements.",
     path: "/codes-compliance",
     image: "/images/heroes/codes-compliance.jpg",
     imageAlt: "Commercial kitchen exhaust code compliance guidance",
@@ -249,6 +250,7 @@ export const pagesSeo = {
       "kitchen exhaust code compliance",
       "sidewall discharge exhaust",
       "UL 8782 pollution control unit",
+      "ETL listed odor abatement system",
       "SCAQMD kitchen exhaust",
     ],
   },

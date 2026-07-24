@@ -5,15 +5,13 @@ import { DocDownloads } from "@/components/DocDownloads";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { pageHeroes } from "@/lib/heroes";
-import { getProduct } from "@/lib/products";
+import { products } from "@/lib/products";
 import { metadataFor } from "@/lib/seo";
 
 export const metadata: Metadata = metadataFor("restaurants");
+const technicalDocuments = products.flatMap((product) => product.documents);
 
 export default function RestaurantsPage() {
-  const epfa = getProduct("epfa");
-  const moas = getProduct("moas");
-
   return (
     <>
       <PageHero config={pageHeroes.restaurants}>
@@ -75,19 +73,14 @@ export default function RestaurantsPage() {
         </ul>
       </Section>
 
-      {epfa && moas ? (
-        <Section tone="white">
-          <SectionHeading
-            eyebrow="Downloads"
-            title="Specs for restaurant submittals"
-            description="Share brochures and engineering docs with your design team while you request a project-specific stack."
-          />
-          <DocDownloads
-            documents={[epfa.documents[0], moas.documents[0]]}
-            productName="Restaurant projects"
-          />
-        </Section>
-      ) : null}
+      <Section tone="white">
+        <SectionHeading
+          eyebrow="Downloads"
+          title="Published product documentation"
+          description="Share the published MOAS documentation and current EPFA product, operation, and maintenance documentation with your design team. Final equipment selection, design, installation, and AHJ acceptance remain project-specific."
+        />
+        <DocDownloads documents={technicalDocuments} productName="Restaurant projects" />
+      </Section>
 
       <CtaBand title="Restaurant project? Let’s price the right stack." />
     </>

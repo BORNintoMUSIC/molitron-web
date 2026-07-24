@@ -5,15 +5,13 @@ import { DocDownloads } from "@/components/DocDownloads";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { pageHeroes } from "@/lib/heroes";
-import { getProduct } from "@/lib/products";
+import { products } from "@/lib/products";
 import { metadataFor } from "@/lib/seo";
 
 export const metadata: Metadata = metadataFor("airports");
+const technicalDocuments = products.flatMap((product) => product.documents);
 
 export default function AirportsHospitalityPage() {
-  const epfa = getProduct("epfa");
-  const moas = getProduct("moas");
-
   return (
     <>
       <PageHero config={pageHeroes.airports}>
@@ -43,7 +41,7 @@ export default function AirportsHospitalityPage() {
             },
             {
               t: "Specification clarity",
-              d: "UL 8782 EPFA and ETL-listed MOAS—with downloadable specs—simplify submittals for high-visibility kitchens.",
+              d: "UL Listed EPFA and ETL Listed MOAS product information support submittal discussions for high-visibility kitchens.",
             },
           ].map((card) => (
             <div key={card.t} className="surface-card p-5">
@@ -65,19 +63,14 @@ export default function AirportsHospitalityPage() {
         </p>
       </Section>
 
-      {epfa && moas ? (
-        <Section tone="white">
-          <SectionHeading
-            eyebrow="Downloads"
-            title="Technical documentation"
-            description="Product brochures for filtration and odor abatement—useful for facility and design review."
-          />
-          <DocDownloads
-            documents={[epfa.documents[0], moas.documents[0]]}
-            productName="Airport & hospitality projects"
-          />
-        </Section>
-      ) : null}
+      <Section tone="white">
+        <SectionHeading
+          eyebrow="Downloads"
+          title="Technical documentation"
+          description="Published MOAS documentation and current EPFA product, operation, and maintenance documentation support facility and design-team review. Final equipment selection, design, installation, and AHJ acceptance remain project-specific."
+        />
+        <DocDownloads documents={technicalDocuments} productName="Airport & hospitality projects" />
+      </Section>
 
       <CtaBand title="Planning an airport or hotel kitchen?" />
     </>

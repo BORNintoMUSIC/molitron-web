@@ -7,11 +7,14 @@ import path from "node:path";
 import sharp from "sharp";
 
 const ROOT = path.resolve("public/images");
+const EXCLUDED_ROOTS = [path.resolve("public/images/previous-customers/optimized")];
 const MAX_EDGE = 1920;
 const JPEG_QUALITY = 78;
 const PNG_QUALITY = 80;
 
 async function* walk(dir) {
+  if (EXCLUDED_ROOTS.includes(path.resolve(dir))) return;
+
   const entries = await fs.readdir(dir, { withFileTypes: true });
   for (const e of entries) {
     const full = path.join(dir, e.name);

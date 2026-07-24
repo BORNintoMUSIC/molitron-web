@@ -23,6 +23,7 @@ export function Footer() {
           <ul className="mt-3 space-y-1 text-sm">
             {[
               { href: "/products/moas", label: "MOAS" },
+              { href: "/products/moas/installation-planning", label: "MOAS Planning Guide" },
               { href: "/products/epfa", label: "EPFA" },
               { href: "/codes-compliance", label: "Codes & Compliance" },
               { href: "/service-parts", label: "Service & Parts" },
@@ -93,7 +94,7 @@ export function Footer() {
           <p>
             © {year} {site.legalName}. All rights reserved.
           </p>
-          <p>UL / ETL listed equipment · English (US)</p>
+          <p>ETL Listed MOAS · UL Listed EPFA · English (US)</p>
         </div>
       </div>
     </footer>

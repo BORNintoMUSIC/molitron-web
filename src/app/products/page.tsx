@@ -43,7 +43,7 @@ export default function ProductsPage() {
               {[
                 ["Primary job", "Odor abatement", "Dry filtration"],
                 ["Typical contaminants", "Persistent cooking odors; some smoke reduction", "Smoke particulate and grease vapor"],
-                ["Process", "Atomized neutralizing solution", "MERV 9 and MERV 14 filter stages"],
+                ["Process", "Atomized Odor Neutralizer Solution", "MERV 9 and MERV 14 filter stages"],
                 ["Odor option", "Core purpose", "Optional carbon final stage; MOAS for broader odor control"],
                 ["Best next step", "Share odor source, CFM, and duct path", "Share cooking equipment, CFM, and install location"],
               ].map(([label, moas, epfa], index) => (

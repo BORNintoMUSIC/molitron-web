@@ -60,8 +60,8 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/wp-content/uploads/2021/04/Enviropakfilterspec.pdf",
-        destination: "/docs/epfa-brochure-2026.pdf",
-        permanent: true,
+        destination: "/products/epfa",
+        permanent: false,
       },
       {
         source: "/wp-content/uploads/2021/04/Enviro-Clean-Air-Scrubber-Brochure.pdf",
@@ -71,12 +71,14 @@ const nextConfig: NextConfig = {
       {
         source:
           "/wp-content/uploads/2021/04/Enviro-Clean-Air-Scrubber-Specifications.pdf",
-        destination: "/docs/enviro-clean-air-scrubber-brochure-2026.pdf",
+        destination:
+          "/docs/enviro-clean-air-scrubber-legacy-technical-reference-2026.pdf",
         permanent: true,
       },
       {
         source: "/wp-content/uploads/2021/04/AirScrubberspecs.pdf",
-        destination: "/docs/enviro-clean-air-scrubber-brochure-2026.pdf",
+        destination:
+          "/docs/enviro-clean-air-scrubber-legacy-technical-reference-2026.pdf",
         permanent: true,
       },
     ];
@@ -102,7 +104,17 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "X-Robots-Tag",
-            value: "noindex, nofollow, noarchive",
+            value: "noindex",
+          },
+        ],
+      },
+      {
+        source:
+          "/docs/enviro-clean-air-scrubber-legacy-technical-reference-2026.pdf",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex",
           },
         ],
       },

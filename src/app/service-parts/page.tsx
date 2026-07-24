@@ -1,24 +1,14 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Button } from "@/components/Button";
 import { CtaBand } from "@/components/CtaBand";
-import { DocDownloads } from "@/components/DocDownloads";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { pageHeroes } from "@/lib/heroes";
 import { metadataFor } from "@/lib/seo";
 import { site } from "@/lib/site";
-import type { ProductDocument } from "@/lib/products";
 
 export const metadata: Metadata = metadataFor("service");
-
-const legacyDocuments: ProductDocument[] = [
-  {
-    title: "Enviro-Clean Air Scrubber Brochure (Legacy)",
-    description: "Reference information for discontinued Enviro-Clean equipment and existing installations. Not offered for new projects.",
-    href: "/docs/enviro-clean-air-scrubber-brochure-2026.pdf",
-    kind: "brochure",
-  },
-];
 
 export default function ServicePartsPage() {
   return (
@@ -42,7 +32,7 @@ export default function ServicePartsPage() {
           {[
             {
               t: "MOAS consumables",
-              d: "Odor Gone concentrate supply, refill guidance, and operation questions for molecular odor abatement units.",
+              d: "Odor Neutralizer Solution supply, refill guidance, and operation questions for MOAS odor-abatement units.",
             },
             {
               t: "EPFA filters",
@@ -58,6 +48,19 @@ export default function ServicePartsPage() {
               <p className="mt-2 text-sm leading-relaxed text-foreground/80">{card.d}</p>
             </div>
           ))}
+        </div>
+        <div className="mt-6 max-w-3xl rounded-lg border border-border bg-card p-5">
+          <h2 className="text-lg font-semibold text-primary">EPFA operation and maintenance reference</h2>
+          <p className="mt-2 text-sm leading-relaxed text-foreground/80">
+            Use the current Rev A manual for status-panel response, the four-week inspection and service interval,
+            filter order, qualified cleaning guidance, troubleshooting boundaries, and equipment records.
+          </p>
+          <Link
+            href="/products/epfa/operation-maintenance"
+            className="mt-3 inline-block text-sm font-semibold text-accent hover:underline"
+          >
+            Read the EPFA operation and maintenance guide
+          </Link>
         </div>
       </Section>
 
@@ -82,12 +85,36 @@ export default function ServicePartsPage() {
         <SectionHeading
           eyebrow="Legacy equipment"
           title="Enviro-Clean service documentation"
-          description="The Enviro-Clean Air Scrubber is discontinued for new projects. This material remains available only to help owners and service teams identify and support existing installations."
+          description="The Enviro-Clean Air Scrubber is discontinued for new projects. Controlled legacy documents are available only for owners and service teams working with existing installations."
         />
         <div className="mb-5 max-w-3xl rounded-lg border border-warning/35 bg-card px-4 py-3 text-sm leading-relaxed text-foreground/80">
           <strong className="text-primary">Existing equipment only.</strong> Specifications may not represent every installed configuration. Contact Molitron with the unit nameplate and site details before ordering service parts or planning changes.
         </div>
-        <DocDownloads documents={legacyDocuments} productName="Legacy Enviro-Clean equipment" />
+        <p className="max-w-3xl text-sm leading-relaxed text-foreground/80">
+          Use the brochure for equipment identification and broad legacy context. Use the technical
+          reference for historical specifications, documented relationships, and installed-unit record
+          review. Verify the actual unit and available records before planning work.
+        </p>
+        <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:gap-6">
+          <a
+            href="/docs/enviro-clean-air-scrubber-brochure-2026.pdf"
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-sm font-semibold text-accent hover:underline"
+          >
+            Download the Enviro-Clean legacy brochure (PDF)
+          </a>
+          <a
+            href="/docs/enviro-clean-air-scrubber-legacy-technical-reference-2026.pdf"
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-sm font-semibold text-accent hover:underline"
+          >
+            Download the Enviro-Clean legacy technical reference (PDF)
+          </a>
+        </div>
       </Section>
 
       <CtaBand

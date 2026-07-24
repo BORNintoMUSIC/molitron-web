@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "eslint src scripts eslint.config.mjs next.config.ts",
+    "check": "next typegen && tsc --noEmit && npm run lint && node scripts/validate-site-content.mjs --changed",
+    "check:full": "npm run lint && node scripts/validate-site-content.mjs --all && next build",
     "optimize-images": "node scripts/optimize-images.mjs"
   },
   "browserslist": [

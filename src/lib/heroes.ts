@@ -19,15 +19,15 @@ export const pageHeroes = {
   moas: {
     src: "/images/heroes/molitron-moas-kitchen-hero-v1.webp",
     alt: "Molitron odor abatement system installed beside a commercial kitchen exhaust hood",
-    eyebrow: "Product · ETL listed",
+    eyebrow: "Product · ETL Listed",
     title: "Molitron Odor Abatement System (MOAS)",
     description:
-      "Odors neutralized at the molecular level—not masked. Gone. Up to 95% odor particle reduction in commercial kitchen exhaust.",
+      "MOAS atomizes Odor Neutralizer Solution through remote misting nozzles in commercial-kitchen exhaust. Product fit and results are project-specific.",
   },
   epfa: {
     src: "/images/heroes/molitron-epfa-rooftop-hero-v1.webp",
     alt: "Molitron EPFA commercial kitchen exhaust filtration system installed on a rooftop",
-    eyebrow: "Product · UL 8782 listed",
+    eyebrow: "Product · UL Listed",
     title: "Enviro-Pak Filter Assembly (EPFA)",
     description:
       "Three-stage dry filtration for smoke particulate and grease vapor in light-duty kitchen exhaust, with an optional carbon final stage for odor treatment.",
@@ -62,7 +62,7 @@ export const pageHeroes = {
     eyebrow: "Solutions · Cannabis",
     title: "Odor and exhaust control for cannabis facilities",
     description:
-      "Apply the same molecular odor neutralization and exhaust filtration approach used for restaurants and airports to odor-sensitive cannabis environments.",
+      "Explore project-specific exhaust odor abatement and filtration for odor-sensitive cannabis environments, with application review based on process and exhaust-path details.",
   },
   codes: {
     src: "/images/heroes/molitron-codes-rooftop-review-hero-v1.webp",
