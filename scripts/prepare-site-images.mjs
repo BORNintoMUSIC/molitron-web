@@ -13,7 +13,7 @@ const OUTPUT = path.resolve("public/images/remastered");
 
 const jobs = [
   ["moas/Molitron Odor Abatement System Closed.png", "moas-closed-v2.webp", "cutout"],
-  ["moas/Molitron Odor Abatement System Open.png", "moas-open-v2.webp", "cutout"],
+  ["moas/molitron-order-abatement-system-open-2026.png", "moas-open-v2.webp", "cutout"],
   ["moas/Four Molitron Odor Abatement Systems.png", "moas-four-units-v2.webp", "field"],
   ["moas/MOAS Installation on Wall Full Picture_R2.png", "moas-wall-installation-v2.webp", "field"],
   ["moas/MOAS Installation On Wall_R1.png", "moas-wall-detail-v2.webp", "field"],
