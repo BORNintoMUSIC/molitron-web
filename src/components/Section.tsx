@@ -28,7 +28,7 @@ export function Section({
 }: SectionProps) {
   const inner = (
     <div
-      className={`mx-auto w-full min-w-0 px-4 sm:px-6 lg:px-8 ${
+      className={`safe-inline mx-auto w-full min-w-0 ${
         narrow ? "max-w-3xl" : "max-w-7xl"
       }`}
     >
@@ -73,7 +73,7 @@ export function SectionHeading({
         </p>
       ) : null}
       <h2
-        className={`text-2xl font-bold tracking-[-0.025em] break-words sm:text-3xl md:text-4xl ${
+        className={`font-display text-2xl font-semibold leading-tight tracking-[-0.025em] break-words sm:text-3xl md:text-4xl ${
           light ? "text-on-brand" : "text-primary"
         }`}
       >

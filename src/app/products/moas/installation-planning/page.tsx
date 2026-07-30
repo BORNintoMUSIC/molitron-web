@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Button } from "@/components/Button";
 import { CtaBand } from "@/components/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
@@ -34,6 +33,12 @@ const hero = {
   title: "MOAS Engineering & Installation Planning Guide",
   description:
     "Plan the equipment location, utilities, remote nozzles, tubing, exhaust-fan interlock, access, and project responsibilities before installation work begins.",
+  breadcrumbs: [
+    { label: "Home", href: "/" },
+    { label: "Products", href: "/products" },
+    { label: "MOAS", href: "/products/moas" },
+    { label: "Installation planning", href: path },
+  ],
 };
 
 const technicalData = [
@@ -126,18 +131,6 @@ export default function MoasInstallationPlanningPage() {
       </PageHero>
 
       <Section noReveal className="!py-8 sm:!py-10">
-        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-muted">
-          <Link href="/products" className="font-medium text-accent hover:underline">
-            Products
-          </Link>{" "}
-          <span aria-hidden>/</span>{" "}
-          <Link href="/products/moas" className="font-medium text-accent hover:underline">
-            MOAS
-          </Link>{" "}
-          <span aria-hidden>/</span>{" "}
-          <span aria-current="page">Installation planning</span>
-        </nav>
-
         <div className="grid gap-5 lg:grid-cols-[1.35fr_0.65fr]">
           <div className="rounded-lg border border-warning/35 bg-accent-soft px-5 py-5">
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">

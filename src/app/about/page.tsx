@@ -22,27 +22,27 @@ const milestones = [
   {
     y: "1986",
     t: "Company founded",
-    d: "Begins as a manufacturer of water-filter kitchen exhaust ventilators, filter hoods, and service walls.",
+    d: "Molitron is founded and begins the company history that supports today’s pollution-control and odor-abatement work.",
   },
   {
-    y: "1990s",
-    t: "Pollution control focus",
-    d: "Engineers equipment for grease, smoke, and odor removal to meet strict jurisdictional requirements—including demanding air quality districts.",
+    y: "Colorado",
+    t: "Equipment fabrication",
+    d: "Molitron equipment is fabricated in Colorado and sold through a direct-sales model.",
   },
   {
-    y: "1994+",
-    t: "Denver International Airport",
-    d: "DIA’s restaurant exhaust requirements drive early installs. Molitron equipment continues to support airport foodservice concepts.",
+    y: "Nationwide",
+    t: "Project and installation history",
+    d: "Molitron has project and installation history across the United States, with California and Denver / Colorado as focus markets.",
   },
   {
-    y: "2005–14",
-    t: "MOAS product development",
-    d: "Molitron develops MOAS for commercial-kitchen exhaust odor-abatement applications.",
+    y: "DIA",
+    t: "Airport foodservice experience",
+    d: "Installation history includes multiple foodservice concepts at Denver International Airport.",
   },
   {
     y: "Today",
     t: "Two-product line",
-    d: "Active products: ETL Listed MOAS and UL Listed EPFA. Enviro-Clean Air Scrubber discontinued. Competitive cost, code-minded support, direct sales.",
+    d: "Active products are ETL Listed MOAS and UL Listed EPFA. Enviro-Clean is discontinued and retained only for legacy service context.",
   },
 ];
 
@@ -88,9 +88,8 @@ export default function AboutPage() {
                 for odor abatement—alone or together.
               </p>
               <p>
-                Geographic focus is California and the Denver metro, with project support available
-                nationwide. Word-of-mouth—especially around Denver International Airport—remains a
-                core way teams find us.
+                California and Denver / Colorado are focus markets, with project and installation
+                history across the United States.
               </p>
             </div>
           </div>
@@ -122,13 +121,12 @@ export default function AboutPage() {
               Leadership
             </p>
             <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight text-primary sm:text-3xl">
-              {site.founder.name}
+              {site.president.name}
             </h2>
-            <p className="mt-1 text-sm font-semibold text-accent">{site.founder.title}</p>
+            <p className="mt-1 text-sm font-semibold text-accent">{site.president.title}</p>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-foreground/80 sm:text-base">
-              Scott is the public face of the business—available for technical questions, project
-              scoping, and direct sales conversations. When you call Molitron, you’re talking to the
-              people who build and stand behind the equipment.
+              Scott Airhart is Molitron’s President. The company’s direct-sales model gives owners
+              and project teams a direct path for product, application, and quote conversations.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button href={`mailto:${site.email}`}>Email Scott</Button>
@@ -141,8 +139,8 @@ export default function AboutPage() {
             <ul className="space-y-3">
               {[
                 "Direct manufacturer relationship",
-                "Code- and AHJ-minded recommendations",
-                "Honest scope—no overselling the line",
+                "Project-specific application review",
+                "Clear active-product and legacy boundaries",
               ].map((item) => (
                 <li
                   key={item}
@@ -187,8 +185,8 @@ export default function AboutPage() {
           <div>
             <SectionHeading
               eyebrow="In the field"
-              title="Real equipment. Real install environments."
-              description="Product photography and project context from the work we do—filtration, odor abatement, and constrained discharge sites."
+              title="Equipment and installation context"
+              description="Product and installation imagery for Molitron filtration, odor abatement, and rooftop equipment context."
             />
             <ul className="mt-2 space-y-3 text-sm leading-relaxed text-foreground/80">
               <li className="flex gap-3">

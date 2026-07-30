@@ -24,6 +24,11 @@ const solutions = [
     title: "Cannabis",
     body: "Odor-sensitive facilities exploring exhaust filtration and project-specific odor-abatement options.",
   },
+  {
+    href: "/solutions/industrial",
+    title: "Industrial & specialty",
+    body: "Application review for nonstandard exhaust concerns, with clear boundaries around the active products’ documented scope.",
+  },
 ];
 
 export default function SolutionsIndexPage() {
@@ -31,7 +36,19 @@ export default function SolutionsIndexPage() {
     <>
       <PageHero config={pageHeroes.solutions} />
       <Section>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mb-10 grid gap-5 border-y border-border py-6 sm:grid-cols-3">
+          {[
+            ["Odor", "Start with MOAS and the available exhaust path."],
+            ["Smoke particulate & grease vapor", "Start with EPFA and the cooking load."],
+            ["Nonstandard process", "Start with an application review, not a product assumption."],
+          ].map(([title, body]) => (
+            <div key={title}>
+              <p className="text-sm font-bold text-primary">{title}</p>
+              <p className="mt-1 text-sm leading-relaxed text-muted">{body}</p>
+            </div>
+          ))}
+        </div>
+        <div className="grid gap-5 sm:grid-cols-2">
           {solutions.map((s) => (
             <Link
               key={s.href}

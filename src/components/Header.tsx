@@ -70,6 +70,14 @@ export function Header() {
     };
   }, [mobileOpen]);
 
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpenMenu(null);
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   return (
     <>
       <header
@@ -77,7 +85,7 @@ export function Header() {
           scrolled ? "header-elevated border-border" : "border-border/70"
         }`}
       >
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <div className="safe-inline mx-auto flex h-16 max-w-7xl items-center justify-between gap-4">
           <Logo href="/" onClick={() => closeMobileNav()} showTagline />
 
           <nav className="hidden min-w-0 flex-1 items-center justify-end gap-1 xl:flex" aria-label="Primary">
@@ -101,7 +109,7 @@ export function Header() {
                         : "text-foreground/75 hover:bg-surface-muted hover:text-primary"
                     }`}
                     aria-expanded={openMenu === item.label}
-                    aria-haspopup="menu"
+                    aria-controls={`desktop-nav-${item.label.toLowerCase()}`}
                     onClick={() => setOpenMenu((current) => (current === item.label ? null : item.label))}
                   >
                     {item.label}
@@ -109,12 +117,12 @@ export function Header() {
                   </button>
                   {openMenu === item.label ? (
                     <div
-                      role="menu"
+                      id={`desktop-nav-${item.label.toLowerCase()}`}
                       className="absolute left-0 top-full z-50 min-w-60 rounded-md border border-border bg-card p-2 shadow-xl"
                     >
                       <Link
                         href={item.href}
-                        role="menuitem"
+                        aria-current={isActive(pathname, item.href) ? "page" : undefined}
                         className="block rounded-md px-3 py-2.5 text-sm font-semibold text-primary hover:bg-accent-soft"
                         onClick={() => setOpenMenu(null)}
                       >
@@ -124,7 +132,7 @@ export function Header() {
                         <Link
                           key={child.href}
                           href={child.href}
-                          role="menuitem"
+                          aria-current={pathname === child.href ? "page" : undefined}
                           className="block rounded-md px-3 py-2.5 text-sm text-foreground/75 hover:bg-accent-soft hover:text-primary"
                           onClick={() => setOpenMenu(null)}
                         >
@@ -138,6 +146,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  aria-current={pathname === item.href ? "page" : undefined}
                   className={`inline-flex min-h-11 items-center rounded-md px-3 py-2 text-sm font-semibold transition-colors ${
                     isActive(pathname, item.href)
                       ? "bg-accent-soft text-accent"
@@ -182,7 +191,12 @@ export function Header() {
       </header>
 
       {mobileOpen ? (
-        <div className="fixed inset-0 z-[200] xl:hidden" role="presentation">
+        <div
+          className="fixed inset-0 z-[200] xl:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site navigation"
+        >
           <button
             type="button"
             className="absolute inset-0 h-full w-full bg-slate-950/55"
@@ -192,7 +206,7 @@ export function Header() {
           <nav
             id="mobile-navigation"
             ref={panelRef}
-            className="absolute inset-y-0 right-0 flex w-[min(23rem,92vw)] flex-col overflow-y-auto bg-card shadow-2xl"
+            className="absolute inset-y-0 right-0 flex w-[min(23rem,92vw)] flex-col overflow-y-auto bg-card pb-[env(safe-area-inset-bottom)] shadow-2xl"
             aria-label="Mobile"
           >
             <div className="flex items-center justify-between border-b border-border px-5 py-4">
@@ -217,6 +231,7 @@ export function Header() {
                     <>
                       <Link
                         href={item.href}
+                        aria-current={isActive(pathname, item.href) ? "page" : undefined}
                         className="flex min-h-11 items-center text-base font-bold text-primary"
                         onClick={() => closeMobileNav()}
                       >
@@ -227,6 +242,7 @@ export function Header() {
                           <Link
                             key={child.href}
                             href={child.href}
+                            aria-current={pathname === child.href ? "page" : undefined}
                             className="flex min-h-11 items-center text-sm font-semibold text-foreground/75"
                             onClick={() => closeMobileNav()}
                           >
@@ -238,6 +254,7 @@ export function Header() {
                   ) : (
                     <Link
                       href={item.href}
+                      aria-current={pathname === item.href ? "page" : undefined}
                       className="flex min-h-11 items-center text-base font-bold text-primary"
                       onClick={() => closeMobileNav()}
                     >

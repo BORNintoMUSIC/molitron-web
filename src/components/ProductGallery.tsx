@@ -15,6 +15,7 @@ export function ProductGallery({
   const [zoomOpen, setZoomOpen] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const descriptionId = useId();
   const count = images.length;
   const current = images[active];
@@ -30,6 +31,8 @@ export function ProductGallery({
 
   useEffect(() => {
     if (!zoomOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     closeRef.current?.focus();
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -38,9 +41,29 @@ export function ProductGallery({
       }
       if (event.key === "ArrowLeft") setActive((index) => ((index - 1) % count + count) % count);
       if (event.key === "ArrowRight") setActive((index) => (index + 1) % count);
+      if (event.key === "Tab" && dialogRef.current) {
+        const focusable = Array.from(
+          dialogRef.current.querySelectorAll<HTMLElement>(
+            'button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])',
+          ),
+        );
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     }
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
   }, [count, zoomOpen]);
 
   if (!current) return null;
@@ -62,7 +85,7 @@ export function ProductGallery({
           src={current.src}
           alt={current.alt}
           fill
-          priority={active === 0}
+          preload={active === 0}
           quality={85}
           className="object-contain p-4 sm:p-6"
           sizes="(max-width: 1024px) 100vw, 50vw"
@@ -120,6 +143,7 @@ export function ProductGallery({
 
       {zoomOpen ? (
         <div
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label={`${productName} high-resolution image`}
@@ -127,6 +151,7 @@ export function ProductGallery({
         >
           <button
             type="button"
+            tabIndex={-1}
             className="absolute inset-0 h-full w-full cursor-zoom-out"
             aria-label="Close high-resolution view"
             onClick={() => closeZoom(true)}

@@ -30,7 +30,7 @@ export default function RestaurantsPage() {
       <Section tone="white">
         <SectionHeading
           title="Common restaurant scenarios"
-          description="Visible smoke and cooking odor invite complaints—and code enforcement. Match filtration, odor abatement, or both to the load."
+          description="Visible smoke and cooking odor can prompt complaints and closer project review. Match filtration, odor abatement, or both to the documented load."
         />
         <div className="grid gap-5 sm:grid-cols-2">
           {[
@@ -48,7 +48,7 @@ export default function RestaurantsPage() {
             },
             {
               t: "Chains & independents",
-              d: "From high-volume QSR to chef-driven kitchens—light-duty loads often fit EPFA; persistent odor calls for MOAS, or both.",
+              d: "For light-duty commercial-kitchen exhaust, EPFA may be evaluated for dry filtration; persistent odor concerns may bring MOAS into the discussion.",
             },
           ].map((card) => (
             <div key={card.t} className="surface-card p-5">

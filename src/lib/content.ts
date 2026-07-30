@@ -29,7 +29,7 @@ export const faqs = [
 export const codeTopics = [
   {
     title: "Why commercial kitchen exhaust is regulated",
-    body: "Grease, smoke, and odor from cooking equipment can create fire hazards, air quality issues, and neighborhood nuisances. Visible smoke and odor invite complaints—and code enforcement. Many jurisdictions require listed pollution control and documented odor strategies before approving discharge, especially in dense urban, mixed-use, or sensitive sites.",
+    body: "Grease, smoke, and odor from cooking equipment can affect fire-safety, air-quality, and neighborhood review. Jurisdictions may require listed pollution-control equipment or a documented odor strategy, especially for dense urban, mixed-use, or sensitive discharge locations. Verify the requirements for the project address.",
   },
   {
     title: "Sidewall and ground-level discharge",
@@ -45,6 +45,6 @@ export const codeTopics = [
   },
   {
     title: "Airports, hotels, and mixed-use",
-    body: "Airports, hotels, and mixed-use buildings often require recognized, code-oriented treatment of kitchen exhaust so operations can continue without odor complaints or visible emissions. Molitron equipment has been installed in multiple restaurant concepts at Denver International Airport and in hotel and urban restaurant projects nationwide.",
+    body: "Airports, hotels, and mixed-use buildings can place a premium on documented, code-oriented treatment of kitchen exhaust. Molitron equipment has installation history in multiple restaurant concepts at Denver International Airport and in hotel and urban restaurant projects nationwide.",
   },
 ] as const;

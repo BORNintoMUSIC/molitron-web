@@ -42,7 +42,7 @@ export default function ContactPage() {
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted">Contact</p>
                 <p className="mt-1 font-medium text-primary">
-                  {site.founder.name}, {site.founder.title}
+                  {site.president.name}, {site.president.title}
                 </p>
               </div>
             </div>

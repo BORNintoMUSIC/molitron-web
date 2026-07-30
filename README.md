@@ -43,6 +43,8 @@ Normal delivery uses one short-lived branch from `main`, one pull request back t
 | `/products/moas/installation-planning` | MOAS planning-guide HTML companion |
 | `/products/epfa/operation-maintenance` | EPFA manual HTML companion |
 | `/solutions/*` | Restaurant, airport/hospitality, and cannabis applications |
+| `/solutions/industrial` | Cautious application review for industrial and specialty exhaust |
+| `/resources` | Current product documents, online guides, and listing context |
 | `/codes-compliance` | Educational compliance hub |
 | `/about` | Company history and leadership |
 | `/contact` | Quote request form |
@@ -59,9 +61,13 @@ Without `RESEND_API_KEY`, local submissions are validated and a limited diagnost
 RESEND_API_KEY=re_...
 QUOTE_TO_EMAIL=cleanair@molitron.com
 QUOTE_FROM_EMAIL=Molitron Website <quotes@your-verified-domain.com>
+NEXT_PUBLIC_SITE_URL=https://molitron-web.vercel.app
 ```
 
 The sending domain must be configured with the email provider before production use. Never commit environment files or credentials.
+Production submissions fail closed with direct phone and email guidance when delivery is not configured; they are never reported as delivered without a successful provider response.
+
+`NEXT_PUBLIC_SITE_URL` controls canonical, Open Graph, sitemap, robots, and structured-data URLs. Keep it on the deployed Vercel origin until the rebuilt site is intentionally cut over to the primary domain.
 
 ## Project References
 

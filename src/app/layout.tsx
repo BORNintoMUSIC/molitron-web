@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { pagesSeo, seoKeywords } from "@/lib/seo";
-import { site } from "@/lib/site";
+import { isPreviewDeployment, site } from "@/lib/site";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -13,6 +13,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
+  interactiveWidget: "resizes-content",
   themeColor: [
     { color: "#123f49" },
   ],
@@ -29,6 +30,15 @@ const sourceSans = localFont({
   weight: "400 700",
 });
 
+const sourceSerif = localFont({
+  src: "../../node_modules/@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-normal.woff2",
+  variable: "--font-source-serif",
+  display: "swap",
+  preload: true,
+  adjustFontFallback: "Times New Roman",
+  weight: "400 700",
+});
+
 const home = pagesSeo.home;
 
 export const metadata: Metadata = {
@@ -40,7 +50,7 @@ export const metadata: Metadata = {
   description: home.description,
   applicationName: site.legalName,
   keywords: [...seoKeywords.core, ...seoKeywords.moas, ...seoKeywords.epfa],
-  authors: [{ name: site.founder.name }],
+  authors: [{ name: site.president.name }],
   creator: site.legalName,
   publisher: site.legalName,
   openGraph: {
@@ -53,8 +63,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: home.image,
-        width: 1200,
-        height: 630,
+        width: 1280,
+        height: 720,
         alt: home.imageAlt,
       },
     ],
@@ -66,8 +76,8 @@ export const metadata: Metadata = {
     images: [home.image],
   },
   robots: {
-    index: true,
-    follow: true,
+    index: !isPreviewDeployment,
+    follow: !isPreviewDeployment,
   },
   alternates: {
     canonical: site.url,
@@ -77,7 +87,6 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [{ url: "/favicon.ico" }],
-    apple: [{ url: "/images/heroes/home.jpg", type: "image/jpeg" }],
   },
 };
 
@@ -99,10 +108,10 @@ const organizationLd = {
     areaServed: "US",
     availableLanguage: "English",
   },
-  founder: {
+  employee: {
     "@type": "Person",
-    name: site.founder.name,
-    jobTitle: site.founder.title,
+    name: site.president.name,
+    jobTitle: site.president.title,
   },
   description: site.description,
 };
@@ -115,7 +124,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sourceSans.variable} h-full antialiased`}
+      className={`${sourceSans.variable} ${sourceSerif.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <JsonLd data={organizationLd} />

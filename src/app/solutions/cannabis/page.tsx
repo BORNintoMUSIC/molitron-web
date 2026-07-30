@@ -33,8 +33,8 @@ export default function CannabisPage() {
               d: "We will not over-claim. Share process loads, exhaust rates, and local requirements so we can recommend only what is appropriate.",
             },
             {
-              t: "Leverage proven odor tech",
-              d: "MOAS atomizes Odor Neutralizer Solution into the exhaust airstream to reduce malodors instead of relying on fragrance masking. Application fit and results remain project-specific.",
+              t: "Review the odor path",
+              d: "MOAS atomizes Odor Neutralizer Solution into the exhaust airstream. Application fit, configuration, and results remain project-specific.",
             },
             {
               t: "Pair filtration when needed",
@@ -42,7 +42,7 @@ export default function CannabisPage() {
             },
             {
               t: "Install history",
-              d: "Molitron equipment has been installed in cannabis-related environments (including Greenmount Cannabis LLC, CA on EPFA installs). Ask us for relevant references.",
+              d: "Molitron has cannabis-related installation and application history, including an EPFA reference for Greenmount Cannabis LLC in California. References identify experience and do not imply endorsement.",
             },
           ].map((card) => (
             <div key={card.t} className="surface-card p-5">
@@ -56,7 +56,7 @@ export default function CannabisPage() {
       <Section>
         <SectionHeading
           title="Ready to talk?"
-          description="Cannabis is a growth vertical for Molitron. Early conversations help us align equipment to your code path and neighbor-risk profile."
+          description="Early conversations help define the process, exhaust path, odor concern, project requirements, and whether an active Molitron product belongs in the discussion."
         />
       </Section>
 
