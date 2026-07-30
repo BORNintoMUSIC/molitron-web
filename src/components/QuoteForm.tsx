@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Button } from "@/components/Button";
 import { site } from "@/lib/site";
 
@@ -19,12 +19,18 @@ const initial = {
   cookingEquipment: "",
   odorControl: "yes",
   message: "",
+  website: "",
 };
 
 export function QuoteForm() {
   const [form, setForm] = useState(initial);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState("");
+  const feedbackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (status === "success" || status === "error") feedbackRef.current?.focus();
+  }, [status]);
 
   function update(field: keyof typeof initial, value: string) {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -41,7 +47,7 @@ export function QuoteForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      const data = (await res.json()) as { ok?: boolean; error?: string };
+      const data = (await res.json()) as { ok?: boolean; delivered?: boolean; error?: string };
       if (!res.ok || !data.ok) {
         throw new Error(data.error || "Something went wrong. Please call or email us.");
       }
@@ -55,7 +61,12 @@ export function QuoteForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-lg border border-accent/40 bg-accent-soft p-6">
+      <div
+        ref={feedbackRef}
+        tabIndex={-1}
+        role="status"
+        className="rounded-lg border border-accent/40 bg-accent-soft p-6"
+      >
         <h3 className="text-lg font-semibold text-primary">Quote request received</h3>
         <p className="mt-2 text-sm leading-relaxed text-foreground/80">
           Thanks—we’ll review your project details and follow up at the email you provided.
@@ -82,7 +93,18 @@ export function QuoteForm() {
   const label = "block text-sm font-medium text-foreground";
 
   return (
-    <form onSubmit={onSubmit} className="space-y-5" noValidate>
+    <form onSubmit={onSubmit} className="space-y-5" aria-busy={status === "loading"}>
+      <div className="sr-only" aria-hidden="true">
+        <label htmlFor="website">Leave this field empty</label>
+        <input
+          id="website"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.website}
+          onChange={(e) => update("website", e.target.value)}
+        />
+      </div>
       <div className="grid gap-4 md:grid-cols-2">
         <div className="md:col-span-2">
           <label className={label} htmlFor="contactGoal">
@@ -109,6 +131,7 @@ export function QuoteForm() {
             value={form.company}
             onChange={(e) => update("company", e.target.value)}
             autoComplete="organization"
+            maxLength={160}
           />
         </div>
         <div>
@@ -122,6 +145,7 @@ export function QuoteForm() {
             value={form.name}
             onChange={(e) => update("name", e.target.value)}
             autoComplete="name"
+            maxLength={120}
           />
         </div>
         <div>
@@ -136,6 +160,7 @@ export function QuoteForm() {
             value={form.email}
             onChange={(e) => update("email", e.target.value)}
             autoComplete="email"
+            maxLength={254}
           />
         </div>
         <div>
@@ -150,6 +175,7 @@ export function QuoteForm() {
             value={form.phone}
             onChange={(e) => update("phone", e.target.value)}
             autoComplete="tel"
+            maxLength={60}
           />
         </div>
         <div>
@@ -163,6 +189,7 @@ export function QuoteForm() {
             placeholder="e.g. Denver, CO"
             value={form.cityState}
             onChange={(e) => update("cityState", e.target.value)}
+            maxLength={160}
           />
         </div>
         <div>
@@ -175,6 +202,7 @@ export function QuoteForm() {
             placeholder="Cubic feet per minute"
             value={form.cfm}
             onChange={(e) => update("cfm", e.target.value)}
+            maxLength={60}
           />
         </div>
         <div>
@@ -207,6 +235,7 @@ export function QuoteForm() {
             <option value="airport">Airport</option>
             <option value="hotel">Hotel / hospitality</option>
             <option value="cannabis">Cannabis</option>
+            <option value="industrial-specialty">Industrial / specialty facility</option>
             <option value="other">Other</option>
           </select>
         </div>
@@ -270,6 +299,7 @@ export function QuoteForm() {
           placeholder="Hoods, grills, fryers, woks, etc."
           value={form.cookingEquipment}
           onChange={(e) => update("cookingEquipment", e.target.value)}
+          maxLength={3000}
         />
       </div>
 
@@ -284,18 +314,24 @@ export function QuoteForm() {
           placeholder="Timeline, code concerns, discharge constraints, etc."
           value={form.message}
           onChange={(e) => update("message", e.target.value)}
+          maxLength={5000}
         />
       </div>
 
       {status === "error" ? (
-        <p className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800">
+        <div
+          ref={feedbackRef}
+          tabIndex={-1}
+          role="alert"
+          className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800"
+        >
           {error}{" "}
           You can also email{" "}
           <a className="font-semibold underline" href={`mailto:${site.email}`}>
             {site.email}
           </a>
           .
-        </p>
+        </div>
       ) : null}
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -303,7 +339,12 @@ export function QuoteForm() {
           <p>* Required. Your details are used to review equipment fit and respond to this request.</p>
           <p>Do not include passwords, payment information, or other sensitive personal data.</p>
         </div>
-        <Button type="submit" disabled={status === "loading"} className="order-1 w-full sm:order-2 sm:w-auto">
+        <Button
+          type="submit"
+          disabled={status === "loading"}
+          aria-disabled={status === "loading"}
+          className="order-1 w-full sm:order-2 sm:w-auto"
+        >
           {status === "loading" ? "Sending…" : "Submit quote request"}
         </Button>
       </div>

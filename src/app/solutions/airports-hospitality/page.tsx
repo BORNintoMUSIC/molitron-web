@@ -37,7 +37,7 @@ export default function AirportsHospitalityPage() {
             },
             {
               t: "Operational continuity",
-              d: "Facility teams need equipment that supports ongoing foodservice without recurring complaint cycles.",
+              d: "Facility teams need documented access, monitoring, and service requirements that can be coordinated with ongoing foodservice operations.",
             },
             {
               t: "Specification clarity",
@@ -54,12 +54,13 @@ export default function AirportsHospitalityPage() {
 
       <Section>
         <SectionHeading
-          title="Denver International Airport heritage"
-          description="When DIA opened in 1994, air pollution control requirements for restaurant exhaust were non-negotiable. Molitron equipment has been used in multiple restaurants and continues to support airport foodservice needs."
+          title="Denver International Airport installation history"
+          description="Molitron equipment has installation history in multiple restaurant concepts at Denver International Airport."
         />
         <p className="max-w-3xl text-sm leading-relaxed text-foreground/80">
-          That long relationship—and broader word-of-mouth in the Denver market—is a core part of
-          how Molitron wins work: practical engineering, competitive cost, and real install history.
+          That history is relevant experience for complex, public-facing foodservice environments.
+          Project references identify installation history and do not imply endorsement, sponsorship,
+          or a current commercial relationship.
         </p>
       </Section>
 

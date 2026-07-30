@@ -12,6 +12,8 @@ const paths = [
   "/solutions/restaurants",
   "/solutions/airports-hospitality",
   "/solutions/cannabis",
+  "/solutions/industrial",
+  "/resources",
   "/codes-compliance",
   "/about",
   "/contact",

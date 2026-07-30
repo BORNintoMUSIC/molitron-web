@@ -7,17 +7,17 @@ export function Footer() {
 
   return (
     <footer className="relative overflow-hidden border-t border-brand/80 bg-brand text-on-brand-muted">
-      <div className="relative mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2 sm:gap-10 sm:px-6 sm:py-12 lg:grid-cols-4">
+      <div className="safe-inline relative mx-auto grid max-w-6xl gap-8 py-10 sm:grid-cols-2 sm:gap-10 sm:py-12 lg:grid-cols-4">
         <div className="sm:col-span-2 lg:col-span-1">
           <Logo href="/" onDark />
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-on-brand-muted">{site.tagline}</p>
           <p className="mt-4 text-sm text-on-brand-muted">
-            {site.founder.name}, {site.founder.title}
+            {site.president.name}, {site.president.title}
           </p>
         </div>
 
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-on-brand">
             Explore
           </p>
           <ul className="mt-3 space-y-1 text-sm">
@@ -25,6 +25,7 @@ export function Footer() {
               { href: "/products/moas", label: "MOAS" },
               { href: "/products/moas/installation-planning", label: "MOAS Planning Guide" },
               { href: "/products/epfa", label: "EPFA" },
+              { href: "/resources", label: "Technical Resources" },
               { href: "/codes-compliance", label: "Codes & Compliance" },
               { href: "/service-parts", label: "Service & Parts" },
               { href: "/about", label: "About" },
@@ -43,7 +44,7 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-on-brand">
             Solutions
           </p>
           <ul className="mt-3 space-y-1 text-sm">
@@ -63,7 +64,7 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-on-brand">
             Contact
           </p>
           <ul className="mt-3 space-y-2 text-sm">
@@ -90,7 +91,7 @@ export function Footer() {
       </div>
 
       <div className="relative border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4 text-xs text-on-brand-muted/80 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <div className="safe-inline mx-auto flex max-w-6xl flex-col gap-2 py-4 text-xs text-on-brand-muted/80 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {site.legalName}. All rights reserved.
           </p>

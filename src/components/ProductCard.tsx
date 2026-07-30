@@ -10,8 +10,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
           src={product.hero.src}
           alt={product.hero.alt}
           fill
-          priority={priority}
-          loading={priority ? "eager" : "lazy"}
+          preload={priority}
           quality={70}
           className="object-contain p-4"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 480px"

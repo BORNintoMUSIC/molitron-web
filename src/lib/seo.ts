@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { site } from "@/lib/site";
+import { isPreviewDeployment, site } from "@/lib/site";
 
 /** High-value industry keywords used across page copy & meta */
 export const seoKeywords = {
@@ -63,6 +63,7 @@ function absImage(path: string): string {
 export function buildMetadata(page: PageSeo): Metadata {
   const url = absUrl(page.path);
   const imageUrl = absImage(page.image);
+  const imageIsWebp = page.image.toLowerCase().endsWith(".webp");
   const keywords = page.keywords ?? [...seoKeywords.core];
 
   // Next title template is "%s | Molitron" — pass bare title unless it already brands
@@ -72,10 +73,10 @@ export function buildMetadata(page: PageSeo): Metadata {
     title: titleForTemplate,
     description: page.description,
     keywords: [...keywords],
-    authors: [{ name: site.founder.name, url: site.url }],
+    authors: [{ name: site.president.name, url: site.url }],
     creator: site.legalName,
     publisher: site.legalName,
-    robots: page.noIndex
+    robots: page.noIndex || isPreviewDeployment
       ? { index: false, follow: false }
       : { index: true, follow: true, googleBot: { index: true, follow: true } },
     alternates: {
@@ -91,10 +92,10 @@ export function buildMetadata(page: PageSeo): Metadata {
       images: [
         {
           url: imageUrl,
-          width: 1200,
-          height: 630,
+          width: imageIsWebp ? 1672 : 1280,
+          height: imageIsWebp ? 941 : 720,
           alt: page.imageAlt,
-          type: "image/jpeg",
+          type: imageIsWebp ? "image/webp" : "image/jpeg",
         },
       ],
     },
@@ -163,7 +164,7 @@ export const pagesSeo = {
     // 155
     path: "/about",
     image: "/images/heroes/about.jpg",
-    imageAlt: "Molitron Colorado manufacturing facility for kitchen exhaust equipment",
+    imageAlt: "Denver skyline and Colorado Front Range under clear skies",
     keywords: [
       ...seoKeywords.core,
       "Molitron Company Inc",
@@ -213,7 +214,7 @@ export const pagesSeo = {
   airports: {
     title: "Airport & Hotel Kitchen Exhaust Control",
     description:
-      "Pollution control and odor abatement for airport concessions and hotel kitchens. Proven installs including Denver International Airport foodservice.",
+      "Pollution control and odor abatement for airport concessions and hotel kitchens, with installation history in Denver International Airport foodservice.",
     path: "/solutions/airports-hospitality",
     image: "/images/heroes/airports-hospitality.jpg",
     imageAlt: "Airport hospitality kitchen exhaust pollution control",
@@ -236,6 +237,21 @@ export const pagesSeo = {
       "cannabis facility exhaust filtration",
       "commercial odor abatement",
       ...seoKeywords.moas,
+    ],
+  },
+  industrial: {
+    title: "Industrial & Specialty Exhaust Review",
+    description:
+      "Application review for industrial and specialty exhaust concerns. Define the process, airstream, airflow, discharge, and project requirements before selecting equipment.",
+    path: "/solutions/industrial",
+    image: "/images/heroes/solutions.jpg",
+    imageAlt: "Rooftop exhaust equipment in a commercial and industrial setting",
+    keywords: [
+      "industrial exhaust odor control",
+      "specialty facility exhaust review",
+      "commercial air pollution control equipment",
+      ...seoKeywords.moas,
+      ...seoKeywords.epfa,
     ],
   },
   codes: {
@@ -265,6 +281,21 @@ export const pagesSeo = {
       "kitchen exhaust filter replacement",
       "odor abatement system parts",
       "pollution control unit service",
+      ...seoKeywords.core,
+    ],
+  },
+  resources: {
+    title: "Technical Resources & Product Documents",
+    description:
+      "Find current Molitron MOAS and EPFA brochures, planning guides, manuals, listing context, online technical references, and legacy service documents.",
+    path: "/resources",
+    image: "/images/heroes/products.jpg",
+    imageAlt: "Molitron pollution-control equipment and technical documentation",
+    keywords: [
+      "Molitron technical documents",
+      "MOAS brochure",
+      "EPFA manual",
+      "pollution control unit resources",
       ...seoKeywords.core,
     ],
   },
