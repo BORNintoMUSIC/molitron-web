@@ -14,9 +14,7 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   interactiveWidget: "resizes-content",
-  themeColor: [
-    { color: "#123f49" },
-  ],
+  themeColor: [{ color: "#173f35" }],
   viewportFit: "cover",
   colorScheme: "light",
 };
@@ -27,15 +25,6 @@ const sourceSans = localFont({
   display: "swap",
   preload: true,
   adjustFontFallback: "Arial",
-  weight: "400 700",
-});
-
-const sourceSerif = localFont({
-  src: "../../node_modules/@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-normal.woff2",
-  variable: "--font-source-serif",
-  display: "swap",
-  preload: true,
-  adjustFontFallback: "Times New Roman",
   weight: "400 700",
 });
 
@@ -122,10 +111,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${sourceSans.variable} ${sourceSerif.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${sourceSans.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <JsonLd data={organizationLd} />
         <DeferredScrollProgress />

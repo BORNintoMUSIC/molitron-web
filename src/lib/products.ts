@@ -171,8 +171,8 @@ export const products: Product[] = [
       "Three-stage dry filtration: MERV 9 pre-filter, MERV 14 high-efficiency stage, and MERV 14 or optional carbon final stage",
       "Filtration requires no process water, circulation pumps, or chemical dosing",
       "Fully welded, single-wall, 18-gauge Type 304 stainless-steel enclosure with removable gasketed access doors",
-      "Eleven models from EPFA-24 through EPFA-144, with owner-confirmed capacities from 1,800 to 10,800 CFM",
-      "Remote operating and filter-service indication with owner-confirmed pressure thresholds",
+      "Eleven models from EPFA-24 through EPFA-144, with capacities from 1,800 to 10,800 CFM",
+      "Remote operating and filter-service indication with documented pressure thresholds",
       "Indoor or outdoor placement, subject to project-specific environmental, access, duct, support, drainage, electrical, fire-suppression, and AHJ requirements",
     ],
     specs: [

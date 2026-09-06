@@ -29,31 +29,41 @@ export const site = {
 } as const;
 
 export const nav = [
+  { label: "MOAS", href: "/products/moas" },
+  { label: "EPFA", href: "/products/epfa" },
   {
-    label: "Products",
-    href: "/products",
-    children: [
-      { label: "MOAS Odor Abatement", href: "/products/moas" },
-      { label: "EPFA Filter Assembly", href: "/products/epfa" },
-    ],
-  },
-  {
-    label: "Solutions",
+    label: "Applications",
     href: "/solutions",
     children: [
       { label: "Restaurants", href: "/solutions/restaurants" },
-      { label: "Airports & Hospitality", href: "/solutions/airports-hospitality" },
+      {
+        label: "Airports & hospitality",
+        href: "/solutions/airports-hospitality",
+      },
       { label: "Cannabis", href: "/solutions/cannabis" },
-      { label: "Industrial & Specialty", href: "/solutions/industrial" },
+      { label: "Industrial & specialty", href: "/solutions/industrial" },
     ],
   },
-  { label: "Resources", href: "/resources" },
-  { label: "Codes & Compliance", href: "/codes-compliance" },
-  { label: "Service & Parts", href: "/service-parts" },
+  {
+    label: "Resources",
+    href: "/resources",
+    children: [
+      {
+        label: "MOAS planning guide",
+        href: "/products/moas/installation-planning",
+      },
+      {
+        label: "EPFA operation & maintenance",
+        href: "/products/epfa/operation-maintenance",
+      },
+      { label: "Codes & listings", href: "/codes-compliance" },
+      { label: "Service & parts", href: "/service-parts" },
+    ],
+  },
   { label: "About", href: "/about" },
 ] as const;
 
 export const primaryCta = {
-  label: "Request a Quote",
+  label: "Discuss your project",
   href: "/contact",
 } as const;

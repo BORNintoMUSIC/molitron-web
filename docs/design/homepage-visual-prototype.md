@@ -34,3 +34,8 @@ These are the site's existing image assets, not new CAD renders. The prototype h
 Review the opening's composition, visual character, phone hierarchy, and the explanatory value of the walkthrough. Assess this as a focused design milestone; the remaining homepage sections are not a complete redesign.
 
 After the direction is accepted, refine it with the approved Fusion imagery and extend the design consistently to the product pages. Keep the prototype on its branch until the design and Vercel preview are approved for merge. `main` supplies the current alpha deployment.
+
+
+## Full-site continuation
+
+The first prototype has been extended across the full site. See [the full-site design audit](./full-site-design-audit.md). The shared `ProductExplorer` now supports both MOAS and EPFA and replaces the original `MoasWalkthrough` component.

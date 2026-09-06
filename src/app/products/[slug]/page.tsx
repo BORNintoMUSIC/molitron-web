@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Button } from "@/components/Button";
+
 import { CtaBand } from "@/components/CtaBand";
 import { CustomerLogoGrid } from "@/components/CustomerLogoGrid";
-import { DocDownloads } from "@/components/DocDownloads";
+
 import { JsonLd } from "@/components/JsonLd";
-import { PageHero } from "@/components/PageHero";
+import { ProductHero } from "@/components/ProductHero";
+import { ProductExplorer } from "@/components/home/ProductExplorer";
+import { SectionNav } from "@/components/SectionNav";
+import { ProductResources } from "@/components/ProductResources";
+import { productPresentation } from "@/lib/product-presentation";
 import { ProductGallery } from "@/components/ProductGallery";
 import { Section, SectionHeading } from "@/components/Section";
-import { pageHeroes } from "@/lib/heroes";
+
 import { epfaModels, getProduct, products } from "@/lib/products";
 import { metadataFor } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -37,8 +41,6 @@ export default async function ProductPage({ params }: Props) {
   const product = getProduct(slug);
   if (!product) notFound();
 
-  const heroConfig = slug === "moas" ? pageHeroes.moas : pageHeroes.epfa;
-
   const productLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -59,40 +61,27 @@ export default async function ProductPage({ params }: Props) {
   return (
     <>
       <JsonLd data={productLd} />
-      <PageHero config={heroConfig}>
-        <Button href="/contact" className="!bg-on-brand !text-brand hover:!bg-white">
-          Request a quote
-        </Button>
-        <Button
-          href="/codes-compliance"
-          variant="secondary"
-          className="!border-on-brand/35 !bg-transparent !text-on-brand hover:!border-on-brand hover:!bg-white/10"
-        >
-          Codes &amp; compliance
-        </Button>
-      </PageHero>
-
-      <Section noReveal>
-        <div className="grid items-start gap-8 lg:grid-cols-2 lg:gap-10">
-          <div className="min-w-0 w-full">
-            <ProductGallery images={product.gallery} productName={product.shortName} />
-          </div>
-          <div className="min-w-0">
-            <p className="text-sm leading-relaxed text-foreground/80 sm:text-base">{product.summary}</p>
-            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-accent break-words">
-              {product.certifications.join(" · ")}
-            </p>
-          </div>
-        </div>
-      </Section>
-
-      <Section tone="white">
+      <ProductHero product={product} />
+      <SectionNav
+        label={product.shortName}
+        items={[
+          { href: "#overview", label: "Overview" },
+          { href: "#system-explorer", label: "Look inside" },
+          { href: "#specifications", label: "Specifications" },
+          { href: "#documents", label: "Documents" },
+          { href: "#product-photos", label: "Photos" },
+        ]}
+      />
+      <Section id="overview" tone="white">
         <div className="grid gap-10 lg:grid-cols-2">
           <div>
-            <SectionHeading title="Why operators choose this system" />
+            <SectionHeading title="Designed around its purpose." />
             <ul className="space-y-3">
               {product.highlights.map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-relaxed text-foreground/80">
+                <li
+                  key={item}
+                  className="flex gap-3 text-sm leading-relaxed text-foreground/80"
+                >
                   <span className="mt-1.5 h-2 w-2 shrink-0 bg-accent" />
                   {item}
                 </li>
@@ -100,10 +89,13 @@ export default async function ProductPage({ params }: Props) {
             </ul>
           </div>
           <div>
-            <SectionHeading title="When teams specify this unit" />
+            <SectionHeading title="Where it fits." />
             <ul className="space-y-3">
               {product.useWhen.map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-relaxed text-foreground/80">
+                <li
+                  key={item}
+                  className="flex gap-3 text-sm leading-relaxed text-foreground/80"
+                >
                   <span className="mt-1.5 h-2 w-2 shrink-0 bg-primary" />
                   {item}
                 </li>
@@ -113,20 +105,34 @@ export default async function ProductPage({ params }: Props) {
         </div>
       </Section>
 
-      <Section>
+      <ProductExplorer product={product.slug} />
+      <Section id="specifications">
         <SectionHeading
           title="Specifications"
           description="Share these with your design team. Final selection depends on CFM, equipment, discharge, and AHJ requirements."
         />
-        <div className="table-scroll overflow-x-auto overflow-y-hidden rounded-lg border border-border bg-card">
+        <div
+          tabIndex={0}
+          role="region"
+          aria-label={product.shortName + " technical data"}
+          className="table-scroll overflow-x-auto overflow-y-hidden rounded-lg border border-border bg-card"
+        >
           <table className="w-full min-w-0 text-left text-sm sm:min-w-0">
             <tbody>
               {product.specs.map((row, i) => (
-                <tr key={row.label} className={i % 2 === 0 ? "bg-card" : "bg-background"}>
-                  <th className="w-[36%] align-top break-words px-3 py-3 font-semibold text-primary sm:w-1/3 sm:px-5">
+                <tr
+                  key={row.label}
+                  className={i % 2 === 0 ? "bg-card" : "bg-background"}
+                >
+                  <th
+                    scope="row"
+                    className="w-[36%] align-top break-words px-3 py-3 font-semibold text-primary sm:w-1/3 sm:px-5"
+                  >
                     {row.label}
                   </th>
-                  <td className="px-3 py-3 text-foreground/80 break-words sm:px-5">{row.value}</td>
+                  <td className="px-3 py-3 text-foreground/80 break-words sm:px-5">
+                    {row.value}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -140,90 +146,118 @@ export default async function ProductPage({ params }: Props) {
         {product.slug === "epfa" ? (
           <div className="mt-12">
             <SectionHeading
-              eyebrow="Owner-confirmed planning data"
+              eyebrow="Model selection"
               title="EPFA model range"
               description="Use these values for early selection conversations. Final model, configuration, fan selection, installation, and AHJ acceptance remain project-specific."
             />
-            <div className="table-scroll overflow-x-auto overflow-y-hidden rounded-lg border border-border bg-card">
+            <p className="mb-3 text-sm text-muted lg:hidden">
+              Scroll sideways to view all model specifications.
+            </p>
+            <div
+              tabIndex={0}
+              role="region"
+              aria-label={product.shortName + " technical data"}
+              className="table-scroll overflow-x-auto overflow-y-hidden rounded-lg border border-border bg-card"
+            >
               <table className="w-full min-w-[56rem] text-left text-sm">
                 <caption className="sr-only">
-                  EPFA model capacity, width, approximate unit weight, filter quantities, and optional carbon added weight
+                  EPFA model capacity, width, approximate unit weight, filter
+                  quantities, and optional carbon added weight
                 </caption>
                 <thead className="bg-brand text-on-brand">
                   <tr>
-                    <th className="px-3 py-3 font-semibold">Model</th>
-                    <th className="px-3 py-3 font-semibold">CFM</th>
-                    <th className="px-3 py-3 font-semibold">Width</th>
-                    <th className="px-3 py-3 font-semibold">Approx. unit weight</th>
-                    <th className="px-3 py-3 font-semibold">Pre-filter qty.</th>
-                    <th className="px-3 py-3 font-semibold">High-efficiency qty.</th>
-                    <th className="px-3 py-3 font-semibold">Carbon added weight</th>
+                    <th scope="col" className="px-3 py-3 font-semibold">
+                      Model
+                    </th>
+                    <th scope="col" className="px-3 py-3 font-semibold">
+                      CFM
+                    </th>
+                    <th scope="col" className="px-3 py-3 font-semibold">
+                      Width
+                    </th>
+                    <th scope="col" className="px-3 py-3 font-semibold">
+                      Approx. unit weight
+                    </th>
+                    <th scope="col" className="px-3 py-3 font-semibold">
+                      Pre-filter qty.
+                    </th>
+                    <th scope="col" className="px-3 py-3 font-semibold">
+                      High-efficiency qty.
+                    </th>
+                    <th scope="col" className="px-3 py-3 font-semibold">
+                      Carbon added weight
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {epfaModels.map((model, index) => (
-                    <tr key={model.model} className={index % 2 === 0 ? "bg-card" : "bg-background"}>
-                      <th className="px-3 py-3 font-semibold text-primary">{model.model}</th>
-                      <td className="px-3 py-3 text-foreground/80">{model.cfm}</td>
-                      <td className="px-3 py-3 text-foreground/80">{model.width}</td>
-                      <td className="px-3 py-3 text-foreground/80">{model.unitWeight}</td>
-                      <td className="px-3 py-3 text-foreground/80">{model.prefilters}</td>
-                      <td className="px-3 py-3 text-foreground/80">{model.highEfficiencyFilters}</td>
-                      <td className="px-3 py-3 text-foreground/80">{model.carbonAddedWeight}</td>
+                    <tr
+                      key={model.model}
+                      className={index % 2 === 0 ? "bg-card" : "bg-background"}
+                    >
+                      <th
+                        scope="row"
+                        className="px-3 py-3 font-semibold text-primary"
+                      >
+                        {model.model}
+                      </th>
+                      <td className="px-3 py-3 text-foreground/80">
+                        {model.cfm}
+                      </td>
+                      <td className="px-3 py-3 text-foreground/80">
+                        {model.width}
+                      </td>
+                      <td className="px-3 py-3 text-foreground/80">
+                        {model.unitWeight}
+                      </td>
+                      <td className="px-3 py-3 text-foreground/80">
+                        {model.prefilters}
+                      </td>
+                      <td className="px-3 py-3 text-foreground/80">
+                        {model.highEfficiencyFilters}
+                      </td>
+                      <td className="px-3 py-3 text-foreground/80">
+                        {model.carbonAddedWeight}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
             <p className="mt-4 max-w-4xl text-sm leading-relaxed text-muted">
-              Unit weights are approximate. Carbon added weight is additional when the optional carbon stage is selected.
-              Filter quantities are total quantities rather than per-stage counts.
+              Unit weights are approximate. Carbon added weight is additional
+              when the optional carbon stage is selected. Filter quantities are
+              total quantities rather than per-stage counts.
             </p>
           </div>
         ) : null}
       </Section>
 
-      <Section tone="white">
-        <SectionHeading
-          eyebrow="Downloads"
-          title="Technical documentation"
-          description={
-            product.slug === "moas"
-              ? "Approved MOAS product and installation-planning documentation. Project-specific design, installation, approval, and AHJ review remain the responsibility of the project team."
-              : "Approved EPFA product-planning and installation, operation, and maintenance documentation. Project-specific design, installation, approval, and AHJ review remain the responsibility of the project team."
-          }
-        />
-        {product.slug === "moas" ? (
-          <div className="mb-5 flex flex-col gap-4 rounded-lg border border-border bg-background p-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h3 className="text-base font-semibold text-primary">Prefer an online planning reference?</h3>
-              <p className="mt-1 text-sm leading-relaxed text-foreground/80">
-                Read the cabinet, utility, nozzle, tubing, interlock, access, and responsibility guidance in accessible HTML.
-              </p>
-            </div>
-            <Button href="/products/moas/installation-planning" variant="secondary" className="sm:shrink-0">
-              Read the planning guide
-            </Button>
-          </div>
-        ) : null}
-        {product.slug === "epfa" ? (
-          <div className="mb-5 flex flex-col gap-4 rounded-lg border border-border bg-background p-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h3 className="text-base font-semibold text-primary">Prefer an online operation and maintenance reference?</h3>
-              <p className="mt-1 text-sm leading-relaxed text-foreground/80">
-                Review receiving, installation coordination, monitoring, startup, maintenance, filter service, cleaning, troubleshooting, and recordkeeping in accessible HTML.
-              </p>
-            </div>
-            <Button href="/products/epfa/operation-maintenance" variant="secondary" className="sm:shrink-0">
-              Read the EPFA manual
-            </Button>
-          </div>
-        ) : null}
-        <DocDownloads documents={product.documents} productName={product.shortName} />
+      <Section id="documents" tone="white">
+        <ProductResources slug={product.slug} />
       </Section>
-
+      <Section id="product-photos">
+        <div className="editorial-grid">
+          <div>
+            <SectionHeading
+              eyebrow={product.shortName + " / Details"}
+              title="A closer look at the equipment."
+              description="Browse equipment and installation photography. Open an image to inspect the details."
+            />
+            <p className="text-sm leading-relaxed text-muted">
+              Equipment details may vary by configuration. Use the current
+              technical documents for planning and service.
+            </p>
+          </div>
+          <ProductGallery
+            images={product.gallery}
+            productName={product.shortName}
+          />
+        </div>
+      </Section>
       <Section>
         <SectionHeading
+          eyebrow="Project experience"
           title="Selected installations"
           description="Representative installation history. Names identify project experience and do not imply endorsement."
         />
@@ -242,7 +276,8 @@ export default async function ProductPage({ params }: Props) {
 
       <CtaBand
         title={`Get pricing guidance for ${product.shortName}`}
-        description="Include CFM, cooking equipment, city/state, and install type for a faster response."
+        description={productPresentation[product.slug].intro}
+        href={"/contact?product=" + product.slug}
       />
     </>
   );

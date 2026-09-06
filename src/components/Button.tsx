@@ -4,11 +4,11 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 type Variant = "primary" | "secondary" | "ghost";
 
 const variants: Record<Variant, string> = {
-  primary:
-    "bg-brand text-on-brand hover:bg-brand-hover border border-brand shadow-sm",
+  primary: "bg-brand text-on-brand hover:bg-brand-hover border border-brand",
   secondary:
-    "bg-card text-primary border border-border hover:border-accent hover:text-accent hover:bg-accent-soft/50 shadow-sm",
-  ghost: "bg-transparent text-primary hover:bg-accent-soft border border-transparent",
+    "bg-card text-primary border border-border hover:border-accent hover:text-accent hover:bg-accent-soft/50",
+  ghost:
+    "bg-transparent text-primary hover:bg-accent-soft border border-transparent",
 };
 
 type Common = {
@@ -30,8 +30,8 @@ export function Button({
   ...props
 }: ButtonAsButton | ButtonAsLink) {
   const classes = [
-    "inline-flex min-h-11 items-center justify-center gap-2 rounded-md",
-    "px-5 py-2.5 text-sm font-semibold tracking-wide",
+    "inline-flex min-h-12 items-center justify-center gap-2 rounded-[3px]",
+    "px-5 py-2.5 text-sm font-semibold tracking-normal",
     "text-center whitespace-normal",
     "transition-colors duration-200",
     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
@@ -43,7 +43,11 @@ export function Button({
   ].join(" ");
 
   if (href) {
-    if (href.startsWith("tel:") || href.startsWith("mailto:") || href.startsWith("http")) {
+    if (
+      href.startsWith("tel:") ||
+      href.startsWith("mailto:") ||
+      href.startsWith("http")
+    ) {
       return (
         <a href={href} className={classes}>
           {children}
@@ -58,7 +62,10 @@ export function Button({
   }
 
   return (
-    <button className={classes} {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}>
+    <button
+      className={classes}
+      {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
+    >
       {children}
     </button>
   );

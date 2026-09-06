@@ -6,11 +6,11 @@ export function FaqList({
   items?: readonly { question: string; answer: string }[];
 }) {
   return (
-    <div className="surface-card surface-card-static divide-y divide-border overflow-hidden">
+    <div className="divide-y divide-border border-y border-border">
       {items.map((item) => (
         <details
           key={item.question}
-          className="group px-4 py-3 transition-colors open:bg-surface-muted sm:px-5 sm:py-4"
+          className="group py-3 transition-colors sm:py-4"
         >
           <summary className="cursor-pointer list-none text-sm font-semibold text-primary marker:content-none sm:text-base [&::-webkit-details-marker]:hidden">
             <span className="flex min-h-11 items-start justify-between gap-3 py-1 sm:gap-4">
@@ -18,7 +18,7 @@ export function FaqList({
                 {item.question}
               </span>
               <span
-                className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border bg-card text-lg leading-none text-accent transition-transform duration-300 group-open:rotate-45 group-open:border-accent/40 group-open:bg-accent-soft sm:h-10 sm:w-10"
+                className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center border border-border bg-transparent text-lg leading-none text-accent transition-transform duration-300 group-open:rotate-45 group-open:border-accent/40 group-open:bg-accent-soft sm:h-10 sm:w-10"
                 aria-hidden
               >
                 +

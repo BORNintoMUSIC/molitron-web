@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { products } from "@/lib/products";
+import { productPresentation } from "@/lib/product-presentation";
 import { Arrow } from "./Arrow";
 import styles from "./ProductOpening.module.css";
 
@@ -9,52 +11,82 @@ export function ProductOpening() {
     <section className={styles.opening} aria-labelledby="opening-title">
       <div className={styles.inner}>
         <div className={styles.copy}>
-          <p className={styles.eyebrow}><span aria-hidden="true" /> Colorado built. Since {site.founded}.</p>
+          <p className={styles.eyebrow}>
+            <span aria-hidden="true" /> Colorado built. Since {site.founded}.
+          </p>
           <h1 id="opening-title" className={styles.title}>
-            Exhaust control.<br />Built around<br /><span>your kitchen.</span>
+            Exhaust control.
+            <br />
+            Built around
+            <br />
+            <span>your kitchen.</span>
           </h1>
           <p className={styles.intro}>
-            Filtration and odor abatement for commercial kitchens.
-            Purposeful equipment. A direct conversation with the people who build it.
+            Filtration and odor abatement for commercial kitchens. Purposeful
+            equipment. A direct conversation with the people who build it.
           </p>
           <div className={styles.actions}>
-            <a className={styles.primary} href="#inside-moas">See how it works <Arrow /></a>
-            <Link className={styles.secondary} href="/contact">Discuss your project <Arrow diagonal /></Link>
+            <Link href="#system-explorer" className={styles.primary}>
+              See how it works <Arrow />
+            </Link>
+            <Link href="/contact" className={styles.secondary}>
+              Discuss your project <Arrow diagonal />
+            </Link>
           </div>
-          <div className={styles.signature}>
-            <span className={styles.signatureLine} aria-hidden="true" />
-            <p>Independent expertise.<br /><strong>Direct from Molitron.</strong></p>
-          </div>
+          <p className={styles.signature}>
+            <span className={styles.signatureLine} /> Independent expertise.
+            <br />
+            <strong>Direct from Molitron.</strong>
+          </p>
         </div>
-
-        <div className={styles.visual}>
-          <div className={styles.stageTop}>
-            <span>ODOR ABATEMENT</span>
-            <span className={styles.stageIndex}>MOAS</span>
-          </div>
-          <span className={styles.backdropWord} aria-hidden="true">MOAS</span>
-          <div className={styles.productImage}>
-            <Image
-              src="/images/moas/moas-closed-professional-gpt2.png"
-              alt="Molitron MOAS wall-mounted stainless-steel odor abatement cabinet"
-              fill
-              sizes="(max-width: 767px) 88vw, (max-width: 1279px) 48vw, 620px"
-              quality={85}
-              loading="eager"
-              fetchPriority="high"
-              className={styles.equipment}
-            />
-          </div>
-          <div className={styles.productCaption}>
-            <div><p>MOAS</p><span>Molitron Odor Abatement System</span></div>
-            <a href="#inside-moas" className={styles.explore} aria-label="Explore how MOAS works"><Arrow diagonal /></a>
-          </div>
+        <div className={styles.pair} aria-label="Molitron products">
+          {products.map((product, index) => (
+            <Link
+              key={product.slug}
+              href={"/products/" + product.slug}
+              className={styles.showcase + " " + styles[product.slug]}
+              aria-label={
+                "Explore " +
+                product.shortName +
+                " " +
+                productPresentation[product.slug].role
+              }
+            >
+              <span className={styles.showcaseIndex}>
+                0{index + 1} / {productPresentation[product.slug].role}
+              </span>
+              <span className={styles.showcaseWord} aria-hidden="true">
+                {product.shortName}
+              </span>
+              <div className={styles.showcaseImage}>
+                <Image
+                  src={productPresentation[product.slug].image}
+                  alt={product.hero.alt}
+                  fill
+                  sizes="(max-width: 767px) 90vw, 600px"
+                  quality={85}
+                  loading="eager"
+                  fetchPriority={index === 0 ? "high" : "auto"}
+                />
+              </div>
+              <span className={styles.showcaseName}>{product.shortName}</span>
+              <span className={styles.showcaseArrow} aria-hidden="true">
+                <Arrow diagonal />
+              </span>
+            </Link>
+          ))}
         </div>
       </div>
       <div className={styles.foundation}>
-        <p><span>01</span> Fabricated in Colorado</p>
-        <p><span>02</span> Nationwide project history</p>
-        <Link href="/products"><span>03</span> Two systems. Distinct roles. <Arrow /></Link>
+        <p>
+          <span>01</span> Fabricated in Colorado
+        </p>
+        <p>
+          <span>02</span> Projects nationwide
+        </p>
+        <Link href="/products">
+          <span>03</span> Two systems. Distinct roles. <Arrow diagonal />
+        </Link>
       </div>
     </section>
   );

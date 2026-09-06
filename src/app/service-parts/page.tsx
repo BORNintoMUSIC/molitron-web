@@ -1,125 +1,167 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/Button";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
+import { SectionNav } from "@/components/SectionNav";
+import { Arrow } from "@/components/home/Arrow";
 import { pageHeroes } from "@/lib/heroes";
+import { productPresentation } from "@/lib/product-presentation";
 import { metadataFor } from "@/lib/seo";
-import { site } from "@/lib/site";
-
 export const metadata: Metadata = metadataFor("service");
-
 export default function ServicePartsPage() {
   return (
     <>
-      <PageHero config={pageHeroes.service}>
-        <Button href="/contact" className="!bg-on-brand !text-brand hover:!bg-white">
-          Contact support
-        </Button>
+      <PageHero config={pageHeroes.service} compact>
         <Button
-          href={site.phoneHref}
-          variant="secondary"
-          className="!border-on-brand/35 !bg-transparent !text-on-brand hover:!border-on-brand hover:!bg-white/10"
+          href="/contact?goal=service"
+          className="!bg-on-brand !text-brand hover:!bg-white"
         >
-          Call {site.phone}
+          Contact service & parts <Arrow diagonal />
         </Button>
       </PageHero>
-
-      <Section tone="white">
-        <SectionHeading title="What we can help with" />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            {
-              t: "MOAS consumables",
-              d: "Odor Neutralizer Solution supply, refill guidance, and operation questions for MOAS odor-abatement units.",
-            },
-            {
-              t: "EPFA filters",
-              d: "MERV 9 / MERV 14 media guidance and service intervals for Enviro-Pak three-stage dry filtration.",
-            },
-            {
-              t: "Troubleshooting",
-              d: "Help identifying utility issues, monitor panel alerts, maintenance intervals, and when a site visit or replacement is warranted.",
-            },
-          ].map((card) => (
-            <div key={card.t} className="surface-card p-5">
-              <h2 className="text-lg font-semibold text-primary">{card.t}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-foreground/80">{card.d}</p>
-            </div>
+      <SectionNav
+        label="Equipment support"
+        items={[
+          { href: "#current-equipment", label: "MOAS & EPFA" },
+          { href: "#service-request", label: "What to share" },
+          { href: "#legacy-equipment", label: "Legacy equipment" },
+        ]}
+      />
+      <Section id="current-equipment" tone="white">
+        <SectionHeading
+          eyebrow="Current equipment"
+          title="Support for the systems you operate."
+        />
+        <div className="grid gap-12 md:grid-cols-2">
+          {(["moas", "epfa"] as const).map((slug) => (
+            <article key={slug}>
+              <div className="resource-product-heading">
+                <div className="resource-product-photo">
+                  <Image
+                    src={productPresentation[slug].image}
+                    alt=""
+                    fill
+                    sizes="150px"
+                    className="object-contain"
+                  />
+                </div>
+                <div>
+                  <p className="eyebrow">{productPresentation[slug].role}</p>
+                  <h3 className="mt-2 text-4xl font-medium tracking-tight">
+                    {slug.toUpperCase()}
+                  </h3>
+                </div>
+              </div>
+              <p className="mt-6 text-base leading-relaxed text-muted">
+                {slug === "moas"
+                  ? "Odor Neutralizer Solution supply, refill guidance, and questions about installed MOAS equipment."
+                  : "Filter-media guidance, monitoring, qualified service, and maintenance questions for the EPFA assembly."}
+              </p>
+              <Link
+                href={"/contact?goal=service&product=" + slug}
+                className="text-link mt-4"
+              >
+                Ask about {slug.toUpperCase()} service <Arrow diagonal />
+              </Link>
+              <div className="mt-4 border-t border-border pt-4">
+                <Link
+                  href={productPresentation[slug].guide}
+                  className="text-link"
+                >
+                  {slug === "moas"
+                    ? "MOAS installation planning guide"
+                    : "EPFA operation & maintenance manual"}{" "}
+                  <Arrow diagonal />
+                </Link>
+              </div>
+            </article>
           ))}
         </div>
-        <div className="mt-6 max-w-3xl rounded-lg border border-border bg-card p-5">
-          <h2 className="text-lg font-semibold text-primary">EPFA operation and maintenance reference</h2>
-          <p className="mt-2 text-sm leading-relaxed text-foreground/80">
-            Use the current Rev A manual for status-panel response, the four-week inspection and service interval,
-            filter order, qualified cleaning guidance, troubleshooting boundaries, and equipment records.
-          </p>
-          <Link
-            href="/products/epfa/operation-maintenance"
-            className="mt-3 inline-block text-sm font-semibold text-accent hover:underline"
-          >
-            Read the EPFA operation and maintenance guide
-          </Link>
+      </Section>
+      <Section id="service-request">
+        <div className="editorial-grid">
+          <SectionHeading
+            eyebrow="Help us identify the equipment"
+            title="A few details make a useful start."
+            description="Contact Molitron with the equipment and site context before ordering parts or planning work."
+          />
+          <div className="editorial-rows">
+            {[
+              [
+                "Equipment",
+                "Product, model, serial number, and approximate installation year.",
+              ],
+              ["Site", "Facility name, city, and state."],
+              [
+                "The question",
+                "Describe the issue, status indication, or part you need.",
+              ],
+              [
+                "Available records",
+                "Have nameplate photos, cabinet labels, and equipment records ready to share with Molitron.",
+              ],
+            ].map(([title, description], index) => (
+              <div className="editorial-row" key={title}>
+                <span>0{index + 1}</span>
+                <div>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
-
-      <Section>
-        <SectionHeading
-          title="When you contact us, include"
-          description="Faster answers start with serial/context details."
-        />
-        <ul className="max-w-2xl list-disc space-y-2 pl-5 text-sm text-foreground/80">
-          <li>Product (MOAS or EPFA) and approximate install year</li>
-          <li>Site city/state and facility name if applicable</li>
-          <li>Description of the issue or part needed</li>
-          <li>Photos of nameplates or cabinet labels when available</li>
-        </ul>
-        <p className="mt-6 max-w-2xl text-sm text-muted">
-          Full online parts catalog and quote configurator are planned for a later phase. For now,
-          email or call for the fastest path.
-        </p>
-      </Section>
-
-      <Section tone="accent">
-        <SectionHeading
-          eyebrow="Legacy equipment"
-          title="Enviro-Clean service documentation"
-          description="The Enviro-Clean Air Scrubber is discontinued for new projects. Controlled legacy documents are available only for owners and service teams working with existing installations."
-        />
-        <div className="mb-5 max-w-3xl rounded-lg border border-warning/35 bg-card px-4 py-3 text-sm leading-relaxed text-foreground/80">
-          <strong className="text-primary">Existing equipment only.</strong> Specifications may not represent every installed configuration. Contact Molitron with the unit nameplate and site details before ordering service parts or planning changes.
-        </div>
-        <p className="max-w-3xl text-sm leading-relaxed text-foreground/80">
-          Use the brochure for equipment identification and broad legacy context. Use the technical
-          reference for historical specifications, documented relationships, and installed-unit record
-          review. Verify the actual unit and available records before planning work.
-        </p>
-        <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:gap-6">
-          <a
-            href="/docs/enviro-clean-air-scrubber-brochure-2026.pdf"
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block text-sm font-semibold text-accent hover:underline"
-          >
-            Download the Enviro-Clean legacy brochure (PDF)
-          </a>
-          <a
-            href="/docs/enviro-clean-air-scrubber-legacy-technical-reference-2026.pdf"
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block text-sm font-semibold text-accent hover:underline"
-          >
-            Download the Enviro-Clean legacy technical reference (PDF)
-          </a>
+      <Section id="legacy-equipment" tone="accent">
+        <div className="editorial-grid">
+          <SectionHeading
+            eyebrow="Existing installations only"
+            title="Enviro-Clean legacy references."
+            description="The Enviro-Clean Air Scrubber is discontinued for new projects. These references support owners and service teams working with existing equipment."
+          />
+          <div>
+            <p className="text-base leading-relaxed text-muted">
+              Specifications may not represent every installed configuration.
+              Verify the actual unit and available records with Molitron before
+              ordering parts or planning changes.
+            </p>
+            <div className="mt-7 border-y border-border py-4">
+              <a
+                href="/docs/enviro-clean-air-scrubber-brochure-2026.pdf"
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-link"
+              >
+                Download legacy brochure (PDF) ↓
+              </a>
+              <p className="pb-4 text-sm leading-relaxed text-muted">
+                Equipment identification and broad historical context.
+              </p>
+              <a
+                href="/docs/enviro-clean-air-scrubber-legacy-technical-reference-2026.pdf"
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-link"
+              >
+                Download legacy technical reference (PDF) ↓
+              </a>
+              <p className="pb-2 text-sm leading-relaxed text-muted">
+                Historical specifications, documented relationships, and
+                installed-unit records.
+              </p>
+            </div>
+          </div>
         </div>
       </Section>
-
       <CtaBand
         title="Need parts or service guidance?"
-        description="Submit a request with your site details, or call Scott’s team during business hours."
+        description="Share the unit details and your question with Molitron."
+        href="/contact?goal=service"
       />
     </>
   );

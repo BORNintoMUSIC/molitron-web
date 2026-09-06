@@ -1,11 +1,9 @@
 import type { ProductDocument } from "@/lib/products";
-
-const kindLabel: Record<ProductDocument["kind"], string> = {
-  brochure: "Brochure",
-  specs: "Specs",
-  manual: "Manual",
+const kindLabel = {
+  brochure: "Product brochure",
+  specs: "Planning guide",
+  manual: "Technical manual",
 };
-
 export function DocDownloads({
   documents,
   productName,
@@ -13,10 +11,8 @@ export function DocDownloads({
   documents: ProductDocument[];
   productName: string;
 }) {
-  if (!documents.length) return null;
-
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
+    <div className="document-list">
       {documents.map((doc) => (
         <a
           key={doc.href}
@@ -24,25 +20,25 @@ export function DocDownloads({
           download
           target="_blank"
           rel="noopener noreferrer"
-          className="group surface-card flex min-h-[7.5rem] flex-col justify-between gap-4 p-5 transition-colors hover:border-accent"
+          className="document-row"
+          aria-label={
+            "Download " +
+            (doc.title.startsWith(productName)
+              ? doc.title
+              : productName + " " + doc.title) +
+            " PDF"
+          }
         >
-          <div className="min-w-0">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
-              {kindLabel[doc.kind]}
-            </p>
-            <h3 className="mt-2 text-base font-semibold text-primary transition-colors group-hover:text-accent">
-              {doc.title}
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-foreground/80">{doc.description}</p>
-          </div>
-          <span className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-accent">
-            Download PDF
-            <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
-              ↓
-            </span>
+          <span className="document-icon" aria-hidden="true">
+            PDF
           </span>
-          <span className="sr-only">
-            {productName} — {doc.title}
+          <div>
+            <p className="eyebrow">{kindLabel[doc.kind]}</p>
+            <h3>{doc.title}</h3>
+            <p className="document-description">{doc.description}</p>
+          </div>
+          <span className="document-action">
+            Download <span aria-hidden="true">↓</span>
           </span>
         </a>
       ))}

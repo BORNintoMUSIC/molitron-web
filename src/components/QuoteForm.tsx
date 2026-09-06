@@ -1,7 +1,6 @@
 "use client";
-
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { Button } from "@/components/Button";
+import { Button } from "./Button";
 import { site } from "@/lib/site";
 
 const initial = {
@@ -11,89 +10,173 @@ const initial = {
   phone: "",
   cityState: "",
   contactGoal: "quote",
-  projectType: "new-build",
-  vertical: "restaurant",
+  projectType: "",
+  vertical: "",
   productInterest: "not-sure",
-  installType: "rooftop",
+  installType: "unknown",
   cfm: "",
   cookingEquipment: "",
-  odorControl: "yes",
+  odorControl: "unsure",
   message: "",
   website: "",
 };
+type FormState = typeof initial;
+const field =
+  "mt-2 w-full min-h-12 rounded-[3px] border border-border bg-card px-3 py-2.5 text-base text-foreground outline-none focus:border-accent focus:ring-2 focus:ring-accent/20";
+const label = "block text-sm font-medium text-foreground";
 
-export function QuoteForm() {
-  const [form, setForm] = useState(initial);
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+export function QuoteForm({
+  initialProduct = "not-sure",
+  initialGoal = "quote",
+}: {
+  initialProduct?: string;
+  initialGoal?: string;
+}) {
+  const [form, setForm] = useState({
+    ...initial,
+    productInterest: initialProduct,
+    contactGoal: initialGoal,
+  });
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "preview" | "error"
+  >("idle");
   const [error, setError] = useState("");
   const feedbackRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    if (status === "success" || status === "error") feedbackRef.current?.focus();
+    if (["success", "preview", "error"].includes(status))
+      feedbackRef.current?.focus();
   }, [status]);
-
-  function update(field: keyof typeof initial, value: string) {
-    setForm((prev) => ({ ...prev, [field]: value }));
+  function update(key: keyof FormState, value: string) {
+    setForm((previous) => ({ ...previous, [key]: value }));
   }
-
-  async function onSubmit(e: FormEvent) {
-    e.preventDefault();
+  async function onSubmit(event: FormEvent) {
+    event.preventDefault();
     setStatus("loading");
     setError("");
-
     try {
-      const res = await fetch("/api/quote", {
+      const response = await fetch("/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      const data = (await res.json()) as { ok?: boolean; delivered?: boolean; error?: string };
-      if (!res.ok || !data.ok) {
-        throw new Error(data.error || "Something went wrong. Please call or email us.");
-      }
-      setStatus("success");
-      setForm(initial);
+      const data = (await response.json()) as {
+        ok?: boolean;
+        delivered?: boolean;
+        error?: string;
+      };
+      if (!response.ok || !data.ok)
+        throw new Error(
+          data.error ||
+            "We couldn’t send your request. Please call or email Molitron.",
+        );
+      setStatus(data.delivered === true ? "success" : "preview");
+      if (data.delivered === true)
+        setForm({
+          ...initial,
+          productInterest: initialProduct,
+          contactGoal: initialGoal,
+        });
     } catch (err) {
       setStatus("error");
       setError(err instanceof Error ? err.message : "Submission failed.");
     }
   }
-
-  if (status === "success") {
+  if (status === "success" || status === "preview")
     return (
       <div
         ref={feedbackRef}
         tabIndex={-1}
         role="status"
-        className="rounded-lg border border-accent/40 bg-accent-soft p-6"
+        className="border border-accent/30 bg-accent-soft p-6"
       >
-        <h3 className="text-lg font-semibold text-primary">Quote request received</h3>
-        <p className="mt-2 text-sm leading-relaxed text-foreground/80">
-          Thanks—we’ll review your project details and follow up at the email you provided.
-          For time-sensitive jobs, call{" "}
-          <a className="font-semibold text-accent" href="tel:+13039698888">
-            303-969-8888
+        <h3 className="text-xl font-medium">
+          {status === "success"
+            ? "Your request has been received."
+            : "Preview validation complete."}
+        </h3>
+        <p className="mt-3 text-base leading-relaxed text-muted">
+          {status === "success"
+            ? "Molitron will review your details and follow up at the email you provided."
+            : "This local preview validated the form. No request was sent."}
+        </p>
+        <p className="mt-3 text-sm">
+          You can reach Molitron at{" "}
+          <a href={site.phoneHref} className="underline">
+            {site.phone}
           </a>
           .
         </p>
         <Button
           type="button"
           variant="secondary"
-          className="mt-4"
+          className="mt-5"
           onClick={() => setStatus("idle")}
         >
-          Submit another request
+          {status === "success" ? "Start another request" : "Return to form"}
         </Button>
       </div>
     );
+
+  function textInput(
+    key: keyof FormState,
+    title: string,
+    options: {
+      required?: boolean;
+      type?: string;
+      autoComplete?: string;
+      placeholder?: string;
+      maxLength: number;
+    },
+  ) {
+    return (
+      <div key={key}>
+        <label className={label} htmlFor={key}>
+          {title}
+          {options.required ? " *" : ""}
+        </label>
+        <input
+          id={key}
+          name={key}
+          className={field}
+          value={form[key]}
+          onChange={(event) => update(key, event.target.value)}
+          {...options}
+        />
+      </div>
+    );
   }
-
-  const field =
-    "mt-1 w-full min-h-11 rounded-md border border-border bg-card px-3 py-2.5 text-base text-foreground shadow-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20";
-  const label = "block text-sm font-medium text-foreground";
-
+  function selectInput(
+    key: keyof FormState,
+    title: string,
+    options: [string, string][],
+  ) {
+    return (
+      <div>
+        <label className={label} htmlFor={key}>
+          {title}
+        </label>
+        <select
+          id={key}
+          name={key}
+          className={field}
+          value={form[key]}
+          onChange={(event) => update(key, event.target.value)}
+        >
+          {options.map(([value, text]) => (
+            <option key={value} value={value}>
+              {text}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  }
   return (
-    <form onSubmit={onSubmit} className="space-y-5" aria-busy={status === "loading"}>
+    <form
+      onSubmit={onSubmit}
+      className="space-y-8"
+      aria-busy={status === "loading"}
+    >
       <div className="sr-only" aria-hidden="true">
         <label htmlFor="website">Leave this field empty</label>
         <input
@@ -102,250 +185,160 @@ export function QuoteForm() {
           tabIndex={-1}
           autoComplete="off"
           value={form.website}
-          onChange={(e) => update("website", e.target.value)}
+          onChange={(event) => update("website", event.target.value)}
         />
       </div>
-      <div className="grid gap-4 md:grid-cols-2">
-        <div className="md:col-span-2">
-          <label className={label} htmlFor="contactGoal">
-            How can we help?
-          </label>
-          <select
-            id="contactGoal"
-            className={field}
-            value={form.contactGoal}
-            onChange={(e) => update("contactGoal", e.target.value)}
-          >
-            <option value="quote">Prepare a project quote</option>
-            <option value="engineering-conversation">Discuss the application with Molitron</option>
-            <option value="service">Service or parts for installed equipment</option>
-          </select>
+      <fieldset>
+        <legend>01 / Your inquiry</legend>
+        <div className="grid gap-5 md:grid-cols-2">
+          {selectInput("contactGoal", "How can we help?", [
+            ["quote", "A project quote"],
+            ["engineering-conversation", "Application guidance"],
+            ["service", "Service or parts"],
+          ])}
+          {selectInput("productInterest", "Which equipment?", [
+            ["not-sure", "Help me choose"],
+            ["moas", "MOAS · Odor abatement"],
+            ["epfa", "EPFA · Dry filtration"],
+            ["both", "Both MOAS + EPFA"],
+          ])}
         </div>
-        <div>
-          <label className={label} htmlFor="company">
-            Company
-          </label>
-          <input
-            id="company"
-            className={field}
-            value={form.company}
-            onChange={(e) => update("company", e.target.value)}
-            autoComplete="organization"
-            maxLength={160}
-          />
+      </fieldset>
+      <fieldset>
+        <legend>02 / Contact details</legend>
+        <div className="grid gap-5 md:grid-cols-2">
+          {textInput("name", "Your name", {
+            required: true,
+            autoComplete: "name",
+            maxLength: 120,
+          })}
+          {textInput("company", "Company", {
+            autoComplete: "organization",
+            maxLength: 160,
+          })}
+          {textInput("email", "Email", {
+            required: true,
+            type: "email",
+            autoComplete: "email",
+            maxLength: 254,
+          })}
+          {textInput("phone", "Phone", {
+            required: true,
+            type: "tel",
+            autoComplete: "tel",
+            maxLength: 60,
+          })}
+          {textInput("cityState", "Project city / state", {
+            required: true,
+            placeholder: "e.g. Denver, CO",
+            maxLength: 160,
+          })}
         </div>
-        <div>
-          <label className={label} htmlFor="name">
-            Your name *
-          </label>
-          <input
-            id="name"
-            required
-            className={field}
-            value={form.name}
-            onChange={(e) => update("name", e.target.value)}
-            autoComplete="name"
-            maxLength={120}
-          />
-        </div>
-        <div>
-          <label className={label} htmlFor="email">
-            Email *
-          </label>
-          <input
-            id="email"
-            type="email"
-            required
-            className={field}
-            value={form.email}
-            onChange={(e) => update("email", e.target.value)}
-            autoComplete="email"
-            maxLength={254}
-          />
-        </div>
-        <div>
-          <label className={label} htmlFor="phone">
-            Phone *
-          </label>
-          <input
-            id="phone"
-            type="tel"
-            required
-            className={field}
-            value={form.phone}
-            onChange={(e) => update("phone", e.target.value)}
-            autoComplete="tel"
-            maxLength={60}
-          />
-        </div>
-        <div>
-          <label className={label} htmlFor="cityState">
-            City / State *
-          </label>
-          <input
-            id="cityState"
-            required
-            className={field}
-            placeholder="e.g. Denver, CO"
-            value={form.cityState}
-            onChange={(e) => update("cityState", e.target.value)}
-            maxLength={160}
-          />
-        </div>
-        <div>
-          <label className={label} htmlFor="cfm">
-            CFM (if known)
-          </label>
-          <input
-            id="cfm"
-            className={field}
-            placeholder="Cubic feet per minute"
-            value={form.cfm}
-            onChange={(e) => update("cfm", e.target.value)}
-            maxLength={60}
-          />
-        </div>
-        <div>
-          <label className={label} htmlFor="projectType">
-            Project type
-          </label>
-          <select
-            id="projectType"
-            className={field}
-            value={form.projectType}
-            onChange={(e) => update("projectType", e.target.value)}
-          >
-            <option value="new-build">New build</option>
-            <option value="remodel">Remodel</option>
-            <option value="airport-hotel">Airport / hotel project</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div>
-          <label className={label} htmlFor="vertical">
-            Business type
-          </label>
-          <select
-            id="vertical"
-            className={field}
-            value={form.vertical}
-            onChange={(e) => update("vertical", e.target.value)}
-          >
-            <option value="restaurant">Restaurant / foodservice</option>
-            <option value="airport">Airport</option>
-            <option value="hotel">Hotel / hospitality</option>
-            <option value="cannabis">Cannabis</option>
-            <option value="industrial-specialty">Industrial / specialty facility</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div>
-          <label className={label} htmlFor="productInterest">
-            Product interest
-          </label>
-          <select
-            id="productInterest"
-            className={field}
-            value={form.productInterest}
-            onChange={(e) => update("productInterest", e.target.value)}
-          >
-            <option value="moas">MOAS (odor abatement)</option>
-            <option value="epfa">EPFA (filter assembly)</option>
-            <option value="both">Both MOAS + EPFA</option>
-            <option value="not-sure">Not sure — need recommendation</option>
-          </select>
-        </div>
-        <div>
-          <label className={label} htmlFor="installType">
-            Install location
-          </label>
-          <select
-            id="installType"
-            className={field}
-            value={form.installType}
-            onChange={(e) => update("installType", e.target.value)}
-          >
-            <option value="rooftop">Rooftop</option>
-            <option value="indoor">Indoor</option>
-            <option value="sidewall">Sidewall / constrained discharge</option>
-            <option value="unknown">Unknown</option>
-          </select>
-        </div>
-        <div>
-          <label className={label} htmlFor="odorControl">
-            Additional odor control needed?
-          </label>
-          <select
-            id="odorControl"
-            className={field}
-            value={form.odorControl}
-            onChange={(e) => update("odorControl", e.target.value)}
-          >
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-            <option value="unsure">Unsure</option>
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <label className={label} htmlFor="cookingEquipment">
-          List of cooking equipment
-        </label>
-        <textarea
-          id="cookingEquipment"
-          rows={3}
-          className={field}
-          placeholder="Hoods, grills, fryers, woks, etc."
-          value={form.cookingEquipment}
-          onChange={(e) => update("cookingEquipment", e.target.value)}
-          maxLength={3000}
-        />
-      </div>
-
+      </fieldset>
       <div>
         <label className={label} htmlFor="message">
-          Project notes
+          {form.contactGoal === "service"
+            ? "Equipment or service notes"
+            : "Tell us about the project"}
         </label>
         <textarea
           id="message"
+          name="message"
           rows={4}
-          className={field}
-          placeholder="Timeline, code concerns, discharge constraints, etc."
-          value={form.message}
-          onChange={(e) => update("message", e.target.value)}
           maxLength={5000}
+          className={field}
+          value={form.message}
+          onChange={(event) => update("message", event.target.value)}
+          placeholder={
+            form.contactGoal === "service"
+              ? "Model, serial number, installation year, and the issue or part needed."
+              : "What are you planning, and what would you like help with?"
+          }
         />
       </div>
-
-      {status === "error" ? (
+      {form.contactGoal !== "service" && (
+        <details>
+          <summary>
+            Add technical details{" "}
+            <span className="text-sm font-normal text-muted">· optional</span>
+          </summary>
+          <div className="grid gap-5 md:grid-cols-2">
+            {textInput("cfm", "Airflow (CFM, if known)", {
+              placeholder: "Cubic feet per minute",
+              maxLength: 60,
+            })}
+            {selectInput("projectType", "Project type", [
+              ["", "Not sure yet"],
+              ["new-build", "New build"],
+              ["remodel", "Remodel"],
+              ["airport-hotel", "Airport / hotel project"],
+              ["other", "Other"],
+            ])}
+            {selectInput("vertical", "Facility type", [
+              ["", "Not sure yet"],
+              ["restaurant", "Restaurant / foodservice"],
+              ["airport", "Airport"],
+              ["hotel", "Hotel / hospitality"],
+              ["cannabis", "Cannabis"],
+              ["industrial-specialty", "Industrial / specialty"],
+              ["other", "Other"],
+            ])}
+            {selectInput("installType", "Install location", [
+              ["unknown", "Not sure yet"],
+              ["rooftop", "Rooftop"],
+              ["indoor", "Indoor"],
+              ["sidewall", "Sidewall / constrained discharge"],
+            ])}
+            {selectInput("odorControl", "Additional odor control needed?", [
+              ["unsure", "Not sure yet"],
+              ["yes", "Yes"],
+              ["no", "No"],
+            ])}
+          </div>
+          <div className="mt-5">
+            <label className={label} htmlFor="cookingEquipment">
+              Cooking equipment
+            </label>
+            <textarea
+              id="cookingEquipment"
+              name="cookingEquipment"
+              rows={3}
+              maxLength={3000}
+              className={field}
+              value={form.cookingEquipment}
+              onChange={(event) =>
+                update("cookingEquipment", event.target.value)
+              }
+              placeholder="Hoods, grills, fryers, woks, and other equipment."
+            />
+          </div>
+        </details>
+      )}
+      {status === "error" && (
         <div
           ref={feedbackRef}
           tabIndex={-1}
           role="alert"
-          className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800"
+          className="border border-red-200 bg-red-50 p-4 text-sm leading-relaxed text-red-800"
         >
-          {error}{" "}
-          You can also email{" "}
-          <a className="font-semibold underline" href={`mailto:${site.email}`}>
+          {error} You can also email{" "}
+          <a className="underline" href={"mailto:" + site.email}>
             {site.email}
           </a>
           .
         </div>
-      ) : null}
-
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="order-2 max-w-md space-y-1 text-xs leading-relaxed text-muted sm:order-1">
-          <p>* Required. Your details are used to review equipment fit and respond to this request.</p>
-          <p>Do not include passwords, payment information, or other sensitive personal data.</p>
-        </div>
+      )}
+      <div className="flex flex-col gap-5">
+        <p className="text-xs leading-relaxed text-muted">
+          * Required. Your details are used to review the inquiry and respond to
+          you.
+        </p>
         <Button
           type="submit"
           disabled={status === "loading"}
-          aria-disabled={status === "loading"}
-          className="order-1 w-full sm:order-2 sm:w-auto"
+          className="sm:self-start"
         >
-          {status === "loading" ? "Sending…" : "Submit quote request"}
+          {status === "loading" ? "Sending…" : "Send your request"}
         </Button>
       </div>
     </form>
