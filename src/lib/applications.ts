@@ -1,12 +1,10 @@
 import { pageHeroes } from "./heroes";
-
 export const applications = [
   {
     key: "restaurants",
     href: "/solutions/restaurants",
     title: "Restaurants",
-    description:
-      "New builds, remodels, and urban kitchens with demanding exhaust paths.",
+    description: "New kitchens, remodels, sensitive discharge locations.",
     image: pageHeroes.restaurants.src,
     alt: "Illustrative restaurant rooftop setting with Molitron equipment",
   },
@@ -14,8 +12,7 @@ export const applications = [
     key: "airports",
     href: "/solutions/airports-hospitality",
     title: "Airports & hospitality",
-    description:
-      "Public-facing kitchens, shared buildings, and coordinated service access.",
+    description: "Foodservice in shared buildings.",
     image: pageHeroes.airports.src,
     alt: "Illustrative airport rooftop setting with Molitron equipment",
   },
@@ -23,8 +20,7 @@ export const applications = [
     key: "cannabis",
     href: "/solutions/cannabis",
     title: "Cannabis facilities",
-    description:
-      "Odor-sensitive environments that begin with a review of the process and exhaust.",
+    description: "Process-specific odor and application review.",
     image: pageHeroes.cannabis.src,
     alt: "Illustrative cannabis-facility setting with a MOAS cabinet",
   },
@@ -32,141 +28,101 @@ export const applications = [
     key: "industrial",
     href: "/solutions/industrial",
     title: "Industrial & specialty",
-    description:
-      "A documented application review for a specific process and airstream.",
+    description: "Other processes require individual review.",
     image: pageHeroes.industrial.src,
     alt: "Illustrative commercial rooftop setting with Molitron equipment",
   },
 ] as const;
-
 export const applicationDetails = {
   restaurants: {
-    eyebrow: "Kitchen to discharge",
-    title: "Consider the whole exhaust path.",
-    intro:
-      "The menu, cooking equipment, airflow, and discharge location shape the equipment decision.",
+    title: "Follow the exhaust path.",
+    scope:
+      "MOAS treats cooking odor. EPFA filters smoke particulate and grease vapor from light-duty kitchen exhaust. Some projects use both; selection is project-specific.",
     considerations: [
       [
-        "New construction",
-        "Coordinate the hood layout, airflow, equipment location, and discharge path early, especially in mixed-use buildings.",
+        "Start at the hood",
+        "Share the menu, cooking equipment and airflow (CFM). Review changes to the cooking load during a remodel.",
       ],
       [
-        "Remodels & menu changes",
-        "Review the cooking load and existing exhaust when equipment changes or smoke and odor concerns arise.",
+        "Trace the discharge",
+        "Identify the duct, fan, discharge location and nearby occupied spaces, especially for sidewall or ground-level exhaust.",
       ],
       [
-        "Urban & sidewall discharge",
-        "Share the available exhaust route, nearby occupied areas, and project requirements. Filtration and odor abatement may both enter the discussion.",
-      ],
-      [
-        "Filtration, odor, or both",
-        "EPFA is documented for dry filtration of light-duty commercial-kitchen exhaust. MOAS addresses exhaust odor; the appropriate combination is project-specific.",
+        "Plan the installation",
+        "Coordinate utilities, service access and project requirements with the design team.",
       ],
     ],
-    inputs: [
-      "City, state, and project stage",
-      "Cooking equipment and hood arrangement",
-      "Airflow (CFM), if known",
-      "Duct, fan, and discharge location",
-      "Smoke, grease-vapor, or odor concerns",
-    ],
-    contextTitle: "A useful first conversation.",
-    context:
-      "Start with what you know. Molitron can help identify which product information your design team needs next.",
+    context: "",
     cta: "Planning a restaurant kitchen?",
+    ctaDescription:
+      "Bring your location, project stage and available exhaust plans.",
   },
   airports: {
-    eyebrow: "Foodservice in shared spaces",
-    title: "Coordinate equipment with the building.",
-    intro:
-      "High-visibility kitchens bring multiple teams, neighboring spaces, and ongoing operations into the exhaust discussion.",
+    title: "Plan for a shared building.",
+    scope:
+      "MOAS addresses cooking odor; EPFA provides dry filtration for light-duty kitchen exhaust. Selection and installation require project-specific coordination.",
     considerations: [
       [
-        "Neighboring spaces",
-        "Review odor and visible-smoke concerns around tenants, public spaces, occupied areas, and outdoor-air intakes.",
+        "Kitchen & building",
+        "Share the foodservice concept, cooking equipment, airflow, and hood, duct and fan arrangement.",
+      ],
+      [
+        "People nearby",
+        "Identify neighboring tenants, public spaces, outdoor-air intakes and the discharge location.",
       ],
       [
         "Access & operations",
-        "Plan access, monitoring, and qualified service alongside ongoing foodservice operations.",
-      ],
-      [
-        "Technical coordination",
-        "Use the MOAS planning guide and EPFA operation and maintenance manual to clarify equipment interfaces and project responsibilities.",
+        "Coordinate monitoring and qualified service access around foodservice operations.",
       ],
     ],
-    inputs: [
-      "Facility and foodservice concept",
-      "Cooking equipment and airflow",
-      "Hood, duct, and fan arrangement",
-      "Discharge location and nearby air intakes",
-      "Access, service, and operating constraints",
-    ],
-    contextTitle: "Experience at Denver International Airport.",
     context:
-      "Molitron equipment has installation history in multiple restaurant concepts at Denver International Airport. References identify experience and do not imply endorsement, sponsorship, or a current commercial relationship.",
+      "Molitron has installation history at Denver International Airport. This identifies experience, without implying endorsement, sponsorship or a current commercial relationship.",
     cta: "Planning an airport or hotel kitchen?",
+    ctaDescription:
+      "Share the facility, kitchen plans and operating constraints.",
   },
   cannabis: {
-    eyebrow: "Application review",
-    title: "Follow the odor to its source.",
-    intro:
-      "Molitron’s active product documentation centers on commercial-kitchen exhaust. Cannabis inquiries require a review of the actual process and application.",
+    title: "Define the source of the odor.",
+    scope:
+      "Molitron’s documented product scope centers on commercial kitchens. Cannabis processes require individual review; EPFA’s light-duty kitchen scope does not establish suitability for cultivation or processing.",
     considerations: [
+      ["Process", "Describe the odor source, operating schedule and airflow."],
       [
-        "Process & operating conditions",
-        "Share the process, operating schedule, airflow, and odor concern so Molitron can evaluate the application.",
+        "Exhaust",
+        "Share existing filtration, duct, fan, discharge conditions and nearby occupied areas.",
       ],
       [
-        "Exhaust odor",
-        "MOAS delivers atomized Odor Neutralizer Solution through remote nozzles. Application fit, configuration, and results remain project-specific.",
-      ],
-      [
-        "Filtration scope",
-        "EPFA may be discussed for documented light-duty foodservice exhaust, including co-located kitchens. Its scope should not be generalized to every cannabis process.",
+        "Application review",
+        "MOAS uses atomized Odor Neutralizer Solution. Fit, configuration and results remain project-specific.",
       ],
     ],
-    inputs: [
-      "Facility location and process description",
-      "Odor source and operating schedule",
-      "Airflow and exhaust conditions",
-      "Existing filters, duct, fan, and discharge",
-      "Nearby occupied areas and local requirements",
-    ],
-    contextTitle: "Application history, with context.",
     context:
-      "Molitron has cannabis-related installation and application history, including an EPFA reference for Greenmount Cannabis LLC in California. References identify experience and do not imply endorsement.",
-    cta: "Have a cannabis exhaust inquiry?",
+      "Molitron’s application history includes an EPFA reference for Greenmount Cannabis LLC, California. This identifies experience and does not imply endorsement.",
+    cta: "Discuss your facility’s exhaust.",
+    ctaDescription:
+      "Share the location, process and local project requirements.",
   },
   industrial: {
-    eyebrow: "Start with the airstream",
-    title: "Define the process before choosing equipment.",
-    intro:
-      "Molitron primarily serves commercial-kitchen exhaust. Other commercial and industrial inquiries begin with a documented application review.",
+    title: "Define the process first.",
+    scope:
+      "MOAS and EPFA are documented for commercial-kitchen exhaust. Fit and listing coverage for another industrial process must not be assumed.",
     considerations: [
       [
-        "What is the source?",
-        "Describe the process, materials, operating schedule, and specific odor or particulate concern. A facility category alone does not establish product fit.",
+        "Source",
+        "Describe the process, materials, operating schedule, and odor or particulate concern.",
       ],
       [
-        "What moves through the exhaust?",
-        "Provide airflow, temperature, moisture, existing filtration, duct path, fan arrangement, and discharge location when known.",
+        "Airstream",
+        "Provide airflow, temperature, moisture, filtration, duct, fan and discharge details.",
       ],
       [
-        "What must the project satisfy?",
-        "Identify the site, design team, authority having jurisdiction, utilities, access constraints, and intended outcome.",
+        "Site",
+        "Identify the design team, authority having jurisdiction, utilities, access constraints and intended outcome.",
       ],
     ],
-    inputs: [
-      "Facility, city, and state",
-      "Process, materials, and operating schedule",
-      "Airflow, temperature, and moisture",
-      "Contaminants or odor concern",
-      "Existing exhaust arrangement and discharge",
-      "Project requirements and access constraints",
-    ],
-    contextTitle: "Use the documented product scope.",
-    context:
-      "MOAS addresses commercial-kitchen exhaust odor. EPFA filters smoke particulate and grease vapor from light-duty commercial-kitchen exhaust. Fit and listing coverage for an unrelated industrial process must not be assumed.",
-    cta: "Have a nonstandard exhaust problem?",
+    context: "",
+    cta: "Discuss a specialty application.",
+    ctaDescription:
+      "Share the facility location and available process information.",
   },
 } as const;

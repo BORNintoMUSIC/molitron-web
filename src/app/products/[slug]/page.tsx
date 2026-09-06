@@ -10,7 +10,6 @@ import { ProductHero } from "@/components/ProductHero";
 import { ProductExplorer } from "@/components/home/ProductExplorer";
 import { SectionNav } from "@/components/SectionNav";
 import { ProductResources } from "@/components/ProductResources";
-import { productPresentation } from "@/lib/product-presentation";
 import { ProductGallery } from "@/components/ProductGallery";
 import { Section, SectionHeading } from "@/components/Section";
 
@@ -72,35 +71,23 @@ export default async function ProductPage({ params }: Props) {
           { href: "#product-photos", label: "Photos" },
         ]}
       />
-      <Section id="overview" tone="white">
-        <div className="grid gap-10 lg:grid-cols-2">
+      <Section id="overview" tone="white" className="!py-10 sm:!py-12">
+        <div className="product-planning-brief">
           <div>
-            <SectionHeading title="Designed around its purpose." />
-            <ul className="space-y-3">
-              {product.highlights.map((item) => (
-                <li
-                  key={item}
-                  className="flex gap-3 text-sm leading-relaxed text-foreground/80"
-                >
-                  <span className="mt-1.5 h-2 w-2 shrink-0 bg-accent" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <h2>Where {product.shortName} fits</h2>
+            <p>
+              {product.slug === "moas"
+                ? "For kitchens where cooking odor affects neighbors or occupied spaces, including sensitive sidewall and ground-level discharge. Use alone or alongside EPFA."
+                : "Dry filtration for light-duty kitchen exhaust. Filtration uses no process water, circulation pumps or chemical dosing."}
+            </p>
           </div>
           <div>
-            <SectionHeading title="Where it fits." />
-            <ul className="space-y-3">
-              {product.useWhen.map((item) => (
-                <li
-                  key={item}
-                  className="flex gap-3 text-sm leading-relaxed text-foreground/80"
-                >
-                  <span className="mt-1.5 h-2 w-2 shrink-0 bg-primary" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <h3>Plan the installation</h3>
+            <p>
+              {product.slug === "moas"
+                ? "Coordinate nozzle placement, utilities, exhaust-fan interlock and access. An optional 10-gallon solution container adds an audible low-level refill alert."
+                : "Coordinate duct, support, service access, drains, fire suppression, monitoring, fan selection and AHJ review."}
+            </p>
           </div>
         </div>
       </Section>
@@ -109,7 +96,7 @@ export default async function ProductPage({ params }: Props) {
       <Section id="specifications">
         <SectionHeading
           title="Specifications"
-          description="Share these with your design team. Final selection depends on CFM, equipment, discharge, and AHJ requirements."
+          description="Final selection depends on airflow, cooking equipment, discharge and project requirements."
         />
         <div
           tabIndex={0}
@@ -148,7 +135,7 @@ export default async function ProductPage({ params }: Props) {
             <SectionHeading
               eyebrow="Model selection"
               title="EPFA model range"
-              description="Use these values for early selection conversations. Final model, configuration, fan selection, installation, and AHJ acceptance remain project-specific."
+              description="Model, configuration, fan selection, installation and AHJ acceptance remain project-specific."
             />
             <p className="mb-3 text-sm text-muted lg:hidden">
               Scroll sideways to view all model specifications.
@@ -234,19 +221,19 @@ export default async function ProductPage({ params }: Props) {
       </Section>
 
       <Section id="documents" tone="white">
-        <ProductResources slug={product.slug} />
+        <ProductResources slug={product.slug} onProductPage />
       </Section>
       <Section id="product-photos">
         <div className="editorial-grid">
           <div>
             <SectionHeading
               eyebrow={product.shortName + " / Details"}
-              title="A closer look at the equipment."
-              description="Browse equipment and installation photography. Open an image to inspect the details."
+              title="Equipment & installations."
+              description="Open a photograph to inspect the details."
             />
             <p className="text-sm leading-relaxed text-muted">
-              Equipment details may vary by configuration. Use the current
-              technical documents for planning and service.
+              Equipment details vary by configuration; use current documents for
+              planning and service.
             </p>
           </div>
           <ProductGallery
@@ -263,7 +250,7 @@ export default async function ProductPage({ params }: Props) {
         />
         <CustomerLogoGrid references={product.installs} />
         <p className="mt-6 text-sm text-muted">
-          Looking for the other product?{" "}
+          Compare with{" "}
           <Link
             href={`/products/${product.slug === "moas" ? "epfa" : "moas"}`}
             className="font-semibold text-accent hover:underline"
@@ -275,8 +262,8 @@ export default async function ProductPage({ params }: Props) {
       </Section>
 
       <CtaBand
-        title={`Get pricing guidance for ${product.shortName}`}
-        description={productPresentation[product.slug].intro}
+        title={`Plan a project with ${product.shortName}.`}
+        description="Share your location, cooking equipment and exhaust layout."
         href={"/contact?product=" + product.slug}
       />
     </>

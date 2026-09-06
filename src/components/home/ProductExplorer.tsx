@@ -10,28 +10,28 @@ import type { Product } from "@/lib/products";
 
 const moasSteps = [
   {
-    label: "The cabinet",
-    title: "A compact home for odor control.",
+    label: "Exterior",
+    title: "The cabinet stays outside the duct.",
     description:
-      "MOAS brings the system together in a wall-mounted stainless-steel cabinet. The cabinet stays outside the duct; remote misting nozzles deliver treatment into the exhaust path.",
+      "A wall-mounted stainless-steel cabinet supplies remote misting nozzles in the exhaust path.",
     image: "/images/moas/moas-closed-professional-gpt2.png",
     alt: "Closed MOAS cabinet with its external controls",
     detail: "Wall-mounted cabinet",
   },
   {
-    label: "Inside the system",
-    title: "Take a closer look inside.",
+    label: "Interior",
+    title: "The components behind the mist.",
     description:
-      "The self-contained cabinet houses the operating components and solution supply. Explore the interior here, then use the planning guide for the utility, access, and installation requirements.",
+      "The self-contained cabinet holds the operating components and Odor Neutralizer Solution supply.",
     image: "/images/remastered/moas-open-v2.webp",
     alt: "Open MOAS cabinet showing the operating components, tubing, and solution container",
     detail: "Interior equipment view",
   },
   {
-    label: "The exhaust path",
-    title: "Treatment happens in the exhaust.",
+    label: "Exhaust path",
+    title: "Odor treatment enters the exhaust.",
     description:
-      "MOAS atomizes Odor Neutralizer Solution through remote misting nozzles. Nozzle placement, dwell time, configuration, and calibration are evaluated for each project.",
+      "Remote nozzles atomize Odor Neutralizer Solution. Placement, dwell time, configuration and calibration are evaluated for each project.",
     image: null,
     alt: "Illustrative relationship between the MOAS cabinet and remote nozzles in an exhaust duct",
     detail: "Illustrative system relationship",
@@ -126,28 +126,28 @@ function ExhaustDiagram() {
 
 const epfaSteps = [
   {
-    label: "The assembly",
-    title: "Filtration, in a single enclosure.",
+    label: "Exterior",
+    title: "Three stages in the exhaust path.",
     description:
-      "EPFA brings three dry filter stages into an in-line stainless steel assembly. It is documented for smoke particulate and grease vapor from light-duty commercial-kitchen exhaust.",
+      "The stainless steel assembly filters smoke particulate and grease vapor from light-duty commercial-kitchen exhaust.",
     image: "/images/remastered/epfa-closed-v2.webp",
     alt: "Closed EPFA assembly with three removable access doors",
     detail: "Stainless steel filter assembly",
   },
   {
-    label: "Inside the system",
-    title: "Open access to the filter stages.",
+    label: "Interior",
+    title: "Access to each filter stage.",
     description:
-      "Removable gasketed doors provide access to the filter media. The operation and maintenance manual covers monitoring, qualified filter service, cleaning, and equipment records.",
+      "Removable gasketed doors expose the filter media for qualified service. Use the manual for monitoring, cleaning and maintenance requirements.",
     image: "/images/remastered/epfa-open-v2.webp",
     alt: "Open EPFA assembly showing the internal filter stages",
     detail: "Interior equipment view",
   },
   {
-    label: "The filter path",
-    title: "A considered sequence of dry filters.",
+    label: "Filter path",
+    title: "Follow the three filter stages.",
     description:
-      "The path begins with a MERV 9 pre-filter, followed by a MERV 14 high-efficiency stage. The final stage uses MERV 14 media or optional carbon. Broader odor-control needs may call for MOAS.",
+      "MERV 9 pre-filter → MERV 14 high-efficiency stage → MERV 14 or optional carbon final stage. Broader odor-control needs may call for MOAS.",
     image: null,
     alt: "Illustrative sequence of the EPFA dry filter stages",
     detail: "Illustrative filter sequence",
@@ -179,9 +179,6 @@ function FilterDiagram() {
           </div>
         ))}
       </div>
-      <p className={styles.filterCaption}>
-        Three-stage dry filtration · Illustrative sequence
-      </p>
     </div>
   );
 }
@@ -196,7 +193,7 @@ export function ProductExplorer({
   const product = fixedProduct ?? selectedProduct;
   const presentation = productPresentation[product];
   const steps = product === "moas" ? moasSteps : epfaSteps;
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(1);
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
   const step = steps[activeStep];
 
@@ -220,25 +217,23 @@ export function ProductExplorer({
   return (
     <section
       id="system-explorer"
-      className={styles.section}
+      className={
+        styles.section + (fixedProduct ? " " + styles.productPage : "")
+      }
       aria-labelledby="walkthrough-title"
     >
       <div className={styles.inner}>
         <div className={styles.heading}>
           <div>
             <p className={styles.eyebrow}>
-              A CLOSER LOOK / {product.toUpperCase()}
+              Equipment / {product.toUpperCase()}
             </p>
             <h2 id="walkthrough-title">
-              Understand the system.
-              <br />
-              <span>From the inside out.</span>
+              {fixedProduct
+                ? "Inside " + product.toUpperCase() + "."
+                : "Two systems. Take a closer look."}
             </h2>
           </div>
-          <p className={styles.headingIntro}>
-            Explore the equipment, its interior,
-            <br className={styles.desktopBreak} /> and the way it works.
-          </p>
         </div>
 
         <div
@@ -255,7 +250,7 @@ export function ProductExplorer({
                 aria-controls="explorer-content"
                 onClick={() => {
                   setSelectedProduct(slug);
-                  setActiveStep(0);
+                  setActiveStep(1);
                 }}
               >
                 {slug.toUpperCase()}
@@ -328,7 +323,7 @@ export function ProductExplorer({
               href={"/products/" + product + "#specifications"}
               className={styles.details}
             >
-              Explore {product.toUpperCase()} specifications <Arrow diagonal />
+              {product.toUpperCase()} specifications <Arrow diagonal />
             </Link>
             <p className={styles.note}>
               {activeStep === 2
@@ -338,10 +333,19 @@ export function ProductExplorer({
           </div>
         </div>
         <div className={styles.resourceLine}>
-          <p>Keep the technical details close.</p>
-          <Link href={presentation.guide}>
-            Read the {product.toUpperCase()}{" "}
-            {product === "moas" ? "planning guide" : "manual"}{" "}
+          <p>
+            {fixedProduct
+              ? "Planning & service"
+              : "Some projects need filtration and odor treatment."}
+          </p>
+          <Link
+            href={fixedProduct ? presentation.guide : "/products#comparison"}
+          >
+            {fixedProduct
+              ? "Read the " +
+                product.toUpperCase() +
+                (product === "moas" ? " planning guide" : " manual")
+              : "Compare MOAS & EPFA"}
             <Arrow diagonal />
           </Link>
         </div>

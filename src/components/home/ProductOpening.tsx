@@ -22,8 +22,8 @@ export function ProductOpening() {
             <span>your kitchen.</span>
           </h1>
           <p className={styles.intro}>
-            Filtration and odor abatement for commercial kitchens. Purposeful
-            equipment. A direct conversation with the people who build it.
+            MOAS treats cooking odor. EPFA filters smoke particulate and grease
+            vapor from light-duty commercial-kitchen exhaust.
           </p>
           <div className={styles.actions}>
             <Link href="#system-explorer" className={styles.primary}>
@@ -34,9 +34,9 @@ export function ProductOpening() {
             </Link>
           </div>
           <p className={styles.signature}>
-            <span className={styles.signatureLine} /> Independent expertise.
+            <span className={styles.signatureLine} /> A family business.
             <br />
-            <strong>Direct from Molitron.</strong>
+            <strong>Manufacturer direct.</strong>
           </p>
         </div>
         <div className={styles.pair} aria-label="Molitron products">
@@ -85,7 +85,7 @@ export function ProductOpening() {
           <span>02</span> Projects nationwide
         </p>
         <Link href="/products">
-          <span>03</span> Two systems. Distinct roles. <Arrow diagonal />
+          <span>03</span> Compare MOAS & EPFA <Arrow diagonal />
         </Link>
       </div>
     </section>

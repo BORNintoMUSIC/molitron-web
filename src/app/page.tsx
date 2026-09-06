@@ -4,12 +4,9 @@ import { ProductOpening } from "@/components/home/ProductOpening";
 import { ProductExplorer } from "@/components/home/ProductExplorer";
 import { Arrow } from "@/components/home/Arrow";
 import { ApplicationCards } from "@/components/ApplicationCards";
-import { CtaBand } from "@/components/CtaBand";
+import { Button } from "@/components/Button";
 import { CustomerLogoGrid } from "@/components/CustomerLogoGrid";
-import { FaqList } from "@/components/FaqList";
-import { JsonLd } from "@/components/JsonLd";
 import { Section, SectionHeading } from "@/components/Section";
-import { faqs } from "@/lib/content";
 import { featuredCustomerReferences } from "@/lib/customer-logos";
 import { metadataFor } from "@/lib/seo";
 export const metadata: Metadata = metadataFor("home");
@@ -17,107 +14,40 @@ export const metadata: Metadata = metadataFor("home");
 export default function HomePage() {
   return (
     <>
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faqs.map((item) => ({
-            "@type": "Question",
-            name: item.question,
-            acceptedAnswer: { "@type": "Answer", text: item.answer },
-          })),
-        }}
-      />
       <ProductOpening />
       <ProductExplorer />
       <Section tone="white">
-        <div className="editorial-grid">
-          <SectionHeading
-            eyebrow="Two distinct roles"
-            title="Start with what’s in the air."
-            description="The equipment decision follows the cooking load, exhaust path, and project requirements."
-          />
-          <div className="editorial-rows">
-            {[
-              [
-                "MOAS",
-                "Persistent cooking odor.",
-                "A wall-mounted system delivering Odor Neutralizer Solution through remote misting nozzles.",
-                "/products/moas",
-              ],
-              [
-                "EPFA",
-                "Smoke particulate & grease vapor.",
-                "Three-stage dry filtration for light-duty commercial-kitchen exhaust.",
-                "/products/epfa",
-              ],
-              [
-                "BOTH",
-                "Filtration and odor together.",
-                "Some projects use both systems. Molitron reviews the appropriate combination and configuration with your project team.",
-                "/contact?product=both",
-              ],
-            ].map(([label, title, body, href]) => (
-              <article
-                key={label}
-                className="editorial-row !grid-cols-[46px_1fr]"
-              >
-                <span>{label}</span>
-                <div>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
-                  <Link href={href} className="text-link mt-3">
-                    {label === "BOTH"
-                      ? "Discuss a combined approach"
-                      : "Explore " + label}
-                    <Arrow diagonal />
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-        <Link href="/products" className="text-link mt-8">
-          Compare MOAS & EPFA <Arrow diagonal />
-        </Link>
-      </Section>
-      <Section>
         <SectionHeading
-          eyebrow="Applications"
-          title="A place in the bigger picture."
-          description="From a neighborhood restaurant to a shared public building, good exhaust planning starts with its surroundings."
+          eyebrow="Your application"
+          title="From the kitchen to the neighbors."
+          description="Plan around the cooking process, the exhaust route, and the people nearby."
         />
         <ApplicationCards />
       </Section>
       <Section tone="dark">
         <div className="heritage-panel">
           <div>
-            <p className="eyebrow mb-8">Colorado built. Since</p>
+            <p className="eyebrow mb-8">A family business. Since</p>
             <div className="heritage-year">1986</div>
           </div>
           <div>
             <h2>
-              A family business.
-              <br />A direct connection.
+              Built in Colorado.
+              <br />
+              Supported by Molitron.
             </h2>
             <p>
-              Molitron manufactures commercial-kitchen pollution control and
-              odor abatement equipment in Colorado. Work directly with the
-              people behind MOAS and EPFA, from the first application
-              conversation to support for installed equipment.
+              Work directly with the manufacturer, from equipment selection to
+              support for an installed system.
             </p>
             <Link href="/about" className="text-link">
-              Get to know Molitron <Arrow diagonal />
+              Meet Molitron <Arrow diagonal />
             </Link>
           </div>
         </div>
       </Section>
-      <Section tone="white">
-        <SectionHeading
-          eyebrow="Project experience"
-          title="Equipment with a history in the field."
-          description="Representative names from Molitron’s installation history."
-        />
+      <Section tone="white" className="!py-10 sm:!py-12">
+        <h2 className="eyebrow mb-6">Selected installation history</h2>
         <CustomerLogoGrid
           references={featuredCustomerReferences}
           layout="featured"
@@ -128,20 +58,26 @@ export default function HomePage() {
         </p>
       </Section>
       <Section>
-        <div className="editorial-grid">
-          <SectionHeading
-            eyebrow="Technical resources"
-            title="The details belong within reach."
-            description="Read the guides online or download a PDF to share with your project team."
-          />
-          <div className="space-y-4">
+        <div className="editorial-grid next-step-grid">
+          <div>
+            <SectionHeading
+              eyebrow="Your next step"
+              title="Let’s review your exhaust plan."
+              description="Share your cooking equipment, airflow, and discharge location. Start with what you know."
+            />
+            <Button href="/contact">
+              Discuss your project <Arrow diagonal />
+            </Button>
+          </div>
+          <div className="next-step-resources">
+            <h3 className="eyebrow">Already planning or operating a system?</h3>
             <Link
               href="/products/moas/installation-planning"
               className="online-guide"
             >
               <div>
-                <p className="eyebrow">MOAS / Planning</p>
-                <h3>Engineering & installation</h3>
+                <p className="eyebrow">MOAS</p>
+                <h3>Installation planning</h3>
               </div>
               <Arrow diagonal />
             </Link>
@@ -150,27 +86,17 @@ export default function HomePage() {
               className="online-guide"
             >
               <div>
-                <p className="eyebrow">EPFA / Operations</p>
+                <p className="eyebrow">EPFA</p>
                 <h3>Operation & maintenance</h3>
               </div>
               <Arrow diagonal />
             </Link>
-            <Link href="/resources" className="text-link">
-              Browse all documents <Arrow diagonal />
+            <Link href="/service-parts" className="text-link">
+              Service & parts <Arrow diagonal />
             </Link>
           </div>
         </div>
       </Section>
-      <Section tone="white">
-        <div className="editorial-grid">
-          <SectionHeading
-            eyebrow="Common questions"
-            title="A clearer starting point."
-          />
-          <FaqList />
-        </div>
-      </Section>
-      <CtaBand title="Bring Molitron into the project early." />
     </>
   );
 }

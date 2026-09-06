@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/Button";
-import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { CustomerLogoGrid } from "@/components/CustomerLogoGrid";
@@ -23,21 +22,15 @@ export default function AboutPage() {
             <div className="heritage-year">1986</div>
           </div>
           <div>
-            <SectionHeading title="Purposeful equipment. A personal connection." />
+            <SectionHeading title="Built here. Sold direct." />
             <div className="space-y-5 text-base leading-relaxed text-muted">
               <p>
-                Molitron is a family business with a practical focus: pollution
-                control and odor abatement for commercial-kitchen exhaust.
+                Since 1986, our family business has focused on
+                commercial-kitchen pollution control and odor abatement.
               </p>
               <p>
-                Our equipment is fabricated in Colorado and sold directly.
-                Owners, facility managers, and design teams speak with the
-                manufacturer about the application, equipment, and support.
-              </p>
-              <p>
-                Today, that work centers on two products: MOAS for odor
-                abatement and EPFA for dry filtration. Each has a distinct role;
-                some projects use both.
+                Owners, facility managers and design teams work directly with
+                Molitron on equipment selection and support.
               </p>
             </div>
             <Link href="/products" className="text-link mt-6">
@@ -50,7 +43,7 @@ export default function AboutPage() {
         <div className="editorial-grid">
           <SectionHeading
             eyebrow="Direct from Molitron"
-            title="Talk to the people behind the equipment."
+            title="A name behind the equipment."
           />
           <div className="border-t border-border pt-7">
             <h2 className="text-3xl font-medium tracking-tight">
@@ -58,8 +51,7 @@ export default function AboutPage() {
             </h2>
             <p className="eyebrow mt-2">{site.president.title}</p>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">
-              Scott Airhart is Molitron’s President. Bring your project details,
-              equipment questions, or service inquiry directly to Molitron.
+              Bring your equipment or service questions directly to Molitron.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button href={"mailto:" + site.email}>Email Molitron</Button>
@@ -76,13 +68,8 @@ export default function AboutPage() {
             <SectionHeading
               eyebrow="In the field"
               title="Colorado roots. Projects nationwide."
-              description="Molitron has project and installation history across the United States, including multiple restaurant concepts at Denver International Airport."
+              description="Installation history spans the United States, including multiple restaurant concepts at Denver International Airport."
             />
-            <p className="text-base leading-relaxed text-muted">
-              California and Colorado are longstanding focus markets. Each new
-              conversation begins with the actual process, exhaust path, and
-              project requirements.
-            </p>
             <Link href="/solutions" className="text-link mt-6">
               Explore the applications <Arrow diagonal />
             </Link>
@@ -101,7 +88,7 @@ export default function AboutPage() {
       <Section>
         <SectionHeading
           eyebrow="Installation history"
-          title="Experience across foodservice environments."
+          title="Selected installations"
         />
         <CustomerLogoGrid
           references={featuredCustomerReferences}
@@ -112,7 +99,6 @@ export default function AboutPage() {
           sponsorship, or a current commercial relationship.
         </p>
       </Section>
-      <CtaBand title="A direct conversation starts here." />
     </>
   );
 }

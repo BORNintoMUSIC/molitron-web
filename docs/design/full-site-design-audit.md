@@ -1,5 +1,7 @@
 # Molitron full-site design audit
 
+Latest follow-up: [Story and content refinement](story-content-refinement.md) records the narrative consolidation and measured reduction after this visual-system audit.
+
 Date: September 6, 2026  
 Scope: the existing Molitron staging website, all 16 content routes, shared navigation, footer, product interactions, technical references, inquiry flow, and utility states.  
 Design baseline: the approved forest-green homepage prototype. This work extends that direction throughout the existing Next.js site.

@@ -33,7 +33,7 @@ export default function ServicePartsPage() {
       <Section id="current-equipment" tone="white">
         <SectionHeading
           eyebrow="Current equipment"
-          title="Support for the systems you operate."
+          title="Find your equipment."
         />
         <div className="grid gap-12 md:grid-cols-2">
           {(["moas", "epfa"] as const).map((slug) => (
@@ -57,14 +57,14 @@ export default function ServicePartsPage() {
               </div>
               <p className="mt-6 text-base leading-relaxed text-muted">
                 {slug === "moas"
-                  ? "Odor Neutralizer Solution supply, refill guidance, and questions about installed MOAS equipment."
-                  : "Filter-media guidance, monitoring, qualified service, and maintenance questions for the EPFA assembly."}
+                  ? "Odor Neutralizer Solution, refills and installed-equipment questions."
+                  : "Filter media, monitoring and qualified maintenance guidance."}
               </p>
               <Link
                 href={"/contact?goal=service&product=" + slug}
                 className="text-link mt-4"
               >
-                Ask about {slug.toUpperCase()} service <Arrow diagonal />
+                {slug.toUpperCase()} service inquiry <Arrow diagonal />
               </Link>
               <div className="mt-4 border-t border-border pt-4">
                 <Link
@@ -84,9 +84,8 @@ export default function ServicePartsPage() {
       <Section id="service-request">
         <div className="editorial-grid">
           <SectionHeading
-            eyebrow="Help us identify the equipment"
-            title="A few details make a useful start."
-            description="Contact Molitron with the equipment and site context before ordering parts or planning work."
+            eyebrow="Before ordering parts"
+            title="Identify the unit."
           />
           <div className="editorial-rows">
             {[
@@ -101,7 +100,7 @@ export default function ServicePartsPage() {
               ],
               [
                 "Available records",
-                "Have nameplate photos, cabinet labels, and equipment records ready to share with Molitron.",
+                "Have nameplate photos, cabinet labels and equipment records ready.",
               ],
             ].map(([title, description], index) => (
               <div className="editorial-row" key={title}>
@@ -120,13 +119,12 @@ export default function ServicePartsPage() {
           <SectionHeading
             eyebrow="Existing installations only"
             title="Enviro-Clean legacy references."
-            description="The Enviro-Clean Air Scrubber is discontinued for new projects. These references support owners and service teams working with existing equipment."
+            description="The Enviro-Clean Air Scrubber is discontinued. These documents support existing installations only."
           />
           <div>
             <p className="text-base leading-relaxed text-muted">
-              Specifications may not represent every installed configuration.
-              Verify the actual unit and available records with Molitron before
-              ordering parts or planning changes.
+              Verify the installed configuration with Molitron before ordering
+              parts or planning changes.
             </p>
             <div className="mt-7 border-y border-border py-4">
               <a
@@ -160,6 +158,7 @@ export default function ServicePartsPage() {
       </Section>
       <CtaBand
         title="Need parts or service guidance?"
+        label="Contact service & parts"
         description="Share the unit details and your question with Molitron."
         href="/contact?goal=service"
       />

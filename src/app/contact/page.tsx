@@ -32,12 +32,7 @@ export default async function ContactPage({
       <Section>
         <div className="contact-grid">
           <aside className="contact-panel">
-            <p className="eyebrow mb-5">Direct from the manufacturer</p>
-            <h2>Start with a conversation.</h2>
-            <p>
-              Speak with Molitron about a new project, equipment selection, or
-              service for an installed system.
-            </p>
+            <h2>Call or email.</h2>
             <div className="contact-links">
               <a href={site.phoneHref}>{site.phone}</a>
               <a href={"mailto:" + site.email}>{site.email}</a>
@@ -49,8 +44,16 @@ export default async function ContactPage({
             </p>
           </aside>
           <div className="form-shell min-w-0">
-            <h2>Tell us what you’re planning.</h2>
-            <p>Start with the essentials. Technical details can follow.</p>
+            <h2>
+              {goal === "service"
+                ? "Tell us about your equipment."
+                : "Tell us about your project."}
+            </h2>
+            <p>
+              {goal === "service"
+                ? "Include the model or serial number if available."
+                : "Share what you know. Technical details are optional."}
+            </p>
             <QuoteForm
               key={product + goal}
               initialProduct={product}

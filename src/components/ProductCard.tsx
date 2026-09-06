@@ -32,15 +32,10 @@ export function ProductCard({ product }: { product: Product }) {
       </Link>
       <div className="product-card-copy">
         <div className="flex items-baseline justify-between gap-4">
-          <h3>{product.shortName}</h3>
+          <h2>{product.shortName}</h2>
           <p className="eyebrow">{presentation.role}</p>
         </div>
         <p className="product-card-intro">{presentation.intro}</p>
-        <ul>
-          {presentation.features.map((feature) => (
-            <li key={feature}>{feature}</li>
-          ))}
-        </ul>
         <Link href={"/products/" + product.slug} className="text-link">
           Explore {product.shortName} <Arrow diagonal />
         </Link>

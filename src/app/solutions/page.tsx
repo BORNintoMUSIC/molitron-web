@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
-import { Section, SectionHeading } from "@/components/Section";
+import { Section } from "@/components/Section";
 import { ApplicationCards } from "@/components/ApplicationCards";
 import { CtaBand } from "@/components/CtaBand";
 import { pageHeroes } from "@/lib/heroes";
@@ -9,16 +9,15 @@ export const metadata: Metadata = metadataFor("solutions");
 export default function SolutionsPage() {
   return (
     <>
-      <PageHero config={pageHeroes.solutions} />
+      <PageHero config={pageHeroes.solutions} compact />
       <Section tone="white">
-        <SectionHeading
-          eyebrow="Applications"
-          title="Start with your environment."
-          description="Commercial kitchens are at the center of Molitron’s work. Other processes begin with a specific application review."
-        />
         <ApplicationCards />
       </Section>
-      <CtaBand title="Tell us what moves through your exhaust." />
+      <CtaBand
+        title="Discuss your application."
+        description="Start with the process, airflow and discharge location."
+        href="/contact?goal=engineering-conversation"
+      />
     </>
   );
 }

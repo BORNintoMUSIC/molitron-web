@@ -59,7 +59,9 @@ export function ProductHero({ product }: { product: Product }) {
               </Button>
             </div>
             <p className="product-listing">
-              {product.certifications[0]} ·{" "}
+              {product.certifications[0]}
+              {product.slug === "epfa" &&
+                " · " + product.certifications[1]} ·{" "}
               <Link
                 className="underline underline-offset-4"
                 href="/codes-compliance"

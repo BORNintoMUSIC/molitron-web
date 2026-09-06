@@ -4,40 +4,25 @@ import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { SectionNav } from "@/components/SectionNav";
 import { CtaBand } from "@/components/CtaBand";
-import { FaqList } from "@/components/FaqList";
-import { JsonLd } from "@/components/JsonLd";
 import { Arrow } from "@/components/home/Arrow";
-import { codeTopics, faqs } from "@/lib/content";
+import { codeTopics } from "@/lib/content";
 import { pageHeroes } from "@/lib/heroes";
 import { metadataFor } from "@/lib/seo";
 export const metadata: Metadata = metadataFor("codes");
 export default function CodesCompliancePage() {
   return (
     <>
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faqs.map((item) => ({
-            "@type": "Question",
-            name: item.question,
-            acceptedAnswer: { "@type": "Answer", text: item.answer },
-          })),
-        }}
-      />
       <PageHero config={pageHeroes.codes} compact />
       <SectionNav
         items={[
           { href: "#product-listings", label: "Product listings" },
           { href: "#project-review", label: "Project review" },
-          { href: "#common-questions", label: "Common questions" },
         ]}
       />
       <Section id="product-listings" tone="white">
         <SectionHeading
           eyebrow="Listing scope"
-          title="Two products. Their own listing records."
-          description="Read the listing in the context of the covered equipment and the proposed application."
+          title="Check the covered equipment."
         />
         <div className="grid gap-10 md:grid-cols-2">
           {[
@@ -65,8 +50,8 @@ export default function CodesCompliancePage() {
               <p className="mt-3 text-base leading-relaxed text-muted">
                 {scope}
               </p>
-              <Link href={href} className="text-link mt-5">
-                View {name} documentation <Arrow diagonal />
+              <Link href={href + "#specifications"} className="text-link mt-5">
+                {name} specifications <Arrow diagonal />
               </Link>
             </article>
           ))}
@@ -108,28 +93,18 @@ export default function CodesCompliancePage() {
         <div className="online-guide resource-cta !mb-0">
           <div>
             <p className="eyebrow">Technical references</p>
-            <h3>Bring current documents to the review.</h3>
-            <p>
-              MOAS and EPFA brochures, planning references, and maintenance
-              guidance are collected in one place.
-            </p>
+            <h3>Documents for your design team.</h3>
+            <p>Brochures, installation guides and maintenance manuals.</p>
           </div>
           <Link href="/resources" className="text-link shrink-0">
             Document library <Arrow diagonal />
           </Link>
         </div>
       </Section>
-      <Section id="common-questions">
-        <div className="editorial-grid">
-          <SectionHeading
-            eyebrow="Common questions"
-            title="Clarify the starting point."
-          />
-          <FaqList />
-        </div>
-      </Section>
       <CtaBand
-        title="Need product information for your review?"
+        title="Need a product detail for your review?"
+        description="Share the equipment, application and question."
+        label="Ask Molitron"
         href="/contact?goal=engineering-conversation"
       />
     </>
