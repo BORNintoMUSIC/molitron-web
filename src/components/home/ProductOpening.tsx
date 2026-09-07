@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { site } from "@/lib/site";
 import { products } from "@/lib/products";
 import { productPresentation } from "@/lib/product-presentation";
 import { Arrow } from "./Arrow";
@@ -12,7 +11,7 @@ export function ProductOpening() {
       <div className={styles.inner}>
         <div className={styles.copy}>
           <p className={styles.eyebrow}>
-            <span aria-hidden="true" /> Colorado built. Since {site.founded}.
+            <span aria-hidden="true" /> Commercial kitchen pollution control
           </p>
           <h1 id="opening-title" className={styles.title}>
             Exhaust control.
@@ -22,8 +21,9 @@ export function ProductOpening() {
             <span>your kitchen.</span>
           </h1>
           <p className={styles.intro}>
-            MOAS treats cooking odor. EPFA filters smoke particulate and grease
-            vapor from light-duty commercial-kitchen exhaust.
+            Two systems for commercial kitchen exhaust, built by Molitron in
+            Colorado. MOAS treats cooking odor. EPFA filters smoke particulate
+            and grease vapor from light-duty kitchen exhaust.
           </p>
           <div className={styles.actions}>
             <Link href="#system-explorer" className={styles.primary}>

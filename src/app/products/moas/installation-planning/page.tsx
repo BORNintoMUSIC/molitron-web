@@ -5,8 +5,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { SectionNav } from "@/components/SectionNav";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
-import { buildMetadata, seoKeywords } from "@/lib/seo";
+import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { guideEntityId, organizationId, productEntityId } from "@/lib/structured-data";
 
 const path = "/products/moas/installation-planning";
 const pdfPath = "/docs/moas-engineering-specs-installation-2026.pdf";
@@ -14,22 +15,16 @@ const pdfPath = "/docs/moas-engineering-specs-installation-2026.pdf";
 export const metadata: Metadata = buildMetadata({
   title: "MOAS Installation Planning Guide | Molitron",
   description:
-    "Plan MOAS cabinet location, utilities, remote nozzles, tubing, exhaust-fan interlock, access, and project responsibilities. Download Rev A.",
+    "Review MOAS cabinet location, utilities, remote nozzles, tubing and project responsibilities. Read the planning guide online or open the Rev A PDF.",
   path,
-  image: "/images/heroes/moas.jpg",
+  image: "/images/moas/moas-closed-professional-gpt2.png",
   imageAlt: "Molitron MOAS commercial-kitchen odor abatement system cabinet",
-  keywords: [
-    ...seoKeywords.moas,
-    "MOAS installation planning",
-    "odor abatement system installation guide",
-    "commercial kitchen exhaust planning",
-  ],
   type: "article",
 });
 
 const hero = {
   src: "/images/heroes/molitron-moas-kitchen-hero-v1.webp",
-  alt: "Molitron odor abatement system installed beside a commercial kitchen exhaust hood",
+  alt: "Illustrative kitchen exhaust setting with a Molitron MOAS cabinet",
   eyebrow: "Technical documentation · MOAS-INS-001 · Rev A",
   title: "MOAS installation planning.",
   description:
@@ -118,18 +113,20 @@ export default function MoasInstallationPlanningPage() {
   const guideLd = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
+    "@id": guideEntityId("moas"),
     headline: "MOAS Engineering & Installation Planning Guide",
     description:
       "Project-planning guidance for the MOAS cabinet, utilities, remote nozzles, tubing, exhaust-fan interlock, access, and team responsibilities.",
     url: `${site.url}${path}`,
     inLanguage: "en-US",
     version: "Rev A",
-    author: { "@type": "Organization", name: site.legalName, url: site.url },
-    publisher: { "@type": "Organization", name: site.legalName, url: site.url },
+    author: { "@id": organizationId },
+    publisher: { "@id": organizationId },
     about: {
       "@type": "Product",
+      "@id": productEntityId("moas"),
       name: "Molitron Odor Abatement System (MOAS)",
-      manufacturer: { "@type": "Organization", name: site.legalName },
+      manufacturer: { "@id": organizationId },
     },
     associatedMedia: {
       "@type": "MediaObject",
@@ -317,7 +314,7 @@ export default function MoasInstallationPlanningPage() {
 
       <Section id="technical-data" tone="white">
         <SectionHeading
-          eyebrow="Controlled values"
+          eyebrow="Technical reference"
           title="Technical data for planning conversations"
           description="Keep the listed equipment rating separate from the project electrical requirement. These values describe different electrical concepts and cannot be substituted for one another."
         />
@@ -417,7 +414,7 @@ export default function MoasInstallationPlanningPage() {
           </div>
           <div className="rounded-lg border border-border bg-card p-5">
             <h3 className="text-base font-semibold text-primary">
-              Use the guide within its limits
+              Scope and limitations
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-foreground/80">
               Final supports, anchors, clearances, access, nozzle location, duct
@@ -434,7 +431,7 @@ export default function MoasInstallationPlanningPage() {
         <div className="grid items-center gap-6 lg:grid-cols-[1fr_auto]">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">
-              Final publication
+              MOAS planning guide · Rev A
             </p>
             <h2 className="mt-2 text-2xl font-bold tracking-tight text-primary sm:text-3xl">
               Download the complete eight-page planning guide
@@ -446,13 +443,15 @@ export default function MoasInstallationPlanningPage() {
               technical data, and document limitations.
             </p>
           </div>
-          <Button href={pdfPath}>Open final PDF · Rev A</Button>
+          <Button href={pdfPath}>Open MOAS guide · Rev A (PDF)</Button>
         </div>
       </Section>
 
       <CtaBand
         title="Discuss a MOAS project with Molitron"
         description="Send the cooking equipment, airflow, hood and duct arrangement, discharge location, project address, available utilities, proposed equipment locations, and project status."
+        href="/contact?product=moas&goal=engineering-conversation"
+        label="Discuss MOAS installation"
       />
     </article>
   );

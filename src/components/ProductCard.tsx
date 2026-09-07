@@ -35,7 +35,7 @@ export function ProductCard({ product }: { product: Product }) {
           <h2>{product.shortName}</h2>
           <p className="eyebrow">{presentation.role}</p>
         </div>
-        <p className="product-card-intro">{presentation.intro}</p>
+        <p className="product-card-intro">{product.summary}</p>
         <Link href={"/products/" + product.slug} className="text-link">
           Explore {product.shortName} <Arrow diagonal />
         </Link>

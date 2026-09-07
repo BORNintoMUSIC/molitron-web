@@ -44,16 +44,8 @@ export default async function ContactPage({
             </p>
           </aside>
           <div className="form-shell min-w-0">
-            <h2>
-              {goal === "service"
-                ? "Tell us about your equipment."
-                : "Tell us about your project."}
-            </h2>
-            <p>
-              {goal === "service"
-                ? "Include the model or serial number if available."
-                : "Share what you know. Technical details are optional."}
-            </p>
+            <h2>How can we help?</h2>
+            <p>Share what you know. Technical details are optional.</p>
             <QuoteForm
               key={product + goal}
               initialProduct={product}

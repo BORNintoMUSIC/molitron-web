@@ -48,7 +48,7 @@ export function ProductHero({ product }: { product: Product }) {
             <p className="eyebrow">{presentation.role} / Molitron equipment</p>
             <h1>{product.shortName}</h1>
             <h2>{presentation.headline}</h2>
-            <p className="product-hero-intro">{presentation.intro}</p>
+            <p className="product-hero-intro">{product.summary}</p>
             <div className="hero-actions">
               <Button href={"/contact?product=" + product.slug}>
                 Discuss {product.shortName}

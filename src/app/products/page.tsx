@@ -21,13 +21,13 @@ export default function ProductsPage() {
       <Section id="comparison">
         <SectionHeading
           eyebrow="Side by side"
-          title="Choose by what needs treatment."
+          title="Do you need MOAS, EPFA or both?"
           description="Selection, configuration and project acceptance remain project-specific."
         />
         <dl className="comparison-list">
           {[
             [
-              "Application",
+              "What it treats",
               "MOAS",
               "Commercial-kitchen exhaust odor",
               "EPFA",
@@ -64,7 +64,7 @@ export default function ProductsPage() {
       </Section>
       <CtaBand
         title="Need filtration and odor treatment?"
-        description="Some projects use both. Review the combination with Molitron."
+        description="Some projects use MOAS and EPFA together. Share your cooking equipment, airflow and discharge location so Molitron can review the combination."
         href="/contact?product=both"
       />
     </>

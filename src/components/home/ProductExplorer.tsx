@@ -20,18 +20,18 @@ const moasSteps = [
   },
   {
     label: "Interior",
-    title: "The components behind the mist.",
+    title: "Inside the MOAS cabinet.",
     description:
-      "The self-contained cabinet holds the operating components and Odor Neutralizer Solution supply.",
+      "The MOAS cabinet holds the operating components and Odor Neutralizer Solution supply.",
     image: "/images/remastered/moas-open-v2.webp",
     alt: "Open MOAS cabinet showing the operating components, tubing, and solution container",
     detail: "Interior equipment view",
   },
   {
     label: "Exhaust path",
-    title: "Odor treatment enters the exhaust.",
+    title: "How MOAS treats cooking odor.",
     description:
-      "Remote nozzles atomize Odor Neutralizer Solution. Placement, dwell time, configuration and calibration are evaluated for each project.",
+      "MOAS supplies Odor Neutralizer Solution to remote misting nozzles in the exhaust. Nozzle placement, dwell time, configuration and calibration are evaluated for each project.",
     image: null,
     alt: "Illustrative relationship between the MOAS cabinet and remote nozzles in an exhaust duct",
     detail: "Illustrative system relationship",
@@ -129,7 +129,7 @@ const epfaSteps = [
     label: "Exterior",
     title: "Three stages in the exhaust path.",
     description:
-      "The stainless steel assembly filters smoke particulate and grease vapor from light-duty commercial-kitchen exhaust.",
+      "EPFA filters smoke particulate and grease vapor from light-duty commercial kitchen exhaust through three dry filter stages.",
     image: "/images/remastered/epfa-closed-v2.webp",
     alt: "Closed EPFA assembly with three removable access doors",
     detail: "Stainless steel filter assembly",

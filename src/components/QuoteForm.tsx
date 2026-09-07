@@ -78,7 +78,11 @@ export function QuoteForm({
         });
     } catch (err) {
       setStatus("error");
-      setError(err instanceof Error ? err.message : "Submission failed.");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "We couldn’t send your request. Please try again, or call or email Molitron.",
+      );
     }
   }
   if (status === "success" || status === "preview")
@@ -191,7 +195,7 @@ export function QuoteForm({
       <fieldset>
         <legend>01 / Your inquiry</legend>
         <div className="grid gap-5 md:grid-cols-2">
-          {selectInput("contactGoal", "How can we help?", [
+          {selectInput("contactGoal", "Inquiry type", [
             ["quote", "A project quote"],
             ["engineering-conversation", "Application guidance"],
             ["service", "Service or parts"],
@@ -228,7 +232,7 @@ export function QuoteForm({
             autoComplete: "tel",
             maxLength: 60,
           })}
-          {textInput("cityState", "Project city / state", {
+          {textInput("cityState", "Project or facility city / state", {
             required: true,
             placeholder: "e.g. Denver, CO",
             maxLength: 160,

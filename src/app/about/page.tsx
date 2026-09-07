@@ -25,8 +25,8 @@ export default function AboutPage() {
             <SectionHeading title="Built here. Sold direct." />
             <div className="space-y-5 text-base leading-relaxed text-muted">
               <p>
-                Since 1986, our family business has focused on
-                commercial-kitchen pollution control and odor abatement.
+                Our family business has manufactured commercial kitchen
+                pollution control and odor abatement equipment since 1986.
               </p>
               <p>
                 Owners, facility managers and design teams work directly with
@@ -43,15 +43,13 @@ export default function AboutPage() {
         <div className="editorial-grid">
           <SectionHeading
             eyebrow="Direct from Molitron"
-            title="A name behind the equipment."
+            title={`Meet ${site.president.name}.`}
           />
           <div className="border-t border-border pt-7">
-            <h2 className="text-3xl font-medium tracking-tight">
-              {site.president.name}
-            </h2>
-            <p className="eyebrow mt-2">{site.president.title}</p>
+            <p className="eyebrow">{site.president.title}</p>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">
-              Bring your equipment or service questions directly to Molitron.
+              Talk directly with Molitron about equipment selection, an exhaust
+              application or support for an installed system.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button href={"mailto:" + site.email}>Email Molitron</Button>

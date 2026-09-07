@@ -17,7 +17,7 @@ const groups = [
       ["Document library", "/resources"],
       ["MOAS planning guide", "/products/moas/installation-planning"],
       ["EPFA operation & maintenance", "/products/epfa/operation-maintenance"],
-      ["Codes & listings", "/codes-compliance"],
+      ["Equipment listings", "/codes-compliance"],
       ["Service & parts", "/service-parts"],
     ],
   },
@@ -30,7 +30,7 @@ export function Footer() {
           <div>
             <Logo href="/" onDark />
             <p>
-              Purposeful equipment.
+              Kitchen exhaust equipment.
               <br />
               People you can talk to.
             </p>

@@ -11,7 +11,7 @@ export type PageHeroConfig = {
 export const pageHeroes = {
   products: {
     src: "/images/heroes/molitron-products-tandem-hero-v1.webp",
-    alt: "Molitron EPFA filtration and MOAS odor abatement systems installed together",
+    alt: "Illustrative setting with Molitron EPFA filtration and MOAS odor abatement equipment",
     eyebrow: "Products",
     title: "Two systems. Distinct roles.",
     description:
@@ -23,7 +23,7 @@ export const pageHeroes = {
   },
   moas: {
     src: "/images/heroes/molitron-moas-kitchen-hero-v1.webp",
-    alt: "Molitron odor abatement system installed beside a commercial kitchen exhaust hood",
+    alt: "Illustrative kitchen exhaust setting with a Molitron MOAS cabinet",
     eyebrow: "Product · ETL Listed",
     title: "Molitron Odor Abatement System (MOAS)",
     description:
@@ -36,7 +36,7 @@ export const pageHeroes = {
   },
   epfa: {
     src: "/images/heroes/molitron-epfa-rooftop-hero-v1.webp",
-    alt: "Molitron EPFA commercial kitchen exhaust filtration system installed on a rooftop",
+    alt: "Illustrative rooftop setting with Molitron EPFA filtration equipment",
     eyebrow: "Product · UL Listed",
     title: "Enviro-Pak Filter Assembly (EPFA)",
     description:
@@ -49,9 +49,9 @@ export const pageHeroes = {
   },
   solutions: {
     src: "/images/heroes/molitron-solutions-mixed-use-rooftop-hero-v1.webp",
-    alt: "Molitron EPFA and MOAS equipment in a mixed-use building rooftop setting",
+    alt: "Illustrative mixed-use rooftop setting with Molitron equipment",
     eyebrow: "Applications",
-    title: "Plan for your environment.",
+    title: "Start with your kitchen or facility.",
     description:
       "Commercial kitchens are our focus. Other processes require individual application review.",
     breadcrumbs: [
@@ -61,7 +61,7 @@ export const pageHeroes = {
   },
   restaurants: {
     src: "/images/heroes/molitron-restaurants-rooftop-evening-hero-v1.webp",
-    alt: "Molitron EPFA installed above an urban restaurant at dusk",
+    alt: "Illustrative restaurant rooftop setting with Molitron equipment at dusk",
     eyebrow: "Applications · Restaurants",
     title: "Good exhaust planning starts in the kitchen.",
     description:
@@ -74,7 +74,7 @@ export const pageHeroes = {
   },
   airports: {
     src: "/images/heroes/molitron-airports-denver-rooftop-hero-v1.webp",
-    alt: "Molitron EPFA and MOAS equipment in an airport rooftop setting",
+    alt: "Illustrative airport rooftop setting with Molitron EPFA and MOAS equipment",
     eyebrow: "Applications · Airports & hospitality",
     title: "Many kitchens. One shared building.",
     description:
@@ -90,7 +90,7 @@ export const pageHeroes = {
   },
   cannabis: {
     src: "/images/heroes/molitron-cannabis-moas-facility-hero-v1.webp",
-    alt: "Molitron MOAS installed beside a controlled cultivation room",
+    alt: "Illustrative cannabis-facility setting with a MOAS cabinet",
     eyebrow: "Applications · Cannabis",
     title: "Understand the odor before choosing equipment.",
     description:
@@ -103,11 +103,11 @@ export const pageHeroes = {
   },
   industrial: {
     src: "/images/heroes/molitron-solutions-mixed-use-rooftop-hero-v1.webp",
-    alt: "Molitron exhaust-control equipment in a mixed-use rooftop setting",
+    alt: "Illustrative commercial rooftop setting with Molitron equipment",
     eyebrow: "Applications · Industrial & specialty",
-    title: "A different process needs a closer look.",
+    title: "Review your industrial exhaust application.",
     description:
-      "Specialty and industrial inquiries begin with a documented application review.",
+      "Share the process, airflow and exhaust conditions so Molitron can review equipment suitability.",
     breadcrumbs: [
       { label: "Home", href: "/" },
       { label: "Applications", href: "/solutions" },
@@ -116,21 +116,21 @@ export const pageHeroes = {
   },
   codes: {
     src: "/images/heroes/molitron-codes-rooftop-review-hero-v1.webp",
-    alt: "Engineer reviewing a Molitron EPFA rooftop installation",
-    eyebrow: "Education",
+    alt: "Illustrative project review beside Molitron EPFA rooftop equipment",
+    eyebrow: "Equipment listings",
     title: "Product listings & project review.",
     description:
       "Check the covered equipment, then coordinate requirements for your site.",
     breadcrumbs: [
       { label: "Home", href: "/" },
-      { label: "Codes & compliance", href: "/codes-compliance" },
+      { label: "Equipment listings", href: "/codes-compliance" },
     ],
   },
   about: {
     src: "/images/heroes/molitron-about-denver-clean-air-hero-v1.webp",
     alt: "Denver skyline and the Colorado Front Range under clear blue skies",
     eyebrow: "About Molitron",
-    title: "A family business. Built around the equipment.",
+    title: "A family business. Built in Colorado.",
     description:
       "Commercial-kitchen pollution control, fabricated in Colorado and sold direct.",
     breadcrumbs: [
@@ -152,7 +152,7 @@ export const pageHeroes = {
   },
   service: {
     src: "/images/heroes/molitron-service-epfa-maintenance-hero-v1.webp",
-    alt: "Open Molitron EPFA prepared for organized filter maintenance",
+    alt: "Illustrative view of an open EPFA prepared for filter maintenance",
     eyebrow: "Support",
     title: "Service & parts",
     description:
@@ -164,7 +164,7 @@ export const pageHeroes = {
   },
   resources: {
     src: "/images/heroes/molitron-products-tandem-hero-v1.webp",
-    alt: "Molitron MOAS and EPFA pollution-control equipment",
+    alt: "Illustrative setting with Molitron MOAS and EPFA pollution-control equipment",
     eyebrow: "Resources",
     title: "Guides, brochures & manuals.",
     description:

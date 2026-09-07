@@ -9,7 +9,7 @@ export const site = {
   legalName: "Molitron Company Inc",
   tagline: "Commercial kitchen pollution control & odor abatement",
   description:
-    "Commercial kitchen pollution control and odor abatement from a direct manufacturer. EPFA dry filtration and MOAS odor neutralization for projects nationwide.",
+    "Molitron is a family business founded in 1986, fabricating commercial kitchen pollution control equipment in Colorado. MOAS treats cooking odor; EPFA provides dry filtration for light-duty kitchen exhaust. Direct manufacturer support for projects nationwide.",
   url: configuredSiteUrl,
   phone: "303-969-8888",
   phoneHref: "tel:+13039698888",
@@ -56,7 +56,7 @@ export const nav = [
         label: "EPFA operation & maintenance",
         href: "/products/epfa/operation-maintenance",
       },
-      { label: "Codes & listings", href: "/codes-compliance" },
+      { label: "Equipment listings", href: "/codes-compliance" },
       { label: "Service & parts", href: "/service-parts" },
     ],
   },

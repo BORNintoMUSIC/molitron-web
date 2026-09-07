@@ -5,8 +5,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { SectionNav } from "@/components/SectionNav";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
-import { buildMetadata, seoKeywords } from "@/lib/seo";
+import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { guideEntityId, organizationId, productEntityId } from "@/lib/structured-data";
 
 const path = "/products/epfa/operation-maintenance";
 const pdfPath = "/docs/epfa-operation-maintenance-manual-2026.pdf";
@@ -14,26 +15,20 @@ const pdfPath = "/docs/epfa-operation-maintenance-manual-2026.pdf";
 export const metadata: Metadata = buildMetadata({
   title: "EPFA Installation, Operation & Maintenance Manual | Molitron",
   description:
-    "Review current EPFA receiving, installation coordination, monitoring, factory startup, maintenance, filter service, cleaning, troubleshooting, and equipment records. Download Rev A.",
+    "Find EPFA installation, monitoring and maintenance information for models EPFA-24 through EPFA-144. Read online or open the Rev A manual.",
   path,
   image: "/images/heroes/molitron-service-epfa-maintenance-hero-v1.webp",
-  imageAlt: "Open Molitron EPFA prepared for organized filter maintenance",
-  keywords: [
-    ...seoKeywords.epfa,
-    "EPFA operation and maintenance manual",
-    "Enviro-Pak maintenance",
-    "commercial kitchen exhaust filter maintenance",
-  ],
+  imageAlt: "Illustrative view of an open EPFA prepared for filter maintenance",
   type: "article",
 });
 
 const hero = {
   src: "/images/heroes/molitron-service-epfa-maintenance-hero-v1.webp",
-  alt: "Open Molitron EPFA prepared for organized filter maintenance",
+  alt: "Illustrative view of an open EPFA prepared for filter maintenance",
   eyebrow: "Technical documentation · EPFA-IOM-2026 · Rev A",
   title: "EPFA operation & maintenance.",
   description:
-    "Use the current receiving, coordination, monitoring, startup, maintenance, filter-service, cleaning, troubleshooting, and recordkeeping reference for EPFA-24 through EPFA-144.",
+    "Installation, monitoring and qualified maintenance guidance for EPFA-24 through EPFA-144. Find the relevant section below or open the complete manual.",
   breadcrumbs: [
     { label: "Home", href: "/" },
     { label: "Products", href: "/products" },
@@ -100,18 +95,20 @@ export default function EpfaOperationMaintenancePage() {
   const manualLd = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
+    "@id": guideEntityId("epfa"),
     headline: "EPFA Installation, Operation & Maintenance Manual",
     description:
       "Current receiving, installation coordination, monitoring, startup, maintenance, filter service, cleaning, troubleshooting, and recordkeeping guidance for the Molitron EPFA.",
     url: `${site.url}${path}`,
     inLanguage: "en-US",
     version: "Rev A",
-    author: { "@type": "Organization", name: site.legalName, url: site.url },
-    publisher: { "@type": "Organization", name: site.legalName, url: site.url },
+    author: { "@id": organizationId },
+    publisher: { "@id": organizationId },
     about: {
       "@type": "Product",
+      "@id": productEntityId("epfa"),
       name: "Enviro-Pak Filter Assembly (EPFA)",
-      manufacturer: { "@type": "Organization", name: site.legalName },
+      manufacturer: { "@id": organizationId },
     },
     associatedMedia: {
       "@type": "MediaObject",
@@ -238,8 +235,8 @@ export default function EpfaOperationMaintenancePage() {
 
       <Section id="technical-data">
         <SectionHeading
-          eyebrow="Controlled values"
-          title="Technical relationships used by the manual"
+          eyebrow="Technical reference"
+          title="EPFA technical data"
           description="Use current unit labels and project documents for installation and commissioning. The manual does not publish a common-terminal number or a complete construction wiring diagram."
         />
         <div
@@ -255,7 +252,7 @@ export default function EpfaOperationMaintenancePage() {
                   Item
                 </th>
                 <th className="px-4 py-3 font-semibold sm:px-5">
-                  Current manual relationship
+                  Manual reference
                 </th>
               </tr>
             </thead>
@@ -420,7 +417,7 @@ export default function EpfaOperationMaintenancePage() {
         <div className="grid items-center gap-6 lg:grid-cols-[1fr_auto]">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">
-              Final publication
+              EPFA manual · Rev A
             </p>
             <h2 className="mt-2 text-2xl font-bold tracking-tight text-primary sm:text-3xl">
               Download the complete 24-page manual
@@ -432,13 +429,15 @@ export default function EpfaOperationMaintenancePage() {
               foldout content.
             </p>
           </div>
-          <Button href={pdfPath}>Open final PDF · Rev A</Button>
+          <Button href={pdfPath}>Open EPFA manual · Rev A (PDF)</Button>
         </div>
       </Section>
 
       <CtaBand
         title="Need help with an installed EPFA?"
         description="Send the model, serial number, facility, status-panel condition, gauge reading, maintenance history, and photos of the unit labels when available."
+        href="/contact?product=epfa&goal=service"
+        label="Request EPFA service support"
       />
     </article>
   );

@@ -20,7 +20,7 @@ export const applications = [
     key: "cannabis",
     href: "/solutions/cannabis",
     title: "Cannabis facilities",
-    description: "Process-specific odor and application review.",
+    description: "Start with the odor source and exhaust conditions.",
     image: pageHeroes.cannabis.src,
     alt: "Illustrative cannabis-facility setting with a MOAS cabinet",
   },
@@ -28,7 +28,7 @@ export const applications = [
     key: "industrial",
     href: "/solutions/industrial",
     title: "Industrial & specialty",
-    description: "Other processes require individual review.",
+    description: "Review the process before selecting equipment.",
     image: pageHeroes.industrial.src,
     alt: "Illustrative commercial rooftop setting with Molitron equipment",
   },
@@ -41,7 +41,7 @@ export const applicationDetails = {
     considerations: [
       [
         "Start at the hood",
-        "Share the menu, cooking equipment and airflow (CFM). Review changes to the cooking load during a remodel.",
+        "Share the menu, cooking equipment and airflow in cubic feet per minute (CFM). Note changes to the cooking load during a remodel.",
       ],
       [
         "Trace the discharge",
@@ -49,7 +49,7 @@ export const applicationDetails = {
       ],
       [
         "Plan the installation",
-        "Coordinate utilities, service access and project requirements with the design team.",
+        "Review utilities, equipment space and service access with your design team.",
       ],
     ],
     context: "",
@@ -72,7 +72,7 @@ export const applicationDetails = {
       ],
       [
         "Access & operations",
-        "Coordinate monitoring and qualified service access around foodservice operations.",
+        "Plan access for qualified service and monitoring around foodservice hours.",
       ],
     ],
     context:
@@ -105,7 +105,7 @@ export const applicationDetails = {
   industrial: {
     title: "Define the process first.",
     scope:
-      "MOAS and EPFA are documented for commercial-kitchen exhaust. Fit and listing coverage for another industrial process must not be assumed.",
+      "MOAS and EPFA are documented for commercial kitchen exhaust. Other processes need individual review of equipment suitability and listing coverage.",
     considerations: [
       [
         "Source",

@@ -1,41 +1,6 @@
 import type { Metadata } from "next";
-import { isPreviewDeployment, site } from "@/lib/site";
-
-/** High-value industry keywords used across page copy & meta */
-export const seoKeywords = {
-  core: [
-    "commercial kitchen pollution control",
-    "kitchen pollution control unit",
-    "pollution control unit restaurant",
-    "commercial kitchen odor control",
-    "kitchen odor abatement system",
-    "restaurant exhaust odor control",
-    "commercial kitchen exhaust scrubber",
-    "grease smoke odor exhaust control",
-    "UL listed kitchen exhaust",
-    "sidewall discharge kitchen exhaust",
-  ],
-  moas: [
-    "kitchen odor abatement system",
-    "commercial kitchen odor control system",
-    "restaurant odor neutralizer exhaust",
-    "project-specific odor abatement",
-    "cooking odor control commercial kitchen",
-    "exhaust odor control system",
-    "MOAS odor abatement",
-    "ETL listed odor abatement system",
-  ],
-  epfa: [
-    "kitchen pollution control unit",
-    "commercial kitchen filter assembly",
-    "grease filter kitchen exhaust",
-    "UL listed pollution control unit",
-    "restaurant PCU filter",
-    "kitchen exhaust filtration system",
-    "EPFA filter assembly",
-    "grease particulate exhaust control",
-  ],
-} as const;
+import { pageHeroes } from "./heroes";
+import { isPreviewDeployment, site } from "./site";
 
 export type PageSeo = {
   title: string;
@@ -43,277 +8,162 @@ export type PageSeo = {
   path: string;
   image: string;
   imageAlt: string;
-  keywords?: string[];
   type?: "website" | "article";
   noIndex?: boolean;
 };
 
-function absUrl(path: string): string {
-  if (path.startsWith("http")) return path;
-  const base = site.url.replace(/\/$/, "");
-  const p = path.startsWith("/") ? path : `/${path}`;
-  return `${base}${p}`;
-}
-
-function absImage(path: string): string {
-  return absUrl(path);
-}
-
-/** Build Next.js Metadata with full Open Graph + Twitter cards */
+/** Use the same branded title for the page, search and social sharing. */
 export function buildMetadata(page: PageSeo): Metadata {
-  const url = absUrl(page.path);
-  const imageUrl = absImage(page.image);
-  const imageIsWebp = page.image.toLowerCase().endsWith(".webp");
-  const keywords = page.keywords ?? [...seoKeywords.core];
-
-  // Next title template is "%s | Molitron" — pass bare title unless it already brands
-  const titleForTemplate = page.title.replace(/\s*\|\s*Molitron\s*$/i, "").trim();
+  const title = page.title.replace(/\s*\|\s*Molitron\s*$/i, "").trim() + " | " + site.name;
+  const url = new URL(page.path, site.url).toString();
+  const image = new URL(page.image, site.url).toString();
 
   return {
-    title: titleForTemplate,
+    // A layout template does not apply to its own page (including the homepage).
+    title: { absolute: title },
     description: page.description,
-    keywords: [...keywords],
-    authors: [{ name: site.president.name, url: site.url }],
+    authors: [{ name: site.legalName, url: site.url }],
     creator: site.legalName,
     publisher: site.legalName,
-    robots: page.noIndex || isPreviewDeployment
-      ? { index: false, follow: false }
-      : { index: true, follow: true, googleBot: { index: true, follow: true } },
-    alternates: {
-      canonical: url,
-    },
+    robots:
+      page.noIndex || isPreviewDeployment
+        ? { index: false, follow: false }
+        : { index: true, follow: true, googleBot: { index: true, follow: true } },
+    alternates: { canonical: url },
     openGraph: {
       type: page.type ?? "website",
       locale: "en_US",
       url,
       siteName: site.legalName,
-      title: page.title,
+      title,
       description: page.description,
-      images: [
-        {
-          url: imageUrl,
-          width: imageIsWebp ? 1672 : 1280,
-          height: imageIsWebp ? 941 : 720,
-          alt: page.imageAlt,
-          type: imageIsWebp ? "image/webp" : "image/jpeg",
-        },
-      ],
+      images: [{ url: image, alt: page.imageAlt }],
     },
     twitter: {
       card: "summary_large_image",
-      title: page.title,
+      title,
       description: page.description,
-      images: [imageUrl],
+      images: [{ url: image, alt: page.imageAlt }],
     },
   };
 }
 
-/**
- * Per-page SEO. Titles ≤60 chars, descriptions ≤160 chars (including brand where noted).
- * og:title uses the full page.title string.
- */
+/** Each page answers a distinct visitor need; descriptions reflect its content. */
 export const pagesSeo = {
   home: {
-    title: "Kitchen Pollution Control & Odor Abatement",
+    title: "Commercial Kitchen Pollution Control",
     description:
-      "Commercial kitchen pollution control and odor abatement from Molitron. Explore EPFA dry filtration and MOAS odor control for projects nationwide.",
+      "Colorado-built equipment for commercial kitchen exhaust. Explore MOAS odor abatement and EPFA dry filtration, with support directly from Molitron.",
     path: "/",
-    image: "/images/heroes/home.jpg",
-    imageAlt:
-      "Commercial rooftop kitchen exhaust pollution control equipment at dawn",
-    keywords: [
-      ...seoKeywords.core,
-      "commercial kitchen exhaust system",
-      "restaurant pollution control unit",
-      "kitchen exhaust odor control Colorado",
-      "Denver kitchen exhaust filtration",
-    ],
+    image: pageHeroes.products.src,
+    imageAlt: pageHeroes.products.alt,
   },
   products: {
-    title: "Kitchen Pollution Control Products",
+    title: "MOAS vs. EPFA: Compare Exhaust Control",
     description:
-      "Compare Molitron MOAS odor abatement and EPFA three-stage dry filtration for commercial kitchen exhaust. Work directly with the manufacturer.",
+      "Compare MOAS cooking-odor treatment with EPFA dry filtration for light-duty kitchen exhaust. Review their roles and discuss your application with Molitron.",
     path: "/products",
-    image: "/images/heroes/products.jpg",
-    imageAlt: "Molitron MOAS and EPFA commercial kitchen pollution control products",
-    keywords: [...seoKeywords.core, ...seoKeywords.moas, ...seoKeywords.epfa],
+    image: pageHeroes.products.src,
+    imageAlt: pageHeroes.products.alt,
   },
   moas: {
     title: "MOAS Kitchen Odor Abatement System",
     description:
-      "Explore the ETL Listed MOAS for commercial-kitchen exhaust odor abatement, with qualified performance, utilities, and project-planning guidance.",
+      "Explore how MOAS treats cooking odor in commercial kitchen exhaust. Review its operation, performance limits, ETL listing and installation planning guide.",
     path: "/products/moas",
-    image: "/images/heroes/moas.jpg",
-    imageAlt: "Molitron MOAS commercial kitchen odor abatement system cabinet",
-    keywords: [...seoKeywords.moas, ...seoKeywords.core],
+    image: "/images/moas/moas-closed-professional-gpt2.png",
+    imageAlt: "Molitron MOAS odor abatement system with its stainless steel cabinet closed",
   },
   epfa: {
-    title: "EPFA Dry Kitchen Exhaust Filtration",
+    title: "EPFA Kitchen Exhaust Filtration",
     description:
-      "Plan EPFA three-stage dry filtration for light-duty commercial-kitchen exhaust, including model data, service clearances, monitoring, and the optional carbon final stage.",
+      "Explore EPFA dry filtration for light-duty commercial kitchen exhaust. Review filter stages, model data, optional carbon and installation requirements.",
     path: "/products/epfa",
-    image: "/images/heroes/epfa.jpg",
-    imageAlt: "Molitron EPFA UL Listed kitchen pollution control filter assembly",
-    keywords: [...seoKeywords.epfa, ...seoKeywords.core],
-  },
-  about: {
-    title: "About Molitron Pollution Control",
-    // 34 → 45
-    description:
-      "Molitron has manufactured commercial kitchen pollution control and odor abatement equipment since 1986. Built in Colorado with nationwide project support.",
-    // 155
-    path: "/about",
-    image: "/images/heroes/about.jpg",
-    imageAlt: "Denver skyline and Colorado Front Range under clear skies",
-    keywords: [
-      ...seoKeywords.core,
-      "Molitron Company Inc",
-      "commercial kitchen exhaust manufacturer",
-      "Denver kitchen pollution control",
-    ],
-  },
-  contact: {
-    title: "Request a Quote | Kitchen Exhaust",
-    // 35 → use full as template strip: "Request a Quote | Kitchen Exhaust" = 35, + Molitron = 46
-    description:
-      "Request a quote for commercial kitchen pollution control or odor abatement. MOAS & EPFA—include CFM, equipment list & location. Call 303-969-8888.",
-    // 150
-    path: "/contact",
-    image: "/images/heroes/contact.jpg",
-    imageAlt: "Request a Molitron commercial kitchen exhaust control quote",
-    keywords: [
-      ...seoKeywords.core,
-      "kitchen exhaust quote",
-      "pollution control unit pricing",
-      "commercial kitchen odor control quote",
-    ],
+    image: "/images/remastered/epfa-closed-v2.webp",
+    imageAlt: "Molitron EPFA dry filter assembly with its access doors closed",
   },
   solutions: {
-    title: "Kitchen Exhaust Control Solutions",
+    title: "Kitchen Exhaust Applications",
     description:
-      "Commercial kitchen exhaust filtration and odor-abatement guidance for restaurants, airports, hotels, and odor-sensitive facilities nationwide.",
+      "Explore exhaust planning for restaurants, airport concessions and hotel kitchens. Other facility processes require individual application review.",
     path: "/solutions",
-    image: "/images/heroes/solutions.jpg",
-    imageAlt: "Commercial kitchen exhaust pollution control solutions",
-    keywords: [...seoKeywords.core, "restaurant exhaust solutions", "airport kitchen exhaust control"],
+    image: pageHeroes.solutions.src,
+    imageAlt: pageHeroes.solutions.alt,
   },
   restaurants: {
-    title: "Restaurant Pollution Control Units",
+    title: "Restaurant Exhaust Filtration & Odor Control",
     description:
-      "Restaurant kitchen pollution control units and odor abatement for new builds and remodels. Control grease, smoke, and cooking odors. Quote direct.",
+      "Plan restaurant exhaust filtration and odor abatement around cooking equipment, airflow and discharge location. Discuss MOAS and EPFA with Molitron.",
     path: "/solutions/restaurants",
-    image: "/images/heroes/restaurants.jpg",
-    imageAlt: "Restaurant commercial kitchen exhaust pollution control",
-    keywords: [
-      ...seoKeywords.core,
-      "restaurant pollution control unit",
-      "restaurant kitchen exhaust odor",
-      "commercial kitchen PCU restaurant",
-    ],
+    image: pageHeroes.restaurants.src,
+    imageAlt: pageHeroes.restaurants.alt,
   },
   airports: {
     title: "Airport & Hotel Kitchen Exhaust Control",
     description:
-      "Pollution control and odor abatement for airport concessions and hotel kitchens, with installation history in Denver International Airport foodservice.",
+      "Plan filtration and odor abatement for airport concessions and hotel kitchens, including shared-building exhaust conditions and service access.",
     path: "/solutions/airports-hospitality",
-    image: "/images/heroes/airports-hospitality.jpg",
-    imageAlt: "Airport hospitality kitchen exhaust pollution control",
-    keywords: [
-      ...seoKeywords.core,
-      "airport kitchen exhaust control",
-      "hotel kitchen pollution control",
-      "hospitality exhaust odor control",
-    ],
+    image: pageHeroes.airports.src,
+    imageAlt: pageHeroes.airports.alt,
   },
   cannabis: {
-    title: "Cannabis Facility Odor Control Exhaust",
+    title: "Cannabis Odor Concerns & Application Review",
     description:
-      "Odor abatement and exhaust filtration for cannabis facilities. Explore Molitron MOAS & EPFA for odor-sensitive commercial applications. Talk to us.",
+      "Discuss cannabis facility odor concerns with Molitron. Equipment suitability requires review of the process, exhaust conditions and project requirements.",
     path: "/solutions/cannabis",
-    image: "/images/heroes/cannabis.jpg",
-    imageAlt: "Cannabis facility odor control and exhaust treatment",
-    keywords: [
-      "cannabis odor control system",
-      "cannabis facility exhaust filtration",
-      "commercial odor abatement",
-      ...seoKeywords.moas,
-    ],
+    image: pageHeroes.cannabis.src,
+    imageAlt: pageHeroes.cannabis.alt,
   },
   industrial: {
     title: "Industrial & Specialty Exhaust Review",
     description:
-      "Application review for industrial and specialty exhaust concerns. Define the process, airstream, airflow, discharge, and project requirements before selecting equipment.",
+      "Discuss industrial or specialty exhaust concerns with Molitron. Review the process, airstream and site requirements before considering equipment.",
     path: "/solutions/industrial",
-    image: "/images/heroes/solutions.jpg",
-    imageAlt: "Rooftop exhaust equipment in a commercial and industrial setting",
-    keywords: [
-      "industrial exhaust odor control",
-      "specialty facility exhaust review",
-      "commercial air pollution control equipment",
-      ...seoKeywords.moas,
-      ...seoKeywords.epfa,
-    ],
+    image: pageHeroes.industrial.src,
+    imageAlt: pageHeroes.industrial.alt,
   },
-  codes: {
-    title: "Kitchen Exhaust Codes & Compliance",
+  about: {
+    title: "About Our Family Business",
     description:
-      "Guide to commercial-kitchen exhaust codes: sidewall discharge, equipment listings, grease, smoke, odor control, and California air-district requirements.",
-    path: "/codes-compliance",
-    image: "/images/heroes/codes-compliance.jpg",
-    imageAlt: "Commercial kitchen exhaust code compliance guidance",
-    keywords: [
-      ...seoKeywords.core,
-      "kitchen exhaust code compliance",
-      "sidewall discharge exhaust",
-      "UL 8782 pollution control unit",
-      "ETL listed odor abatement system",
-      "SCAQMD kitchen exhaust",
-    ],
-  },
-  service: {
-    title: "Kitchen Exhaust Service & Parts",
-    description:
-      "Service and parts for Molitron MOAS odor abatement and EPFA pollution control units. Filters, neutralizer support, and technical help—direct manufacturer.",
-    path: "/service-parts",
-    image: "/images/heroes/service-parts.jpg",
-    imageAlt: "Service and parts for commercial kitchen exhaust control equipment",
-    keywords: [
-      "kitchen exhaust filter replacement",
-      "odor abatement system parts",
-      "pollution control unit service",
-      ...seoKeywords.core,
-    ],
+      "Meet the family business behind MOAS and EPFA. Molitron has manufactured commercial kitchen pollution control equipment in Colorado since 1986.",
+    path: "/about",
+    image: pageHeroes.about.src,
+    imageAlt: pageHeroes.about.alt,
   },
   resources: {
-    title: "Technical Resources & Product Documents",
+    title: "MOAS & EPFA Manuals & Brochures",
     description:
-      "Find current Molitron MOAS and EPFA brochures, planning guides, manuals, listing context, online technical references, and legacy service documents.",
+      "Find MOAS and EPFA brochures, installation planning guides and maintenance information. Read online or open the current product PDFs.",
     path: "/resources",
-    image: "/images/heroes/products.jpg",
-    imageAlt: "Molitron pollution-control equipment and technical documentation",
-    keywords: [
-      "Molitron technical documents",
-      "MOAS brochure",
-      "EPFA manual",
-      "pollution control unit resources",
-      ...seoKeywords.core,
-    ],
+    image: pageHeroes.resources.src,
+    imageAlt: pageHeroes.resources.alt,
+  },
+  codes: {
+    title: "MOAS & EPFA Equipment Listings",
+    description:
+      "Review the MOAS ETL listing, the UL listing for covered EPFA models, and the distinction between equipment listings and project approval.",
+    path: "/codes-compliance",
+    image: pageHeroes.codes.src,
+    imageAlt: pageHeroes.codes.alt,
+  },
+  service: {
+    title: "MOAS & EPFA Service, Parts & Filters",
+    description:
+      "Contact Molitron about MOAS Odor Neutralizer Solution, EPFA filter media and installed-equipment support. Have the model and serial number ready.",
+    path: "/service-parts",
+    image: pageHeroes.service.src,
+    imageAlt: pageHeroes.service.alt,
+  },
+  contact: {
+    title: "Contact & Product Support",
+    description:
+      "Talk directly with Molitron about a quote, equipment selection or service for an installed MOAS or EPFA. Call 303-969-8888 or send an inquiry.",
+    path: "/contact",
+    image: pageHeroes.contact.src,
+    imageAlt: pageHeroes.contact.alt,
   },
 } as const satisfies Record<string, PageSeo>;
 
-/** Full social title including brand (for OG, often slightly longer OK) */
-export function ogTitle(pageKey: keyof typeof pagesSeo): string {
-  const t = pagesSeo[pageKey].title;
-  if (/molitron/i.test(t)) return t;
-  // Keep under ~60 when possible
-  const withBrand = `${t} | Molitron`;
-  return withBrand.length <= 60 ? withBrand : t;
-}
-
 export function metadataFor(pageKey: keyof typeof pagesSeo): Metadata {
-  const page = pagesSeo[pageKey];
-  return buildMetadata({
-    ...page,
-    title: ogTitle(pageKey),
-  });
+  return buildMetadata(pagesSeo[pageKey]);
 }

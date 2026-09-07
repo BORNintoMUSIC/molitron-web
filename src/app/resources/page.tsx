@@ -32,7 +32,7 @@ export default function ResourcesPage() {
         <div className="grid gap-8 md:grid-cols-2">
           <Link href="/codes-compliance" className="online-guide">
             <div>
-              <p className="eyebrow">Codes & listings</p>
+              <p className="eyebrow">Equipment listings</p>
               <h3>Listing scope & project review</h3>
             </div>
             <Arrow diagonal />

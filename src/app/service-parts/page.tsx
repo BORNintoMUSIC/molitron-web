@@ -57,8 +57,8 @@ export default function ServicePartsPage() {
               </div>
               <p className="mt-6 text-base leading-relaxed text-muted">
                 {slug === "moas"
-                  ? "Odor Neutralizer Solution, refills and installed-equipment questions."
-                  : "Filter media, monitoring and qualified maintenance guidance."}
+                  ? "Contact Molitron for Odor Neutralizer Solution refills and questions about your installed MOAS."
+                  : "Contact Molitron about EPFA replacement filter media, status indications and qualified maintenance."}
               </p>
               <Link
                 href={"/contact?goal=service&product=" + slug}
@@ -137,7 +137,7 @@ export default function ServicePartsPage() {
                 Download legacy brochure (PDF) ↓
               </a>
               <p className="pb-4 text-sm leading-relaxed text-muted">
-                Equipment identification and broad historical context.
+                Identify an existing Enviro-Clean installation.
               </p>
               <a
                 href="/docs/enviro-clean-air-scrubber-legacy-technical-reference-2026.pdf"
@@ -149,8 +149,8 @@ export default function ServicePartsPage() {
                 Download legacy technical reference (PDF) ↓
               </a>
               <p className="pb-2 text-sm leading-relaxed text-muted">
-                Historical specifications, documented relationships, and
-                installed-unit records.
+                Historical specifications and records for installed Enviro-Clean
+                equipment.
               </p>
             </div>
           </div>

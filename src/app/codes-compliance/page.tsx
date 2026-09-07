@@ -22,7 +22,7 @@ export default function CodesCompliancePage() {
       <Section id="product-listings" tone="white">
         <SectionHeading
           eyebrow="Listing scope"
-          title="Check the covered equipment."
+          title="What does the equipment listing cover?"
         />
         <div className="grid gap-10 md:grid-cols-2">
           {[

@@ -117,7 +117,7 @@ export function ProductGallery({
           {active + 1} / {count}
         </span>
         <span className="absolute bottom-3 right-3 z-[2] rounded-md border border-border bg-card/95 px-2.5 py-1 text-xs font-bold text-primary">
-          Inspect image
+          Enlarge photo
         </span>
       </div>
 

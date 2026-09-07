@@ -15,7 +15,7 @@ import { Section, SectionHeading } from "@/components/Section";
 
 import { epfaModels, getProduct, products } from "@/lib/products";
 import { metadataFor } from "@/lib/seo";
-import { site } from "@/lib/site";
+import { productStructuredData } from "@/lib/structured-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -40,26 +40,9 @@ export default async function ProductPage({ params }: Props) {
   const product = getProduct(slug);
   if (!product) notFound();
 
-  const productLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    description: product.summary,
-    image: product.gallery.map((img) => `${site.url}${img.src}`),
-    brand: {
-      "@type": "Brand",
-      name: site.name,
-    },
-    manufacturer: {
-      "@type": "Organization",
-      name: site.legalName,
-    },
-    category: "Commercial kitchen exhaust pollution control",
-  };
-
   return (
     <>
-      <JsonLd data={productLd} />
+      <JsonLd data={productStructuredData(product)} />
       <ProductHero product={product} />
       <SectionNav
         label={product.shortName}
@@ -77,8 +60,8 @@ export default async function ProductPage({ params }: Props) {
             <h2>Where {product.shortName} fits</h2>
             <p>
               {product.slug === "moas"
-                ? "For kitchens where cooking odor affects neighbors or occupied spaces, including sensitive sidewall and ground-level discharge. Use alone or alongside EPFA."
-                : "Dry filtration for light-duty kitchen exhaust. Filtration uses no process water, circulation pumps or chemical dosing."}
+                ? "For kitchens where cooking odor affects neighbors or occupied spaces, including sensitive sidewall and ground-level discharge. The wall-mounted cabinet stays outside the duct. MOAS can operate alone or alongside EPFA."
+                : "EPFA sits in the exhaust path between the kitchen hood and fan. Dry filtration uses no process water, circulation pumps or chemical dosing."}
             </p>
           </div>
           <div>
@@ -86,7 +69,7 @@ export default async function ProductPage({ params }: Props) {
             <p>
               {product.slug === "moas"
                 ? "Coordinate nozzle placement, utilities, exhaust-fan interlock and access. An optional 10-gallon solution container adds an audible low-level refill alert."
-                : "Coordinate duct, support, service access, drains, fire suppression, monitoring, fan selection and AHJ review."}
+                : "Coordinate duct, support, service access, drains, fire suppression, monitoring and fan selection with the project team and authority having jurisdiction (AHJ)."}
             </p>
           </div>
         </div>
@@ -125,6 +108,9 @@ export default async function ProductPage({ params }: Props) {
             </tbody>
           </table>
         </div>
+        {product.slug === "epfa" && (
+          <h3 className="mt-6 text-lg font-medium">Does EPFA provide odor control?</h3>
+        )}
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">
           {product.slug === "moas"
             ? "Performance figures are qualified as up to values. Results vary with the cooking process, hood performance, exhaust configuration, installation, dwell time, and system calibration."
@@ -229,7 +215,7 @@ export default async function ProductPage({ params }: Props) {
             <SectionHeading
               eyebrow={product.shortName + " / Details"}
               title="Equipment & installations."
-              description="Open a photograph to inspect the details."
+              description="Enlarge a photo to see the equipment details."
             />
             <p className="text-sm leading-relaxed text-muted">
               Equipment details vary by configuration; use current documents for
@@ -250,12 +236,11 @@ export default async function ProductPage({ params }: Props) {
         />
         <CustomerLogoGrid references={product.installs} />
         <p className="mt-6 text-sm text-muted">
-          Compare with{" "}
           <Link
             href={`/products/${product.slug === "moas" ? "epfa" : "moas"}`}
             className="font-semibold text-accent hover:underline"
           >
-            View {product.slug === "moas" ? "EPFA" : "MOAS"}
+            Explore {product.slug === "moas" ? "EPFA dry filtration" : "MOAS odor abatement"}
           </Link>
           .
         </p>

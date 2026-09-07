@@ -50,7 +50,7 @@ export const products: Product[] = [
     shortName: "MOAS",
     tagline: "Commercial-kitchen exhaust odor abatement, planned for each application.",
     summary:
-      "The Molitron Odor Abatement System (MOAS) atomizes Odor Neutralizer Solution through remote misting nozzles in commercial-kitchen exhaust. The self-contained, wall-mounted system can operate on its own or alongside EPFA filtration, with each application evaluated for its project conditions.",
+      "The Molitron Odor Abatement System (MOAS) treats cooking odor in commercial kitchen exhaust using remote nozzles that mist Odor Neutralizer Solution.",
     certifications: [
       "ETL Listed for the U.S. and Canada",
       "Intertek Report 101453585DEN-002",
@@ -105,13 +105,13 @@ export const products: Product[] = [
     documents: [
       {
         title: "MOAS Product Brochure (2026)",
-        description: "Approved product brochure with qualified performance information, system operation, utilities, and project-planning considerations.",
+        description: "How MOAS works, its published performance limits, and the utilities needed for project planning.",
         href: "/docs/moas-brochure-2026.pdf",
         kind: "brochure",
       },
       {
         title: "MOAS Engineering & Installation Planning Guide (Rev A)",
-        description: "Published planning guide for cabinet, nozzle, utility, tubing, access, and exhaust-fan interlock coordination. Not for construction.",
+        description: "Plan the cabinet location, nozzles, utilities, tubing, service access and exhaust-fan interlock. Not for construction.",
         href: "/docs/moas-engineering-specs-installation-2026.pdf",
         kind: "specs",
       },
@@ -161,7 +161,7 @@ export const products: Product[] = [
     shortName: "EPFA",
     tagline: "Three-stage dry filtration for light-duty commercial-kitchen exhaust.",
     summary:
-      "The Molitron Enviro-Pak Filter Assembly (EPFA) is an in-line pollution control unit for filtering smoke particulate and grease vapor from light-duty commercial-kitchen exhaust. Its dry filter path uses a MERV 9 pre-filter, a MERV 14 high-efficiency stage, and either a MERV 14 final stage or an optional carbon final stage.",
+      "The Enviro-Pak Filter Assembly (EPFA) is Molitron’s pollution control unit for light-duty commercial kitchen exhaust. Three dry filter stages remove smoke particulate and grease vapor.",
     certifications: [
       "UL Listed under File MH45752",
       "Models EPFA-24 through EPFA-144",
@@ -216,13 +216,13 @@ export const products: Product[] = [
     documents: [
       {
         title: "EPFA Product & Planning Brochure (Rev A)",
-        description: "Published brochure covering filter stages, model data, service clearances, monitoring, and project-interface planning. Not for construction.",
+        description: "Filter stages, model specifications, service clearances and monitoring requirements for EPFA planning. Not for construction.",
         href: "/docs/epfa-brochure-2026.pdf",
         kind: "brochure",
       },
       {
         title: "EPFA Installation, Operation & Maintenance Manual (Rev A)",
-        description: "Current manual for receiving, installation coordination, monitoring, factory startup, maintenance, filter service, cleaning, troubleshooting, warranty, and equipment records.",
+        description: "Receiving, installation, startup, monitoring and qualified maintenance, with troubleshooting, warranty information and equipment records.",
         href: "/docs/epfa-operation-maintenance-manual-2026.pdf",
         kind: "manual",
       },

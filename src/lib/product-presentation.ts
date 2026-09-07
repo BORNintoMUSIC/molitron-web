@@ -5,8 +5,6 @@ export const productPresentation = {
   moas: {
     role: "Odor abatement",
     headline: "Odor treatment in the exhaust.",
-    intro:
-      "A wall-mounted system that delivers Odor Neutralizer Solution through remote misting nozzles in commercial-kitchen exhaust.",
     image: "/images/moas/moas-closed-professional-gpt2.png",
     openImage: "/images/remastered/moas-open-v2.webp",
     features: [
@@ -22,8 +20,6 @@ export const productPresentation = {
   epfa: {
     role: "Dry filtration",
     headline: "Three stages of dry filtration.",
-    intro:
-      "An in-line filter assembly for smoke particulate and grease vapor in light-duty commercial-kitchen exhaust.",
     image: "/images/remastered/epfa-closed-v2.webp",
     openImage: "/images/remastered/epfa-open-v2.webp",
     features: [
@@ -41,7 +37,6 @@ export const productPresentation = {
   {
     role: string;
     headline: string;
-    intro: string;
     image: string;
     openImage: string;
     features: string[];
