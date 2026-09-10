@@ -7,6 +7,7 @@ import { Arrow } from "./Arrow";
 import styles from "./ProductExplorer.module.css";
 import { productPresentation } from "@/lib/product-presentation";
 import type { Product } from "@/lib/products";
+import { MoasModelStage } from "../model/MoasModelStage";
 
 const moasSteps = [
   {
@@ -264,7 +265,13 @@ export function ProductExplorer({
               <span>{product.toUpperCase()} / SYSTEM EXPLORER</span>
               <span>0{activeStep + 1} — 03</span>
             </div>
-            <div key={product + activeStep} className={styles.mediaContent}>
+            {product === "moas" && activeStep < 2 ? (
+              <MoasModelStage view={activeStep === 0 ? "exterior" : "interior"}>
+                <div key={product + activeStep} className={styles.mediaContent}>
+                  <Image src={step.image!} alt={step.alt} fill sizes="(max-width: 767px) 85vw, (max-width: 1279px) 54vw, 690px" quality={85} className={styles.equipment} />
+                </div>
+              </MoasModelStage>
+            ) : <div key={product + activeStep} className={styles.mediaContent}>
               {step.image ? (
                 <Image
                   src={step.image}
@@ -279,7 +286,7 @@ export function ProductExplorer({
               ) : (
                 <FilterDiagram />
               )}
-            </div>
+            </div>}
             <div className={styles.mediaFooter}>
               <span>{step.detail}</span>
             </div>
@@ -328,7 +335,7 @@ export function ProductExplorer({
             <p className={styles.note}>
               {activeStep === 2
                 ? "Illustrative layout. Final installation is project-specific."
-                : "Product photography. Equipment details may vary by configuration."}
+                : "Equipment details may vary by configuration. Use current documents for planning."}
             </p>
           </div>
         </div>
