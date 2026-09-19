@@ -18,7 +18,7 @@ export function MoasOverview() {
       <figure className={styles.film}>
         <div className={styles.filmHeader}>
           <span>Inside a MOAS installation</span>
-          <span>2 min 20 sec <span aria-hidden="true">/</span> Video walkthrough</span>
+          <span>2 min 3 sec <span aria-hidden="true">/</span> Video walkthrough</span>
         </div>
         <video
           className={styles.video}
@@ -31,12 +31,18 @@ export function MoasOverview() {
           aria-label="MOAS video walkthrough for commercial kitchen owners"
           aria-describedby="moas-video-caption"
         >
-          <source src="/videos/moas-overview.mp4" type="video/mp4" />
-          <a href="/videos/moas-overview.mp4">Open the MOAS video walkthrough</a>.
+          <source src="/videos/moas-overview.mp4?v=04" type="video/mp4" />
+          <track
+            src="/videos/moas-overview-v04.vtt"
+            kind="captions"
+            srcLang="en"
+            label="English"
+          />
+          <a href="/videos/moas-overview.mp4?v=04">Open the MOAS video walkthrough</a>.
         </video>
         <figcaption id="moas-video-caption" className={styles.caption}>
           <span>From the kitchen hood to system connections and service access.</span>
-          <a href="/videos/moas-overview.mp4">Open video separately ↗</a>
+          <a href="/videos/moas-overview.mp4?v=04">Open video separately ↗</a>
         </figcaption>
       </figure>
       <div className={styles.nextStep}>
