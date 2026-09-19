@@ -7,6 +7,7 @@ import { CustomerLogoGrid } from "@/components/CustomerLogoGrid";
 
 import { JsonLd } from "@/components/JsonLd";
 import { ProductHero } from "@/components/ProductHero";
+import { MoasOverview } from "@/components/MoasOverview";
 import { ProductExplorer } from "@/components/home/ProductExplorer";
 import { SectionNav } from "@/components/SectionNav";
 import { ProductResources } from "@/components/ProductResources";
@@ -48,6 +49,9 @@ export default async function ProductPage({ params }: Props) {
         label={product.shortName}
         items={[
           { href: "#overview", label: "Overview" },
+          ...(product.slug === "moas"
+            ? [{ href: "#video-overview", label: "Watch overview" }]
+            : []),
           { href: "#system-explorer", label: "Look inside" },
           { href: "#specifications", label: "Specifications" },
           { href: "#documents", label: "Documents" },
@@ -75,6 +79,7 @@ export default async function ProductPage({ params }: Props) {
         </div>
       </Section>
 
+      {product.slug === "moas" && <MoasOverview />}
       <ProductExplorer product={product.slug} />
       <Section id="specifications">
         <SectionHeading

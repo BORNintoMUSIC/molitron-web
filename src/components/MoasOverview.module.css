@@ -1,0 +1,117 @@
+.section {
+  background: #173f35;
+  color: #f4f6ec;
+}
+
+.heading {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: end;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  color: #c3d1c2;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.heading h2 {
+  max-width: 530px;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+}
+
+.intro {
+  max-width: 440px;
+  color: #c3d1c2;
+  font-size: 1.075rem;
+  line-height: 1.65;
+}
+
+.film {
+  overflow: hidden;
+  border: 1px solid #ffffff30;
+  border-radius: 4px;
+  background: #102b25;
+  box-shadow: 0 20px 60px #061c2240;
+}
+
+.filmHeader,
+.caption {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  padding: 16px 22px;
+  font-size: 0.85rem;
+}
+
+.filmHeader > :first-child {
+  font-weight: 600;
+}
+
+.filmHeader > :last-child,
+.caption {
+  color: #c3d1c2;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #071813;
+}
+
+.caption a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.video:focus-visible,
+.caption a:focus-visible {
+  outline: 3px solid #e4edc3;
+  outline-offset: -3px;
+}
+
+.nextStep {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.nextStep h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.nextStep p {
+  color: #c3d1c2;
+  line-height: 1.5;
+}
+
+@media (max-width: 767px) {
+  .heading {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .nextStep {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .filmHeader,
+  .caption {
+    padding: 14px;
+  }
+}

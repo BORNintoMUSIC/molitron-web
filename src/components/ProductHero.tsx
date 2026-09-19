@@ -54,8 +54,11 @@ export function ProductHero({ product }: { product: Product }) {
                 Discuss {product.shortName}
                 <Arrow diagonal />
               </Button>
-              <Button href="#system-explorer" variant="secondary">
-                Look inside
+              <Button
+                href={product.slug === "moas" ? "#video-overview" : "#system-explorer"}
+                variant="secondary"
+              >
+                {product.slug === "moas" ? "Watch overview" : "Look inside"}
               </Button>
             </div>
             <p className="product-listing">
