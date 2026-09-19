@@ -25,7 +25,7 @@ export function MoasOverview() {
           controls
           playsInline
           preload="none"
-          poster="/images/moas/moas-overview-poster.webp"
+          poster="/images/moas/moas-overview-poster-v04.webp"
           width={1920}
           height={1080}
           aria-label="MOAS video walkthrough for commercial kitchen owners"
