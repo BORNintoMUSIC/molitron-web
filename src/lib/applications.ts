@@ -5,8 +5,8 @@ export const applications = [
     href: "/solutions/restaurants",
     title: "Restaurants",
     description: "New kitchens, remodels, sensitive discharge locations.",
-    image: pageHeroes.restaurants.src,
-    alt: "Illustrative restaurant rooftop setting with Molitron equipment",
+    image: "/images/moas/moas-commercial-kitchen-v1.webp",
+    alt: "Illustrative wall-mounted MOAS cabinet and solution reservoir in a commercial kitchen",
   },
   {
     key: "airports",
