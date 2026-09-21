@@ -1,5 +1,6 @@
 import { Button } from "./Button";
 import { Section } from "./Section";
+import { MoasVideoComparison } from "./MoasVideoComparison";
 import styles from "./MoasOverview.module.css";
 
 export function MoasOverview() {
@@ -15,36 +16,7 @@ export function MoasOverview() {
           consider when planning odor control for your commercial kitchen.
         </p>
       </div>
-      <figure className={styles.film}>
-        <div className={styles.filmHeader}>
-          <span>Inside a MOAS installation</span>
-          <span>2 min 3 sec <span aria-hidden="true">/</span> Video walkthrough</span>
-        </div>
-        <video
-          className={styles.video}
-          controls
-          playsInline
-          preload="none"
-          poster="/images/moas/moas-overview-wall-poster-v04.webp"
-          width={1920}
-          height={1080}
-          aria-label="MOAS video walkthrough for commercial kitchen owners"
-          aria-describedby="moas-video-caption"
-        >
-          <source src="/videos/moas-overview.mp4?v=04" type="video/mp4" />
-          <track
-            src="/videos/moas-overview-v04.vtt"
-            kind="captions"
-            srcLang="en"
-            label="English"
-          />
-          <a href="/videos/moas-overview.mp4?v=04">Open the MOAS video walkthrough</a>.
-        </video>
-        <figcaption id="moas-video-caption" className={styles.caption}>
-          <span>From the kitchen hood to system connections and service access.</span>
-          <a href="/videos/moas-overview.mp4?v=04">Open video separately ↗</a>
-        </figcaption>
-      </figure>
+      <MoasVideoComparison />
       <div className={styles.nextStep}>
         <div>
           <h3>Let’s talk about your kitchen.</h3>

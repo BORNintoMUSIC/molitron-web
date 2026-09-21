@@ -43,6 +43,56 @@
   box-shadow: 0 20px 60px #061c2240;
 }
 
+.comparisonHint {
+  margin-bottom: 14px;
+  color: #c3d1c2;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.tabs {
+  display: inline-flex;
+  gap: 6px;
+  padding: 5px;
+  margin-bottom: 18px;
+  border: 1px solid #ffffff30;
+  border-radius: 4px;
+  background: #102b25;
+}
+
+.tab {
+  min-width: 150px;
+  min-height: 48px;
+  padding: 10px 22px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: #c3d1c2;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tab:hover {
+  border-color: #c3d1c2;
+  color: #f4f6ec;
+}
+
+.tab[aria-selected="true"] {
+  background: #f4f6ec;
+  border-color: #f4f6ec;
+  color: #173f35;
+}
+
+.tab:focus-visible,
+.panel:focus-visible {
+  outline: 3px solid #e4edc3;
+  outline-offset: 3px;
+}
+
+.panel[hidden] {
+  display: none;
+}
+
 .filmHeader,
 .caption {
   display: flex;
@@ -100,6 +150,16 @@
 }
 
 @media (max-width: 767px) {
+  .tabs {
+    display: flex;
+  }
+
+  .tab {
+    flex: 1;
+    min-width: 0;
+    padding-inline: 12px;
+  }
+
   .heading {
     grid-template-columns: 1fr;
     gap: 20px;
