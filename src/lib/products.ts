@@ -62,7 +62,7 @@ export const products: Product[] = [
       "Up to 6,000 CFM per two-nozzle system; final configuration and calibration are project-specific",
       "Wall-mounted stainless cabinet; only the misting nozzles go in the duct",
       "Runs standalone or integrates with the Enviro-Pak Filter Assembly (EPFA)",
-      "Optional 10-gallon solution container with low-level audible refill alert",
+      "Standard external solution container holds up to 10 gallons; an internal cabinet buzzer signals low solution",
     ],
     specs: [
       { label: "Capacity", value: "Up to 6,000 CFM per system (two misting nozzles)" },
@@ -70,7 +70,7 @@ export const products: Product[] = [
       { label: "Smoke reduction", value: "Up to 50%; actual results vary by project conditions" },
       { label: "Method", value: "Atomizes Odor Neutralizer Solution through remote misting nozzles" },
       { label: "Cabinet", value: '18 Ga stainless steel — 24″ W × 32″ H × 8″ D, ~100 lbs' },
-      { label: "Project electrical requirement", value: "120 VAC, 15 A dedicated circuit" },
+      { label: "Project electrical requirement", value: "120 VAC, 20 A dedicated circuit for MOAS" },
       { label: "Listed equipment rating", value: "120 V, 3.5 A, 60 Hz" },
       { label: "Water", value: '¼″ copper cold water supply, 80 PSI' },
       {
@@ -104,8 +104,8 @@ export const products: Product[] = [
     ],
     documents: [
       {
-        title: "MOAS Product Brochure (2026)",
-        description: "How MOAS works, its published performance limits, and the utilities needed for project planning.",
+        title: "Molitron Odor Abatement System Product Brochure",
+        description: "Version 3, Review 03 — September 22, 2026. System dimensions, remote nozzle layout, building connections, and qualified performance information.",
         href: "/docs/moas-brochure-2026.pdf",
         kind: "brochure",
       },

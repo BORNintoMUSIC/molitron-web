@@ -72,7 +72,7 @@ export default async function ProductPage({ params }: Props) {
             <h3>Plan the installation</h3>
             <p>
               {product.slug === "moas"
-                ? "Coordinate nozzle placement, utilities, exhaust-fan interlock and access. An optional 10-gallon solution container adds an audible low-level refill alert."
+                ? "Coordinate nozzle placement, utilities, exhaust-fan interlock and access. The standard external container holds up to 10 gallons; an internal cabinet buzzer signals low solution."
                 : "Coordinate duct, support, service access, drains, fire suppression, monitoring and fan selection with the project team and authority having jurisdiction (AHJ)."}
             </p>
           </div>
