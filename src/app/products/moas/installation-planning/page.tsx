@@ -44,7 +44,7 @@ const technicalData = [
     "ETL Listed for the U.S. and Canada under Intertek Report 101453585DEN-002; the report identifies UL 197 and CSA C22.2 No. 109",
   ],
   ["Listed equipment rating", "120 V, 3.5 A, 60 Hz"],
-  ["Project electrical requirement", "120 VAC, 15 A dedicated circuit"],
+  ["Project electrical requirement", "120 VAC, 20 A dedicated circuit for MOAS"],
   ["Cold-water supply", "1/4 in. at 80 psi"],
   ["Remote solution tubing", "1/4-in. OD"],
   ["Remote air tubing", "3/8-in. OD"],
@@ -65,7 +65,7 @@ const technicalData = [
     "18-gauge stainless steel; 24 in. W × 32 in. H × 8 in. D; approximately 100 lb",
   ],
   [
-    "Optional solution container",
+    "Standard solution container",
     "16-gauge stainless steel; 10 gal.; 24 in. W × 12 in. H × 8 in. D; approximately 20 lb empty and 100 lb full",
   ],
   [
@@ -243,7 +243,7 @@ export default function MoasInstallationPlanningPage() {
                 and AHJ contacts.
               </li>
               <li>
-                Proposed cabinet and optional solution-container locations.
+                Proposed cabinet and standard solution-container locations.
               </li>
               <li>Available electrical and cold-water utilities.</li>
               <li>
@@ -259,7 +259,7 @@ export default function MoasInstallationPlanningPage() {
         <SectionHeading
           eyebrow="System relationship"
           title="Coordinate the MOAS components as one project system"
-          description="The wall-mounted cabinet supplies separate air and solution lines to two remote misting nozzles in the exhaust path. The optional solution container, utilities, fan-status relationship, and service access are coordinated with that path."
+          description="The wall-mounted cabinet supplies separate air and solution lines to two remote misting nozzles in the exhaust path. The standard solution container, utilities, fan-status relationship, and service access are coordinated with that path."
         />
         <ol className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {[
@@ -281,7 +281,7 @@ export default function MoasInstallationPlanningPage() {
             [
               "04",
               "Cabinet and utilities",
-              "Coordinate cold water, dedicated electrical supply, optional container, ventilation, and fan interlock.",
+              "Coordinate cold water, dedicated electrical supply, standard container, ventilation, and fan interlock.",
             ],
           ].map(([number, title, body]) => (
             <li key={number} className="surface-card surface-card-static p-5">

@@ -1,6 +1,6 @@
 # Public Claims Register
 
-**Last reviewed:** July 15, 2026
+**Last reviewed:** September 22, 2026 (MOAS brochure and owner-confirmed supply/container corrections; other records retain their stated review dates)
 
 This register separates owner-confirmed statements from documentation-derived claims and unresolved technical items. Public copy must remain consistent with this file and the visible product documentation.
 
@@ -31,7 +31,8 @@ The street address is not approved for public display.
 
 Current owner-confirmed product facts:
 
-- 120 VAC, 15 A dedicated circuit
+- 120 VAC, 20 A dedicated circuit
+- Standard external solution container holds up to 10 gallons. The low-solution buzzer is internal to the cabinet. These and the 20 A MOAS-only circuit requirement are owner-confirmed in the September 22, 2026 brochure revision.
 - Current neutralizing product name: Odor Neutralizer Solution
 
 Current controlled listing record:
@@ -41,7 +42,7 @@ Current controlled listing record:
 - The report identifies the equipment rating as 120 V, 3.5 A, 60 Hz.
 - The report describes MOAS as commercial, indoor-use, permanently connected equipment.
 
-Use `ETL Listed` rather than a generic or ambiguous certification phrase. Do not state that MOAS is listed or tested to UL 710 or UL 710 Clause 43; the current controlled report does not support that claim. Do not substitute the listed equipment rating for the separately confirmed 120 VAC, 15 A dedicated-circuit project requirement.
+Use `ETL Listed` rather than a generic or ambiguous certification phrase. Do not state that MOAS is listed or tested to UL 710 or UL 710 Clause 43; the current controlled report does not support that claim. Do not substitute the listed equipment rating for the separately confirmed 120 VAC, 20 A dedicated-circuit project requirement.
 
 Allowed with adjacent qualification:
 
@@ -129,7 +130,7 @@ Do not add unresolved values to public copy.
 
 The current public active-product technical PDFs are:
 
-- MOAS brochure, `MOAS-BRO-2026`, Rev B, at `/docs/moas-brochure-2026.pdf`; visible product context is maintained on `/products/moas`.
+- Molitron Odor Abatement System brochure, V3 Review 03 (September 22, 2026), at `/docs/moas-brochure-2026.pdf`; visible product context is maintained on `/products/moas`.
 - MOAS Engineering & Installation Planning Guide, Rev A, at `/docs/moas-engineering-specs-installation-2026.pdf`; its HTML companion is `/products/moas/installation-planning`.
 - EPFA Product & Planning Brochure, `EPFA-BRO-2026`, Rev A, at `/docs/epfa-brochure-2026.pdf`; visible planning context is maintained on `/products/epfa`.
 - EPFA Installation, Operation & Maintenance Manual, `EPFA-IOM-2026`, Rev A, at `/docs/epfa-operation-maintenance-manual-2026.pdf`; its HTML companion is `/products/epfa/operation-maintenance`.
