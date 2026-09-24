@@ -1,6 +1,6 @@
 # Public Claims Register
 
-**Last reviewed:** September 22, 2026 (MOAS brochure and owner-confirmed supply/container corrections; other records retain their stated review dates)
+**Last reviewed:** September 24, 2026 (approved MOAS V4 brochure; other records retain their stated review dates)
 
 This register separates owner-confirmed statements from documentation-derived claims and unresolved technical items. Public copy must remain consistent with this file and the visible product documentation.
 
@@ -130,7 +130,7 @@ Do not add unresolved values to public copy.
 
 The current public active-product technical PDFs are:
 
-- Molitron Odor Abatement System brochure, V3 Review 03 (September 22, 2026), at `/docs/moas-brochure-2026.pdf`; visible product context is maintained on `/products/moas`.
+- Molitron Odor Abatement System brochure, V4 Review 01 (September 24, 2026), at `/docs/moas-brochure-2026.pdf`; visible product context is maintained on `/products/moas`.
 - MOAS Engineering & Installation Planning Guide, Rev A, at `/docs/moas-engineering-specs-installation-2026.pdf`; its HTML companion is `/products/moas/installation-planning`.
 - EPFA Product & Planning Brochure, `EPFA-BRO-2026`, Rev A, at `/docs/epfa-brochure-2026.pdf`; visible planning context is maintained on `/products/epfa`.
 - EPFA Installation, Operation & Maintenance Manual, `EPFA-IOM-2026`, Rev A, at `/docs/epfa-operation-maintenance-manual-2026.pdf`; its HTML companion is `/products/epfa/operation-maintenance`.

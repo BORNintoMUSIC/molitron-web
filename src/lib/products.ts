@@ -105,7 +105,7 @@ export const products: Product[] = [
     documents: [
       {
         title: "Molitron Odor Abatement System Product Brochure",
-        description: "Version 3, Review 03 — September 22, 2026. System dimensions, remote nozzle layout, building connections, and qualified performance information.",
+        description: "Version 4, Review 01 — September 24, 2026. System dimensions, remote nozzle layout, building connections, and qualified performance information.",
         href: "/docs/moas-brochure-2026.pdf",
         kind: "brochure",
       },
