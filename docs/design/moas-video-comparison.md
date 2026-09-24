@@ -1,5 +1,13 @@
 # MOAS video comparison — September 21, 2026
 
+## Update — September 24, 2026
+
+The user selected the current (Version 3.0) walkthrough. The product page now renders that video directly with its existing poster, English captions, native controls and separate-video link. Version 2.0, both version tabs and the comparison prompt have been removed from the page. The earlier comparison implementation below is historical.
+
+Delivery continues on the same Preview branch and short Vercel URL. Read-only domain inspection reconfirmed that `molitron-web.vercel.app` is the project's sole domain and follows `codex/homepage-visual-prototype`. The protected public domains and their existing site remain untouched.
+
+## Original comparison
+
 The user requested both MOAS overview videos in the existing product-page video section, with tabs labeled **Version 2.0** and **Version 3.0**, until they choose which film to retain.
 
 - Route: `/products/moas#video-overview`.
