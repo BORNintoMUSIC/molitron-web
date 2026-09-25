@@ -10,6 +10,7 @@ export type CabinetAsset = {
   meshes: { id: string; label: string; partId: string; object: Mesh }[];
   parts: { id: string; label: string; sourcePath: string }[];
   door: Object3D | null;
+  lid: Object3D | null;
   triangles: number;
   materials: number;
   center: Vector3;
@@ -18,7 +19,7 @@ export type CabinetAsset = {
   frameBox: Box3;
 };
 
-// This first trial intentionally accepts a single self-contained GLB.
+// The viewer accepts a single self-contained GLB.
 // Refuse remote resources so choosing a local asset does not fetch external files.
 function validateContainer(data: ArrayBuffer) {
   if (data.byteLength < 20) throw new Error('This file is too short to be a GLB model.');
@@ -34,17 +35,17 @@ function validateContainer(data: ArrayBuffer) {
   const json = JSON.parse(new TextDecoder().decode(new Uint8Array(data, 20, jsonLength)));
   for (const resource of [...(json.buffers ?? []), ...(json.images ?? [])]) {
     if (resource.uri && !resource.uri.startsWith('data:')) {
-      throw new Error('Export a self-contained GLB with textures embedded. This trial does not load external resources.');
+      throw new Error('The model must include its textures in one file.');
     }
   }
   if (json.extensionsRequired?.includes('KHR_draco_mesh_compression') || json.extensionsRequired?.includes('KHR_texture_basisu')) {
-    throw new Error('For this first trial, export without Draco or KTX2 compression. We can add compression after the cabinet is verified.');
+    throw new Error('The model uses an unsupported compression format.');
   }
 }
 
 export async function loadCabinet(file: File): Promise<CabinetAsset> {
   if (!file.name.toLowerCase().endsWith('.glb')) throw new Error('Choose a .glb file. Fusion/STEP/OBJ files need presentation preparation first.');
-  if (file.size > 150 * 1024 * 1024) throw new Error('This trial accepts models up to 150 MB. Export a smaller representative assembly.');
+  if (file.size > 150 * 1024 * 1024) throw new Error('The model exceeds the supported file size.');
   const data = await file.arrayBuffer();
   validateContainer(data);
   const started = performance.now();
@@ -58,10 +59,12 @@ export async function loadCabinet(file: File): Promise<CabinetAsset> {
     const meshes: CabinetAsset['meshes'] = [];
     const parts = new Map<string, CabinetAsset['parts'][number]>();
     let door: Object3D | null = null;
+    let lid: Object3D | null = null;
     const materialIds = new Set<string>();
     let triangles = 0;
     gltf.scene.traverse((object) => {
       if (object.userData.interaction === 'main-door') door = object;
+      if (object.userData.interaction === 'solution-lid') lid = object;
       if (!(object instanceof Mesh)) return;
       const names: string[] = [];
       let partId = '';
@@ -97,7 +100,7 @@ export async function loadCabinet(file: File): Promise<CabinetAsset> {
       gltf.scene.updateMatrixWorld(true);
     }
     return { gltf, filename: file.name, bytes: file.size, parseMs: performance.now() - started,
-      meshes, parts: [...parts.values()].sort((a,b) => a.id === 'main-door' ? -1 : b.id === 'main-door' ? 1 : a.label.localeCompare(b.label)), door, triangles: Math.round(triangles), materials: materialIds.size,
+      meshes, parts: [...parts.values()].sort((a,b) => a.label.localeCompare(b.label)), door, lid, triangles: Math.round(triangles), materials: materialIds.size,
       size, center: box.getCenter(new Vector3()), scale: 3 / Math.max(size.x, size.y, size.z), frameBox };
   } catch (error) {
     disposeCabinet(gltf.scene);
@@ -138,7 +141,7 @@ export function configureMaterials(asset: CabinetAsset, selected: string, wirefr
       if ('wireframe' in copy) copy.wireframe = wireframe;
       if (mesh.partId === selected && copy instanceof MeshStandardMaterial) {
         copy.emissive = new Color('#97c18c');
-        copy.emissiveIntensity = 0.35;
+        copy.emissiveIntensity = 0.055;
       }
       copies.push(copy);
       return copy;

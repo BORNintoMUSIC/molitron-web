@@ -1,5 +1,7 @@
 # MOAS 3D staging trial
 
+Historical v16 record. The current presentation is documented in [MOAS v32 presentation](moas-v32-presentation.md).
+
 2026-09-10. The owner requested publishing the unfinished cabinet trial to the existing Vercel staging site for family review in the full website context.
 
 MOAS exterior and interior views now offer **Explore in 3D** on the homepage and MOAS product page. The viewer loads only after activation, inside the existing product explorer. Exterior starts closed; interior starts with the door open. The process diagram and the EPFA explorer keep their existing views.

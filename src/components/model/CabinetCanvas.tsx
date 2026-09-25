@@ -1,7 +1,7 @@
 import { Component, Suspense, useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Environment, Lightformer, OrbitControls } from '@react-three/drei';
-import { Vector3, type PerspectiveCamera } from 'three';
+import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei';
+import { Box3, Vector2, Vector3, type PerspectiveCamera } from 'three';
 import type { OrbitControls as OrbitControlsType } from 'three-stdlib';
 import { configureMaterials, type CabinetAsset } from './model';
 import Image from 'next/image';
@@ -14,6 +14,8 @@ type ViewerProps = {
   hidden: string;
   wireframe: boolean;
   doorAngle: number;
+  lidOpen: boolean;
+  orbit: number;
   view: 'perspective' | 'front';
   reset: number;
   zoom: number;
@@ -33,7 +35,7 @@ function CanvasFallback() {
   return <div className={styles.canvasFallback}><Image src={moasModel.poster} alt={moasModel.posterAlt} fill sizes="(max-width: 767px) 90vw, 690px" style={{objectFit:'contain'}} /><p>3D could not start. You can return to images above and try again.</p></div>;
 }
 
-function Cabinet({ asset, selected, hidden, wireframe, doorAngle, onSelect }: ViewerProps) {
+function Cabinet({ asset, selected, hidden, wireframe, doorAngle, lidOpen, onSelect }: ViewerProps) {
   const invalidate = useThree((state) => state.invalidate);
   // Three.js objects are an imperative renderer resource, kept behind a ref.
   const runtime = useRef(asset);
@@ -45,16 +47,23 @@ function Cabinet({ asset, selected, hidden, wireframe, doorAngle, onSelect }: Vi
     update(); media.addEventListener('change', update);
     return () => media.removeEventListener('change', update);
   }, [invalidate]);
-  useEffect(() => { invalidate(); }, [doorAngle, invalidate]);
+  useEffect(() => { invalidate(); }, [doorAngle, lidOpen, invalidate]);
   useFrame((_, delta) => {
     const door = runtime.current.door;
-    if (!door) return;
-    const target = -doorAngle * Math.PI / 180;
-    const difference = target - door.rotation.y;
-    if (Math.abs(difference) < 0.0001) return;
-    door.rotation.y = reducedMotion.current || Math.abs(difference) < 0.001
-      ? target : door.rotation.y + difference * (1 - Math.exp(-6 * Math.min(delta, 0.05)));
-    invalidate();
+    const lid = runtime.current.lid;
+    const ease = reducedMotion.current ? 1 : 1 - Math.exp(-7 * Math.min(delta, 0.05));
+    let moving = false;
+    if (door) {
+      const target = -doorAngle * Math.PI / 180;
+      const difference = target - door.rotation.y;
+      if (Math.abs(difference) > .00001) { door.rotation.y += Math.abs(difference) < .0001 ? difference : difference * ease; moving = true; }
+    }
+    if (lid) {
+      const target = lidOpen ? .2143252 : 0;
+      const difference = target - lid.position.z;
+      if (Math.abs(difference) > .000001) { lid.position.z += Math.abs(difference) < .00001 ? difference : difference * ease; moving = true; }
+    }
+    if (moving) invalidate();
   });
   // Restore source materials before the owner's passive disposal on asset replacement.
   useLayoutEffect(() => {
@@ -81,14 +90,24 @@ function Cabinet({ asset, selected, hidden, wireframe, doorAngle, onSelect }: Vi
   </group>;
 }
 
-function Cameras({ asset, view, reset, zoom }: Pick<ViewerProps, 'asset' | 'view' | 'reset' | 'zoom'>) {
+function Cameras({ asset, view, reset, zoom, doorAngle, selected, orbit }: Pick<ViewerProps, 'asset' | 'view' | 'reset' | 'zoom' | 'doorAngle' | 'selected' | 'orbit'>) {
   const controls = useRef<OrbitControlsType>(null);
   const { camera, invalidate, size } = useThree();
+  const destination = useRef<{position: Vector3; target: Vector3} | null>(null);
   useEffect(() => {
-    const target = asset.frameBox.getCenter(new Vector3()).sub(asset.center).multiplyScalar(asset.scale);
+    const box = doorAngle > 0 ? asset.frameBox.clone() : new Box3().setFromCenterAndSize(asset.center, asset.size);
+    if (selected && selected !== 'main-door' && selected !== 'cabinet') {
+      const partBox = new Box3();
+      asset.gltf.scene.updateMatrixWorld(true);
+      asset.meshes.filter(m => m.partId === selected).forEach(m => partBox.expandByObject(m.object));
+      partBox.applyMatrix4(asset.gltf.scene.matrixWorld.clone().invert());
+      if (!partBox.isEmpty()) box.copy(partBox).expandByScalar(.12);
+    }
+    const target = box.getCenter(new Vector3()).sub(asset.center).multiplyScalar(asset.scale);
     target.y += asset.size.y * asset.scale / 2 + 0.025;
-    const half = asset.frameBox.getSize(new Vector3()).multiplyScalar(asset.scale / 2);
+    const half = box.getSize(new Vector3()).multiplyScalar(asset.scale / 2);
     const direction = (view === 'front' ? new Vector3(0,0,1) : new Vector3(3.2,1.2,4.7)).normalize();
+    direction.applyAxisAngle(new Vector3(0,1,0), orbit * Math.PI / 6);
     const right = new Vector3(0,1,0).cross(direction).normalize();
     const up = direction.clone().cross(right);
     const tanV = Math.tan((camera as PerspectiveCamera).fov * Math.PI / 360);
@@ -98,12 +117,32 @@ function Cameras({ asset, view, reset, zoom }: Pick<ViewerProps, 'asset' | 'view
       const corner = new Vector3(x*half.x,y*half.y,z*half.z);
       distance = Math.max(distance, corner.dot(direction) + Math.abs(corner.dot(right))/tanH, corner.dot(direction) + Math.abs(corner.dot(up))/tanV);
     }
-    camera.position.copy(target).addScaledVector(direction, distance*1.18*Math.exp(-zoom*.15));
-    controls.current?.target.copy(target);
-    controls.current?.update();
+    destination.current = {position:target.clone().addScaledVector(direction, Math.max(1.2,distance*1.12*Math.exp(-zoom*.15))),target};
     invalidate();
-  }, [asset, camera, invalidate, view, reset, zoom, size.width, size.height]);
-  return <OrbitControls ref={controls} makeDefault enableDamping={false} enablePan={false} minDistance={1.2} maxDistance={15} maxPolarAngle={Math.PI * 0.53} />;
+  }, [asset, camera, invalidate, view, reset, zoom, selected, doorAngle, orbit, size.width, size.height]);
+  useFrame((_,delta)=>{
+    const d=destination.current;if(!d || !controls.current)return;
+    const rate=matchMedia('(prefers-reduced-motion: reduce)').matches?1:1-Math.exp(-7*Math.min(delta,.05));
+    camera.position.lerp(d.position,rate);controls.current.target.lerp(d.target,rate);controls.current.update();
+    if(camera.position.distanceTo(d.position)<.001 && controls.current.target.distanceTo(d.target)<.001)destination.current=null;
+    else invalidate();
+  });
+  return <OrbitControls ref={controls} makeDefault onStart={()=>{destination.current=null;}} enableDamping={false} enablePan={false} minDistance={1.2} maxDistance={15} maxPolarAngle={Math.PI * 0.85} />;
+}
+
+function DevelopmentProfile({asset}:{asset:CabinetAsset}) {
+  const samples=useRef<number[]>([]);
+  const reported=useRef(false);
+  useFrame(({gl},delta)=>{
+    if(process.env.NODE_ENV!=='development' || reported.current)return;
+    if(delta>0 && delta<.2)samples.current.push(delta*1000);
+    if(samples.current.length===90){
+      const sorted=samples.current.slice(10).sort((a,b)=>a-b);
+      console.info('MOAS renderer sample',JSON.stringify({medianFrameMs:sorted[40],p95FrameMs:sorted[76],lastPassDrawCalls:gl.info.render.calls,lastPassTriangles:gl.info.render.triangles,geometryCount:gl.info.memory.geometries,textureCount:gl.info.memory.textures,parseMs:asset.parseMs,assetBytes:asset.bytes,viewport:gl.getSize(new Vector2()).toArray()}));
+      reported.current=true;
+    }
+  });
+  return null;
 }
 
 export function Viewer(props: ViewerProps) {
@@ -112,21 +151,19 @@ export function Viewer(props: ViewerProps) {
       gl={{ antialias: true, alpha: true }} fallback={<CanvasFallback />}
       onPointerMissed={() => props.onSelect('')}>
       <Suspense fallback={null}>
-        <ambientLight intensity={0.45} />
-        <directionalLight position={[3, 6, 4]} intensity={2.5} castShadow shadow-mapSize={[1024, 1024]} shadow-camera-left={-4} shadow-camera-right={4} shadow-camera-top={5} shadow-camera-bottom={-4} shadow-normalBias={0.025} />
-        <Environment resolution={128} frames={1}>
-          <color attach="background" args={['#899395']} />
-          <Lightformer intensity={2} position={[0, 2, 5]} scale={[4, 5, 1]} />
-          <Lightformer intensity={4} position={[-4, 4, 3]} rotation={[0, Math.PI / 4, 0]} scale={[3, 6, 1]} />
-          <Lightformer intensity={3} position={[4, 2, 1]} rotation={[0, -Math.PI / 2, 0]} scale={[2, 5, 1]} />
-          <Lightformer intensity={2} position={[0, 5, -2]} rotation={[Math.PI / 2, 0, 0]} scale={[5, 3, 1]} />
+        <ambientLight intensity={0.3} />
+        <directionalLight position={[3, 6, 4]} intensity={1.5} />
+        <Environment resolution={256} frames={1}>
+          <color attach="background" args={['#777d83']} />
+          <Lightformer intensity={2} position={[0, 2, 5]} scale={[6, 7, 1]} />
+          <Lightformer intensity={4} position={[-4, 4, 3]} rotation={[0, Math.PI / 4, 0]} scale={[3, 7, 1]} />
+          <Lightformer intensity={3} position={[4, 2, 1]} rotation={[0, -Math.PI / 2, 0]} scale={[2, 6, 1]} />
+          <Lightformer intensity={2} position={[0, 5, -2]} rotation={[Math.PI / 2, 0, 0]} scale={[5, 4, 1]} />
         </Environment>
         <Cabinet {...props} />
-        <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-          <planeGeometry args={[200, 200]} />
-          <shadowMaterial transparent opacity={0.22} />
-        </mesh>
-        <Cameras asset={props.asset} view={props.view} reset={props.reset} zoom={props.zoom} />
+        <DevelopmentProfile asset={props.asset} />
+        <ContactShadows position={[0,-.02,0]} opacity={.3} scale={9} blur={2.7} far={4} resolution={256} />
+        <Cameras {...props} />
       </Suspense>
     </Canvas>
   </ViewerBoundary>;
