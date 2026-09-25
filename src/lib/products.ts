@@ -72,7 +72,7 @@ export const products: Product[] = [
       { label: "Cabinet", value: '18 Ga stainless steel — 24″ W × 32″ H × 8″ D, ~100 lbs' },
       { label: "Project electrical requirement", value: "120 VAC, 20 A dedicated circuit for MOAS" },
       { label: "Listed equipment rating", value: "120 V, 3.5 A, 60 Hz" },
-      { label: "Water", value: '¼″ copper cold water supply, 80 PSI' },
+      { label: "Water", value: '¼″ copper cold water supply, 80 PSI maximum' },
       {
         label: "Listing",
         value: "ETL Listed for the U.S. and Canada · Intertek Report 101453585DEN-002 · UL 197 · CSA C22.2 No. 109",
@@ -114,6 +114,12 @@ export const products: Product[] = [
         description: "Plan the cabinet location, nozzles, utilities, tubing, service access and exhaust-fan interlock. Not for construction.",
         href: "/docs/moas-engineering-specs-installation-2026.pdf",
         kind: "specs",
+      },
+      {
+        title: "MOAS Operation & Maintenance Manual (2026)",
+        description: "September 2026, Review 01 — owner review edition. 30 pages covering installation, startup, operation and maintenance, with outstanding review points collected on the final page.",
+        href: "/docs/moas-operation-maintenance-manual-2026.pdf",
+        kind: "manual",
       },
     ],
     hero: {
