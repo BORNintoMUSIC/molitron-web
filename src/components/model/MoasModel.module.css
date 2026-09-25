@@ -1,5 +1,5 @@
 .inactiveStage { position: static; }
-.activeStage { position: relative; z-index: 3; min-height: 750px; background: #e5e7e4; isolation: isolate; }
+.activeStage { position: relative; z-index: 3; min-height: 750px; background: #1b3932; isolation: isolate; }
 .launch { position: absolute; right: 24px; bottom: 53px; z-index: 3; display: flex; flex-direction: column; gap: 3px; padding: 12px 18px; border: 1px solid #bed799; background: #e0eccb; color: #17392f; cursor: pointer; box-shadow: 0 4px 20px #102c2855; }
 .launch > span { display: flex; gap: 25px; align-items: center; font-weight: 600; }
 .launch small { font-size: .72rem; opacity: .8; text-align: left; }
@@ -8,7 +8,7 @@
 .heading button { pointer-events: auto; letter-spacing: 0; font-size: .78rem; border: 1px solid #9bb69e; padding: 9px 11px; background: #18382fec; cursor: pointer; min-height: 40px; }
 .loading { position: absolute; inset: auto 20px 28px; z-index: 4; padding: 16px; background: #14392ff2; color: #e9f1df; text-align: center; font-size: .9rem; }
 .loading button { text-decoration: underline; text-underline-offset: 4px; margin-top: 10px; padding: 8px 15px; cursor: pointer; }
-.viewer { position: absolute; inset: 0; background: radial-gradient(ellipse at 45% 30%, #f6f7f4, #c8ceca 80%); }
+.viewer { position: absolute; inset: 0; background: radial-gradient(ellipse at 48% 38%, #2b4c42, #1b3932 73%); }
 .canvas { position: absolute; inset: 58px 0 360px; }
 .canvas canvas { touch-action: none; }
 .controls { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 22px 19px; border-top: 1px solid #d3dfce26; background: #17382ff5; color: #dce8d6; }
@@ -30,7 +30,7 @@
 .canvasFallback p { position: relative; z-index: 1; background: #14392ff2; padding: 12px; font-size: .85rem; }
 @media (max-width: 767px) { .activeStage { min-height: 620px; } .launch { right: 18px; bottom: 48px; } .heading { left: 15px; right: 15px; } .controls { padding: 12px 15px 16px; } .buttons { gap: 5px; } .buttons button { padding: 7px 9px; font-size: .76rem; } .canvas { inset: 58px 0 180px; } .note { max-width: 300px; } }
 @media (max-width: 360px) { .heading > span { max-width: 100px; line-height: 1.5; } .canvas { bottom: 196px; } .buttons button { padding: 7px; } }
-.heading { color: #244539; }
+.heading { color: #dce8d6; }
 .heading > div { display: flex; gap: 7px; }
 .heading button { color: #edf3e8; }
 .componentPanel { position: absolute; bottom: 174px; left: 22px; right: 22px; padding: 16px; background: #f8faf3ed; color: #244539; border: 1px solid #9aafa0; }
@@ -42,6 +42,7 @@
 .tour { display: flex; width: 100%; justify-content: space-between; font-size: .8rem; padding: 10px 0 0; min-height: 38px; cursor: pointer; }
 .activeStage :is(button,select,input):focus-visible { outline: 3px solid #af963e; outline-offset: 3px; }
 .expanded { position: fixed; inset: 20px; z-index: 1000; min-height: 0; box-shadow: 0 0 0 40px #0e241ce6; }
+.activeStage.expanded { min-height: 0; }
 @media (min-width: 1000px) {
   .activeStage { min-height: 680px; }
   .canvas { inset: 58px 215px 200px 0; }

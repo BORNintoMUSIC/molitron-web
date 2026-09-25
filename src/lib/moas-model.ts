@@ -1,7 +1,7 @@
 /** Presentation derivative. Engineering master remains in Fusion. */
 export const moasModel = {
   src: "/models/moas-cabinet-v32.glb",
-  poster: "/images/moas/moas-v32-poster.webp",
+  poster: "/images/moas/moas-v32-forest-poster.webp",
   posterAlt: "MOAS stainless cabinet and external solution container",
   revision: "v32",
   bytes: 3222684,
