@@ -24,7 +24,7 @@ Molitron should rank through accurate, useful HTML content for commercial kitche
 ## Documents
 
 - Follow the canonical [PDF publishing guide](../publishing/pdf-publishing.md) for the controlled-source/public-copy boundary, stable paths, HTML companions, and release checks.
-- The MOAS brochure Rev B and MOAS Engineering & Installation Planning Guide Rev A are current published documents.
+- The MOAS brochure V3 Review 03 (September 22, 2026) and MOAS Engineering & Installation Planning Guide Rev A are current published documents.
 - The MOAS planning guide has a useful HTML companion at `/products/moas/installation-planning` and a stable PDF at `/docs/moas-engineering-specs-installation-2026.pdf`.
 - The EPFA Product & Planning Brochure Rev A is current at `/docs/epfa-brochure-2026.pdf`; its useful HTML companion content is maintained on `/products/epfa`.
 - The EPFA Installation, Operation & Maintenance Manual Rev A is current at `/docs/epfa-operation-maintenance-manual-2026.pdf`; its useful HTML companion is maintained at `/products/epfa/operation-maintenance`.

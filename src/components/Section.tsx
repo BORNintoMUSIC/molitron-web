@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { Reveal } from "@/components/Reveal";
 
 type SectionProps = {
   children: ReactNode;
@@ -13,9 +12,9 @@ type SectionProps = {
 
 const tones = {
   default: "bg-transparent",
-  white: "bg-card/90 section-glow",
+  white: "bg-card",
   dark: "brand-band",
-  accent: "bg-accent-soft/90 section-glow",
+  accent: "bg-accent-soft",
 };
 
 export function Section({
@@ -24,7 +23,6 @@ export function Section({
   id,
   tone = "default",
   narrow = false,
-  noReveal = false,
 }: SectionProps) {
   const inner = (
     <div
@@ -41,7 +39,7 @@ export function Section({
       id={id}
       className={`py-14 sm:py-16 md:py-20 lg:py-24 ${tones[tone]} ${className}`}
     >
-      {noReveal ? inner : <Reveal>{inner}</Reveal>}
+      {inner}
     </section>
   );
 }
@@ -58,7 +56,7 @@ export function SectionHeading({
   light?: boolean;
 }) {
   return (
-    <div className="mb-8 max-w-3xl sm:mb-10">
+    <div className="section-heading mb-8 max-w-3xl sm:mb-10">
       {eyebrow ? (
         <p
           className={`mb-2 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] ${
@@ -73,7 +71,7 @@ export function SectionHeading({
         </p>
       ) : null}
       <h2
-        className={`font-display text-2xl font-semibold leading-tight tracking-[-0.025em] break-words sm:text-3xl md:text-4xl ${
+        className={`font-display text-3xl font-medium leading-[1.08] tracking-[-0.035em] break-words sm:text-4xl md:text-[2.8rem] ${
           light ? "text-on-brand" : "text-primary"
         }`}
       >

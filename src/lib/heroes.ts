@@ -11,11 +11,11 @@ export type PageHeroConfig = {
 export const pageHeroes = {
   products: {
     src: "/images/heroes/molitron-products-tandem-hero-v1.webp",
-    alt: "Molitron EPFA filtration and MOAS odor abatement systems installed together",
+    alt: "Illustrative setting with Molitron EPFA filtration and MOAS odor abatement equipment",
     eyebrow: "Products",
-    title: "MOAS odor abatement & EPFA filtration",
+    title: "Two systems. Distinct roles.",
     description:
-      "Two focused systems for commercial kitchen exhaust: MOAS for odor abatement and EPFA for three-stage dry filtration. Use one—or combine them when the project calls for both.",
+      "MOAS for odor. EPFA for dry filtration. Compare their roles in commercial-kitchen exhaust.",
     breadcrumbs: [
       { label: "Home", href: "/" },
       { label: "Products", href: "/products" },
@@ -23,7 +23,7 @@ export const pageHeroes = {
   },
   moas: {
     src: "/images/heroes/molitron-moas-kitchen-hero-v1.webp",
-    alt: "Molitron odor abatement system installed beside a commercial kitchen exhaust hood",
+    alt: "Illustrative kitchen exhaust setting with a Molitron MOAS cabinet",
     eyebrow: "Product · ETL Listed",
     title: "Molitron Odor Abatement System (MOAS)",
     description:
@@ -36,7 +36,7 @@ export const pageHeroes = {
   },
   epfa: {
     src: "/images/heroes/molitron-epfa-rooftop-hero-v1.webp",
-    alt: "Molitron EPFA commercial kitchen exhaust filtration system installed on a rooftop",
+    alt: "Illustrative rooftop setting with Molitron EPFA filtration equipment",
     eyebrow: "Product · UL Listed",
     title: "Enviro-Pak Filter Assembly (EPFA)",
     description:
@@ -49,87 +49,90 @@ export const pageHeroes = {
   },
   solutions: {
     src: "/images/heroes/molitron-solutions-mixed-use-rooftop-hero-v1.webp",
-    alt: "Molitron EPFA and MOAS equipment in a mixed-use building rooftop setting",
-    eyebrow: "Solutions",
-    title: "Commercial kitchen exhaust control by application",
+    alt: "Illustrative mixed-use rooftop setting with Molitron equipment",
+    eyebrow: "Applications",
+    title: "Start with your kitchen or facility.",
     description:
-      "Match filtration and odor abatement to your vertical—then request a quote with CFM and equipment details.",
+      "Commercial kitchens are our focus. Other processes require individual application review.",
     breadcrumbs: [
       { label: "Home", href: "/" },
-      { label: "Solutions", href: "/solutions" },
+      { label: "Applications", href: "/solutions" },
     ],
   },
   restaurants: {
     src: "/images/heroes/molitron-restaurants-rooftop-evening-hero-v1.webp",
-    alt: "Molitron EPFA installed above an urban restaurant at dusk",
-    eyebrow: "Solutions · Restaurants",
-    title: "Restaurant pollution control & odor abatement",
+    alt: "Illustrative restaurant rooftop setting with Molitron equipment at dusk",
+    eyebrow: "Applications · Restaurants",
+    title: "Good exhaust planning starts in the kitchen.",
     description:
-      "Plan filtration and odor abatement for visible smoke, grease vapor, and cooking-odor concerns in new builds, remodels, and constrained discharge locations.",
+      "Cooking load and discharge location shape the filtration and odor-abatement plan.",
     breadcrumbs: [
       { label: "Home", href: "/" },
-      { label: "Solutions", href: "/solutions" },
+      { label: "Applications", href: "/solutions" },
       { label: "Restaurants", href: "/solutions/restaurants" },
     ],
   },
   airports: {
     src: "/images/heroes/molitron-airports-denver-rooftop-hero-v1.webp",
-    alt: "Molitron EPFA and MOAS equipment in an airport rooftop setting",
-    eyebrow: "Solutions · Airports & hospitality",
-    title: "Exhaust control for airports, hotels, and high-visibility kitchens",
+    alt: "Illustrative airport rooftop setting with Molitron EPFA and MOAS equipment",
+    eyebrow: "Applications · Airports & hospitality",
+    title: "Many kitchens. One shared building.",
     description:
-      "Listed filtration and odor abatement for shared buildings and public-facing foodservice—including multiple concepts at Denver International Airport.",
+      "Coordinate kitchen exhaust with neighboring tenants, public spaces and building operations.",
     breadcrumbs: [
       { label: "Home", href: "/" },
-      { label: "Solutions", href: "/solutions" },
-      { label: "Airports & hospitality", href: "/solutions/airports-hospitality" },
+      { label: "Applications", href: "/solutions" },
+      {
+        label: "Airports & hospitality",
+        href: "/solutions/airports-hospitality",
+      },
     ],
   },
   cannabis: {
     src: "/images/heroes/molitron-cannabis-moas-facility-hero-v1.webp",
-    alt: "Molitron MOAS installed beside a controlled cultivation room",
-    eyebrow: "Solutions · Cannabis",
-    title: "Odor and exhaust control for cannabis facilities",
+    alt: "Illustrative cannabis-facility setting with a MOAS cabinet",
+    eyebrow: "Applications · Cannabis",
+    title: "Understand the odor before choosing equipment.",
     description:
-      "Explore project-specific exhaust odor abatement and filtration for odor-sensitive cannabis environments, with application review based on process and exhaust-path details.",
+      "Review the process and exhaust conditions with Molitron before selecting equipment.",
     breadcrumbs: [
       { label: "Home", href: "/" },
-      { label: "Solutions", href: "/solutions" },
+      { label: "Applications", href: "/solutions" },
       { label: "Cannabis", href: "/solutions/cannabis" },
     ],
   },
   industrial: {
     src: "/images/heroes/molitron-solutions-mixed-use-rooftop-hero-v1.webp",
-    alt: "Molitron exhaust-control equipment in a mixed-use rooftop setting",
-    eyebrow: "Solutions · Industrial & specialty",
-    title: "Start industrial exhaust work with application review",
+    alt: "Illustrative commercial rooftop setting with Molitron equipment",
+    eyebrow: "Applications · Industrial & specialty",
+    title: "Review your industrial exhaust application.",
     description:
-      "Molitron primarily serves commercial-kitchen exhaust. Cannabis and other odor-sensitive commercial or industrial applications begin with a documented review of the process, airstream, airflow, discharge path, and project requirements.",
+      "Share the process, airflow and exhaust conditions so Molitron can review equipment suitability.",
     breadcrumbs: [
       { label: "Home", href: "/" },
-      { label: "Solutions", href: "/solutions" },
+      { label: "Applications", href: "/solutions" },
       { label: "Industrial & specialty", href: "/solutions/industrial" },
     ],
   },
   codes: {
     src: "/images/heroes/molitron-codes-rooftop-review-hero-v1.webp",
-    alt: "Engineer reviewing a Molitron EPFA rooftop installation",
-    eyebrow: "Education",
-    title: "Codes & compliance for commercial kitchen exhaust",
+    alt: "Illustrative project review beside Molitron EPFA rooftop equipment",
+    eyebrow: "Equipment listings",
+    title: "Product listings & project review.",
     description:
-      "Grease, smoke, odor, sidewall discharge, and listings—educational guidance for owners and project teams. Always verify with your AHJ.",
+      "Check the covered equipment, then coordinate requirements for your site.",
     breadcrumbs: [
       { label: "Home", href: "/" },
-      { label: "Codes & compliance", href: "/codes-compliance" },
+      { label: "Equipment listings", href: "/codes-compliance" },
     ],
   },
   about: {
     src: "/images/heroes/molitron-about-denver-clean-air-hero-v1.webp",
     alt: "Denver skyline and the Colorado Front Range under clear blue skies",
     eyebrow: "About Molitron",
-    title: "Built in Colorado. Specified for code.",
+    title: "A family business. Built in Colorado.",
     description:
-      "Since 1986, Molitron has manufactured commercial kitchen pollution control and odor abatement equipment in Colorado for projects nationwide.",
+      "Commercial-kitchen pollution control, fabricated in Colorado and sold direct.",
     breadcrumbs: [
       { label: "Home", href: "/" },
       { label: "About", href: "/about" },
@@ -139,9 +142,9 @@ export const pageHeroes = {
     src: "/images/heroes/contact.jpg",
     alt: "Professional desk ready for a commercial kitchen project quote",
     eyebrow: "Contact",
-    title: "Request a quote",
+    title: "Talk directly with Molitron.",
     description:
-      "Molitron sells direct. Share CFM, cooking equipment, location, and discharge type for a useful first response.",
+      "Equipment selection, project planning, or service for an installed system.",
     breadcrumbs: [
       { label: "Home", href: "/" },
       { label: "Contact", href: "/contact" },
@@ -149,11 +152,11 @@ export const pageHeroes = {
   },
   service: {
     src: "/images/heroes/molitron-service-epfa-maintenance-hero-v1.webp",
-    alt: "Open Molitron EPFA prepared for organized filter maintenance",
+    alt: "Illustrative view of an open EPFA prepared for filter maintenance",
     eyebrow: "Support",
     title: "Service & parts",
     description:
-      "Technical guidance, filter direction, and parts support for installed MOAS and EPFA equipment—direct from the manufacturer.",
+      "Support for installed MOAS and EPFA equipment, direct from Molitron.",
     breadcrumbs: [
       { label: "Home", href: "/" },
       { label: "Service & parts", href: "/service-parts" },
@@ -161,11 +164,11 @@ export const pageHeroes = {
   },
   resources: {
     src: "/images/heroes/molitron-products-tandem-hero-v1.webp",
-    alt: "Molitron MOAS and EPFA pollution-control equipment",
+    alt: "Illustrative setting with Molitron MOAS and EPFA pollution-control equipment",
     eyebrow: "Resources",
-    title: "Current product documents, online guides, and listing context",
+    title: "Guides, brochures & manuals.",
     description:
-      "Use the current MOAS and EPFA brochures, planning references, and maintenance material. Legacy Enviro-Clean documents remain separated for existing-equipment service only.",
+      "Current MOAS and EPFA documents. Read online or download a PDF.",
     breadcrumbs: [
       { label: "Home", href: "/" },
       { label: "Resources", href: "/resources" },

@@ -39,7 +39,8 @@ export function ProductGallery({
         setZoomOpen(false);
         window.setTimeout(() => triggerRef.current?.focus(), 0);
       }
-      if (event.key === "ArrowLeft") setActive((index) => ((index - 1) % count + count) % count);
+      if (event.key === "ArrowLeft")
+        setActive((index) => (((index - 1) % count) + count) % count);
       if (event.key === "ArrowRight") setActive((index) => (index + 1) % count);
       if (event.key === "Tab" && dialogRef.current) {
         const focusable = Array.from(
@@ -70,7 +71,7 @@ export function ProductGallery({
 
   return (
     <div className="min-w-0">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-[3px] border border-border bg-card ">
         <button
           ref={triggerRef}
           type="button"
@@ -78,14 +79,16 @@ export function ProductGallery({
           aria-describedby={descriptionId}
           onClick={() => setZoomOpen(true)}
         >
-          <span className="sr-only">Open high-resolution view of {current.alt}</span>
+          <span className="sr-only">
+            Open high-resolution view of {current.alt}
+          </span>
         </button>
         <Image
           key={current.src}
           src={current.src}
           alt={current.alt}
           fill
-          preload={active === 0}
+          loading="lazy"
           quality={85}
           className="object-contain p-4 sm:p-6"
           sizes="(max-width: 1024px) 100vw, 50vw"
@@ -114,7 +117,7 @@ export function ProductGallery({
           {active + 1} / {count}
         </span>
         <span className="absolute bottom-3 right-3 z-[2] rounded-md border border-border bg-card/95 px-2.5 py-1 text-xs font-bold text-primary">
-          Inspect image
+          Enlarge photo
         </span>
       </div>
 
@@ -123,19 +126,30 @@ export function ProductGallery({
       </p>
 
       {count > 1 ? (
-        <div className="mt-3 grid grid-cols-4 gap-2 sm:grid-cols-6 lg:grid-cols-7" aria-label={`${productName} photo selection`}>
+        <div
+          className="mt-3 grid grid-cols-4 gap-2 sm:grid-cols-6 lg:grid-cols-7"
+          aria-label={`${productName} photo selection`}
+        >
           {images.map((image, index) => (
             <button
               key={image.src}
               type="button"
-              className={`relative aspect-square overflow-hidden rounded-md border-2 bg-card transition-colors ${
-                index === active ? "border-accent" : "border-border hover:border-accent/60"
+              className={`relative aspect-square overflow-hidden rounded-md border-2 bg-surface-muted transition-colors ${
+                index === active
+                  ? "border-accent"
+                  : "border-border hover:border-accent/60"
               }`}
               aria-label={`Show ${image.alt}`}
               aria-current={index === active ? "true" : undefined}
               onClick={() => setActive(index)}
             >
-              <Image src={image.src} alt="" fill className="object-contain p-1" sizes="96px" />
+              <Image
+                src={image.src}
+                alt=""
+                fill
+                className="object-contain p-1"
+                sizes="96px"
+              />
             </button>
           ))}
         </div>
@@ -147,7 +161,7 @@ export function ProductGallery({
           role="dialog"
           aria-modal="true"
           aria-label={`${productName} high-resolution image`}
-          className="fixed inset-0 z-[300] flex items-center justify-center bg-slate-950/90 p-3 sm:p-6"
+          className="fixed inset-0 z-[300] flex items-center justify-center bg-[#0b221b]/95 p-3 sm:p-6"
         >
           <button
             type="button"
@@ -156,7 +170,7 @@ export function ProductGallery({
             aria-label="Close high-resolution view"
             onClick={() => closeZoom(true)}
           />
-          <div className="relative z-[1] h-[min(82vh,60rem)] w-[min(92vw,86rem)] rounded-xl border border-white/20 bg-white">
+          <div className="relative z-[1] h-[min(82vh,60rem)] w-[min(92vw,86rem)] rounded-[3px] border border-white/20 bg-white">
             <Image
               key={`zoom-${current.src}`}
               src={current.src}
@@ -177,11 +191,21 @@ export function ProductGallery({
             </button>
             {count > 1 ? (
               <div className="absolute inset-x-3 bottom-3 flex items-center justify-between">
-                <button type="button" className="min-h-11 rounded-md bg-brand px-4 font-bold text-on-brand" onClick={() => select(active - 1)}>
+                <button
+                  type="button"
+                  className="min-h-11 rounded-md bg-brand px-4 font-bold text-on-brand"
+                  onClick={() => select(active - 1)}
+                >
                   Previous
                 </button>
-                <span className="rounded-md bg-brand px-3 py-2 text-sm font-bold text-on-brand">{active + 1} / {count}</span>
-                <button type="button" className="min-h-11 rounded-md bg-brand px-4 font-bold text-on-brand" onClick={() => select(active + 1)}>
+                <span className="rounded-md bg-brand px-3 py-2 text-sm font-bold text-on-brand">
+                  {active + 1} / {count}
+                </span>
+                <button
+                  type="button"
+                  className="min-h-11 rounded-md bg-brand px-4 font-bold text-on-brand"
+                  onClick={() => select(active + 1)}
+                >
                   Next
                 </button>
               </div>

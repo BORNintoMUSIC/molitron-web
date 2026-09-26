@@ -26,14 +26,14 @@ export function CustomerLogoGrid({
     <ul
       className={
         layout === "featured"
-          ? "grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6"
+          ? "grid grid-cols-2 gap-px sm:grid-cols-3 lg:grid-cols-6"
           : "grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5"
       }
     >
       {availableReferences.map(({ reference, logo }) => (
         <li
           key={reference}
-          className="flex min-h-24 items-center justify-center rounded-lg border border-border bg-white px-4 py-3 text-center text-sm font-semibold text-primary"
+          className="flex min-h-24 items-center justify-center border border-border/60 bg-white px-4 py-3 text-center text-sm font-semibold text-primary"
         >
           <figure className="flex h-full w-full items-center justify-center">
             <Image

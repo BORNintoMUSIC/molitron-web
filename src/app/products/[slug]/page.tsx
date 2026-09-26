@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Button } from "@/components/Button";
+
 import { CtaBand } from "@/components/CtaBand";
 import { CustomerLogoGrid } from "@/components/CustomerLogoGrid";
-import { DocDownloads } from "@/components/DocDownloads";
+
 import { JsonLd } from "@/components/JsonLd";
-import { PageHero } from "@/components/PageHero";
+import { ProductHero } from "@/components/ProductHero";
+import { MoasOverview } from "@/components/MoasOverview";
+import { ProductExplorer } from "@/components/home/ProductExplorer";
+import { SectionNav } from "@/components/SectionNav";
+import { ProductResources } from "@/components/ProductResources";
 import { ProductGallery } from "@/components/ProductGallery";
 import { Section, SectionHeading } from "@/components/Section";
-import { pageHeroes } from "@/lib/heroes";
+
 import { epfaModels, getProduct, products } from "@/lib/products";
 import { metadataFor } from "@/lib/seo";
-import { site } from "@/lib/site";
+import { productStructuredData } from "@/lib/structured-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -37,101 +41,81 @@ export default async function ProductPage({ params }: Props) {
   const product = getProduct(slug);
   if (!product) notFound();
 
-  const heroConfig = slug === "moas" ? pageHeroes.moas : pageHeroes.epfa;
-
-  const productLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    description: product.summary,
-    image: product.gallery.map((img) => `${site.url}${img.src}`),
-    brand: {
-      "@type": "Brand",
-      name: site.name,
-    },
-    manufacturer: {
-      "@type": "Organization",
-      name: site.legalName,
-    },
-    category: "Commercial kitchen exhaust pollution control",
-  };
-
   return (
     <>
-      <JsonLd data={productLd} />
-      <PageHero config={heroConfig}>
-        <Button href="/contact" className="!bg-on-brand !text-brand hover:!bg-white">
-          Request a quote
-        </Button>
-        <Button
-          href="/codes-compliance"
-          variant="secondary"
-          className="!border-on-brand/35 !bg-transparent !text-on-brand hover:!border-on-brand hover:!bg-white/10"
-        >
-          Codes &amp; compliance
-        </Button>
-      </PageHero>
-
-      <Section noReveal>
-        <div className="grid items-start gap-8 lg:grid-cols-2 lg:gap-10">
-          <div className="min-w-0 w-full">
-            <ProductGallery images={product.gallery} productName={product.shortName} />
+      <JsonLd data={productStructuredData(product)} />
+      <ProductHero product={product} />
+      <SectionNav
+        label={product.shortName}
+        items={[
+          { href: "#overview", label: "Overview" },
+          ...(product.slug === "moas"
+            ? [{ href: "#video-overview", label: "Watch overview" }]
+            : []),
+          { href: "#system-explorer", label: "Look inside" },
+          { href: "#specifications", label: "Specifications" },
+          { href: "#documents", label: "Documents" },
+          { href: "#product-photos", label: "Photos" },
+        ]}
+      />
+      <Section id="overview" tone="white" className="!py-10 sm:!py-12">
+        <div className="product-planning-brief">
+          <div>
+            <h2>Where {product.shortName} fits</h2>
+            <p>
+              {product.slug === "moas"
+                ? "For kitchens where cooking odor affects neighbors or occupied spaces, including sensitive sidewall and ground-level discharge. The wall-mounted cabinet stays outside the duct. MOAS can operate alone or alongside EPFA."
+                : "EPFA sits in the exhaust path between the kitchen hood and fan. Dry filtration uses no process water, circulation pumps or chemical dosing."}
+            </p>
           </div>
-          <div className="min-w-0">
-            <p className="text-sm leading-relaxed text-foreground/80 sm:text-base">{product.summary}</p>
-            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-accent break-words">
-              {product.certifications.join(" · ")}
+          <div>
+            <h3>Plan the installation</h3>
+            <p>
+              {product.slug === "moas"
+                ? "Coordinate nozzle placement, utilities, exhaust-fan interlock and access. The standard external container holds up to 10 gallons; an internal cabinet buzzer signals low solution."
+                : "Coordinate duct, support, service access, drains, fire suppression, monitoring and fan selection with the project team and authority having jurisdiction (AHJ)."}
             </p>
           </div>
         </div>
       </Section>
 
-      <Section tone="white">
-        <div className="grid gap-10 lg:grid-cols-2">
-          <div>
-            <SectionHeading title="Why operators choose this system" />
-            <ul className="space-y-3">
-              {product.highlights.map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-relaxed text-foreground/80">
-                  <span className="mt-1.5 h-2 w-2 shrink-0 bg-accent" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <SectionHeading title="When teams specify this unit" />
-            <ul className="space-y-3">
-              {product.useWhen.map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-relaxed text-foreground/80">
-                  <span className="mt-1.5 h-2 w-2 shrink-0 bg-primary" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </Section>
-
-      <Section>
+      {product.slug === "moas" && <MoasOverview />}
+      <ProductExplorer product={product.slug} />
+      <Section id="specifications">
         <SectionHeading
           title="Specifications"
-          description="Share these with your design team. Final selection depends on CFM, equipment, discharge, and AHJ requirements."
+          description="Final selection depends on airflow, cooking equipment, discharge and project requirements."
         />
-        <div className="table-scroll overflow-x-auto overflow-y-hidden rounded-lg border border-border bg-card">
+        <div
+          tabIndex={0}
+          role="region"
+          aria-label={product.shortName + " technical data"}
+          className="table-scroll overflow-x-auto overflow-y-hidden rounded-lg border border-border bg-card"
+        >
           <table className="w-full min-w-0 text-left text-sm sm:min-w-0">
             <tbody>
               {product.specs.map((row, i) => (
-                <tr key={row.label} className={i % 2 === 0 ? "bg-card" : "bg-background"}>
-                  <th className="w-[36%] align-top break-words px-3 py-3 font-semibold text-primary sm:w-1/3 sm:px-5">
+                <tr
+                  key={row.label}
+                  className={i % 2 === 0 ? "bg-card" : "bg-background"}
+                >
+                  <th
+                    scope="row"
+                    className="w-[36%] align-top break-words px-3 py-3 font-semibold text-primary sm:w-1/3 sm:px-5"
+                  >
                     {row.label}
                   </th>
-                  <td className="px-3 py-3 text-foreground/80 break-words sm:px-5">{row.value}</td>
+                  <td className="px-3 py-3 text-foreground/80 break-words sm:px-5">
+                    {row.value}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        {product.slug === "epfa" && (
+          <h3 className="mt-6 text-lg font-medium">Does EPFA provide odor control?</h3>
+        )}
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">
           {product.slug === "moas"
             ? "Performance figures are qualified as up to values. Results vary with the cooking process, hood performance, exhaust configuration, installation, dwell time, and system calibration."
@@ -140,109 +124,137 @@ export default async function ProductPage({ params }: Props) {
         {product.slug === "epfa" ? (
           <div className="mt-12">
             <SectionHeading
-              eyebrow="Owner-confirmed planning data"
+              eyebrow="Model selection"
               title="EPFA model range"
-              description="Use these values for early selection conversations. Final model, configuration, fan selection, installation, and AHJ acceptance remain project-specific."
+              description="Model, configuration, fan selection, installation and AHJ acceptance remain project-specific."
             />
-            <div className="table-scroll overflow-x-auto overflow-y-hidden rounded-lg border border-border bg-card">
+            <p className="mb-3 text-sm text-muted lg:hidden">
+              Scroll sideways to view all model specifications.
+            </p>
+            <div
+              tabIndex={0}
+              role="region"
+              aria-label={product.shortName + " technical data"}
+              className="table-scroll overflow-x-auto overflow-y-hidden rounded-lg border border-border bg-card"
+            >
               <table className="w-full min-w-[56rem] text-left text-sm">
                 <caption className="sr-only">
-                  EPFA model capacity, width, approximate unit weight, filter quantities, and optional carbon added weight
+                  EPFA model capacity, width, approximate unit weight, filter
+                  quantities, and optional carbon added weight
                 </caption>
                 <thead className="bg-brand text-on-brand">
                   <tr>
-                    <th className="px-3 py-3 font-semibold">Model</th>
-                    <th className="px-3 py-3 font-semibold">CFM</th>
-                    <th className="px-3 py-3 font-semibold">Width</th>
-                    <th className="px-3 py-3 font-semibold">Approx. unit weight</th>
-                    <th className="px-3 py-3 font-semibold">Pre-filter qty.</th>
-                    <th className="px-3 py-3 font-semibold">High-efficiency qty.</th>
-                    <th className="px-3 py-3 font-semibold">Carbon added weight</th>
+                    <th scope="col" className="px-3 py-3 font-semibold">
+                      Model
+                    </th>
+                    <th scope="col" className="px-3 py-3 font-semibold">
+                      CFM
+                    </th>
+                    <th scope="col" className="px-3 py-3 font-semibold">
+                      Width
+                    </th>
+                    <th scope="col" className="px-3 py-3 font-semibold">
+                      Approx. unit weight
+                    </th>
+                    <th scope="col" className="px-3 py-3 font-semibold">
+                      Pre-filter qty.
+                    </th>
+                    <th scope="col" className="px-3 py-3 font-semibold">
+                      High-efficiency qty.
+                    </th>
+                    <th scope="col" className="px-3 py-3 font-semibold">
+                      Carbon added weight
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {epfaModels.map((model, index) => (
-                    <tr key={model.model} className={index % 2 === 0 ? "bg-card" : "bg-background"}>
-                      <th className="px-3 py-3 font-semibold text-primary">{model.model}</th>
-                      <td className="px-3 py-3 text-foreground/80">{model.cfm}</td>
-                      <td className="px-3 py-3 text-foreground/80">{model.width}</td>
-                      <td className="px-3 py-3 text-foreground/80">{model.unitWeight}</td>
-                      <td className="px-3 py-3 text-foreground/80">{model.prefilters}</td>
-                      <td className="px-3 py-3 text-foreground/80">{model.highEfficiencyFilters}</td>
-                      <td className="px-3 py-3 text-foreground/80">{model.carbonAddedWeight}</td>
+                    <tr
+                      key={model.model}
+                      className={index % 2 === 0 ? "bg-card" : "bg-background"}
+                    >
+                      <th
+                        scope="row"
+                        className="px-3 py-3 font-semibold text-primary"
+                      >
+                        {model.model}
+                      </th>
+                      <td className="px-3 py-3 text-foreground/80">
+                        {model.cfm}
+                      </td>
+                      <td className="px-3 py-3 text-foreground/80">
+                        {model.width}
+                      </td>
+                      <td className="px-3 py-3 text-foreground/80">
+                        {model.unitWeight}
+                      </td>
+                      <td className="px-3 py-3 text-foreground/80">
+                        {model.prefilters}
+                      </td>
+                      <td className="px-3 py-3 text-foreground/80">
+                        {model.highEfficiencyFilters}
+                      </td>
+                      <td className="px-3 py-3 text-foreground/80">
+                        {model.carbonAddedWeight}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
             <p className="mt-4 max-w-4xl text-sm leading-relaxed text-muted">
-              Unit weights are approximate. Carbon added weight is additional when the optional carbon stage is selected.
-              Filter quantities are total quantities rather than per-stage counts.
+              Unit weights are approximate. Carbon added weight is additional
+              when the optional carbon stage is selected. Filter quantities are
+              total quantities rather than per-stage counts.
             </p>
           </div>
         ) : null}
       </Section>
 
-      <Section tone="white">
-        <SectionHeading
-          eyebrow="Downloads"
-          title="Technical documentation"
-          description={
-            product.slug === "moas"
-              ? "Approved MOAS product and installation-planning documentation. Project-specific design, installation, approval, and AHJ review remain the responsibility of the project team."
-              : "Approved EPFA product-planning and installation, operation, and maintenance documentation. Project-specific design, installation, approval, and AHJ review remain the responsibility of the project team."
-          }
-        />
-        {product.slug === "moas" ? (
-          <div className="mb-5 flex flex-col gap-4 rounded-lg border border-border bg-background p-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h3 className="text-base font-semibold text-primary">Prefer an online planning reference?</h3>
-              <p className="mt-1 text-sm leading-relaxed text-foreground/80">
-                Read the cabinet, utility, nozzle, tubing, interlock, access, and responsibility guidance in accessible HTML.
-              </p>
-            </div>
-            <Button href="/products/moas/installation-planning" variant="secondary" className="sm:shrink-0">
-              Read the planning guide
-            </Button>
-          </div>
-        ) : null}
-        {product.slug === "epfa" ? (
-          <div className="mb-5 flex flex-col gap-4 rounded-lg border border-border bg-background p-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h3 className="text-base font-semibold text-primary">Prefer an online operation and maintenance reference?</h3>
-              <p className="mt-1 text-sm leading-relaxed text-foreground/80">
-                Review receiving, installation coordination, monitoring, startup, maintenance, filter service, cleaning, troubleshooting, and recordkeeping in accessible HTML.
-              </p>
-            </div>
-            <Button href="/products/epfa/operation-maintenance" variant="secondary" className="sm:shrink-0">
-              Read the EPFA manual
-            </Button>
-          </div>
-        ) : null}
-        <DocDownloads documents={product.documents} productName={product.shortName} />
+      <Section id="documents" tone="white">
+        <ProductResources slug={product.slug} onProductPage />
       </Section>
-
+      <Section id="product-photos">
+        <div className="editorial-grid">
+          <div>
+            <SectionHeading
+              eyebrow={product.shortName + " / Details"}
+              title="Equipment & installations."
+              description="Enlarge a photo to see the equipment details."
+            />
+            <p className="text-sm leading-relaxed text-muted">
+              Equipment details vary by configuration; use current documents for
+              planning and service.
+            </p>
+          </div>
+          <ProductGallery
+            images={product.gallery}
+            productName={product.shortName}
+          />
+        </div>
+      </Section>
       <Section>
         <SectionHeading
+          eyebrow="Project experience"
           title="Selected installations"
           description="Representative installation history. Names identify project experience and do not imply endorsement."
         />
         <CustomerLogoGrid references={product.installs} />
         <p className="mt-6 text-sm text-muted">
-          Looking for the other product?{" "}
           <Link
             href={`/products/${product.slug === "moas" ? "epfa" : "moas"}`}
             className="font-semibold text-accent hover:underline"
           >
-            View {product.slug === "moas" ? "EPFA" : "MOAS"}
+            Explore {product.slug === "moas" ? "EPFA dry filtration" : "MOAS odor abatement"}
           </Link>
           .
         </p>
       </Section>
 
       <CtaBand
-        title={`Get pricing guidance for ${product.shortName}`}
-        description="Include CFM, cooking equipment, city/state, and install type for a faster response."
+        title={`Plan a project with ${product.shortName}.`}
+        description="Share your location, cooking equipment and exhaust layout."
+        href={"/contact?product=" + product.slug}
       />
     </>
   );

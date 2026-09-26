@@ -1,119 +1,112 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CtaBand } from "@/components/CtaBand";
-import { DocDownloads } from "@/components/DocDownloads";
-import { FaqList } from "@/components/FaqList";
-import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
-import { codeTopics, faqs } from "@/lib/content";
+import { SectionNav } from "@/components/SectionNav";
+import { CtaBand } from "@/components/CtaBand";
+import { Arrow } from "@/components/home/Arrow";
+import { codeTopics } from "@/lib/content";
 import { pageHeroes } from "@/lib/heroes";
-import { products } from "@/lib/products";
 import { metadataFor } from "@/lib/seo";
-
 export const metadata: Metadata = metadataFor("codes");
-
-const technicalDocuments = products.flatMap((product) => product.documents);
-
 export default function CodesCompliancePage() {
-  const faqLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({
-      "@type": "Question",
-      name: f.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: f.answer,
-      },
-    })),
-  };
-
   return (
     <>
-      <JsonLd data={faqLd} />
-      <PageHero config={pageHeroes.codes} />
-
-      <Section>
-        <p className="max-w-3xl rounded-md border border-warning/30 bg-accent-soft px-4 py-3 text-sm text-foreground">
-          <strong className="text-primary">Disclaimer:</strong> This content is educational. Always verify
-          requirements with your design professional and AHJ for the project address.
-        </p>
-      </Section>
-
-      <Section tone="white" className="!pt-0">
-        <div className="space-y-8">
-          {codeTopics.map((topic) => (
-            <article key={topic.title} className="surface-card p-6">
-              <h2 className="text-xl font-semibold text-primary">{topic.title}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-foreground/80">{topic.body}</p>
+      <PageHero config={pageHeroes.codes} compact />
+      <SectionNav
+        items={[
+          { href: "#product-listings", label: "Product listings" },
+          { href: "#project-review", label: "Project review" },
+        ]}
+      />
+      <Section id="product-listings" tone="white">
+        <SectionHeading
+          eyebrow="Listing scope"
+          title="What does the equipment listing cover?"
+        />
+        <div className="grid gap-10 md:grid-cols-2">
+          {[
+            [
+              "MOAS",
+              "ETL Listed · U.S. & Canada",
+              "Intertek Report 101453585DEN-002",
+              "The report identifies UL 197 and CSA C22.2 No. 109 as the applicable standards.",
+              "/products/moas",
+            ],
+            [
+              "EPFA",
+              "UL Listed",
+              "File MH45752",
+              "Models EPFA-24 through EPFA-144 were investigated to the UL 8782 Outline of Investigation for Pollution Control Units for Commercial Cooking Operations.",
+              "/products/epfa",
+            ],
+          ].map(([name, listing, file, scope, href]) => (
+            <article key={name} className="border-y border-border py-8">
+              <p className="eyebrow">{listing}</p>
+              <h2 className="mt-3 text-5xl font-medium tracking-tight">
+                {name}
+              </h2>
+              <p className="mt-5 text-base font-semibold">{file}</p>
+              <p className="mt-3 text-base leading-relaxed text-muted">
+                {scope}
+              </p>
+              <Link href={href + "#specifications"} className="text-link mt-5">
+                {name} specifications <Arrow diagonal />
+              </Link>
             </article>
           ))}
         </div>
-      </Section>
-
-      <Section>
-        <SectionHeading
-          eyebrow="Downloads"
-          title="Active-product documentation"
-          description="Published MOAS and EPFA product, planning, installation, operation, and maintenance documentation is available for review. Confirm project-specific design requirements and AHJ expectations before design or submittal."
-        />
-        <DocDownloads documents={technicalDocuments} productName="Molitron" />
-        <p className="mt-5 text-sm leading-relaxed text-muted">
-          The MOAS installation guide is also available as an{" "}
-          <Link
-            href="/products/moas/installation-planning"
-            className="font-semibold text-accent hover:underline"
-          >
-            accessible HTML planning reference
-          </Link>
-          , and the EPFA manual has an{" "}
-          <Link
-            href="/products/epfa/operation-maintenance"
-            className="font-semibold text-accent hover:underline"
-          >
-            accessible HTML operation and maintenance reference
-          </Link>
-          .
+        <p className="mt-8 max-w-4xl border-l-2 border-accent pl-5 text-sm leading-relaxed text-muted">
+          A product listing does not establish project approval, code
+          compliance, accessory coverage, field-installation acceptance, or
+          suitability for a specific application. The project team and authority
+          having jurisdiction retain their respective roles.
         </p>
       </Section>
-
-      <Section>
-        <SectionHeading
-          title="How Molitron products map to compliance conversations"
-          description="Use this as a starting point for owner and FM discussions."
-        />
-        <div className="table-scroll overflow-x-auto overflow-y-hidden rounded-lg border border-border bg-card">
-          <table className="w-full min-w-0 text-left text-sm">
-            <thead className="bg-brand text-on-brand">
-              <tr>
-                <th className="px-3 py-3 font-semibold sm:px-5">Need</th>
-                <th className="px-3 py-3 font-semibold sm:px-5">Often discussed product</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ["Grease / particulate filtration", "EPFA (UL Listed under File MH45752)"],
-                ["Odor abatement in exhaust stream", "MOAS (ETL Listed for the U.S. and Canada)"],
-                ["Filtration + odor together", "EPFA + MOAS"],
-                ["Sidewall / sensitive discharge", "Project-specific stack; request engineering input"],
-              ].map(([need, product], i) => (
-                <tr key={need} className={i % 2 === 0 ? "bg-card" : "bg-background"}>
-                  <td className="px-3 py-3 text-foreground break-words sm:px-5">{need}</td>
-                  <td className="px-3 py-3 text-foreground/80 break-words sm:px-5">{product}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <Section id="project-review">
+        <div className="editorial-grid">
+          <div>
+            <SectionHeading
+              eyebrow="Planning context"
+              title="Review the complete project."
+            />
+            <p className="text-sm leading-relaxed text-muted">
+              This content is educational. Verify requirements with your design
+              professional and authority having jurisdiction (AHJ) for the
+              project address.
+            </p>
+          </div>
+          <div className="editorial-rows">
+            {codeTopics.map((topic, index) => (
+              <article key={topic.title} className="editorial-row">
+                <span>0{index + 1}</span>
+                <div>
+                  <h3>{topic.title}</h3>
+                  <p>{topic.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </Section>
-
       <Section tone="white">
-        <SectionHeading title="Frequently asked questions" />
-        <FaqList />
+        <div className="online-guide resource-cta !mb-0">
+          <div>
+            <p className="eyebrow">Technical references</p>
+            <h3>Documents for your design team.</h3>
+            <p>Brochures, installation guides and maintenance manuals.</p>
+          </div>
+          <Link href="/resources" className="text-link shrink-0">
+            Document library <Arrow diagonal />
+          </Link>
+        </div>
       </Section>
-
-      <CtaBand title="Need a compliance-minded recommendation?" />
+      <CtaBand
+        title="Need a product detail for your review?"
+        description="Share the equipment, application and question."
+        label="Ask Molitron"
+        href="/contact?goal=engineering-conversation"
+      />
     </>
   );
 }

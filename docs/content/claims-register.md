@@ -1,6 +1,6 @@
 # Public Claims Register
 
-**Last reviewed:** July 15, 2026
+**Last reviewed:** September 25, 2026 (MOAS O&M manual publication; other records retain their stated review dates)
 
 This register separates owner-confirmed statements from documentation-derived claims and unresolved technical items. Public copy must remain consistent with this file and the visible product documentation.
 
@@ -31,7 +31,8 @@ The street address is not approved for public display.
 
 Current owner-confirmed product facts:
 
-- 120 VAC, 15 A dedicated circuit
+- 120 VAC, 20 A dedicated circuit
+- Standard external solution container holds up to 10 gallons. The low-solution buzzer is internal to the cabinet. These and the 20 A MOAS-only circuit requirement are owner-confirmed in the September 22, 2026 brochure revision.
 - Current neutralizing product name: Odor Neutralizer Solution
 
 Current controlled listing record:
@@ -41,16 +42,26 @@ Current controlled listing record:
 - The report identifies the equipment rating as 120 V, 3.5 A, 60 Hz.
 - The report describes MOAS as commercial, indoor-use, permanently connected equipment.
 
-Use `ETL Listed` rather than a generic or ambiguous certification phrase. Do not state that MOAS is listed or tested to UL 710 or UL 710 Clause 43; the current controlled report does not support that claim. Do not substitute the listed equipment rating for the separately confirmed 120 VAC, 15 A dedicated-circuit project requirement.
+Use `ETL Listed` rather than a generic or ambiguous certification phrase. Do not state that MOAS is listed or tested to UL 710 or UL 710 Clause 43; the current controlled report does not support that claim. Do not substitute the listed equipment rating for the separately confirmed 120 VAC, 20 A dedicated-circuit project requirement.
 
 Allowed with adjacent qualification:
 
 - Up to 95% odor reduction
 - Up to 50% smoke reduction
 - Up to 6,000 CFM per two-nozzle system
-- 1/4-inch cold-water supply at 80 PSI
+- 1/4-inch cold-water supply, 80 PSI maximum (owner clarification during the September 2026 manual rebuild)
 
 Performance varies with cooking process, hood grease-removal performance, exhaust configuration, installation, dwell time, and calibration. Do not present results as guarantees.
+
+### MOAS operation and maintenance manual, September 2026 Review 01
+
+The owner explicitly requested website publication of the completed 30-page `MOAS-Operation-and-Maintenance-2026.pdf` on September 25, 2026. Publish that exact owner review edition, including its final review-summary page; publication does not resolve the remaining technical review items.
+
+Owner-confirmed manual decisions include a refill delay adjustable from 30 seconds to 8 minutes, set to 8 minutes; monthly nozzle-button cleaning with MOAS and the exhaust fan running; 80 PSI maximum cold-water pressure; and a 100-foot limit for each complete cabinet-to-tee-to-nozzle routed path. Corresponding tee branches should be relatively close in length, comparing air branches and solution branches separately.
+
+The original manual's maintenance precautions are retained. Complete isolation/restart steps, the pump-tube installation continuation, current timer model, filter arrangement, wiring references, duplicate schedule presets, and listing artwork remain review points on the final page. Do not turn unresolved items into new operating instructions or claims.
+
+See `docs/publishing/moas-operation-maintenance-2026-review-01.md` for the exact publication identity and release boundary.
 
 ## EPFA current records and documentation-derived claims
 
@@ -129,7 +140,8 @@ Do not add unresolved values to public copy.
 
 The current public active-product technical PDFs are:
 
-- MOAS brochure, `MOAS-BRO-2026`, Rev B, at `/docs/moas-brochure-2026.pdf`; visible product context is maintained on `/products/moas`.
+- Molitron Odor Abatement System brochure, V4 Review 01 (September 24, 2026), at `/docs/moas-brochure-2026.pdf`; visible product context is maintained on `/products/moas`.
+- MOAS Operation & Maintenance Manual, September 2026 Review 01, owner review edition, at `/docs/moas-operation-maintenance-manual-2026.pdf`; visible product context is maintained on `/products/moas`.
 - MOAS Engineering & Installation Planning Guide, Rev A, at `/docs/moas-engineering-specs-installation-2026.pdf`; its HTML companion is `/products/moas/installation-planning`.
 - EPFA Product & Planning Brochure, `EPFA-BRO-2026`, Rev A, at `/docs/epfa-brochure-2026.pdf`; visible planning context is maintained on `/products/epfa`.
 - EPFA Installation, Operation & Maintenance Manual, `EPFA-IOM-2026`, Rev A, at `/docs/epfa-operation-maintenance-manual-2026.pdf`; its HTML companion is `/products/epfa/operation-maintenance`.

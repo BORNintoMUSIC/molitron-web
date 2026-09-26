@@ -1,0 +1,15 @@
+/** Public component identities shared by the asset and accessible HTML controls. */
+export const moasComponents = [
+  {id: 'cabinet', name: 'Stainless cabinet', inside: false, description: 'The stainless enclosure brings the MOAS assemblies together in a wall-mounted cabinet. Open the front door to explore the equipment and connections inside.'},
+  {id: 'main-door', name: 'Cabinet door', inside: false, description: 'The front door swings from the left-side hinge, with the latch traveling with it. Select the door or use the door control to look inside.'},
+  {id: 'solution-container', name: 'Solution container', inside: false, description: 'The separate stainless container holds Odor Neutralizer Solution below the cabinet. Its pickup and sensing assembly connects the container to the system. The standard container holds up to 10 gallons.'},
+  {id: 'solution-lid', name: 'Sliding fill lid', inside: false, description: 'The fill lid slides forward on the external container. Its guide rails, fixed pipe-entry panel, and pickup assembly stay in place as the lid moves.'},
+  {id: 'pump', name: 'Metering pump', inside: true, description: 'The Stenner ECON VX is the variable-speed metering pump in this assembly. Its molded housing and blue pump-head cover sit beside the solution tubing. The installed pump uses 120 VAC.'},
+  {id: 'compressor', name: 'Air compressor', inside: true, description: 'The compressor is the air-supply assembly inside the cabinet. Its support plate and vibration-damping mounts separate it from the surrounding cabinet structure.'},
+  {id: 'controls', name: 'System controls', inside: true, description: 'The cabinet contains the control assembly, relays, timer, and electrical connections. This view shows their arrangement; operating settings and field wiring follow the current installation documentation.'},
+  {id: 'water-inlet', name: 'Water inlet', inside: true, description: 'The water-inlet assembly brings the cold-water connection into the cabinet. Its fittings, valve, and tubing are shown in their modeled positions.'},
+  {id: 'mixing-container', name: 'Mixing container', inside: true, description: 'The clear internal mixing container is separate from the external stainless solution container. This view shows its lid, fittings, and nearby tubing inside the cabinet.'},
+  {id: 'alarm', name: 'Low-solution alarm', inside: true, description: 'The low-solution alarm signals when the solution supply needs attention. Its buzzer is inside the cabinet, with the associated panel and connections shown here.'},
+  {id: 'fan', name: 'Cooling fan', inside: true, description: 'The equipment-cooling fan and protective guard are mounted at the cabinet. Select this assembly to see its location relative to the surrounding components.'},
+  {id: 'tubing', name: 'Tubing and wiring', inside: true, description: 'Process tubing, power cords, and wiring connect the assemblies throughout the cabinet. Their routes help show how the physical components fit together.'},
+] as const;

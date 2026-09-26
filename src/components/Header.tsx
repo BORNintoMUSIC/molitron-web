@@ -36,6 +36,17 @@ export function Header() {
 
   useEffect(() => {
     document.body.classList.toggle("nav-open", mobileOpen);
+    const background = [
+      ...document.querySelectorAll<HTMLElement>("header, main, footer"),
+    ];
+    background.forEach((element) => {
+      element.inert = mobileOpen;
+    });
+    const desktop = window.matchMedia("(min-width: 1280px)");
+    const onResize = () => {
+      if (desktop.matches) setMobileOpen(false);
+    };
+    desktop.addEventListener("change", onResize);
     if (mobileOpen) window.setTimeout(() => closeButtonRef.current?.focus(), 0);
 
     function onKeyDown(event: KeyboardEvent) {
@@ -67,6 +78,10 @@ export function Header() {
     return () => {
       window.removeEventListener("keydown", onKeyDown);
       document.body.classList.remove("nav-open");
+      background.forEach((element) => {
+        element.inert = false;
+      });
+      desktop.removeEventListener("change", onResize);
     };
   }, [mobileOpen]);
 
@@ -74,8 +89,19 @@ export function Header() {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") setOpenMenu(null);
     }
+    function onOutsidePointer(event: PointerEvent) {
+      if (
+        !(event.target instanceof Element) ||
+        !event.target.closest("[data-nav-menu]")
+      )
+        setOpenMenu(null);
+    }
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    window.addEventListener("pointerdown", onOutsidePointer);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("pointerdown", onOutsidePointer);
+    };
   }, []);
 
   return (
@@ -86,19 +112,29 @@ export function Header() {
         }`}
       >
         <div className="safe-inline mx-auto flex h-16 max-w-7xl items-center justify-between gap-4">
-          <Logo href="/" onClick={() => closeMobileNav()} showTagline />
+          <Logo href="/" onClick={() => closeMobileNav()} />
 
-          <nav className="hidden min-w-0 flex-1 items-center justify-end gap-1 xl:flex" aria-label="Primary">
+          <nav
+            className="hidden min-w-0 flex-1 items-center justify-end gap-1 xl:flex"
+            aria-label="Primary"
+          >
             {nav.map((item) =>
               "children" in item && item.children ? (
                 <div
                   key={item.label}
                   className="relative"
-                  onMouseEnter={() => setOpenMenu(item.label)}
-                  onMouseLeave={() => setOpenMenu(null)}
-                  onFocus={() => setOpenMenu(item.label)}
+                  data-nav-menu
+                  onKeyDown={(event) => {
+                    if (event.key === "Escape") {
+                      setOpenMenu(null);
+                      event.currentTarget.querySelector("button")?.focus();
+                    }
+                  }}
                   onBlur={(event) => {
-                    if (!event.currentTarget.contains(event.relatedTarget as Node)) setOpenMenu(null);
+                    if (
+                      !event.currentTarget.contains(event.relatedTarget as Node)
+                    )
+                      setOpenMenu(null);
                   }}
                 >
                   <button
@@ -110,10 +146,16 @@ export function Header() {
                     }`}
                     aria-expanded={openMenu === item.label}
                     aria-controls={`desktop-nav-${item.label.toLowerCase()}`}
-                    onClick={() => setOpenMenu((current) => (current === item.label ? null : item.label))}
+                    onClick={() =>
+                      setOpenMenu((current) =>
+                        current === item.label ? null : item.label,
+                      )
+                    }
                   >
                     {item.label}
-                    <span aria-hidden className="text-[10px]">▾</span>
+                    <span aria-hidden className="text-[10px]">
+                      ▾
+                    </span>
                   </button>
                   {openMenu === item.label ? (
                     <div
@@ -122,7 +164,9 @@ export function Header() {
                     >
                       <Link
                         href={item.href}
-                        aria-current={isActive(pathname, item.href) ? "page" : undefined}
+                        aria-current={
+                          pathname === item.href ? "page" : undefined
+                        }
                         className="block rounded-md px-3 py-2.5 text-sm font-semibold text-primary hover:bg-accent-soft"
                         onClick={() => setOpenMenu(null)}
                       >
@@ -132,7 +176,9 @@ export function Header() {
                         <Link
                           key={child.href}
                           href={child.href}
-                          aria-current={pathname === child.href ? "page" : undefined}
+                          aria-current={
+                            pathname === child.href ? "page" : undefined
+                          }
                           className="block rounded-md px-3 py-2.5 text-sm text-foreground/75 hover:bg-accent-soft hover:text-primary"
                           onClick={() => setOpenMenu(null)}
                         >
@@ -181,8 +227,19 @@ export function Header() {
               aria-label="Open menu"
               onClick={() => setMobileOpen(true)}
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden
+              >
+                <path
+                  d="M4 7h16M4 12h16M4 17h16"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                />
               </svg>
               <span className="hidden sm:inline">Menu</span>
             </button>
@@ -200,6 +257,7 @@ export function Header() {
           <button
             type="button"
             className="absolute inset-0 h-full w-full bg-slate-950/55"
+            tabIndex={-1}
             aria-label="Close navigation"
             onClick={() => closeMobileNav(true)}
           />
@@ -218,20 +276,36 @@ export function Header() {
                 aria-label="Close menu"
                 onClick={() => closeMobileNav(true)}
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
-                  <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden
+                >
+                  <path
+                    d="m6 6 12 12M18 6 6 18"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </button>
             </div>
 
             <div className="flex-1 px-5 py-5">
               {nav.map((item) => (
-                <div key={item.label} className="border-b border-border py-3 last:border-0">
+                <div
+                  key={item.label}
+                  className="border-b border-border py-3 last:border-0"
+                >
                   {"children" in item && item.children ? (
                     <>
                       <Link
                         href={item.href}
-                        aria-current={isActive(pathname, item.href) ? "page" : undefined}
+                        aria-current={
+                          pathname === item.href ? "page" : undefined
+                        }
                         className="flex min-h-11 items-center text-base font-bold text-primary"
                         onClick={() => closeMobileNav()}
                       >
@@ -242,7 +316,9 @@ export function Header() {
                           <Link
                             key={child.href}
                             href={child.href}
-                            aria-current={pathname === child.href ? "page" : undefined}
+                            aria-current={
+                              pathname === child.href ? "page" : undefined
+                            }
                             className="flex min-h-11 items-center text-sm font-semibold text-foreground/75"
                             onClick={() => closeMobileNav()}
                           >

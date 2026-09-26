@@ -1,43 +1,43 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Arrow } from "@/components/home/Arrow";
 import type { Product } from "@/lib/products";
+import { productPresentation } from "@/lib/product-presentation";
 
-export function ProductCard({ product, priority = false }: { product: Product; priority?: boolean }) {
+export function ProductCard({ product }: { product: Product }) {
+  const presentation = productPresentation[product.slug];
   return (
-    <article className="group surface-card flex h-full flex-col overflow-hidden">
-      <div className="relative aspect-[16/10] border-b border-border bg-surface-muted">
+    <article className="product-card">
+      <Link
+        href={"/products/" + product.slug}
+        className={"product-card-image product-photo-" + product.slug}
+        aria-label={"Explore " + product.shortName}
+      >
+        <span className="product-card-watermark" aria-hidden="true">
+          {product.shortName}
+        </span>
         <Image
-          src={product.hero.src}
+          src={presentation.image}
           alt={product.hero.alt}
           fill
-          preload={priority}
-          quality={70}
-          className="object-contain p-4"
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 480px"
+          quality={85}
+          sizes="(max-width: 767px) 90vw, 570px"
         />
-      </div>
-      <div className="flex flex-1 flex-col p-4 sm:p-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
-          {product.certifications[0]}
-        </p>
-        <h3 className="mt-2 text-lg font-semibold text-primary sm:text-xl">
-          {product.shortName}
-        </h3>
-        <p className="mt-1 text-sm font-medium text-muted break-words">{product.tagline}</p>
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-foreground/80">{product.summary}</p>
-        <ul className="mt-4 space-y-1.5 text-sm text-foreground/80">
-          {product.highlights.slice(0, 3).map((h) => (
-            <li key={h} className="flex gap-2">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent" />
-              <span>{h}</span>
-            </li>
-          ))}
-        </ul>
-        <Link
-          href={`/products/${product.slug}`}
-          className="link-shine mt-6 inline-flex min-h-11 items-center text-sm font-semibold text-accent"
-        >
-          View {product.shortName} details →
+        <span className="product-card-index">
+          {product.slug === "moas" ? "01" : "02"} / {presentation.role}
+        </span>
+        <span className="circle-arrow" aria-hidden="true">
+          <Arrow diagonal />
+        </span>
+      </Link>
+      <div className="product-card-copy">
+        <div className="flex items-baseline justify-between gap-4">
+          <h2>{product.shortName}</h2>
+          <p className="eyebrow">{presentation.role}</p>
+        </div>
+        <p className="product-card-intro">{product.summary}</p>
+        <Link href={"/products/" + product.slug} className="text-link">
+          Explore {product.shortName} <Arrow diagonal />
         </Link>
       </div>
     </article>

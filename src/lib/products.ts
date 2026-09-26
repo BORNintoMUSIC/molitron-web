@@ -50,7 +50,7 @@ export const products: Product[] = [
     shortName: "MOAS",
     tagline: "Commercial-kitchen exhaust odor abatement, planned for each application.",
     summary:
-      "The Molitron Odor Abatement System (MOAS) atomizes Odor Neutralizer Solution through remote misting nozzles in commercial-kitchen exhaust. The self-contained, wall-mounted system can operate on its own or alongside EPFA filtration, with each application evaluated for its project conditions.",
+      "The Molitron Odor Abatement System (MOAS) treats cooking odor in commercial kitchen exhaust using remote nozzles that mist Odor Neutralizer Solution.",
     certifications: [
       "ETL Listed for the U.S. and Canada",
       "Intertek Report 101453585DEN-002",
@@ -62,7 +62,7 @@ export const products: Product[] = [
       "Up to 6,000 CFM per two-nozzle system; final configuration and calibration are project-specific",
       "Wall-mounted stainless cabinet; only the misting nozzles go in the duct",
       "Runs standalone or integrates with the Enviro-Pak Filter Assembly (EPFA)",
-      "Optional 10-gallon solution container with low-level audible refill alert",
+      "Standard external solution container holds up to 10 gallons; an internal cabinet buzzer signals low solution",
     ],
     specs: [
       { label: "Capacity", value: "Up to 6,000 CFM per system (two misting nozzles)" },
@@ -70,9 +70,9 @@ export const products: Product[] = [
       { label: "Smoke reduction", value: "Up to 50%; actual results vary by project conditions" },
       { label: "Method", value: "Atomizes Odor Neutralizer Solution through remote misting nozzles" },
       { label: "Cabinet", value: '18 Ga stainless steel — 24″ W × 32″ H × 8″ D, ~100 lbs' },
-      { label: "Project electrical requirement", value: "120 VAC, 15 A dedicated circuit" },
+      { label: "Project electrical requirement", value: "120 VAC, 20 A dedicated circuit for MOAS" },
       { label: "Listed equipment rating", value: "120 V, 3.5 A, 60 Hz" },
-      { label: "Water", value: '¼″ copper cold water supply, 80 PSI' },
+      { label: "Water", value: '¼″ copper cold water supply, 80 PSI maximum' },
       {
         label: "Listing",
         value: "ETL Listed for the U.S. and Canada · Intertek Report 101453585DEN-002 · UL 197 · CSA C22.2 No. 109",
@@ -104,16 +104,22 @@ export const products: Product[] = [
     ],
     documents: [
       {
-        title: "MOAS Product Brochure (2026)",
-        description: "Approved product brochure with qualified performance information, system operation, utilities, and project-planning considerations.",
+        title: "Molitron Odor Abatement System Product Brochure",
+        description: "Version 4, Review 01 — September 24, 2026. System dimensions, remote nozzle layout, building connections, and qualified performance information.",
         href: "/docs/moas-brochure-2026.pdf",
         kind: "brochure",
       },
       {
         title: "MOAS Engineering & Installation Planning Guide (Rev A)",
-        description: "Published planning guide for cabinet, nozzle, utility, tubing, access, and exhaust-fan interlock coordination. Not for construction.",
+        description: "Plan the cabinet location, nozzles, utilities, tubing, service access and exhaust-fan interlock. Not for construction.",
         href: "/docs/moas-engineering-specs-installation-2026.pdf",
         kind: "specs",
+      },
+      {
+        title: "MOAS Operation & Maintenance Manual (2026)",
+        description: "September 2026, Review 01 — owner review edition. 30 pages covering installation, startup, operation and maintenance, with outstanding review points collected on the final page.",
+        href: "/docs/moas-operation-maintenance-manual-2026.pdf",
+        kind: "manual",
       },
     ],
     hero: {
@@ -161,7 +167,7 @@ export const products: Product[] = [
     shortName: "EPFA",
     tagline: "Three-stage dry filtration for light-duty commercial-kitchen exhaust.",
     summary:
-      "The Molitron Enviro-Pak Filter Assembly (EPFA) is an in-line pollution control unit for filtering smoke particulate and grease vapor from light-duty commercial-kitchen exhaust. Its dry filter path uses a MERV 9 pre-filter, a MERV 14 high-efficiency stage, and either a MERV 14 final stage or an optional carbon final stage.",
+      "The Enviro-Pak Filter Assembly (EPFA) is Molitron’s pollution control unit for light-duty commercial kitchen exhaust. Three dry filter stages remove smoke particulate and grease vapor.",
     certifications: [
       "UL Listed under File MH45752",
       "Models EPFA-24 through EPFA-144",
@@ -171,8 +177,8 @@ export const products: Product[] = [
       "Three-stage dry filtration: MERV 9 pre-filter, MERV 14 high-efficiency stage, and MERV 14 or optional carbon final stage",
       "Filtration requires no process water, circulation pumps, or chemical dosing",
       "Fully welded, single-wall, 18-gauge Type 304 stainless-steel enclosure with removable gasketed access doors",
-      "Eleven models from EPFA-24 through EPFA-144, with owner-confirmed capacities from 1,800 to 10,800 CFM",
-      "Remote operating and filter-service indication with owner-confirmed pressure thresholds",
+      "Eleven models from EPFA-24 through EPFA-144, with capacities from 1,800 to 10,800 CFM",
+      "Remote operating and filter-service indication with documented pressure thresholds",
       "Indoor or outdoor placement, subject to project-specific environmental, access, duct, support, drainage, electrical, fire-suppression, and AHJ requirements",
     ],
     specs: [
@@ -216,13 +222,13 @@ export const products: Product[] = [
     documents: [
       {
         title: "EPFA Product & Planning Brochure (Rev A)",
-        description: "Published brochure covering filter stages, model data, service clearances, monitoring, and project-interface planning. Not for construction.",
+        description: "Filter stages, model specifications, service clearances and monitoring requirements for EPFA planning. Not for construction.",
         href: "/docs/epfa-brochure-2026.pdf",
         kind: "brochure",
       },
       {
         title: "EPFA Installation, Operation & Maintenance Manual (Rev A)",
-        description: "Current manual for receiving, installation coordination, monitoring, factory startup, maintenance, filter service, cleaning, troubleshooting, warranty, and equipment records.",
+        description: "Receiving, installation, startup, monitoring and qualified maintenance, with troubleshooting, warranty information and equipment records.",
         href: "/docs/epfa-operation-maintenance-manual-2026.pdf",
         kind: "manual",
       },

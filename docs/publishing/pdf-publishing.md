@@ -14,7 +14,8 @@ This guide defines the boundary between controlled technical-document work and w
 
 | Public PDF | Classification | HTML companion/context | Indexing |
 |---|---|---|---|
-| `/docs/moas-brochure-2026.pdf` | Active MOAS brochure, Rev B | `/products/moas` | Normal |
+| `/docs/moas-brochure-2026.pdf` | MOAS brochure, V4 Review 01 (September 24, 2026) | `/products/moas` | Normal |
+| `/docs/moas-operation-maintenance-manual-2026.pdf` | MOAS O&M manual, September 2026 Review 01, owner review edition | `/products/moas` | Normal |
 | `/docs/moas-engineering-specs-installation-2026.pdf` | Active MOAS planning guide, Rev A | `/products/moas/installation-planning` | Normal |
 | `/docs/epfa-brochure-2026.pdf` | Active EPFA brochure, Rev A | `/products/epfa` | Normal |
 | `/docs/epfa-operation-maintenance-manual-2026.pdf` | Active EPFA IOM manual, Rev A | `/products/epfa/operation-maintenance` | Normal |
