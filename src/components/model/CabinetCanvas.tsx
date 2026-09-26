@@ -1,4 +1,4 @@
-import { Component, Suspense, useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
+import { Component, Suspense, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { ContactShadows, Environment, Lightformer } from '@react-three/drei';
 import { Vector2 } from 'three';
@@ -18,19 +18,30 @@ type ViewerProps = {
   command: CameraCommand | null;
   navigationMode: NavigationMode;
   onSelect: (id: string) => void;
+  onUnavailable: () => void;
+  onRetry: () => void;
 };
 
-class ViewerBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+type FallbackActions = Pick<ViewerProps, 'onUnavailable' | 'onRetry'>;
+
+class ViewerBoundary extends Component<FallbackActions & { children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
   render() {
-    if (this.state.failed) return <CanvasFallback />;
+    if (this.state.failed) return <CanvasFallback onUnavailable={this.props.onUnavailable} onRetry={this.props.onRetry} />;
     return this.props.children;
   }
 }
 
-function CanvasFallback() {
-  return <div className={styles.canvasFallback}><Image src={moasModel.poster} alt={moasModel.posterAlt} fill sizes="(max-width: 767px) 90vw, 690px" style={{objectFit:'contain'}} /><p>3D could not start. You can return to images above and try again.</p></div>;
+function CanvasFallback({ onUnavailable, onRetry, dormant = false }: FallbackActions & { dormant?: boolean }) {
+  const reported = useRef(false);
+  useEffect(() => {
+    if (!dormant && !reported.current) {
+      reported.current = true;
+      onUnavailable();
+    }
+  }, [dormant, onUnavailable]);
+  return <div className={styles.canvasFallback} inert={dormant || undefined} aria-hidden={dormant || undefined}><Image src={moasModel.poster} alt={moasModel.posterAlt} fill sizes="(max-width: 767px) 90vw, 690px" style={{objectFit:'contain'}} /><p role="alert">3D could not start. <button type="button" onClick={onRetry}>Retry 3D</button><br />You can also use Back to images above.</p></div>;
 }
 
 function Cabinet({ asset, selected, hidden, wireframe, doorAngle, lidOpen, onSelect }: ViewerProps) {
@@ -104,7 +115,24 @@ function DevelopmentProfile({asset}:{asset:CabinetAsset}) {
 }
 
 export function Viewer(props: ViewerProps) {
+  const [capability, setCapability] = useState<{asset: CabinetAsset; available: boolean} | null>(null);
   const gesture = useRef({x: 0, y: 0, moved: false, pointers: new Set<number>()});
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      let available = false;
+      let context: WebGL2RenderingContext | null = null;
+      try {
+        context = document.createElement('canvas').getContext('webgl2', {alpha: true, antialias: true, powerPreference: 'high-performance'});
+        available = context !== null;
+      } catch {
+        // Context creation can be disabled or fail even when the API exists.
+      } finally {
+        context?.getExtension('WEBGL_lose_context')?.loseContext();
+      }
+      setCapability({asset: props.asset, available});
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [props.asset]);
   useEffect(() => {
     const move = (event: PointerEvent) => {
       const state = gesture.current;
@@ -125,9 +153,13 @@ export function Viewer(props: ViewerProps) {
     };
   }, []);
   const select = (id: string) => { if (!gesture.current.moved) props.onSelect(id); };
-  return <ViewerBoundary key={props.asset.gltf.scene.uuid}>
+  if (capability?.asset !== props.asset) return <div className={styles.canvasFallback}><Image src={moasModel.poster} alt={moasModel.posterAlt} fill sizes="(max-width: 767px) 90vw, 690px" style={{objectFit:'contain'}} /><p role="status">Starting 3D…</p></div>;
+  if (!capability.available) return <CanvasFallback onUnavailable={props.onUnavailable} onRetry={props.onRetry} />;
+  return <ViewerBoundary key={props.asset.gltf.scene.uuid} onUnavailable={props.onUnavailable} onRetry={props.onRetry}>
     <Canvas shadows frameloop="demand" dpr={[1, 1.5]} camera={{ fov: 38, near: 0.01, far: 100, position: [3.2, 2.7, 4.7] }}
-      gl={{ antialias: true, alpha: true }} fallback={<CanvasFallback />}
+      // Native canvas fallback children also mount in healthy browsers. Keep
+      // them inert; the capability guard renders the active fallback above.
+      gl={{ antialias: true, alpha: true }} fallback={<CanvasFallback dormant onUnavailable={props.onUnavailable} onRetry={props.onRetry} />}
       onPointerDownCapture={event => {
         const state = gesture.current;
         if (state.pointers.size === 0) {state.x = event.clientX; state.y = event.clientY; state.moved = false;}

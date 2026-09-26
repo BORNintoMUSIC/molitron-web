@@ -16,6 +16,7 @@ export type CameraCommand = { id: number; action: CameraAction; partId?: string 
 
 type ViewerCameraProps = {
   asset: CabinetAsset;
+  selected: string;
   command: CameraCommand | null;
   navigationMode: NavigationMode;
   doorAngle: number;
@@ -23,9 +24,9 @@ type ViewerCameraProps = {
 };
 
 /** One camera/target pair for gestures and buttons; only explicit commands can reframe. */
-export function ViewerCamera({ asset, command, navigationMode, doorAngle, lidOpen }: ViewerCameraProps) {
+export function ViewerCamera({ asset, selected, command, navigationMode, doorAngle, lidOpen }: ViewerCameraProps) {
   const controls = useRef<OrbitControlsType>(null);
-  const { camera, invalidate } = useThree();
+  const { camera, gl, invalidate } = useThree();
   const destination = useRef<CameraPose | null>(null);
   const initializedAsset = useRef<CabinetAsset | null>(null);
   const handledCommand = useRef<number | null>(null);
@@ -53,8 +54,16 @@ export function ViewerCamera({ asset, command, navigationMode, doorAngle, lidOpe
     handledCommand.current = command?.id ?? null;
 
     const current = destination.current ?? { position: camera.position.clone(), target: orbit.target.clone() };
-    const action = initial ? 'reset' : command!.action;
+    // The HTML explorer is available while loading, so preserve its queued focus.
+    const queuedFocus = command?.action === 'focus' && !!selected && command.partId === selected;
+    const action = initial ? (queuedFocus ? 'focus' : 'reset') : command!.action;
     const fov = camera.getEffectiveFOV();
+    // Canvas measures this 100%-sized parent with ResizeObserver. An inspector
+    // opening in the same render can change its layout before camera.aspect
+    // catches up; the canvas itself may still have the previous pixel size.
+    const viewport = (gl.domElement.parentElement ?? gl.domElement).getBoundingClientRect();
+    const aspect = viewport.width > 0 && viewport.height > 0
+      ? viewport.width / viewport.height : camera.aspect;
     let next: CameraPose;
     let framedBounds: ReturnType<typeof assetCameraBounds> | undefined;
     if (action === 'fit' || action === 'front' || action === 'reset' || action === 'focus') {
@@ -63,13 +72,13 @@ export function ViewerCamera({ asset, command, navigationMode, doorAngle, lidOpe
         : action === 'front' ? new Vector3(0, 0, 1)
         : canonicalDirection(doorAngle);
       framedBounds = assetCameraBounds(asset, doorAngle, lidOpen, action === 'focus' ? command?.partId : undefined);
-      next = fitCameraBounds(framedBounds, direction, fov, camera.aspect, action === 'focus' ? 1.28 : 1.13);
+      next = fitCameraBounds(framedBounds, direction, fov, aspect, action === 'focus' ? 1.28 : 1.13);
     } else {
-      next = stepCameraPose(current, action, fov, camera.aspect);
+      next = stepCameraPose(current, action, fov, aspect);
     }
     if (process.env.NODE_ENV === 'development') {
       console.info('MOAS camera command', JSON.stringify({
-        action, id: command?.id ?? null, initial,
+        action, id: command?.id ?? null, initial, aspect,
         current: { position: current.position.toArray(), target: current.target.toArray() },
         destination: { position: next.position.toArray(), target: next.target.toArray() },
         ...(framedBounds ? { bounds: { min: framedBounds.min.toArray(), max: framedBounds.max.toArray() } } : {}),
@@ -94,7 +103,7 @@ export function ViewerCamera({ asset, command, navigationMode, doorAngle, lidOpe
       orbit.enableDamping = !reducedMotion.current;
     } else destination.current = next;
     invalidate();
-  }, [asset, camera, command, doorAngle, lidOpen, invalidate]);
+  }, [asset, selected, camera, gl, command, doorAngle, lidOpen, invalidate]);
 
   useFrame((_, delta) => {
     const next = destination.current;

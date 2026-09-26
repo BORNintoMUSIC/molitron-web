@@ -48,6 +48,11 @@
   border-top: 1px solid #c1d1c437;
   border-bottom: 1px solid #c1d1c437;
 }
+/* The active showroom owns navigation and uses the full equipment stage. */
+.walkthrough:has([data-model-active="true"]) { grid-template-columns: minmax(0, 1fr); border: 0; }
+.walkthrough:has([data-model-active="true"]) > .controls,
+.media:has([data-model-active="true"]) > :is(.mediaHeader, .mediaFooter) { display: none; }
+.walkthrough:has([data-model-active="true"]) > .media { grid-row: auto; min-height: 0; background: transparent; }
 .media {
   position: relative;
   min-width: 0;
