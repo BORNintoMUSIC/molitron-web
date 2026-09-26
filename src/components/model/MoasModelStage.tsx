@@ -27,7 +27,7 @@ export function MoasModelStage({view, children}: {view: "exterior" | "interior";
   return <div ref={stage} role={expanded?'dialog':undefined} aria-modal={expanded?true:undefined} aria-label={expanded?'MOAS interactive model':undefined} className={active ? `${styles.activeStage} ${expanded ? styles.expanded : ''}` : styles.inactiveStage} data-model-active={active} onKeyDown={event => {
     if (active && event.key === 'Escape') { event.preventDefault(); if(expanded)setExpanded(false);else setActive(false); }
     if(expanded && event.key==='Tab') {
-      const focusable=stage.current?.querySelectorAll<HTMLElement>('button:not(:disabled), select, input:not(:disabled)');
+      const focusable=stage.current?.querySelectorAll<HTMLElement>('button:not(:disabled), select:not(:disabled), input:not(:disabled), [tabindex="0"]');
       const first=focusable?.[0], last=focusable?.[focusable.length-1];
       if(event.shiftKey && document.activeElement===first){event.preventDefault();last?.focus();}
       else if(!event.shiftKey && document.activeElement===last){event.preventDefault();first?.focus();}

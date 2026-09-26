@@ -1,8 +1,8 @@
 import { Component, Suspense, useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei';
-import { Box3, Vector2, Vector3, type PerspectiveCamera } from 'three';
-import type { OrbitControls as OrbitControlsType } from 'three-stdlib';
+import { ContactShadows, Environment, Lightformer } from '@react-three/drei';
+import { Vector2 } from 'three';
+import { ViewerCamera, type CameraCommand, type NavigationMode } from './ViewerCamera';
 import { configureMaterials, type CabinetAsset } from './model';
 import Image from 'next/image';
 import { moasModel } from '@/lib/moas-model';
@@ -15,10 +15,8 @@ type ViewerProps = {
   wireframe: boolean;
   doorAngle: number;
   lidOpen: boolean;
-  orbit: number;
-  view: 'perspective' | 'front';
-  reset: number;
-  zoom: number;
+  command: CameraCommand | null;
+  navigationMode: NavigationMode;
   onSelect: (id: string) => void;
 };
 
@@ -90,46 +88,6 @@ function Cabinet({ asset, selected, hidden, wireframe, doorAngle, lidOpen, onSel
   </group>;
 }
 
-function Cameras({ asset, view, reset, zoom, doorAngle, selected, orbit }: Pick<ViewerProps, 'asset' | 'view' | 'reset' | 'zoom' | 'doorAngle' | 'selected' | 'orbit'>) {
-  const controls = useRef<OrbitControlsType>(null);
-  const { camera, invalidate, size } = useThree();
-  const destination = useRef<{position: Vector3; target: Vector3} | null>(null);
-  useEffect(() => {
-    const box = doorAngle > 0 ? asset.frameBox.clone() : new Box3().setFromCenterAndSize(asset.center, asset.size);
-    if (selected && selected !== 'main-door' && selected !== 'cabinet') {
-      const partBox = new Box3();
-      asset.gltf.scene.updateMatrixWorld(true);
-      asset.meshes.filter(m => m.partId === selected).forEach(m => partBox.expandByObject(m.object));
-      partBox.applyMatrix4(asset.gltf.scene.matrixWorld.clone().invert());
-      if (!partBox.isEmpty()) box.copy(partBox).expandByScalar(.12);
-    }
-    const target = box.getCenter(new Vector3()).sub(asset.center).multiplyScalar(asset.scale);
-    target.y += asset.size.y * asset.scale / 2 + 0.025;
-    const half = box.getSize(new Vector3()).multiplyScalar(asset.scale / 2);
-    const direction = (view === 'front' ? new Vector3(0,0,1) : new Vector3(3.2,1.2,4.7)).normalize();
-    direction.applyAxisAngle(new Vector3(0,1,0), orbit * Math.PI / 6);
-    const right = new Vector3(0,1,0).cross(direction).normalize();
-    const up = direction.clone().cross(right);
-    const tanV = Math.tan((camera as PerspectiveCamera).fov * Math.PI / 360);
-    const tanH = tanV * size.width / size.height;
-    let distance = 0;
-    for (const x of [-1,1]) for (const y of [-1,1]) for (const z of [-1,1]) {
-      const corner = new Vector3(x*half.x,y*half.y,z*half.z);
-      distance = Math.max(distance, corner.dot(direction) + Math.abs(corner.dot(right))/tanH, corner.dot(direction) + Math.abs(corner.dot(up))/tanV);
-    }
-    destination.current = {position:target.clone().addScaledVector(direction, Math.max(1.2,distance*1.12*Math.exp(-zoom*.15))),target};
-    invalidate();
-  }, [asset, camera, invalidate, view, reset, zoom, selected, doorAngle, orbit, size.width, size.height]);
-  useFrame((_,delta)=>{
-    const d=destination.current;if(!d || !controls.current)return;
-    const rate=matchMedia('(prefers-reduced-motion: reduce)').matches?1:1-Math.exp(-7*Math.min(delta,.05));
-    camera.position.lerp(d.position,rate);controls.current.target.lerp(d.target,rate);controls.current.update();
-    if(camera.position.distanceTo(d.position)<.001 && controls.current.target.distanceTo(d.target)<.001)destination.current=null;
-    else invalidate();
-  });
-  return <OrbitControls ref={controls} makeDefault onStart={()=>{destination.current=null;}} enableDamping={false} enablePan={false} minDistance={1.2} maxDistance={15} maxPolarAngle={Math.PI * 0.85} />;
-}
-
 function DevelopmentProfile({asset}:{asset:CabinetAsset}) {
   const samples=useRef<number[]>([]);
   const reported=useRef(false);
@@ -146,24 +104,59 @@ function DevelopmentProfile({asset}:{asset:CabinetAsset}) {
 }
 
 export function Viewer(props: ViewerProps) {
+  const gesture = useRef({x: 0, y: 0, moved: false, pointers: new Set<number>()});
+  useEffect(() => {
+    const move = (event: PointerEvent) => {
+      const state = gesture.current;
+      if (state.pointers.size && Math.hypot(event.clientX-state.x, event.clientY-state.y) > 5) state.moved = true;
+    };
+    const end = (event: PointerEvent) => {gesture.current.pointers.delete(event.pointerId);};
+    const cancel = () => {gesture.current.pointers.clear(); gesture.current.moved = true;};
+    // OrbitControls continues drags outside the canvas; track the same lifetime.
+    window.addEventListener('pointermove', move, {passive: true});
+    window.addEventListener('pointerup', end);
+    window.addEventListener('pointercancel', cancel);
+    window.addEventListener('blur', cancel);
+    return () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', end);
+      window.removeEventListener('pointercancel', cancel);
+      window.removeEventListener('blur', cancel);
+    };
+  }, []);
+  const select = (id: string) => { if (!gesture.current.moved) props.onSelect(id); };
   return <ViewerBoundary key={props.asset.gltf.scene.uuid}>
     <Canvas shadows frameloop="demand" dpr={[1, 1.5]} camera={{ fov: 38, near: 0.01, far: 100, position: [3.2, 2.7, 4.7] }}
       gl={{ antialias: true, alpha: true }} fallback={<CanvasFallback />}
-      onPointerMissed={() => props.onSelect('')}>
+      onPointerDownCapture={event => {
+        const state = gesture.current;
+        if (state.pointers.size === 0) {state.x = event.clientX; state.y = event.clientY; state.moved = false;}
+        state.pointers.add(event.pointerId);
+        if (state.pointers.size > 1) state.moved = true;
+      }}
+      onPointerUpCapture={event => gesture.current.pointers.delete(event.pointerId)}
+      onPointerCancelCapture={event => {gesture.current.pointers.delete(event.pointerId);gesture.current.moved = true;}}
+      onPointerMissed={() => select('')}>
       <Suspense fallback={null}>
-        <ambientLight intensity={0.3} />
-        <directionalLight position={[3, 6, 4]} intensity={1.5} />
-        <Environment resolution={256} frames={1}>
-          <color attach="background" args={['#777d83']} />
-          <Lightformer intensity={2} position={[0, 2, 5]} scale={[6, 7, 1]} />
-          <Lightformer intensity={4} position={[-4, 4, 3]} rotation={[0, Math.PI / 4, 0]} scale={[3, 7, 1]} />
-          <Lightformer intensity={3} position={[4, 2, 1]} rotation={[0, -Math.PI / 2, 0]} scale={[2, 6, 1]} />
-          <Lightformer intensity={2} position={[0, 5, -2]} rotation={[Math.PI / 2, 0, 0]} scale={[5, 4, 1]} />
+        <ambientLight intensity={0.2} />
+        <directionalLight position={[3, 5, 6]} intensity={1.8} castShadow
+          shadow-mapSize={[1024, 1024]} shadow-camera-left={-3} shadow-camera-right={3}
+          shadow-camera-top={4} shadow-camera-bottom={-3} shadow-camera-near={0.5} shadow-camera-far={16}
+          shadow-bias={-0.00015} shadow-normalBias={0.008} shadow-radius={3} />
+        <directionalLight position={[4, 2, 4]} intensity={0.5} />
+        {/* Neutral studio reflections stay independent of the forest backdrop. */}
+        <Environment resolution={256} frames={1} environmentIntensity={0.9}>
+          <color attach="background" args={['#666b70']} />
+          <Lightformer intensity={2.2} position={[1, 2, 5]} scale={[3, 6, 1]} />
+          <Lightformer intensity={2.5} position={[-4, 3, 3]} rotation={[0, Math.PI / 4, 0]} scale={[3, 6, 1]} />
+          <Lightformer intensity={2} position={[4, 2, 3]} rotation={[0, -Math.PI / 3, 0]} scale={[1.8, 5, 1]} />
+          <Lightformer intensity={3} position={[0, 5, 0]} rotation={[Math.PI / 2, 0, 0]} scale={[5, 4, 1]} />
+          <Lightformer intensity={1.5} position={[0, 2, -5]} rotation={[0, Math.PI, 0]} scale={[4, 5, 1]} />
         </Environment>
-        <Cabinet {...props} />
+        <Cabinet {...props} onSelect={select} />
         <DevelopmentProfile asset={props.asset} />
-        <ContactShadows position={[0,-.02,0]} opacity={.3} scale={9} blur={2.7} far={4} resolution={256} />
-        <Cameras {...props} />
+        <ContactShadows position={[0,-.02,0]} opacity={.24} scale={9} blur={2.7} far={4} resolution={256} />
+        <ViewerCamera {...props} />
       </Suspense>
     </Canvas>
   </ViewerBoundary>;

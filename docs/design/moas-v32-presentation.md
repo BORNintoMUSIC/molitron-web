@@ -2,6 +2,8 @@
 
 September 25, 2026. The MOAS explorer now uses the prepared cabinet v32, external solution container v5, and Stenner pump v2. It keeps the existing opt-in loading on the homepage and MOAS product page.
 
+The subsequent [camera and lighting milestone](moas-viewer-controls-lighting.md) replaces the initial navigation and lighting described below. It adds screen-space pan, continuous camera handling, closer component framing and revised studio lighting; the v32 asset and native sources remain unchanged. Timing figures below belong to the original presentation pass.
+
 Owner-requested follow-up: the 3D stage now matches the product explorer's forest-green gradient (`#2b4c42` to `#1b3932`), with light heading text and a matching `/images/moas/moas-v32-forest-poster.webp` loading image. The original poster listed below is retained as release evidence. Expanded controls also remain visible in short desktop windows. Model materials and studio lighting are unchanged.
 
 The cabinet door and its latch respond to direct clicks and a 0–150° keyboard-accessible slider. The external fill lid slides forward 214.3252 mm; its rails, fixed entry panel, and pickup assembly stay stationary. Buttons provide equivalent actions. Twelve component descriptions remain in HTML when the model fails to download. Selection frames a component, interior selections open the door, and Reset restores the starting view, mechanisms, zoom, and selection. Expanded view traps keyboard focus; Escape reduces it, then returns to images and restores launch focus. Door, lid, and camera easing respect reduced-motion preferences.

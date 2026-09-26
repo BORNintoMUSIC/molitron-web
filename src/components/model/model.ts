@@ -16,7 +16,6 @@ export type CabinetAsset = {
   center: Vector3;
   size: Vector3;
   scale: number;
-  frameBox: Box3;
 };
 
 // The viewer accepts a single self-contained GLB.
@@ -86,22 +85,9 @@ export async function loadCabinet(file: File): Promise<CabinetAsset> {
       object.castShadow = true;
       object.receiveShadow = true;
     });
-    const frameBox = box.clone();
-    // Fit the complete door sweep, keeping it visible in a narrow phone viewport.
-    const preparedDoor = door as Object3D | null;
-    if (preparedDoor) {
-      const original = preparedDoor.rotation.y;
-      for (const angle of [45, 90, 120, 150]) {
-        preparedDoor.rotation.y = -angle * Math.PI / 180;
-        gltf.scene.updateMatrixWorld(true);
-        frameBox.union(new Box3().setFromObject(gltf.scene));
-      }
-      preparedDoor.rotation.y = original;
-      gltf.scene.updateMatrixWorld(true);
-    }
     return { gltf, filename: file.name, bytes: file.size, parseMs: performance.now() - started,
       meshes, parts: [...parts.values()].sort((a,b) => a.label.localeCompare(b.label)), door, lid, triangles: Math.round(triangles), materials: materialIds.size,
-      size, center: box.getCenter(new Vector3()), scale: 3 / Math.max(size.x, size.y, size.z), frameBox };
+      size, center: box.getCenter(new Vector3()), scale: 3 / Math.max(size.x, size.y, size.z) };
   } catch (error) {
     disposeCabinet(gltf.scene);
     throw error;
