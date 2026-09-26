@@ -78,6 +78,8 @@
   .workspace { height: auto; grid-template-rows: clamp(300px,43svh,420px) auto; }
   .componentPanel { align-self: stretch; margin-top: 8px; }
   .expanded .workspace { grid-template-rows: minmax(150px,1fr) auto; }
+  .expanded .viewer:has(.componentPanel) { grid-template-rows: auto minmax(380px,1fr) auto; }
+  .expanded .viewer:has(.sheetToggle[aria-expanded="true"]) { grid-template-rows: auto minmax(480px,1fr) auto; }
   .expanded .componentPanel { max-height: 230px; margin: 6px 12px 12px; padding: 4px 12px 8px; }
   .expanded .componentPanel:has(.sheetToggle[aria-expanded="true"]) { max-height: 330px; }
 }
@@ -110,6 +112,7 @@
   .expanded .viewer { grid-template-rows: auto minmax(150px,1fr) auto; }
 }
 @media (max-height: 550px) and (min-width: 600px) {
+  .expanded .viewer:has(.componentPanel), .expanded .viewer:has(.sheetToggle[aria-expanded="true"]) { grid-template-rows: auto minmax(150px,1fr) auto; }
   .expanded .workspace { grid-template-rows: minmax(0,1fr); }
   .expanded .withDetails { grid-template-columns: minmax(0,1fr) minmax(240px,32%); }
   .expanded .componentPanel { margin: 6px 12px; max-height: calc(100% - 12px); align-self: start; }

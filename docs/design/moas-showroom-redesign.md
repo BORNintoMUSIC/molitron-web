@@ -32,3 +32,5 @@ Validation completed locally:
 - No rendering effects, lighting, model geometry, material authoring or component facts changed. GLB SHA-256 remains `64a022e86e0db28d155a84fce351faedd0d1a6c322302470412772cb6259e2c4`.
 
 Private screenshots and command evidence are under `moas-3d-lab/review/showroom-*`, outside public assets. Read-only Vercel inspection confirmed the project's only configured domain is `molitron-web.vercel.app`, mapped to `codex/homepage-visual-prototype`. Release remains through draft, unmerged PR #42. The protected public domains and their existing site remain untouched.
+
+Final responsive checks included 1440×900, 390×844, 844×390, 1280×500 and 320×500. At 320×500 the sheet retains readable content (212px measured), full canvas width and scroll access to Fit; no horizontal page overflow was found. The short-portrait sheet minimum was corrected before release.
